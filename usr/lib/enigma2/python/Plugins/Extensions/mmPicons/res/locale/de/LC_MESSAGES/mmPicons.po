@@ -1,0 +1,193 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cbpanel\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-25 14:00+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: ))^^(( <>\n"
+"Language-Team: *\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.8.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SearchPath-0: plugin.py\n"
+
+#: plugin.py:306 plugin.py:326 plugin.py:462 plugin.py:490 plugin.py:608
+#: plugin.py:638 plugin.py:785 plugin.py:813 plugin.py:928 plugin.py:958
+#: plugin.py:1105 plugin.py:1135 plugin.py:1282 plugin.py:1312 plugin.py:1466
+#: plugin.py:1476
+#, python-format
+msgid "..:: mMark Picons & Skins V. %s ::.."
+msgstr ""
+
+#: plugin.py:311 plugin.py:469 plugin.py:615 plugin.py:792 plugin.py:935
+#: plugin.py:1112 plugin.py:1289
+msgid "Folder picons "
+msgstr "Ordner Picons "
+
+#: plugin.py:315 plugin.py:392 plugin.py:530 plugin.py:678 plugin.py:716
+#: plugin.py:853 plugin.py:998 plugin.py:1036 plugin.py:1175 plugin.py:1213
+#: plugin.py:1352 plugin.py:1395
+msgid "Please select ..."
+msgstr "Bitte auswählen ..."
+
+#: plugin.py:316
+msgid "Select"
+msgstr "Wählen"
+
+#: plugin.py:317
+msgid "Exit"
+msgstr "Ausfahrt"
+
+#: plugin.py:318
+msgid "Remove"
+msgstr ""
+
+#: plugin.py:375
+msgid ":P  COMING SOON!!!"
+msgstr ""
+
+#: plugin.py:378
+#, python-format
+msgid ""
+"Do you want to remove all picons in folder?\n"
+"%s\n"
+"It could take a few minutes, wait .."
+msgstr ""
+
+#: plugin.py:382
+#, python-format
+msgid "Erase %s... please wait"
+msgstr ""
+
+#: plugin.py:391
+#, python-format
+msgid "%s it has been cleaned"
+msgstr ""
+
+#: plugin.py:467 plugin.py:613 plugin.py:790 plugin.py:933 plugin.py:1110
+#: plugin.py:1287
+msgid "Load selected filter list, please wait ..."
+msgstr "Ausgewählte Filterliste laden, bitte warten ..."
+
+#: plugin.py:473 plugin.py:619 plugin.py:796 plugin.py:939 plugin.py:1116
+#: plugin.py:1293
+msgid "Install"
+msgstr "Installieren"
+
+#: plugin.py:474 plugin.py:620 plugin.py:797 plugin.py:940 plugin.py:1117
+#: plugin.py:1294 plugin.py:1473
+msgid "Back"
+msgstr "Zurück"
+
+#: plugin.py:510 plugin.py:658 plugin.py:833 plugin.py:978 plugin.py:1155
+#: plugin.py:1332
+msgid "Try again later ..."
+msgstr "Versuchen Sie es später noch einmal ..."
+
+#: plugin.py:686 plugin.py:1006 plugin.py:1183 plugin.py:1360
+msgid ""
+"Do you want to install?\n"
+"It could take a few minutes, wait .."
+msgstr ""
+"Wollen Sie installieren?\n"
+"Es könnte ein paar Minuten dauern, warte .."
+
+#: plugin.py:689 plugin.py:1009 plugin.py:1186 plugin.py:1363
+msgid "... please wait"
+msgstr "... Warten Sie mal"
+
+#: plugin.py:713 plugin.py:1033 plugin.py:1210 plugin.py:1392
+msgid "Install ..."
+msgstr ""
+
+#: plugin.py:1367
+msgid "Xstreamity Player not installed"
+msgstr ""
+
+#: plugin.py:1463
+msgid "Config"
+msgstr ""
+
+#: plugin.py:1469
+msgid "Config Panel Addon"
+msgstr "Konfiguration Platte Addon"
+
+#: plugin.py:1472
+msgid "Save"
+msgstr "Speichern"
+
+#: plugin.py:1496
+#, python-format
+msgid ""
+"Config Panel Addon\n"
+"Your current IP is %s"
+msgstr ""
+"Config Panel Addon\n"
+"Ihre aktuelle IP ist %s"
+
+#: plugin.py:1501
+msgid "Set the path to the Picons folder"
+msgstr "Legen Sie den Pfad zu dem Picons-Ordner fest"
+
+#: plugin.py:1501
+msgid "Configure folder containing picons files"
+msgstr "Konfigurieren Sie einen Ordner mit Picons-Dateien"
+
+#: plugin.py:1532
+msgid "Successfully saved configuration"
+msgstr "Erfolgreich gespeicherte Konfiguration"
+
+#: plugin.py:1550
+msgid "Choose Directory:"
+msgstr ""
+
+#: plugin.py:1551
+msgid "Choose directory"
+msgstr ""
+
+#: plugin.py:1587
+msgid "Really close without saving the settings?"
+msgstr "Wirklich schließen, ohne die Einstellungen zu speichern?"
+
+#: plugin.py:1599
+msgid "mMark Picons & Skins"
+msgstr ""
+
+#: plugin.py:1612
+msgid "mMark Picons & Skins V."
+msgstr ""
+
+#~ msgid "Installation Picons"
+#~ msgstr "Installation Picons"
+
+#~ msgid "Execution Progress:"
+#~ msgstr "Execution Fortschritt:"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Die Ausführung abgeschlossen!!"
+
+#~ msgid "Question"
+#~ msgstr "Question"
+
+#~ msgid "Information"
+#~ msgstr "Information"
+
+#~ msgid "Warning"
+#~ msgstr "Warning"
+
+#~ msgid "Error"
+#~ msgstr "Error"
+
+#~ msgid "Message"
+#~ msgstr "Message"
+
+#~ msgid "Yes"
+#~ msgstr "Yes"
+
+#~ msgid "No"
+#~ msgstr "No"

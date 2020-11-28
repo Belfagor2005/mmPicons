@@ -50,7 +50,15 @@ import subprocess
 import glob
 global skin_path, mmkpicon, isDreamOS, pngs, pngl, pngx, XStreamity
 
-
+def logdata(name = '', data = None):
+    try:
+        data=str(data)
+        fp = open('/tmp/mmPicons.log', 'a')
+        fp.write( str(name) + ': ' + data+"\n")
+        fp.close()
+    except:
+        trace_error()
+        pass
 
 def getversioninfo():
     currversion = '1.0'
@@ -63,10 +71,11 @@ def getversioninfo():
                     currversion = line.split('=')[1].strip()
         except:
             pass
+    logdata("Version ", currversion )
     return (currversion)
-currversion     = getversioninfo()
+
+
 isDreamOS       = False
-XStreamity       = False
 headers         = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
                  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' }
 PY3             = sys.version_info[0] == 3
@@ -133,6 +142,7 @@ def checkZip(url):
             l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0]
             return 'http://download' + l2link
         except:
+            logdata("l2link ", 'no link')
             return ''
 
 def checkMyFile(url):
@@ -152,6 +162,14 @@ def checkMyFile(url):
         except:
             return ''
 
+def trace_error():
+    import traceback
+    try:
+        traceback.print_exc(file=sys.stdout)
+        traceback.print_exc(file=open('/tmp/traceback.log', 'a'))
+    except:
+        pass
+
 def freespace():
     try:
         diskSpace = os.statvfs('/')
@@ -168,7 +186,6 @@ def deletetmp():
     os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
     return
 
-os.system('rm -fr /usr/lib/enigma2/python/Plugins/Extensions/mmPicons/temp/*')
 pblk    = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptrs    = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptmov   = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
@@ -182,6 +199,8 @@ config.plugins.mmPicons.mmkpicon    = ConfigDirectory(default='/media/hdd/picon/
 # DESKHEIGHT       = getDesktop(0).size().height()
 HD               = getDesktop(0).size()
 plugin_path      = os.path.dirname(sys.modules[__name__].__file__)
+currversion     = getversioninfo()
+XStreamity      = False
 skin_path        = plugin_path
 ico_path         = plugin_path + '/logo.png'
 ico1_path        = plugin_path + '/res/pics/plugin.png'
@@ -204,7 +223,8 @@ if not os.path.exists(mmkpicon):
         os.makedirs(mmkpicon)
     except OSError as e:
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
-print('**********************************path Picons: ', mmkpicon)
+
+logdata("path picons: ", str(mmkpicon))
 
 if HD.width() > 1280:
     if isDreamOS:
@@ -340,6 +360,7 @@ class SelectPicons(Screen):
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(fspace)
+        logdata("freespace ", fspace)
 
     def closerm(self):
         self.close()
@@ -382,12 +403,14 @@ class SelectPicons(Screen):
             self['info'].setText(_('Erase %s... please wait' %mmkpicon))
             print("Folder picons : ", mmkpicon)
             piconsx = glob.glob(str(mmkpicon) + '/*.png')
+            logdata("piconsx ", piconsx)
             for f in piconsx:
                 try:
                     print("processing file: " + f)
                     os.remove(f)
                 except OSError as e:
                     print("Error: %s : %s" % (f, e.strerror))
+                    logdata("Error ", e.strerror)
         self.mbox = self.session.open(MessageBox, _('%s it has been cleaned'%mmkpicon), MessageBox.TYPE_INFO, timeout=4)
         self['info'].setText(_('Please select ...'))
 
@@ -508,6 +531,7 @@ class MMarkFolderBlk(Screen):
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
+        logdata("errorLoad ", error)
         self.downloading = False
 
     def _gotPageLoad(self, data):
@@ -656,6 +680,7 @@ class MMarkBlack(Screen):
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
+        logdata("errorLoad ", error)
         self.downloading = False
 
     def _gotPageLoad(self, data):
@@ -695,6 +720,7 @@ class MMarkBlack(Screen):
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
+                # logdata("myfile1 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -712,7 +738,9 @@ class MMarkBlack(Screen):
         if os.path.exists('/tmp/download.zip'):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
+            logdata("install1 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
         self.progclear = 0
@@ -720,6 +748,7 @@ class MMarkBlack(Screen):
 
     def showError(self, error):
         print("download error =", error)
+        logdata("showerror ", error)
         self.close()
 
     def cancel(self, result = None):
@@ -831,6 +860,7 @@ class MMarkFolderTrs(Screen):
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
+        logdata("errorLoad ", error)
         self.downloading = False
 
     def _gotPageLoad(self, data):
@@ -976,6 +1006,7 @@ class MMarkTrasp(Screen):
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
+        logdata("errorLoad ", error)
         self.downloading = False
 
     def _gotPageLoad(self, data):
@@ -1015,6 +1046,7 @@ class MMarkTrasp(Screen):
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
+                # logdata("myfile2 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -1029,10 +1061,12 @@ class MMarkTrasp(Screen):
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
 
     def install(self, fplug):
-        if os.path.exists('/tmp/download.zip'):    
+        if os.path.exists('/tmp/download.zip'):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
+            logdata("install2 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
         self.progclear = 0
@@ -1040,6 +1074,7 @@ class MMarkTrasp(Screen):
 
     def showError(self, error):
         print("download error =", error)
+        logdata("errorLoad ", error)
         self.close()
 
     def cancel(self, result = None):
@@ -1153,6 +1188,7 @@ class MMarkMov(Screen):
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
+        logdata("errorLoad ", error)
         self.downloading = False
 
     def _gotPageLoad(self, data):
@@ -1192,6 +1228,7 @@ class MMarkMov(Screen):
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
+                # logdata("myfile3 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -1209,7 +1246,9 @@ class MMarkMov(Screen):
         if os.path.exists('/tmp/download.zip'):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
+            logdata("install3 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
         self.progclear = 0
@@ -1217,6 +1256,7 @@ class MMarkMov(Screen):
 
     def showError(self, error):
         print("download error =", error)
+        logdata("errorLoad ", error)
         self.close()
 
     def cancel(self, result = None):
@@ -1330,6 +1370,7 @@ class MMarkFolderSkinZeta(Screen):
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
+        logdata("errorLoad ", error)
         self.downloading = False
 
     def _gotPageLoad(self, data):
@@ -1365,13 +1406,14 @@ class MMarkFolderSkinZeta(Screen):
             if self.downloading == True:
                 if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity/plugin.pyo') and 'xstreamity' in self.name:
                     self.mbox = self.session.open(MessageBox, _('Xstreamity Player not installed'), MessageBox.TYPE_INFO, timeout=4)
-                    return            
+                    return
                 selection = str(self['text'].getCurrent())
                 idx = self["text"].getSelectionIndex()
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
+                # logdata("myfile4 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -1391,7 +1433,9 @@ class MMarkFolderSkinZeta(Screen):
                 os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d /"
+            logdata("install4 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
         self.progclear = 0
@@ -1399,6 +1443,7 @@ class MMarkFolderSkinZeta(Screen):
 
     def showError(self, error):
         print("download error =", error)
+        logdata("errorLoad ", error)
         self.close()
 
     def cancel(self, result = None):
@@ -1592,6 +1637,7 @@ def main(session, **kwargs):
     if checkInternet():
         session.open(SelectPicons)
     else:
+        logdata("noInternet ", 'norete')
         session.open(MessageBox, "No Internet", MessageBox.TYPE_INFO)
 
 def menu(menuid, **kwargs):

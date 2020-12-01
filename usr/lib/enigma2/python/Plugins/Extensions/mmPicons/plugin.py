@@ -1,7 +1,7 @@
 #"****************************************"
 #"*        coded by Lululla              *"
 #"*             skin by MMark            *"
-#"*             23/11/2020               *"
+#"*             01/12/2020               *"
 #"****************************************"
 from __future__ import print_function
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -15,7 +15,6 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.ProgressBar import ProgressBar
-# from Components.SelectionList import SelectionList
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Sources.List import List
@@ -186,10 +185,10 @@ def deletetmp():
     os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
     return
 
-pblk    = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
-ptrs    = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
-ptmov   = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-ecskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
+pblk            = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
+ptrs            = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
+ptmov           = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
+ecskins         = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 host_trs        = base64.b64decode(ptrs)
 host_blk        = base64.b64decode(pblk)
 host_mov        = base64.b64decode(ptmov)
@@ -199,8 +198,8 @@ config.plugins.mmPicons.mmkpicon    = ConfigDirectory(default='/media/hdd/picon/
 # DESKHEIGHT       = getDesktop(0).size().height()
 HD               = getDesktop(0).size()
 plugin_path      = os.path.dirname(sys.modules[__name__].__file__)
-currversion     = getversioninfo()
-XStreamity      = False
+currversion      = getversioninfo()
+XStreamity       = False
 skin_path        = plugin_path
 ico_path         = plugin_path + '/logo.png'
 ico1_path        = plugin_path + '/res/pics/plugin.png'
@@ -212,9 +211,8 @@ piconszeta       = plugin_path + '/res/picons/picon_z.png'
 piconsmovie      = plugin_path + '/res/picons/picon_mv.png'
 pixmaps          = plugin_path + '/res/picons/backg.png'
 
-# os.system('rm -fr '+ plugin_path + '/temp/*')
-mmkpicon = config.plugins.mmPicons.mmkpicon.value.strip()
-no_cover = plugin_path + '/no_coverArt.png'
+mmkpicon         = config.plugins.mmPicons.mmkpicon.value.strip()
+no_cover         = plugin_path + '/no_coverArt.png'
 
 if mmkpicon.endswith('/'):
     mmkpicon = mmkpicon[:-1]
@@ -311,7 +309,8 @@ Panel_list3 = [
  ('MMARK PICONS BLACK'),
  ('MMARK PICONS TRANSPARENT'),
  ('MMARK PICONS MOVIE'),
- ('MMARK SKIN ZETA')]
+ ('MMARK SKIN ZETA'),
+ ('MMARK SKIN OTHER') ]
 
 
 class SelectPicons(Screen):
@@ -688,6 +687,7 @@ class MMarkBlack(Screen):
         self.names = []
         self.urls = []
         try:
+                         
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
@@ -1316,6 +1316,22 @@ class MMarkFolderSkinZeta(Screen):
         self.session = session
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
+                           
+                                           
+                      
+                                    
+                     
+                                                            
+                                            
+             
+                                                                   
+                                            
+                       
+                                                  
+                                          
+                              
+                                      
+                                  
                 self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
@@ -1543,7 +1559,7 @@ class mmConfig(Screen, ConfigListScreen):
     def createSetup(self):
         self.editListEntry = None
         self.list = []
-        self.list.append(getConfigListEntry(_("Set the path to the Picons folder"), config.plugins.mmPicons.mmkpicon, _("Configure folder containing picons files")))
+        self.list.append(getConfigListEntry(_("Set the path to the Picons folder"), config.plugins.mmPicons.mmkpicon, _("Press Ok to select the folder containing the picons files")))
         self["config"].list = self.list
         self["config"].setList(self.list)
 
@@ -1572,10 +1588,13 @@ class mmConfig(Screen, ConfigListScreen):
         self.createSetup()
 
     def msgok(self):
-        for x in self["config"].list:
-          x[1].save()
-        self.mbox = self.session.open(MessageBox, _('Successfully saved configuration'), MessageBox.TYPE_INFO, timeout=4)
-        self.close(True)
+        if self['config'].isChanged():
+            for x in self["config"].list:
+                x[1].save()
+
+            self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Restart Enigma is Required. Do you want to continue?"), MessageBox.TYPE_YESNO)
+        else:
+            self.close(True)
 
     def Ok_edit(self):
         ConfigListScreen.keyOK(self)
@@ -1627,9 +1646,15 @@ class mmConfig(Screen, ConfigListScreen):
             x[1].cancel()
         self.close()
 
+    def restartenigma(self, result):
+        if result:
+            self.session.open(TryQuitMainloop, 3)
+        else:
+            self.close(True)
+
     def extnok(self):
         if self['config'].isChanged():
-            self.session.openWithCallback(self.cancelConfirm, MessageBox, _('Really close without saving the settings?'))
+            self.session.openWithCallback(self.cancelConfirm, MessageBox, _('Really close without saving the settings?'), MessageBox.TYPE_YESNO)
         else:
             self.close()
 

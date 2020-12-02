@@ -335,9 +335,9 @@ class SelectPicons(Screen):
         self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Exit'))
         self['key_yellow'] = Button(_('Remove'))
-        self["key_blue"] = Button(_(''))
+        self["key_blue"] = Button(_('Restart'))
         # self['key_yellow'].hide()
-        self['key_blue'].hide()
+        # self['key_blue'].hide()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
         self.currentList = 'text'
@@ -348,6 +348,7 @@ class SelectPicons(Screen):
          'back': self.closerm,
          'red': self.closerm,
          'yellow': self.remove,
+         'blue': self.msgtqm,
          'up': self.up,
          'down': self.down,
          'left': self.left,
@@ -363,6 +364,15 @@ class SelectPicons(Screen):
 
     def closerm(self):
         self.close()
+
+    def msgtqm(self):
+        self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Do you want to restart Enigma?"), MessageBox.TYPE_YESNO)
+
+    def restartenigma(self, result):
+        if result:
+            self.session.open(TryQuitMainloop, 3)
+        else:
+            return
 
     def updateMenuList(self):
         self.menu_list = []
@@ -492,7 +502,7 @@ class MMarkFolderBlk(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
-        self['key_green'] = Button(_('Install'))
+        self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
         self["key_blue"] = Button(_(''))
@@ -822,7 +832,7 @@ class MMarkFolderTrs(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
-        self['key_green'] = Button(_('Install'))
+        self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
         self["key_blue"] = Button(_(''))
@@ -1316,23 +1326,7 @@ class MMarkFolderSkinZeta(Screen):
         self.session = session
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
-                           
-                                           
-                      
-                                    
-                     
-                                                            
-                                            
-             
-                                                                   
-                                            
-                       
-                                                  
-                                          
-                              
-                                      
-                                  
-                self.skin = f.read()
+            self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
         self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
@@ -1528,8 +1522,8 @@ class mmConfig(Screen, ConfigListScreen):
         self['description'] = Label('')
         info = ''
         self['info'] = Label(_('Config Panel Addon'))
-        self['key_yellow'] = Button(_(''))
-        self['key_yellow'].hide()
+        self['key_yellow'] = Button(_('Select Folder'))
+        # self['key_yellow'].hide()
         self['key_green'] = Button(_('Save'))
         self['key_red'] = Button(_('Back'))
         self["key_blue"] = Button(_(''))

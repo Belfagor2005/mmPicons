@@ -322,7 +322,7 @@ class SelectPicons(Screen):
             self.skin = f.read()
         self.setup_title = ('Select Picons')
         Screen.__init__(self, session)
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['text'] = mmList([])
         self.working = False
         self.selection = 'all'
@@ -342,7 +342,7 @@ class SelectPicons(Screen):
         self['progresstext'] = StaticText()
         self.currentList = 'text'
         self.menulist = []
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions" ], {'ok': self.okRun,
          'green': self.okRun,
          'back': self.closerm,
@@ -491,7 +491,7 @@ class MMarkFolderBlk(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
@@ -519,7 +519,7 @@ class MMarkFolderBlk(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -638,7 +638,7 @@ class MMarkBlack(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
@@ -668,7 +668,7 @@ class MMarkBlack(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -821,7 +821,7 @@ class MMarkFolderTrs(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
@@ -849,7 +849,7 @@ class MMarkFolderTrs(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -965,7 +965,7 @@ class MMarkTrasp(Screen):
                 self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
@@ -995,7 +995,7 @@ class MMarkTrasp(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -1147,7 +1147,7 @@ class MMarkMov(Screen):
                 self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
@@ -1177,7 +1177,7 @@ class MMarkMov(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -1329,7 +1329,7 @@ class MMarkFolderSkinZeta(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
@@ -1359,7 +1359,7 @@ class MMarkFolderSkinZeta(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -1518,17 +1518,17 @@ class mmConfig(Screen, ConfigListScreen):
         self.setup_title = _("Config")
         self.onChangedEntry = [ ]
         self.session = session
-        self.setTitle(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self['description'] = Label('')
         info = ''
         self['info'] = Label(_('Config Panel Addon'))
-        self['key_yellow'] = Button(_('Select Folder'))
+        self['key_yellow'] = Button(_('Choice'))
         # self['key_yellow'].hide()
         self['key_green'] = Button(_('Save'))
         self['key_red'] = Button(_('Back'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
-        self['title'] = Label(_('..:: mMark Picons & Skins V. %s ::..' % currversion))
+        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
         self["setupActions"] = ActionMap(['OkCancelActions', 'DirectionActions', 'ColorActions', 'VirtualKeyboardActions', 'ActiveCodeActions'], {'cancel': self.extnok,
          'red': self.extnok,
          'back': self.close,
@@ -1661,7 +1661,7 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
-        return [(_('mMark Picons & Skins'),
+        return [('mMark Picons & Skins',
           main,
           'mMark Picons & Skins',
           44)]
@@ -1674,7 +1674,7 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not isDreamOS:
         ico_path = plugin_path + '/res/pics/logo.png'
-    result = [PluginDescriptor(name='mMark Picons & Skins', description=_('mMark Picons & Skins V.' + currversion), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
+    result = [PluginDescriptor(name='mMark Picons & Skins', description=('mMark Picons & Skins V.' + currversion), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
     return result
 
 

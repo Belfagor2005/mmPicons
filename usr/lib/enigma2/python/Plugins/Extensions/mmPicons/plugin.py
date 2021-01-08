@@ -1,10 +1,18 @@
-#"****************************************"
-#"*        coded by Lululla              *"
-#"*             skin by MMark            *"
-#"*             01/12/2020               *"
-#"****************************************"
-from __future__ import print_function
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+'''
+****************************************
+*        coded by Lululla              *
+*             skin by MMark            *
+*             01/12/2020               *
+****************************************
+'''
+#Info http://t.me/tivustream
+# from __future__ import print_function
+from . import _
 from Components.ActionMap import ActionMap, NumberActionMap
+from Components.AVSwitch import AVSwitch
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
 from Components.HTMLComponent import *
@@ -31,29 +39,34 @@ from Screens.Screen import Screen
 from Screens.Standby import *
 from Screens.Standby import TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename, SCOPE_PLUGINS, fileExists, copyfile, SCOPE_LANGUAGE, pathExists
+from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_PLUGINS, SCOPE_LANGUAGE
+from Tools.Directories import pathExists, resolveFilename, fileExists, copyfile
 from Tools.Downloader import downloadWithProgress
 from Tools.LoadPixmap import LoadPixmap
 from enigma import *
-from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, getDesktop, loadPNG, loadPic
-from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer, gFont
+from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
+from enigma import getDesktop, loadPNG, gFont
+from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
 from os import path, listdir, remove, mkdir, access, X_OK, chmod
 from twisted.web.client import downloadPage, getPage
 from xml.dom import Node, minidom
 import base64
-import os, re, sys
+import os
+import re
+import sys
 import shutil
 import ssl
 import socket
 import subprocess
 import glob
+from sys import version_info
 global skin_path, mmkpicon, isDreamOS, pngs, pngl, pngx, XStreamity
 
 def logdata(name = '', data = None):
     try:
         data=str(data)
         fp = open('/tmp/mmPicons.log', 'a')
-        fp.write( str(name) + ': ' + data+"\n")
+        fp.write(str(name) + ': ' + data+"\n")
         fp.close()
     except:
         trace_error()
@@ -70,14 +83,14 @@ def getversioninfo():
                     currversion = line.split('=')[1].strip()
         except:
             pass
-    logdata("Version ", currversion )
+    logdata("Version ", currversion)
     return (currversion)
 
 
-isDreamOS       = False
-headers         = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' }
-PY3             = sys.version_info[0] == 3
+isDreamOS = False
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+PY3 = sys.version_info[0] == 3
 if PY3:
     from urllib.request import urlopen, Request
     from urllib.error import URLError
@@ -103,13 +116,10 @@ except:
     pass
 
 def checkStr(txt):
-    # convert variable to type str both in Python 2 and 3
     if PY3:
-        # Python 3
         if type(txt) == type(bytes()):
             txt = txt.decode('utf-8')
     else:
-        #Python 2
         if type(txt) == type(unicode()):
             txt = txt.encode('utf-8')
     return txt
@@ -134,7 +144,7 @@ def checkZip(url):
             req.add_header('Referer', 'https://www.mediafire.com/')
             req.add_header('X-Requested-With', 'XMLHttpRequest')
             response = urlopen(req)
-            link =response.read()
+            link = response.read()
             n1 = link.find('"Download file"', 0)
             n2 = link.find('Repair your download', n1)
             r2 = link[n1:n2]
@@ -185,34 +195,34 @@ def deletetmp():
     os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
     return
 
-pblk            = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
-ptrs            = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
-ptmov           = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-ecskins         = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-host_trs        = base64.b64decode(ptrs)
-host_blk        = base64.b64decode(pblk)
-host_mov        = base64.b64decode(ptmov)
-host_skin       = base64.b64decode(ecskins)
-config.plugins.mmPicons             = ConfigSubsection()
-config.plugins.mmPicons.mmkpicon    = ConfigDirectory(default='/media/hdd/picon/')
-# DESKHEIGHT       = getDesktop(0).size().height()
-HD               = getDesktop(0).size()
-plugin_path      = os.path.dirname(sys.modules[__name__].__file__)
-currversion      = getversioninfo()
-XStreamity       = False
-skin_path        = plugin_path
-ico_path         = plugin_path + '/logo.png'
-ico1_path        = plugin_path + '/res/pics/plugin.png'
-# ico2_path        = plugin_path + '/res/pics/plugins.png'
-ico3_path        = plugin_path + '/res/pics/setting.png'
-piconstrs        = plugin_path + '/res/picons/picon_trs.png'
-piconsblk        = plugin_path + '/res/picons/picon_blk.png'
-piconszeta       = plugin_path + '/res/picons/picon_z.png'
-piconsmovie      = plugin_path + '/res/picons/picon_mv.png'
-pixmaps          = plugin_path + '/res/picons/backg.png'
+pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
+ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
+ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
+ecskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
+host_trs = base64.b64decode(ptrs)
+host_blk = base64.b64decode(pblk)
+host_mov = base64.b64decode(ptmov)
+host_skin = base64.b64decode(ecskins)
+config.plugins.mmPicons = ConfigSubsection()
+config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
+HD = getDesktop(0).size()
+plugin_path = os.path.dirname(sys.modules[__name__].__file__)
+currversion = getversioninfo()
+title_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
+XStreamity = False
+skin_path = plugin_path
+ico_path = plugin_path + '/logo.png'
+ico1_path = plugin_path + '/res/pics/plugin.png'
+# ico2_path = plugin_path + '/res/pics/plugins.png'
+ico3_path = plugin_path + '/res/pics/setting.png'
+piconstrs = plugin_path + '/res/picons/picon_trs.png'
+piconsblk = plugin_path + '/res/picons/picon_blk.png'
+piconszeta = plugin_path + '/res/picons/picon_z.png'
+piconsmovie = plugin_path + '/res/picons/picon_mv.png'
+pixmaps = plugin_path + '/res/picons/backg.png'
 
-mmkpicon         = config.plugins.mmPicons.mmkpicon.value.strip()
-no_cover         = plugin_path + '/no_coverArt.png'
+mmkpicon = config.plugins.mmPicons.mmkpicon.value.strip()
+no_cover = plugin_path + '/no_coverArt.png'
 
 if mmkpicon.endswith('/'):
     mmkpicon = mmkpicon[:-1]
@@ -264,36 +274,26 @@ def OnclearMem():
         pass
 
 def DailyListEntry(name, idx):
-    pngs    = ico1_path
-    res     = [name]
-    # if idx == 0:
-        # pngs = piconsblk
-    # elif idx == 1:
-        # pngs = piconstrs
-    # elif idx == 2:
-        # pngs = piconsmovie
-    # elif idx == 3:
-        # pngs = piconszeta
-    # else:
-        # pngs = pixmaps
+    pngs = ico1_path
+    res = [name]
     if fileExists(pngs):
         if HD.width() > 1280:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))#
+            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
+            res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =7, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         else:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 5), size=(1000, 50), font=1, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))# | RT_VALIGN_CENTER
+            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 6), size=(34, 25), png =loadPNG(pngs)))
+            res.append(MultiContentEntryText(pos=(60, 5), size =(1000, 50), font =1, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))
         return res
 
 def oneListEntry(name):
-    pngx    = ico1_path
-    res     = [name]
+    pngx = ico1_path
+    res = [name]
     if HD.width() > 1280:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))#
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 5), size=(1000, 50), font=1, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))# | RT_VALIGN_CENTER
+        res.append(MultiContentEntryText(pos=(60, 5), size=(1000, 50), font=1, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))
     return res
 
 def showlist(data, list):
@@ -310,7 +310,7 @@ Panel_list3 = [
  ('MMARK PICONS TRANSPARENT'),
  ('MMARK PICONS MOVIE'),
  ('MMARK SKIN ZETA'),
- ('MMARK SKIN OTHER') ]
+ ('MMARK SKIN OTHER')]
 
 
 class SelectPicons(Screen):
@@ -322,12 +322,12 @@ class SelectPicons(Screen):
             self.skin = f.read()
         self.setup_title = ('Select Picons')
         Screen.__init__(self, session)
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self['text'] = mmList([])
         self.working = False
         self.selection = 'all'
         self['pth'] = Label('')
-        self['pth'].setText(_('Folder picons ') + mmkpicon)
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
         self['space'] = Label('')
         self['info'] = Label('')
@@ -342,8 +342,8 @@ class SelectPicons(Screen):
         self['progresstext'] = StaticText()
         self.currentList = 'text'
         self.menulist = []
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
-        self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions" ], {'ok': self.okRun,
+        self['title'] = Label(title_plug)
+        self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions"], {'ok': self.okRun,
          'green': self.okRun,
          'back': self.closerm,
          'red': self.closerm,
@@ -405,12 +405,12 @@ class SelectPicons(Screen):
             self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
 
     def remove(self):
-        self.session.openWithCallback(self.okRemove,MessageBox,(_("Do you want to remove all picons in folder?\n%s\nIt could take a few minutes, wait .." %mmkpicon)), MessageBox.TYPE_YESNO)
+        self.session.openWithCallback(self.okRemove, MessageBox, (_("Do you want to remove all picons in folder?\n%s\nIt could take a few minutes, wait .." % mmkpicon)), MessageBox.TYPE_YESNO)
 
     def okRemove(self, result):
         if result:
-            self['info'].setText(_('Erase %s... please wait' %mmkpicon))
-            print("Folder picons : ", mmkpicon)
+            self['info'].setText(_('Erase %s... please wait' % mmkpicon))
+            print("Picons folder : ", mmkpicon)
             piconsx = glob.glob(str(mmkpicon) + '/*.png')
             logdata("piconsx ", piconsx)
             for f in piconsx:
@@ -420,7 +420,7 @@ class SelectPicons(Screen):
                 except OSError as e:
                     print("Error: %s : %s" % (f, e.strerror))
                     logdata("Error ", e.strerror)
-        self.mbox = self.session.open(MessageBox, _('%s it has been cleaned'%mmkpicon), MessageBox.TYPE_INFO, timeout=4)
+        self.mbox = self.session.open(MessageBox, _('%s it has been cleaned'% mmkpicon), MessageBox.TYPE_INFO, timeout = 4)
         self['info'].setText(_('Please select ...'))
 
     def goConfig(self):
@@ -469,7 +469,7 @@ class SelectPicons(Screen):
          '#FF000000'))
         ptr = self.picload.getData()
         if isDreamOS:
-            if self.picload.startDecode(pixmaps,False) == 0:
+            if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
             if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
@@ -491,14 +491,14 @@ class MMarkFolderBlk(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
-        self['pth'].setText(_('Folder picons ') + mmkpicon)
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
@@ -519,7 +519,7 @@ class MMarkFolderBlk(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self['title'] = Label(title_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -552,10 +552,10 @@ class MMarkFolderBlk(Screen):
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = '{"folderkey":"(.*?)".*?"name":"(.*?)".*?"created":"(.*?)"'
-            match = re.compile(regex,re.DOTALL).findall(data2)
+            match = re.compile(regex, re.DOTALL).findall(data2)
             for url, name, data in match:
                 url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
-                url = url.replace('\\','')
+                url = url.replace('\\', '')
                 pic = no_cover
                 name = 'MMark-Picons-' + name
                 self.urls.append(url)
@@ -617,7 +617,7 @@ class MMarkFolderBlk(Screen):
          '#FF000000'))
         ptr = self.picload.getData()
         if isDreamOS:
-            if self.picload.startDecode(pixmaps,False) == 0:
+            if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
             if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
@@ -638,14 +638,14 @@ class MMarkBlack(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
-        self['pth'].setText(_('Folder picons ') + mmkpicon)
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
@@ -668,7 +668,7 @@ class MMarkBlack(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self['title'] = Label(title_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -697,15 +697,15 @@ class MMarkBlack(Screen):
         self.names = []
         self.urls = []
         try:
-                         
+
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex,re.DOTALL).findall(data2)
-            for name, data, download, url  in match:
+            match = re.compile(regex, re.DOTALL).findall(data2)
+            for name, data, download, url in match:
                 if 'zip' in url:
-                    url = url.replace('\\','')
+                    url = url.replace('\\', '')
                     name = name.replace('_',' ').replace('mmk','MMark').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
                     self.urls.append(url)
@@ -718,7 +718,7 @@ class MMarkBlack(Screen):
         self.load_poster()
 
     def okRun(self):
-        self.session.openWithCallback(self.okInstall,MessageBox,(_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
+        self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
 
     def okInstall(self, result):
         self['info'].setText(_('... please wait'))
@@ -730,7 +730,6 @@ class MMarkBlack(Screen):
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
-                # logdata("myfile1 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -800,7 +799,7 @@ class MMarkBlack(Screen):
          '#FF000000'))
         ptr = self.picload.getData()
         if isDreamOS:
-            if self.picload.startDecode(pixmaps,False) == 0:
+            if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
             if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
@@ -821,14 +820,14 @@ class MMarkFolderTrs(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
-        self['pth'].setText(_('Folder picons ') + mmkpicon)
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
@@ -849,7 +848,7 @@ class MMarkFolderTrs(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self['title'] = Label(title_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -882,10 +881,10 @@ class MMarkFolderTrs(Screen):
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = '{"folderkey":"(.*?)".*?"name":"(.*?)".*?"created":"(.*?)"'
-            match = re.compile(regex,re.DOTALL).findall(data2)
+            match = re.compile(regex, re.DOTALL).findall(data2)
             for url, name, data in match:
                 url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
-                url = url.replace('\\','')
+                url = url.replace('\\', '')
                 pic = no_cover
                 name = 'MMark-Picons-' + name
                 self.urls.append(url)
@@ -944,7 +943,7 @@ class MMarkFolderTrs(Screen):
          '#FF000000'))
         ptr = self.picload.getData()
         if isDreamOS:
-            if self.picload.startDecode(pixmaps,False) == 0:
+            if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
             if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
@@ -965,14 +964,14 @@ class MMarkTrasp(Screen):
                 self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
-        self['pth'].setText(_('Folder picons ') + mmkpicon)
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
@@ -995,7 +994,7 @@ class MMarkTrasp(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self['title'] = Label(title_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -1028,10 +1027,10 @@ class MMarkTrasp(Screen):
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex,re.DOTALL).findall(data2)
+            match = re.compile(regex, re.DOTALL).findall(data2)
             for name, data, download, url  in match:
                 if 'zip' in url:
-                    url = url.replace('\\','')
+                    url = url.replace('\\', '')
                     name = name.replace('_',' ').replace('mmk','MMark').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
@@ -1056,7 +1055,6 @@ class MMarkTrasp(Screen):
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
-                # logdata("myfile2 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -1075,7 +1073,7 @@ class MMarkTrasp(Screen):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
             logdata("install2 ", myCmd)
-            subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            subprocess.Popen(myCmd, shell =True, executable='/bin/bash')
             self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
@@ -1126,7 +1124,7 @@ class MMarkTrasp(Screen):
          '#FF000000'))
         ptr = self.picload.getData()
         if isDreamOS:
-            if self.picload.startDecode(pixmaps,False) == 0:
+            if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
             if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
@@ -1147,14 +1145,14 @@ class MMarkMov(Screen):
                 self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
-        self['pth'].setText(_('Folder picons ') + mmkpicon)
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
@@ -1177,7 +1175,7 @@ class MMarkMov(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self['title'] = Label(title_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -1210,10 +1208,10 @@ class MMarkMov(Screen):
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex,re.DOTALL).findall(data2)
+            match = re.compile(regex, re.DOTALL).findall(data2)
             for name, data, download, url  in match:
                 if 'zip' in url:
-                    url = url.replace('\\','')
+                    url = url.replace('\\', '')
                     name = name.replace('_',' ').replace('-',' ').replace('mmk','MMark').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
@@ -1238,7 +1236,6 @@ class MMarkMov(Screen):
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
-                # logdata("myfile3 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -1257,7 +1254,7 @@ class MMarkMov(Screen):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
             logdata("install3 ", myCmd)
-            subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            subprocess.Popen(myCmd, shell =True, executable='/bin/bash')
             self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
@@ -1308,7 +1305,7 @@ class MMarkMov(Screen):
          '#FF000000'))
         ptr = self.picload.getData()
         if isDreamOS:
-            if self.picload.startDecode(pixmaps,False) == 0:
+            if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
             if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
@@ -1329,14 +1326,14 @@ class MMarkFolderSkinZeta(Screen):
             self.skin = f.read()
         self.setup_title = ('MMark')
         Screen.__init__(self, session)
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
         self.addon = 'emu'
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
-        self['pth'].setText(_('Folder picons ') + mmkpicon)
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
@@ -1359,7 +1356,7 @@ class MMarkFolderSkinZeta(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self['title'] = Label(title_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -1392,10 +1389,10 @@ class MMarkFolderSkinZeta(Screen):
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex,re.DOTALL).findall(data2)
+            match = re.compile(regex, re.DOTALL).findall(data2)
             for name, data, download, url  in match:
                 if 'zip' in url:
-                    url = url.replace('\\','')
+                    url = url.replace('\\', '')
                     name = name.replace('_',' ').replace('-',' ').replace('mmk','MMark').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
@@ -1423,7 +1420,6 @@ class MMarkFolderSkinZeta(Screen):
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
                 myfile = checkMyFile(url)
-                # logdata("myfile4 ", myfile)
                 for url in myfile:
                     img = no_cover
                     url = 'http://download' + url
@@ -1495,7 +1491,7 @@ class MMarkFolderSkinZeta(Screen):
          '#FF000000'))
         ptr = self.picload.getData()
         if isDreamOS:
-            if self.picload.startDecode(pixmaps,False) == 0:
+            if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
             if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
@@ -1518,7 +1514,7 @@ class mmConfig(Screen, ConfigListScreen):
         self.setup_title = _("Config")
         self.onChangedEntry = [ ]
         self.session = session
-        self.setTitle('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self.setTitle(title_plug)
         self['description'] = Label('')
         info = ''
         self['info'] = Label(_('Config Panel Addon'))
@@ -1528,7 +1524,7 @@ class mmConfig(Screen, ConfigListScreen):
         self['key_red'] = Button(_('Back'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
-        self['title'] = Label('..:: mMark Picons & Skins V. %s ::..' % currversion)
+        self['title'] = Label(title_plug)
         self["setupActions"] = ActionMap(['OkCancelActions', 'DirectionActions', 'ColorActions', 'VirtualKeyboardActions', 'ActiveCodeActions'], {'cancel': self.extnok,
          'red': self.extnok,
          'back': self.close,
@@ -1548,7 +1544,7 @@ class mmConfig(Screen, ConfigListScreen):
             os.system('wget -qO- http://ipecho.net/plain > /tmp/currentip')
         currentip1 = open('/tmp/currentip', 'r')
         currentip = currentip1.read()
-        self['info'].setText(_('Config Panel Addon\nYour current IP is %s') %currentip)
+        self['info'].setText(_('Config Panel Addon\nYour current IP is %s') % currentip)
 
     def createSetup(self):
         self.editListEntry = None
@@ -1674,9 +1670,7 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not isDreamOS:
         ico_path = plugin_path + '/res/pics/logo.png'
-    result = [PluginDescriptor(name='mMark Picons & Skins', description=('mMark Picons & Skins V.' + currversion), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
+    result = [PluginDescriptor(name ='mMark Picons & Skins', description =(title_plug), where =[PluginDescriptor.WHERE_PLUGINMENU], icon =ico_path, fnc =main)]
     return result
 
-
-#======================================================
-
+'''======================================================'''

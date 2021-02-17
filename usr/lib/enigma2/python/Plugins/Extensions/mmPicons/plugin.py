@@ -66,7 +66,7 @@ def logdata(name = '', data = None):
     try:
         data=str(data)
         fp = open('/tmp/mmPicons.log', 'a')
-        fp.write(str(name) + ': ' + data+"\n")
+        fp.write(str(name) + ': ' + data + "\n")
         fp.close()
     except:
         trace_error()
@@ -136,9 +136,40 @@ def checkInternet():
         return False
     else:
         return True
+try:
+    from OpenSSL import SSL
+    from twisted.internet import ssl
+    from twisted.internet._sslverify import ClientTLSOptions
+    sslverify = True
+except:
+    sslverify = False
 
+if sslverify:
+    try:
+        from urlparse import urlparse
+    except:
+        from urllib.parse import urlparse
+
+    class SNIFactory(ssl.ClientContextFactory):
+        def __init__(self, hostname=None):
+            self.hostname = hostname
+
+        def getContext(self):
+            ctx = self._contextFactory(self.method)
+            if self.hostname:
+                ClientTLSOptions(self.hostname, ctx)
+            return ctx
+
+           
 def checkZip(url):
         try:
+            if url.startswith("https") and sslverify:
+                parsed_uri = urlparse(url)
+                domain = parsed_uri.hostname
+                sniFactory = SNIFactory(domain)
+            if PY3 == 3:
+                url = url.encode()
+            
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
             req.add_header('Referer', 'https://www.mediafire.com/')
@@ -156,6 +187,13 @@ def checkZip(url):
 
 def checkMyFile(url):
         try:
+            if url.startswith("https") and sslverify:
+                parsed_uri = urlparse(url)
+                domain = parsed_uri.hostname
+                sniFactory = SNIFactory(domain)
+            if PY3 == 3:
+                url = url.encode()
+            
             dest = "/tmp/download.zip"
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
@@ -199,10 +237,12 @@ pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5w
 ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 ecskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
+openskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT0wd3o0M3l2OG5zeDc5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 host_trs = base64.b64decode(ptrs)
 host_blk = base64.b64decode(pblk)
 host_mov = base64.b64decode(ptmov)
 host_skin = base64.b64decode(ecskins)
+host_skinz = base64.b64decode(openskins)
 config.plugins.mmPicons = ConfigSubsection()
 config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 HD = getDesktop(0).size()
@@ -306,11 +346,11 @@ def showlist(data, list):
         list.setList(plist)
 
 Panel_list3 = [
- ('MMARK PICONS BLACK'),
- ('MMARK PICONS TRANSPARENT'),
- ('MMARK PICONS MOVIE'),
- ('MMARK SKIN ZETA'),
- ('MMARK SKIN OTHER')]
+ ('PICONS BLACK'),
+ ('PICONS TRANSPARENT'),
+ ('PICONS MOVIE'),
+ ('SKIN DMM ZETA'),
+ ('SKIN OPEN ZETA')]
 
 
 class SelectPicons(Screen):
@@ -393,14 +433,16 @@ class SelectPicons(Screen):
 
     def keyNumberGlobalCB(self, idx):
         sel = self.menu_list[idx]
-        if sel == ('MMARK PICONS BLACK'):
+        if sel == ('PICONS BLACK'):
             self.session.open(MMarkFolderBlk)
-        elif sel == 'MMARK PICONS TRANSPARENT':
+        elif sel == 'PICONS TRANSPARENT':
             self.session.open(MMarkFolderTrs)
-        elif sel == ('MMARK PICONS MOVIE'):
+        elif sel == ('PICONS MOVIE'):
             self.session.open(MMarkMov)
-        elif sel == ('MMARK SKIN ZETA'):
+        elif sel == ('SKIN DMM ZETA'):
             self.session.open(MMarkFolderSkinZeta)
+        elif sel == ('SKIN OPEN ZETA'):
+            self.session.open(MMarkFolderSkinOZeta)            
         else:
             self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
 
@@ -1502,7 +1544,192 @@ class MMarkFolderSkinZeta(Screen):
         else:
             print('no cover.. error')
         return
+        
+class MMarkFolderSkinOZeta(Screen):
 
+    def __init__(self, session):
+        self.session = session
+        skin = skin_path + 'mmall.xml'
+        with open(skin, 'r') as f:
+            self.skin = f.read()
+        self.setup_title = ('MMark')
+        Screen.__init__(self, session)
+        self.setTitle(title_plug)
+        self.list = []
+        self['text'] = mmList([])
+        self.addon = 'emu'
+        self.icount = 0
+        self['info'] = Label(_('Load selected filter list, please wait ...'))
+        self['pth'] = Label('')
+        self['pth'].setText(_('Picons folder ') + mmkpicon)
+        self['poster'] = Pixmap()
+        self['progress'] = ProgressBar()
+        self['progresstext'] = StaticText()
+        self['key_green'] = Button(_('Install'))
+        self['key_red'] = Button(_('Back'))
+        self['key_yellow'] = Button(_(''))
+        self["key_blue"] = Button(_(''))
+        self['key_yellow'].hide()
+        self['key_blue'].hide()
+        self['space'] = Label('')
+        self.currentList = 'text'
+        self.menulist = []
+        self.getfreespace()
+        self.downloading = False
+        self.url = host_skinz
+        self.name = 'MMark-Skins'
+        self.timer = eTimer()
+        self.timer.start(500, 1)
+        if isDreamOS:
+            self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
+        else:
+            self.timer.callback.append(self.downxmlpage)
+        self['title'] = Label(title_plug)
+        self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
+         'green': self.okRun,
+         'red': self.close,
+         'up': self.up,
+         'down': self.down,
+         'left': self.left,
+         'right': self.right,
+         'cancel': self.close}, -2)
+
+    def getfreespace(self):
+        fspace = freespace()
+        self['space'].setText(fspace)
+
+    def downxmlpage(self):
+        url = self.url
+        getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
+
+    def errorLoad(self, error):
+        print(str(error))
+        self['info'].setText(_('Try again later ...'))
+        logdata("errorLoad ", error)
+        self.downloading = False
+
+    def _gotPageLoad(self, data):
+        r = data
+        self.names = []
+        self.urls = []
+        try:
+            n1 = r.find('"quickkey":', 0)
+            n2 = r.find('more_chunks', n1)
+            data2 = r[n1:n2]
+            regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
+            match = re.compile(regex, re.DOTALL).findall(data2)
+            for name, data, download, url  in match:
+                if 'zip' in url:
+                    url = url.replace('\\', '')
+                    name = name.replace('_',' ').replace('-',' ').replace('mmk','MMark').replace('.zip','')
+                    name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
+                    self.urls.append(url)
+                    self.names.append(name)
+            self['info'].setText(_('Please select ...'))
+            showlist(self.names, self['text'])
+            self.downloading = True
+        except:
+            self.downloading = False
+        self.load_poster()
+
+    def okRun(self):
+        self.session.openWithCallback(self.okInstall,MessageBox,(_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
+
+    def okInstall(self, result):
+        self['info'].setText(_('... please wait'))
+        if result:
+            if self.downloading == True:
+                if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity/plugin.pyo') and 'xstreamity' in self.name:
+                    self.mbox = self.session.open(MessageBox, _('Xstreamity Player not installed'), MessageBox.TYPE_INFO, timeout=4)
+                    return
+                selection = str(self['text'].getCurrent())
+                idx = self["text"].getSelectionIndex()
+                self.name = self.names[idx]
+                url = self.urls[idx]
+                dest = "/tmp/download.zip"
+                myfile = checkMyFile(url)
+                for url in myfile:
+                    img = no_cover
+                    url = 'http://download' + url
+                self.download = downloadWithProgress(url, dest)
+                self.download.addProgress(self.downloadProgress)
+                self.download.start().addCallback(self.install).addErrback(self.showError)
+            else:
+                self.close(None)
+
+    def downloadProgress(self, recvbytes, totalbytes):
+        self['progress'].value = int(100 * recvbytes / float(totalbytes))
+        self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
+
+    def install(self, fplug):
+        if os.path.exists('/tmp/download.zip'):
+            if os.path.exists('/etc/enigma2/skin_user.xml'):
+                os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
+            self['info'].setText(_('Install ...'))
+            myCmd = "unzip -o -q '/tmp/download.zip' -d /"
+            logdata("install4 ", myCmd)
+            subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
+        self['info'].setText(_('Please select ...'))
+        self['progresstext'].text = ''
+        self.progclear = 0
+        self['progress'].setValue(self.progclear)
+
+    def showError(self, error):
+        print("download error =", error)
+        logdata("errorLoad ", error)
+        self.close()
+
+    def cancel(self, result = None):
+        self.close(None)
+        return
+
+    def up(self):
+        self[self.currentList].up()
+        self.load_poster()
+
+    def down(self):
+        self[self.currentList].down()
+        self.load_poster()
+
+    def left(self):
+        self[self.currentList].pageUp()
+        self.load_poster()
+
+    def right(self):
+        self[self.currentList].pageDown()
+        self.load_poster()
+
+    def load_poster(self):
+        pixmaps = piconszeta
+        if isDreamOS:
+            self['poster'].instance.setPixmap(gPixmapPtr())
+        else:
+            self['poster'].instance.setPixmap(None)
+        self['poster'].hide()
+        sc = AVSwitch().getFramebufferScale()
+        self.picload = ePicLoad()
+        size = self['poster'].instance.size()
+        self.picload.setPara((size.width(),
+         size.height(),
+         sc[0],
+         sc[1],
+         False,
+         1,
+         '#FF000000'))
+        ptr = self.picload.getData()
+        if isDreamOS:
+            if self.picload.startDecode(pixmaps, False) == 0:
+                ptr = self.picload.getData()
+        else:
+            if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
+                ptr = self.picload.getData()
+        if ptr != None:
+            self['poster'].instance.setPixmap(ptr)
+            self['poster'].show()
+        else:
+            print('no cover.. error')
+        return
 class mmConfig(Screen, ConfigListScreen):
 
     def __init__(self, session):

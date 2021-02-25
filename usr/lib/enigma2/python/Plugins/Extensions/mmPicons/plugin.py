@@ -1897,7 +1897,7 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not isDreamOS:
         ico_path = plugin_path + '/res/pics/logo.png'
-    result = [PluginDescriptor(name ='mMark Picons & Skins', description =(title_plug), where =[PluginDescriptor.WHERE_PLUGINMENU], icon =ico_path, fnc =main)]
+    result = [PluginDescriptor(name ='mmPicons & Skins', description =(title_plug), where =[PluginDescriptor.WHERE_PLUGINMENU], icon =ico_path, fnc =main)]
     return result
 
 '''======================================================'''

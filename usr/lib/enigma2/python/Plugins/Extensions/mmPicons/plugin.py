@@ -160,7 +160,7 @@ if sslverify:
                 ClientTLSOptions(self.hostname, ctx)
             return ctx
 
-           
+
 def checkZip(url):
         try:
             if url.startswith("https") and sslverify:
@@ -169,7 +169,7 @@ def checkZip(url):
                 sniFactory = SNIFactory(domain)
             if PY3 == 3:
                 url = url.encode()
-            
+
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
             req.add_header('Referer', 'https://www.mediafire.com/')
@@ -193,7 +193,7 @@ def checkMyFile(url):
                 sniFactory = SNIFactory(domain)
             if PY3 == 3:
                 url = url.encode()
-            
+
             dest = "/tmp/download.zip"
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
@@ -249,6 +249,7 @@ HD = getDesktop(0).size()
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
 title_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
+desc_plug = '..:: Install Picons & Skins ::..'
 XStreamity = False
 skin_path = plugin_path
 ico_path = plugin_path + '/logo.png'
@@ -442,7 +443,7 @@ class SelectPicons(Screen):
         elif sel == ('SKIN DMM ZETA'):
             self.session.open(MMarkFolderSkinZeta)
         elif sel == ('SKIN OPEN ZETA'):
-            self.session.open(MMarkFolderSkinOZeta)            
+            self.session.open(MMarkFolderSkinOZeta)
         else:
             self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
 
@@ -599,7 +600,7 @@ class MMarkFolderBlk(Screen):
                 url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
                 url = url.replace('\\', '')
                 pic = no_cover
-                name = 'MMark-Picons-' + name
+                name = 'Picons-' + name
                 self.urls.append(url)
                 self.names.append(name)
             self['info'].setText(_('Please select ...'))
@@ -748,7 +749,7 @@ class MMarkBlack(Screen):
             for name, data, download, url in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
-                    name = name.replace('_',' ').replace('mmk','MMark').replace('.zip','')
+                    name = name.replace('_',' ').replace('mmk','').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -928,7 +929,7 @@ class MMarkFolderTrs(Screen):
                 url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
                 url = url.replace('\\', '')
                 pic = no_cover
-                name = 'MMark-Picons-' + name
+                name = 'Picons-' + name
                 self.urls.append(url)
                 self.names.append(name)
             self['info'].setText(_('Please select ...'))
@@ -1073,7 +1074,7 @@ class MMarkTrasp(Screen):
             for name, data, download, url  in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
-                    name = name.replace('_',' ').replace('mmk','MMark').replace('.zip','')
+                    name = name.replace('_',' ').replace('mmk','').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -1254,7 +1255,7 @@ class MMarkMov(Screen):
             for name, data, download, url  in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
-                    name = name.replace('_',' ').replace('-',' ').replace('mmk','MMark').replace('.zip','')
+                    name = name.replace('_',' ').replace('-',' ').replace('mmk','').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -1435,7 +1436,7 @@ class MMarkFolderSkinZeta(Screen):
             for name, data, download, url  in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
-                    name = name.replace('_',' ').replace('-',' ').replace('mmk','MMark').replace('.zip','')
+                    name = name.replace('_',' ').replace('-',' ').replace('mmk','').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -1544,7 +1545,7 @@ class MMarkFolderSkinZeta(Screen):
         else:
             print('no cover.. error')
         return
-        
+
 class MMarkFolderSkinOZeta(Screen):
 
     def __init__(self, session):
@@ -1621,7 +1622,7 @@ class MMarkFolderSkinOZeta(Screen):
             for name, data, download, url  in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
-                    name = name.replace('_',' ').replace('-',' ').replace('mmk','MMark').replace('.zip','')
+                    name = name.replace('_',' ').replace('-',' ').replace('mmk','').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -1730,6 +1731,7 @@ class MMarkFolderSkinOZeta(Screen):
         else:
             print('no cover.. error')
         return
+
 class mmConfig(Screen, ConfigListScreen):
 
     def __init__(self, session):
@@ -1897,7 +1899,7 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not isDreamOS:
         ico_path = plugin_path + '/res/pics/logo.png'
-    result = [PluginDescriptor(name ='mmPicons & Skins', description =(title_plug), where =[PluginDescriptor.WHERE_PLUGINMENU], icon =ico_path, fnc =main)]
+    result = [PluginDescriptor(name =desc_plug, description =(title_plug), where =[PluginDescriptor.WHERE_PLUGINMENU], icon =ico_path, fnc =main)]
     return result
 
 '''======================================================'''

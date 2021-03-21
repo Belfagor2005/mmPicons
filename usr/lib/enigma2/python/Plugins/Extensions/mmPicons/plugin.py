@@ -5,7 +5,7 @@
 ****************************************
 *        coded by Lululla              *
 *             skin by MMark            *
-*             01/12/2020               *
+*             21/03/2021               *
 ****************************************
 '''
 #Info http://t.me/tivustream
@@ -381,6 +381,8 @@ class SelectPicons(Screen):
         # self['key_blue'].hide()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''
         self.currentList = 'text'
         self.menulist = []
         self['title'] = Label(title_plug)
@@ -545,6 +547,8 @@ class MMarkFolderBlk(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''
         self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
@@ -692,6 +696,8 @@ class MMarkBlack(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
@@ -740,7 +746,6 @@ class MMarkBlack(Screen):
         self.names = []
         self.urls = []
         try:
-
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
@@ -783,6 +788,7 @@ class MMarkBlack(Screen):
                 self.close(None)
 
     def downloadProgress(self, recvbytes, totalbytes):
+        self["progress"].show()
         self['progress'].value = int(100 * recvbytes / float(totalbytes))
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
 
@@ -797,6 +803,7 @@ class MMarkBlack(Screen):
         self['progresstext'].text = ''
         self.progclear = 0
         self['progress'].setValue(self.progclear)
+        self["progress"].hide()
 
     def showError(self, error):
         print("download error =", error)
@@ -874,6 +881,8 @@ class MMarkFolderTrs(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''        
         self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
@@ -1018,6 +1027,8 @@ class MMarkTrasp(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
@@ -1108,6 +1119,7 @@ class MMarkTrasp(Screen):
                 self.close(None)
 
     def downloadProgress(self, recvbytes, totalbytes):
+        self["progress"].show()
         self['progress'].value = int(100 * recvbytes / float(totalbytes))
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
 
@@ -1122,6 +1134,7 @@ class MMarkTrasp(Screen):
         self['progresstext'].text = ''
         self.progclear = 0
         self['progress'].setValue(self.progclear)
+        self["progress"].hide()
 
     def showError(self, error):
         print("download error =", error)
@@ -1199,6 +1212,8 @@ class MMarkMov(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
@@ -1289,6 +1304,7 @@ class MMarkMov(Screen):
                 self.close(None)
 
     def downloadProgress(self, recvbytes, totalbytes):
+        self["progress"].show()
         self['progress'].value = int(100 * recvbytes / float(totalbytes))
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
 
@@ -1303,6 +1319,7 @@ class MMarkMov(Screen):
         self['progresstext'].text = ''
         self.progclear = 0
         self['progress'].setValue(self.progclear)
+        self["progress"].hide()
 
     def showError(self, error):
         print("download error =", error)
@@ -1380,6 +1397,8 @@ class MMarkFolderSkinZeta(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
@@ -1473,6 +1492,7 @@ class MMarkFolderSkinZeta(Screen):
                 self.close(None)
 
     def downloadProgress(self, recvbytes, totalbytes):
+        self["progress"].show()   
         self['progress'].value = int(100 * recvbytes / float(totalbytes))
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
 
@@ -1489,6 +1509,8 @@ class MMarkFolderSkinZeta(Screen):
         self['progresstext'].text = ''
         self.progclear = 0
         self['progress'].setValue(self.progclear)
+        self["progress"].hide()
+   
 
     def showError(self, error):
         print("download error =", error)
@@ -1566,6 +1588,8 @@ class MMarkFolderSkinOZeta(Screen):
         self['poster'] = Pixmap()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
+        self["progress"].hide()
+        self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_(''))
@@ -1659,6 +1683,7 @@ class MMarkFolderSkinOZeta(Screen):
                 self.close(None)
 
     def downloadProgress(self, recvbytes, totalbytes):
+        self["progress"].show()   
         self['progress'].value = int(100 * recvbytes / float(totalbytes))
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
 
@@ -1675,7 +1700,8 @@ class MMarkFolderSkinOZeta(Screen):
         self['progresstext'].text = ''
         self.progclear = 0
         self['progress'].setValue(self.progclear)
-
+        self["progress"].hide()
+        
     def showError(self, error):
         print("download error =", error)
         logdata("errorLoad ", error)

@@ -5,10 +5,10 @@
 ****************************************
 *        coded by Lululla              *
 *             skin by MMark            *
-*             21/03/2021               *
+*             02/04/2021               *
 ****************************************
 '''
-#Info http://t.me/tivustream
+#Info https://e2skin.blogspot.com/
 # from __future__ import print_function
 from . import _
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -44,6 +44,7 @@ from Tools.Directories import pathExists, resolveFilename, fileExists, copyfile
 from Tools.Downloader import downloadWithProgress
 from Tools.LoadPixmap import LoadPixmap
 from enigma import *
+from enigma import ePicLoad, loadPic
 from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
 from enigma import getDesktop, loadPNG, gFont
 from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
@@ -248,13 +249,12 @@ config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 HD = getDesktop(0).size()
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
-title_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
-desc_plug = 'mMark Plugin Install Picons & Skins'
+desc_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
+title_plug = 'mMark Blog - www.e2skin.blogspot.com'
 XStreamity = False
 skin_path = plugin_path
 ico_path = plugin_path + '/logo.png'
 ico1_path = plugin_path + '/res/pics/plugin.png'
-# ico2_path = plugin_path + '/res/pics/plugins.png'
 ico3_path = plugin_path + '/res/pics/setting.png'
 piconstrs = plugin_path + '/res/picons/picon_trs.png'
 piconsblk = plugin_path + '/res/picons/picon_blk.png'
@@ -373,12 +373,10 @@ class SelectPicons(Screen):
         self['space'] = Label('')
         self['info'] = Label('')
         self['info'].setText(_('Please select ...'))
-        self['key_green'] = Button(_('Select'))
+        self['key_green'] = Button(_('Remove'))
         self['key_red'] = Button(_('Exit'))
-        self['key_yellow'] = Button(_('Remove'))
+        self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_('Restart'))
-        # self['key_yellow'].hide()
-        # self['key_blue'].hide()
         self['progress'] = ProgressBar()
         self['progresstext'] = StaticText()
         self["progress"].hide()
@@ -387,10 +385,10 @@ class SelectPicons(Screen):
         self.menulist = []
         self['title'] = Label(title_plug)
         self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions"], {'ok': self.okRun,
-         'green': self.okRun,
+         'green': self.remove,
          'back': self.closerm,
          'red': self.closerm,
-         'yellow': self.remove,
+         'yellow': self.zoom,
          'blue': self.msgtqm,
          'up': self.up,
          'down': self.down,
@@ -400,6 +398,17 @@ class SelectPicons(Screen):
          'cancel': self.closerm}, -1)
         self.onLayoutFinish.append(self.updateMenuList)
 
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng
+        
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(fspace)
@@ -488,6 +497,7 @@ class SelectPicons(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         sel=self['text'].getSelectedIndex()
         if sel == 0:
             pixmaps = piconsblk
@@ -534,7 +544,7 @@ class MMarkFolderBlk(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('MMark')
+        self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
@@ -551,9 +561,8 @@ class MMarkFolderBlk(Screen):
         self['progresstext'].text = ''
         self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_(''))
+        self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
-        self['key_yellow'].hide()
         self['key_blue'].hide()
         self['space'] = Label('')
         self.downloading = False
@@ -570,11 +579,23 @@ class MMarkFolderBlk(Screen):
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
+         "yellow": self.zoom,
          'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
+         
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng        
 
     def getfreespace(self):
         fspace = freespace()
@@ -646,6 +667,7 @@ class MMarkFolderBlk(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         pixmaps = piconsblk
         if isDreamOS:
             self['poster'].instance.setPixmap(gPixmapPtr())
@@ -683,7 +705,7 @@ class MMarkBlack(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('MMark')
+        self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
@@ -700,9 +722,9 @@ class MMarkBlack(Screen):
         self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_(''))
+        self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
-        self['key_yellow'].hide()
+        # self['key_yellow'].hide()
         self['key_blue'].hide()
         self['space'] = Label('')
         self.url = url
@@ -721,12 +743,24 @@ class MMarkBlack(Screen):
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
+         "yellow": self.zoom,
          'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
 
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng
+        
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(fspace)
@@ -831,6 +865,7 @@ class MMarkBlack(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         pixmaps = piconsblk
         if isDreamOS:
             self['poster'].instance.setPixmap(gPixmapPtr())
@@ -868,7 +903,7 @@ class MMarkFolderTrs(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('MMark')
+        self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
@@ -885,9 +920,8 @@ class MMarkFolderTrs(Screen):
         self['progresstext'].text = ''        
         self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_(''))
+        self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
-        self['key_yellow'].hide()
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
@@ -904,15 +938,27 @@ class MMarkFolderTrs(Screen):
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
+         "yellow": self.zoom,
          'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
 
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng
+        
     def getfreespace(self):
-            fspace = freespace()
-            self['space'].setText(fspace)
+        fspace = freespace()
+        self['space'].setText(fspace)
 
     def downxmlpage(self):
         url = host_trs
@@ -977,6 +1023,7 @@ class MMarkFolderTrs(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         pixmaps = piconstrs
         if isDreamOS:
             self['poster'].instance.setPixmap(gPixmapPtr())
@@ -1014,7 +1061,7 @@ class MMarkTrasp(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
                 self.skin = f.read()
-        self.setup_title = ('MMark')
+        self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
@@ -1031,9 +1078,8 @@ class MMarkTrasp(Screen):
         self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_(''))
+        self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
-        self['key_yellow'].hide()
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
@@ -1052,11 +1098,23 @@ class MMarkTrasp(Screen):
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
+         "yellow": self.zoom,
          'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
+
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng
 
     def getfreespace(self):
         fspace = freespace()
@@ -1162,6 +1220,7 @@ class MMarkTrasp(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         pixmaps = piconstrs
         if isDreamOS:
             self['poster'].instance.setPixmap(gPixmapPtr())
@@ -1199,7 +1258,7 @@ class MMarkMov(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
                 self.skin = f.read()
-        self.setup_title = ('MMark')
+        self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
@@ -1216,9 +1275,8 @@ class MMarkMov(Screen):
         self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_(''))
         self["key_blue"] = Button(_(''))
-        self['key_yellow'].hide()
+        self['key_yellow'] = Button(_('Preview'))
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
@@ -1237,12 +1295,24 @@ class MMarkMov(Screen):
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
+         "yellow": self.zoom,
          'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
 
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng
+        
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(fspace)
@@ -1347,6 +1417,7 @@ class MMarkMov(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         pixmaps = piconsmovie
         if isDreamOS:
             self['poster'].instance.setPixmap(gPixmapPtr())
@@ -1384,7 +1455,7 @@ class MMarkFolderSkinZeta(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('MMark')
+        self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
@@ -1401,9 +1472,8 @@ class MMarkFolderSkinZeta(Screen):
         self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_(''))
+        self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
-        self['key_yellow'].hide()
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
@@ -1422,12 +1492,24 @@ class MMarkFolderSkinZeta(Screen):
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
+         "yellow": self.zoom,
          'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
 
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng
+        
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(fspace)
@@ -1538,6 +1620,7 @@ class MMarkFolderSkinZeta(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         pixmaps = piconszeta
         if isDreamOS:
             self['poster'].instance.setPixmap(gPixmapPtr())
@@ -1575,7 +1658,7 @@ class MMarkFolderSkinOZeta(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('MMark')
+        self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
@@ -1592,9 +1675,8 @@ class MMarkFolderSkinOZeta(Screen):
         self['progresstext'].text = ''        
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_(''))
+        self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
-        self['key_yellow'].hide()
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
@@ -1613,12 +1695,24 @@ class MMarkFolderSkinOZeta(Screen):
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
+         "yellow": self.zoom,
          'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
 
+    def zoom(self):
+        # self.session.open(PiconsPreview, self.GetPicturePath())
+        self.session.open(PiconsPreview, pixmaps)
+
+    def GetPicturePath(self):
+        ActiveZoom = False
+        realpng = pixmaps
+        if path.isfile(realpng):
+            ActiveZoom = True
+        return realpng
+        
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(fspace)
@@ -1728,6 +1822,7 @@ class MMarkFolderSkinOZeta(Screen):
         self.load_poster()
 
     def load_poster(self):
+        global pixmaps
         pixmaps = piconszeta
         if isDreamOS:
             self['poster'].instance.setPixmap(gPixmapPtr())
@@ -1774,7 +1869,6 @@ class mmConfig(Screen, ConfigListScreen):
         info = ''
         self['info'] = Label(_('Config Panel Addon'))
         self['key_yellow'] = Button(_('Choice'))
-        # self['key_yellow'].hide()
         self['key_green'] = Button(_('Save'))
         self['key_red'] = Button(_('Back'))
         self["key_blue"] = Button(_(''))
@@ -1902,6 +1996,55 @@ class mmConfig(Screen, ConfigListScreen):
             self.session.openWithCallback(self.cancelConfirm, MessageBox, _('Really close without saving the settings?'), MessageBox.TYPE_YESNO)
         else:
             self.close()
+
+class PiconsPreview(Screen):
+    x = getDesktop(0).size().width()
+    y = getDesktop(0).size().height()
+    skin = '<screen flags="wfNoBorder" position="0,0" size="%d,%d" title="PiconsPreview" backgroundColor="#00000000">' % (x, y)
+    skin += '<widget name="pixmap" position="0,0" size="%d,%d" zPosition="1" alphatest="on" />' % (x, y)
+    skin += '</screen>'
+
+    def __init__(self, session, previewPng = None):
+        self.skin = PiconsPreview.skin
+        Screen.__init__(self, session)
+        self.session = session
+        self.Scale = AVSwitch().getFramebufferScale()
+        self.PicLoad = ePicLoad()
+        self['pixmap'] = Pixmap()  
+
+        try:
+            self.PicLoad.PictureData.get().append(self.DecodePicture)
+        except:
+            self.PicLoad_conn = self.PicLoad.PictureData.connect(self.DecodePicture)
+        
+        self.previewPng = previewPng
+        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'ok': self.close,
+         'cancel': self.close,
+         'blue': self.close}, -1)
+
+        self.onLayoutFinish.append(self.ShowPicture)
+
+    def ShowPicture(self):
+        myicon = self.previewPng
+        if HD.width() > 1280:
+            png = loadPic(myicon, 1920, 1080, 0, 0, 0, 1)
+        else:
+            png = loadPic(myicon, 1280, 720, 0, 0, 0, 1)
+        self["pixmap"].instance.setPixmap(png)
+        
+    def DecodePicture(self, PicInfo = ''):
+        ptr = self.picload.getData()
+        self['pixmap'].instance.setPixmap(ptr)
+
+    # def ShowPicture(self):
+        # self.picload.setPara([self['pixmap'].instance.size().width(),
+         # self['pixmap'].instance.size().height(),
+         # self.Scale[0],
+         # self.Scale[1],
+         # 0,
+         # 1,
+         # '#00000000'])
+        # self.picload.startDecode(self.previewPng)
 
 def main(session, **kwargs):
     if checkInternet():

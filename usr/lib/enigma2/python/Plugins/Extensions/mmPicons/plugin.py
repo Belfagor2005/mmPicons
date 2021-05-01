@@ -60,6 +60,7 @@ import ssl
 import socket
 import subprocess
 import glob
+import six
 from sys import version_info
 global skin_path, mmkpicon, isDreamOS, pngs, pngl, pngx, XStreamity
 
@@ -118,10 +119,10 @@ except:
 
 def checkStr(txt):
     if PY3:
-        if type(txt) == type(bytes()):
+        if isinstance(txt, type(bytes())):
             txt = txt.decode('utf-8')
     else:
-        if type(txt) == type(unicode()):
+        if isinstance(txt, type(six.text_type())):
             txt = txt.encode('utf-8')
     return txt
 
@@ -164,12 +165,15 @@ if sslverify:
 
 def checkZip(url):
         try:
+            if PY3 == 3:
+                # url = url.encode()
+                url = six.binary_type(url,encoding="utf-8")          
+        
             if url.startswith("https") and sslverify:
                 parsed_uri = urlparse(url)
                 domain = parsed_uri.hostname
                 sniFactory = SNIFactory(domain)
-            if PY3 == 3:
-                url = url.encode()
+
 
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
@@ -188,12 +192,15 @@ def checkZip(url):
 
 def checkMyFile(url):
         try:
+            if PY3 == 3:
+                # url = url.encode()
+                url = six.binary_type(url,encoding="utf-8")        
+        
             if url.startswith("https") and sslverify:
                 parsed_uri = urlparse(url)
                 domain = parsed_uri.hostname
                 sniFactory = SNIFactory(domain)
-            if PY3 == 3:
-                url = url.encode()
+
 
             dest = "/tmp/download.zip"
             req = Request(url)
@@ -602,8 +609,13 @@ class MMarkFolderBlk(Screen):
         self['space'].setText(fspace)
 
     def downxmlpage(self):
-        url = host_blk
+        # url = host_blk
+        try:
+            url = host_blk
+        except:
+            url = six.binary_type(host_blk,encoding="utf-8")
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
+        
 
     def errorLoad(self, error):
         print(str(error))
@@ -612,7 +624,7 @@ class MMarkFolderBlk(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -767,6 +779,10 @@ class MMarkBlack(Screen):
 
     def downxmlpage(self):
         url = self.url
+        # try:
+            # url = url
+        # except:
+            # url = six.binary_type(url,encoding="utf-8")
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
 
     def errorLoad(self, error):
@@ -776,7 +792,7 @@ class MMarkBlack(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -962,7 +978,12 @@ class MMarkFolderTrs(Screen):
 
     def downxmlpage(self):
         url = host_trs
+        # try:
+            # url = host_trs
+        # except:
+            # url = six.binary_type(host_trs,encoding="utf-8")
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
+        
 
     def errorLoad(self, error):
         print(str(error))
@@ -971,7 +992,7 @@ class MMarkFolderTrs(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -1122,8 +1143,12 @@ class MMarkTrasp(Screen):
 
     def downxmlpage(self):
         url = self.url
+        try:
+            url = url
+        except:
+            url = six.ensure_text(url)
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
+        
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
@@ -1131,7 +1156,7 @@ class MMarkTrasp(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -1319,6 +1344,12 @@ class MMarkMov(Screen):
 
     def downxmlpage(self):
         url = self.url
+        # getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
+
+        # try:
+            # url = url
+        # except:
+            # url = six.binary_type(url,encoding="utf-8")
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
 
     def errorLoad(self, error):
@@ -1328,7 +1359,7 @@ class MMarkMov(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -1516,7 +1547,14 @@ class MMarkFolderSkinZeta(Screen):
 
     def downxmlpage(self):
         url = self.url
+        # getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
+
+        try:
+            url = url
+        except:
+            url = six.binary_type(url,encoding="utf-8")
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
+
 
     def errorLoad(self, error):
         print(str(error))
@@ -1525,7 +1563,7 @@ class MMarkFolderSkinZeta(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -1719,8 +1757,13 @@ class MMarkFolderSkinOZeta(Screen):
 
     def downxmlpage(self):
         url = self.url
+        # getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
+        # try:
+            # url = url
+        # except:
+            # url = six.binary_type(url,encoding="utf-8")
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
+        
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
@@ -1728,7 +1771,7 @@ class MMarkFolderSkinOZeta(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:

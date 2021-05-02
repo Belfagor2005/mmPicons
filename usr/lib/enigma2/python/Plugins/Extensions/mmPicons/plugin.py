@@ -174,7 +174,6 @@ def checkZip(url):
                 domain = parsed_uri.hostname
                 sniFactory = SNIFactory(domain)
 
-
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
             req.add_header('Referer', 'https://www.mediafire.com/')
@@ -192,16 +191,6 @@ def checkZip(url):
 
 def checkMyFile(url):
         try:
-            if PY3 == 3:
-                # url = url.encode()
-                url = six.binary_type(url,encoding="utf-8")        
-        
-            if url.startswith("https") and sslverify:
-                parsed_uri = urlparse(url)
-                domain = parsed_uri.hostname
-                sniFactory = SNIFactory(domain)
-
-
             dest = "/tmp/download.zip"
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
@@ -216,6 +205,23 @@ def checkMyFile(url):
             return myfile
         except:
             return ''
+
+def make_request(url):
+    try:
+        req = Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0')
+        response = urlopen(req)
+        link = response.read()
+        response.close()
+        return link
+    except:
+        e = URLError #, e:
+        print('We failed to open "%s".' % url)
+        if hasattr(e, 'code'):
+            print('We failed with error code - %s.' % e.code)
+        if hasattr(e, 'reason'):
+            print('We failed to reach a server.')
+            print('Reason: ', e.reason)
 
 def trace_error():
     import traceback
@@ -779,32 +785,22 @@ class MMarkBlack(Screen):
 
     def downxmlpage(self):
         url = self.url
-        # try:
-            # url = url
-        # except:
-            # url = six.binary_type(url,encoding="utf-8")
-        getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
-    def errorLoad(self, error):
-        print(str(error))
-        self['info'].setText(_('Try again later ...'))
-        logdata("errorLoad ", error)
-        self.downloading = False
-
-    def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        content = make_request(url)
+        content = six.ensure_str(content)
+        # print('live_stream content B =', content)
         self.names = []
         self.urls = []
         try:
+            r = content
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex, re.DOTALL).findall(data2)
-            for name, data, download, url in match:
+            match = re.compile(regex,re.DOTALL).findall(data2)
+            for name, data, download, url  in match:
                 if 'zip' in url:
-                    url = url.replace('\\', '')
-                    name = name.replace('_',' ').replace('mmk','').replace('.zip','')
+                    url = url.replace('\\','')
+                    name = name.replace('_',' ').replace('mmk','MMark').replace('.zip','')
                     name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -812,8 +808,7 @@ class MMarkBlack(Screen):
             showlist(self.names, self['text'])
             self.downloading = True
         except:
-            self.downloading = False
-        self.load_poster()
+            pass
 
     def okRun(self):
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
@@ -992,6 +987,7 @@ class MMarkFolderTrs(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
+        # r = data
         r = six.ensure_str(data)
         self.names = []
         self.urls = []
@@ -1143,41 +1139,30 @@ class MMarkTrasp(Screen):
 
     def downxmlpage(self):
         url = self.url
-        try:
-            url = url
-        except:
-            url = six.ensure_text(url)
-        getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-        
-    def errorLoad(self, error):
-        print(str(error))
-        self['info'].setText(_('Try again later ...'))
-        logdata("errorLoad ", error)
-        self.downloading = False
-
-    def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        content = make_request(url)
+        content = six.ensure_str(content)
+        # print('live_stream content B =', content)
         self.names = []
         self.urls = []
         try:
+            r = content
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex, re.DOTALL).findall(data2)
+            match = re.compile(regex,re.DOTALL).findall(data2)
             for name, data, download, url  in match:
                 if 'zip' in url:
-                    url = url.replace('\\', '')
-                    name = name.replace('_',' ').replace('mmk','').replace('.zip','')
-                    name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
+                    url = url.replace('\\','')
+                    name = name.replace('_',' ').replace('mmk','MMark').replace('.zip','')
+                    name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))
             showlist(self.names, self['text'])
             self.downloading = True
         except:
-            self.downloading = False
-        self.load_poster()
+            pass
 
     def okRun(self):
         self.session.openWithCallback(self.okInstall,MessageBox,(_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
@@ -1345,7 +1330,6 @@ class MMarkMov(Screen):
     def downxmlpage(self):
         url = self.url
         # getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
         # try:
             # url = url
         # except:

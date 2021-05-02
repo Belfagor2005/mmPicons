@@ -69,6 +69,7 @@ def logdata(name = '', data = None):
         data=str(data)
         fp = open('/tmp/mmPicons.log', 'a')
         fp.write(str(name) + ': ' + data + "\n")
+        fp.seek(0)
         fp.close()
     except:
         trace_error()
@@ -777,12 +778,10 @@ class MMarkBlack(Screen):
     def downxmlpage(self):
         url = self.url
         content = make_request(url)
-        # content = six.ensure_str(content)
-        # print('live_stream content B =', content)
+        r = six.ensure_str(content)
         self.names = []
         self.urls = []
         try:
-            r = content
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
@@ -799,10 +798,49 @@ class MMarkBlack(Screen):
             showlist(self.names, self['text'])
             self.downloading = True
         except:
+            self.downloading = False
             pass
 
     def okRun(self):
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
+
+    # def okInstall(self, result):
+        # self['info'].setText(_('... please wait'))
+        # if result:
+            # if self.downloading == True:
+                # from .downloader import imagedownloadScreen
+                # agent='--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
+                # crt="--debug --no-check-certificate"
+                # # selection = str(self['text'].getCurrent())
+                # idx = self["text"].getSelectionIndex()
+                # self.name = self.names[idx]
+                # url = self.urls[idx]
+                # myfile = checkMyFile(url)
+                # for url in myfile:
+                    # img = no_cover
+                    # url = 'http://download' + url
+                # print('url: ', url)
+                # dest = "/tmp/download.zip"
+                # self.session.open(imagedownloadScreen,'picon',dest,url)
+            # else:
+                # self.close(None)
+            # self.install()
+            # self.close(None)
+
+    # def install(self, fplug):
+        # if os.path.exists('/tmp/download.zip'):
+            # self['info'].setText(_('Install ...'))
+            # myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
+            # logdata("install1 ", myCmd)
+            # subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            # self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
+        # self['info'].setText(_('Please select ...'))
+        # self['progresstext'].text = ''
+        # self.progclear = 0
+        # self['progress'].setValue(self.progclear)
+        # self["progress"].hide()
+        # self.downloading = False
+
 
     def okInstall(self, result):
         self['info'].setText(_('... please wait'))
@@ -822,25 +860,12 @@ class MMarkBlack(Screen):
                 self.download.start().addCallback(self.install).addErrback(self.showError)
             else:
                 self.close(None)
-
+                
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
         self['progress'].value = int(100 * recvbytes / float(totalbytes))
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
-
-    def install(self, fplug):
-        if os.path.exists('/tmp/download.zip'):
-            self['info'].setText(_('Install ...'))
-            myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
-            logdata("install1 ", myCmd)
-            subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
-        self['info'].setText(_('Please select ...'))
-        self['progresstext'].text = ''
-        self.progclear = 0
-        self['progress'].setValue(self.progclear)
-        self["progress"].hide()
-
+            
     def showError(self, error):
         print("download error =", error)
         logdata("showerror ", error)
@@ -1131,12 +1156,11 @@ class MMarkTrasp(Screen):
     def downxmlpage(self):
         url = self.url
         content = make_request(url)
-        # content = six.ensure_str(content)
-        # print('live_stream content B =', content)
+        r = six.ensure_str(content)
         self.names = []
         self.urls = []
         try:
-            r = content
+            # r = content
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]

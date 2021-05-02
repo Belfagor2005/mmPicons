@@ -62,7 +62,7 @@ import subprocess
 import glob
 import six
 from sys import version_info
-global skin_path, mmkpicon, isDreamOS, pngs, pngl, pngx, XStreamity
+global skin_path, mmkpicon, mpdDreamOs, pngs, pngl, pngx, XStreamity
 
 def logdata(name = '', data = None):
     try:
@@ -89,7 +89,7 @@ def getversioninfo():
     return (currversion)
 
 
-isDreamOS = False
+mpdDreamOs = False
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
 PY3 = sys.version_info[0] == 3
@@ -103,9 +103,9 @@ else:
 
 try:
     from enigma import eMediaDatabase
-    isDreamOS = True
+    mpdDreamOs = True
 except:
-    isDreamOS = False
+    mpdDreamOs = False
 
 try:
     from enigma import eDVBDB
@@ -165,15 +165,6 @@ if sslverify:
 
 def checkZip(url):
         try:
-            if PY3 == 3:
-                # url = url.encode()
-                url = six.binary_type(url,encoding="utf-8")          
-        
-            if url.startswith("https") and sslverify:
-                parsed_uri = urlparse(url)
-                domain = parsed_uri.hostname
-                sniFactory = SNIFactory(domain)
-
             req = Request(url)
             req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
             req.add_header('Referer', 'https://www.mediafire.com/')
@@ -289,12 +280,12 @@ if not os.path.exists(mmkpicon):
 logdata("path picons: ", str(mmkpicon))
 
 if HD.width() > 1280:
-    if isDreamOS:
+    if mpdDreamOs:
         skin_path = plugin_path + '/res/skins/fhd/dreamOs/'
     else:
         skin_path = plugin_path + '/res/skins/fhd/'
 else:
-    if isDreamOS:
+    if mpdDreamOs:
         skin_path = plugin_path + '/res/skins/hd/dreamOs/'
     else:
         skin_path = plugin_path + '/res/skins/hd/'
@@ -520,7 +511,7 @@ class SelectPicons(Screen):
             pixmaps = piconsmovie
         else:
             pixmaps = piconszeta
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -536,7 +527,7 @@ class SelectPicons(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -584,7 +575,7 @@ class MMarkFolderBlk(Screen):
         self.getfreespace()
         self.currentList = 'text'
         self.menulist = []
-        if isDreamOS:
+        if mpdDreamOs:
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -687,7 +678,7 @@ class MMarkFolderBlk(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconsblk
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -703,7 +694,7 @@ class MMarkFolderBlk(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -753,7 +744,7 @@ class MMarkBlack(Screen):
         self.currentList = 'text'
         self.menulist = []
         self.getfreespace()
-        if isDreamOS:
+        if mpdDreamOs:
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -786,7 +777,7 @@ class MMarkBlack(Screen):
     def downxmlpage(self):
         url = self.url
         content = make_request(url)
-        content = six.ensure_str(content)
+        # content = six.ensure_str(content)
         # print('live_stream content B =', content)
         self.names = []
         self.urls = []
@@ -878,7 +869,7 @@ class MMarkBlack(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconsblk
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -894,7 +885,7 @@ class MMarkBlack(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -941,7 +932,7 @@ class MMarkFolderTrs(Screen):
         self.downloading = False
         self.timer = eTimer()
         self.timer.start(500, 1)
-        if isDreamOS:
+        if mpdDreamOs:
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -1042,7 +1033,7 @@ class MMarkFolderTrs(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconstrs
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -1058,7 +1049,7 @@ class MMarkFolderTrs(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -1107,7 +1098,7 @@ class MMarkTrasp(Screen):
         self.name = name
         self.timer = eTimer()
         self.timer.start(500, 1)
-        if isDreamOS:
+        if mpdDreamOs:
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -1140,7 +1131,7 @@ class MMarkTrasp(Screen):
     def downxmlpage(self):
         url = self.url
         content = make_request(url)
-        content = six.ensure_str(content)
+        # content = six.ensure_str(content)
         # print('live_stream content B =', content)
         self.names = []
         self.urls = []
@@ -1232,7 +1223,7 @@ class MMarkTrasp(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconstrs
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -1248,7 +1239,7 @@ class MMarkTrasp(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -1297,7 +1288,7 @@ class MMarkMov(Screen):
         self.name = 'MMark-Picons'
         self.timer = eTimer()
         self.timer.start(500, 1)
-        if isDreamOS:
+        if mpdDreamOs:
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -1434,7 +1425,7 @@ class MMarkMov(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconsmovie
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -1450,7 +1441,7 @@ class MMarkMov(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -1499,7 +1490,7 @@ class MMarkFolderSkinZeta(Screen):
         self.name = 'MMark-Skins'
         self.timer = eTimer()
         self.timer.start(500, 1)
-        if isDreamOS:
+        if mpdDreamOs:
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -1644,7 +1635,7 @@ class MMarkFolderSkinZeta(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconszeta
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -1660,7 +1651,7 @@ class MMarkFolderSkinZeta(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -1709,7 +1700,7 @@ class MMarkFolderSkinOZeta(Screen):
         self.name = 'MMark-Skins'
         self.timer = eTimer()
         self.timer.start(500, 1)
-        if isDreamOS:
+        if mpdDreamOs:
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -1851,7 +1842,7 @@ class MMarkFolderSkinOZeta(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconszeta
-        if isDreamOS:
+        if mpdDreamOs:
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -1867,7 +1858,7 @@ class MMarkFolderSkinOZeta(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if isDreamOS:
+        if mpdDreamOs:
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -2093,7 +2084,7 @@ def mainmenu(session, **kwargs):
 
 def Plugins(**kwargs):
     ico_path = 'logo.png'
-    if not isDreamOS:
+    if not mpdDreamOs:
         ico_path = plugin_path + '/res/pics/logo.png'
     result = [PluginDescriptor(name =desc_plug, description =(title_plug), where =[PluginDescriptor.WHERE_PLUGINMENU], icon =ico_path, fnc =main)]
     return result

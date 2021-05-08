@@ -801,7 +801,20 @@ class MMarkBlack(Screen):
                 self.download.start().addCallback(self.install).addErrback(self.showError)
             else:
                 self.close(None)
-                
+
+    def install(self, fplug):
+        if os.path.exists('/tmp/download.zip'):
+            self['info'].setText(_('Install ...'))
+            myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
+            logdata("install2 ", myCmd)
+            subprocess.Popen(myCmd, shell =True, executable='/bin/bash')
+            self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
+        self['info'].setText(_('Please select ...'))
+        self['progresstext'].text = ''
+        self.progclear = 0
+        self['progress'].setValue(self.progclear)
+        self["progress"].hide()
+
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
         self['progress'].value = int(100 * recvbytes / float(totalbytes))

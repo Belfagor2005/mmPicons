@@ -163,25 +163,9 @@ if sslverify:
                 ClientTLSOptions(self.hostname, ctx)
             return ctx
 
-
-#don't remove now                
-# def checkZip(url):
-        # try:
-            # req = Request(url)
-            # req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
-            # req.add_header('Referer', 'https://www.mediafire.com/')
-            # req.add_header('X-Requested-With', 'XMLHttpRequest')
-            # response = urlopen(req)
-            # link = response.read()
-            # n1 = link.find('"Download file"', 0)
-            # n2 = link.find('Repair your download', n1)
-            # r2 = link[n1:n2]
-            # l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0] #@jbleyel
-            # return 'http://download' + l2link
-        # except:
-            # logdata("l2link ", 'no link')
-            # return ''
-
+#for download on ATV 6.5
+#CHECK THI ISSUE 
+#https://github.com/openatv/enigma2/commit/3974e84a59be2a8eb4d2250a876713d38e8f56b4
 def checkMyFile(url):
     # FIXME urlopen will cause a full download of file and this is not what you want //thank's @jbleyel 
     return []

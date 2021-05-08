@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 
 '''
 ****************************************
@@ -182,21 +182,22 @@ def checkZip(url):
             return ''
 
 def checkMyFile(url):
-        try:
-            dest = "/tmp/download.zip"
-            req = Request(url)
-            req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
-            req.add_header('Referer', 'https://www.mediafire.com/')
-            req.add_header('X-Requested-With', 'XMLHttpRequest')
-            page = urlopen(req)
-            r = page.read()
-            n1 = r.find('"Download file"', 0)
-            n2 = r.find('Repair your download', n1)
-            r2 = r[n1:n2]
-            myfile = re.findall('href="http://download(.*?)">', r2)
-            return myfile
-        except:
-            return ''
+    try:
+        req = Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
+        req.add_header('Referer', 'https://www.mediafire.com/')
+        req.add_header('X-Requested-With', 'XMLHttpRequest')
+        response = urlopen(req)
+        link = response.read()
+        n1 = link.find('"Download file"', 0)
+        n2 = link.find('Repair your download', n1)
+        r2 = link[n1:n2]
+        l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0]
+        return 'http://download' + l2link
+    except:
+        logdata("l2link ", 'no link')
+        return ''
+
 
 def make_request(url):
     try:
@@ -803,44 +804,6 @@ class MMarkBlack(Screen):
 
     def okRun(self):
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
-
-    # def okInstall(self, result):
-        # self['info'].setText(_('... please wait'))
-        # if result:
-            # if self.downloading == True:
-                # from .downloader import imagedownloadScreen
-                # agent='--header="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17"'
-                # crt="--debug --no-check-certificate"
-                # # selection = str(self['text'].getCurrent())
-                # idx = self["text"].getSelectionIndex()
-                # self.name = self.names[idx]
-                # url = self.urls[idx]
-                # myfile = checkMyFile(url)
-                # for url in myfile:
-                    # img = no_cover
-                    # url = 'http://download' + url
-                # print('url: ', url)
-                # dest = "/tmp/download.zip"
-                # self.session.open(imagedownloadScreen,'picon',dest,url)
-            # else:
-                # self.close(None)
-            # self.install()
-            # self.close(None)
-
-    # def install(self, fplug):
-        # if os.path.exists('/tmp/download.zip'):
-            # self['info'].setText(_('Install ...'))
-            # myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
-            # logdata("install1 ", myCmd)
-            # subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            # self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
-        # self['info'].setText(_('Please select ...'))
-        # self['progresstext'].text = ''
-        # self.progclear = 0
-        # self['progress'].setValue(self.progclear)
-        # self["progress"].hide()
-        # self.downloading = False
-
 
     def okInstall(self, result):
         self['info'].setText(_('... please wait'))
@@ -1547,7 +1510,6 @@ class MMarkFolderSkinZeta(Screen):
     def downxmlpage(self):
         url = self.url
         # getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
         try:
             url = url
         except:

@@ -164,40 +164,42 @@ if sslverify:
             return ctx
 
 
-def checkZip(url):
-        try:
-            req = Request(url)
-            req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
-            req.add_header('Referer', 'https://www.mediafire.com/')
-            req.add_header('X-Requested-With', 'XMLHttpRequest')
-            response = urlopen(req)
-            link = response.read()
-            n1 = link.find('"Download file"', 0)
-            n2 = link.find('Repair your download', n1)
-            r2 = link[n1:n2]
-            l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0] #@jbleyel
-            return 'http://download' + l2link
-        except:
-            logdata("l2link ", 'no link')
-            return ''
+#don't remove now                
+# def checkZip(url):
+        # try:
+            # req = Request(url)
+            # req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
+            # req.add_header('Referer', 'https://www.mediafire.com/')
+            # req.add_header('X-Requested-With', 'XMLHttpRequest')
+            # response = urlopen(req)
+            # link = response.read()
+            # n1 = link.find('"Download file"', 0)
+            # n2 = link.find('Repair your download', n1)
+            # r2 = link[n1:n2]
+            # l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0] #@jbleyel
+            # return 'http://download' + l2link
+        # except:
+            # logdata("l2link ", 'no link')
+            # return ''
 
 def checkMyFile(url):
+    # FIXME urlopen will cause a full download of file and this is not what you want //thank's @jbleyel 
+    return []
     try:
+        dest = "/tmp/download.zip"
         req = Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
         req.add_header('Referer', 'https://www.mediafire.com/')
         req.add_header('X-Requested-With', 'XMLHttpRequest')
-        response = urlopen(req)
-        link = response.read()
-        n1 = link.find('"Download file"', 0)
-        n2 = link.find('Repair your download', n1)
-        r2 = link[n1:n2]
-        l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0]
-        return 'http://download' + l2link
+        page = urlopen(req)
+        r = page.read()
+        n1 = r.find('"Download file"', 0)
+        n2 = r.find('Repair your download', n1)
+        r2 = r[n1:n2]
+        myfile = re.findall('href="http://download(.*?)">', r2)
+        return myfile
     except:
-        logdata("l2link ", 'no link')
         return ''
-
 
 def make_request(url):
     try:
@@ -405,16 +407,8 @@ class SelectPicons(Screen):
         self.onLayoutFinish.append(self.updateMenuList)
 
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
 
-    def GetPicturePath(self):
-        ActiveZoom = False
-        realpng = pixmaps
-        if path.isfile(realpng):
-            ActiveZoom = True
-        return realpng
-        
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(fspace)
@@ -593,15 +587,7 @@ class MMarkFolderBlk(Screen):
          'cancel': self.close}, -2)
          
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
-
-    def GetPicturePath(self):
-        ActiveZoom = False
-        realpng = pixmaps
-        if path.isfile(realpng):
-            ActiveZoom = True
-        return realpng        
 
     def getfreespace(self):
         fspace = freespace()
@@ -762,15 +748,7 @@ class MMarkBlack(Screen):
          'cancel': self.close}, -2)
 
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
-
-    def GetPicturePath(self):
-        ActiveZoom = False
-        realpng = pixmaps
-        if path.isfile(realpng):
-            ActiveZoom = True
-        return realpng
         
     def getfreespace(self):
         fspace = freespace()
@@ -936,15 +914,7 @@ class MMarkFolderTrs(Screen):
          'cancel': self.close}, -2)
 
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
-
-    def GetPicturePath(self):
-        ActiveZoom = False
-        realpng = pixmaps
-        if path.isfile(realpng):
-            ActiveZoom = True
-        return realpng
         
     def getfreespace(self):
         fspace = freespace()
@@ -1102,15 +1072,7 @@ class MMarkTrasp(Screen):
          'cancel': self.close}, -2)
 
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
-
-    def GetPicturePath(self):
-        ActiveZoom = False
-        realpng = pixmaps
-        if path.isfile(realpng):
-            ActiveZoom = True
-        return realpng
 
     def getfreespace(self):
         fspace = freespace()
@@ -1123,7 +1085,6 @@ class MMarkTrasp(Screen):
         self.names = []
         self.urls = []
         try:
-            # r = content
             n1 = r.find('"quickkey":', 0)
             n2 = r.find('more_chunks', n1)
             data2 = r[n1:n2]
@@ -1291,7 +1252,6 @@ class MMarkMov(Screen):
          'cancel': self.close}, -2)
 
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
 
     def GetPicturePath(self):
@@ -1493,7 +1453,6 @@ class MMarkFolderSkinZeta(Screen):
          'cancel': self.close}, -2)
 
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
 
     def GetPicturePath(self):
@@ -1509,7 +1468,6 @@ class MMarkFolderSkinZeta(Screen):
 
     def downxmlpage(self):
         url = self.url
-        # getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
         try:
             url = url
         except:
@@ -1702,7 +1660,6 @@ class MMarkFolderSkinOZeta(Screen):
          'cancel': self.close}, -2)
 
     def zoom(self):
-        # self.session.open(PiconsPreview, self.GetPicturePath())
         self.session.open(PiconsPreview, pixmaps)
 
     def GetPicturePath(self):
@@ -2040,15 +1997,6 @@ class PiconsPreview(Screen):
         ptr = self.picload.getData()
         self['pixmap'].instance.setPixmap(ptr)
 
-    # def ShowPicture(self):
-        # self.picload.setPara([self['pixmap'].instance.size().width(),
-         # self['pixmap'].instance.size().height(),
-         # self.Scale[0],
-         # self.Scale[1],
-         # 0,
-         # 1,
-         # '#00000000'])
-        # self.picload.startDecode(self.previewPng)
 
 def main(session, **kwargs):
     if checkInternet():

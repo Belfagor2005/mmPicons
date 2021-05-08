@@ -792,6 +792,8 @@ class MMarkBlack(Screen):
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
+                if os.path.exists(dest):
+                    os.remove(dest)                
                 myfile = checkMyFile(url)
                 for url in myfile:
                     img = no_cover
@@ -1128,6 +1130,8 @@ class MMarkTrasp(Screen):
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
+                if os.path.exists(dest):
+                    os.remove(dest)
                 myfile = checkMyFile(url)
                 for url in myfile:
                     img = no_cover
@@ -1329,6 +1333,8 @@ class MMarkMov(Screen):
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
+                if os.path.exists(dest):
+                    os.remove(dest)
                 myfile = checkMyFile(url)
                 for url in myfile:
                     img = no_cover
@@ -1533,6 +1539,8 @@ class MMarkFolderSkinZeta(Screen):
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
+                if os.path.exists(dest):
+                    os.remove(dest)                
                 myfile = checkMyFile(url)
                 for url in myfile:
                     img = no_cover
@@ -1740,6 +1748,8 @@ class MMarkFolderSkinOZeta(Screen):
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
+                if os.path.exists(dest):
+                    os.remove(dest)                
                 myfile = checkMyFile(url)
                 for url in myfile:
                     img = no_cover

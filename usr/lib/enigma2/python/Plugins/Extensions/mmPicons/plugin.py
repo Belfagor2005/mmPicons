@@ -175,7 +175,7 @@ def checkZip(url):
             n1 = link.find('"Download file"', 0)
             n2 = link.find('Repair your download', n1)
             r2 = link[n1:n2]
-            l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0]
+            l2link = re.compile('href="http://download(.*?)">', re.DOTALL).findall(r2)[0] #@jbleyel
             return 'http://download' + l2link
         except:
             logdata("l2link ", 'no link')

@@ -122,7 +122,6 @@ try:
 except:
     pass
 
-
 def checkStr(txt):
     if PY3:
         if isinstance(txt, type(bytes())):
@@ -131,7 +130,6 @@ def checkStr(txt):
         if isinstance(txt, type(six.text_type())):
             txt = txt.encode('utf-8')
     return txt
-
 
 def checkInternet():
     try:
@@ -175,7 +173,6 @@ if sslverify:
 #CHECK THI ISSUE
 #https://github.com/openatv/enigma2/commit/3974e84a59be2a8eb4d2250a876713d38e8f56b4
 
-
 def checkMyFile(url):
     # FIXME urlopen will cause a full download of file and this is not what you want //thank's @jbleyel
     return []
@@ -203,8 +200,6 @@ def checkMyFile(url):
         return ''
     return
 
-
-
 def make_request(url):
     try:
         req = Request(url)
@@ -221,7 +216,6 @@ def make_request(url):
         if hasattr(e, 'reason'):
             print('We failed to reach a server.')
             print('Reason: ', e.reason)
-
 
 def trace_error():
     import traceback
@@ -248,7 +242,6 @@ def freespace():
 def deletetmp():
     os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
     return
-
 
 pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
@@ -560,7 +553,6 @@ class MMarkPiconScreen(Screen):
         self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
-
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
@@ -758,7 +750,6 @@ class MMarkFolderScreen(Screen):
         self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
-
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
@@ -899,7 +890,6 @@ class MMarkFolderScreen(Screen):
             print('no cover.. error')
         return
 
-
 class MMarkFolderSkinZeta(Screen):
 
     def __init__(self, session, url):
@@ -1009,11 +999,6 @@ class MMarkFolderSkinZeta(Screen):
                 if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity/plugin.pyo') and 'xstreamity' in self.name:
                     self.mbox = self.session.open(MessageBox, _('Xstreamity Player not installed'), MessageBox.TYPE_INFO, timeout=4)
                     return
-<<<<<<< HEAD
-
-=======
-                selection = str(self['text'].getCurrent())
->>>>>>> 1ab7d23f1d88b2be573d32142b18ef30e16b8e4e
                 idx = self["text"].getSelectionIndex()
                 self.name = self.names[idx]
                 url = self.urls[idx]
@@ -1107,7 +1092,6 @@ class MMarkFolderSkinZeta(Screen):
         else:
             print('no cover.. error')
         return
-
 
 class mmConfig(Screen, ConfigListScreen):
 
@@ -1253,7 +1237,6 @@ class mmConfig(Screen, ConfigListScreen):
         else:
             self.close()
 
-
 class PiconsPreview(Screen):
     x = getDesktop(0).size().width()
     y = getDesktop(0).size().height()
@@ -1268,12 +1251,10 @@ class PiconsPreview(Screen):
         self.Scale = AVSwitch().getFramebufferScale()
         self.PicLoad = ePicLoad()
         self['pixmap'] = Pixmap()
-
         try:
             self.PicLoad.PictureData.get().append(self.DecodePicture)
         except:
             self.PicLoad_conn = self.PicLoad.PictureData.connect(self.DecodePicture)
-
         self.previewPng = previewPng
         self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'ok': self.close,
          'cancel': self.close,
@@ -1301,7 +1282,6 @@ def main(session, **kwargs):
         logdata("noInternet ", 'norete')
         session.open(MessageBox, "No Internet", MessageBox.TYPE_INFO)
 
-
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
         return [('mMark Picons & Skins',
@@ -1309,7 +1289,6 @@ def menu(menuid, **kwargs):
           'mMark Picons & Skins',
           44)]
     return []
-
 
 def mainmenu(session, **kwargs):
     main(session, **kwargs)
@@ -1321,6 +1300,5 @@ def Plugins(**kwargs):
         ico_path = plugin_path + '/res/pics/logo.png'
     result = [PluginDescriptor(name=desc_plug, description=(title_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
     return result
-
 
 '''======================================================'''

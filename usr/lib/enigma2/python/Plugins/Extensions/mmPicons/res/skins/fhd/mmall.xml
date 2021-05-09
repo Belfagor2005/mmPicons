@@ -1,4 +1,4 @@
-<!-- Skin tvAll 15/08/2020 -->
+<!-- Skin tvAll 09/05/2022 -->
 <screen name="mmall" position="0,0" size="1920,1080" title="::mMark Picons Manager::.." backgroundColor="transparent" flags="wfNoBorder">
 	<ePixmap position="0,0" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/main2.png" alphatest="blend" zPosition="1" />
 	<widget name="poster" position="220,20" size="130,80" backgroundColor="#30000000" transparent="1" borderWidth="3" borderColor="#00ffffff" alphatest="blend" zPosition="4" />

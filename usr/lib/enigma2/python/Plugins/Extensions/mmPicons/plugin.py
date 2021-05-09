@@ -204,6 +204,7 @@ def checkMyFile(url):
     return
 
 
+
 def make_request(url):
     try:
         req = Request(url)
@@ -1008,7 +1009,11 @@ class MMarkFolderSkinZeta(Screen):
                 if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity/plugin.pyo') and 'xstreamity' in self.name:
                     self.mbox = self.session.open(MessageBox, _('Xstreamity Player not installed'), MessageBox.TYPE_INFO, timeout=4)
                     return
+<<<<<<< HEAD
 
+=======
+                selection = str(self['text'].getCurrent())
+>>>>>>> 1ab7d23f1d88b2be573d32142b18ef30e16b8e4e
                 idx = self["text"].getSelectionIndex()
                 self.name = self.names[idx]
                 url = self.urls[idx]

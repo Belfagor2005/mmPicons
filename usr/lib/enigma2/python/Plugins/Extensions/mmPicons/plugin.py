@@ -11,7 +11,7 @@
 ****************************************
 '''
 #Info https://e2skin.blogspot.com/
-# from __future__ import print_function
+from __future__ import print_function, unicode_literals
 from . import _
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch
@@ -224,7 +224,6 @@ def trace_error():
         traceback.print_exc(file=open('/tmp/traceback.log', 'a'))
     except:
         pass
-
 
 def freespace():
     try:

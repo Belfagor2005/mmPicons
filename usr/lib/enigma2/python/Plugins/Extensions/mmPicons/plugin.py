@@ -6,12 +6,12 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             09/05/2021               *
+*             09/065/2021               *
 *          fixed by @jbleyel           *
 ****************************************
 '''
 #Info https://e2skin.blogspot.com/
-from __future__ import print_function, unicode_literals
+from __future__ import print_function#, unicode_literals
 from . import _
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch

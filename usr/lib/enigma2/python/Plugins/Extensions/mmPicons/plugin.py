@@ -73,7 +73,7 @@ from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlretrieve    
 import six.moves.urllib.request
 
-
+mpdDreamOs = False
 try:
     from enigma import eMediaDatabase
     mpdDreamOs = True
@@ -90,7 +90,7 @@ try:
 except:
     pass
     
-mpdDreamOs = False
+
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
@@ -320,7 +320,7 @@ def DailyListEntry(name, idx):
             res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         else:
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=2, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
+            res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=7, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
         return res
 
 def oneListEntry(name):
@@ -596,7 +596,9 @@ class MMarkPiconScreen(Screen):
         # self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        r = data   
+        if PY3:
+            r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -605,15 +607,15 @@ class MMarkPiconScreen(Screen):
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
-            for name, data, download, url in match:
+            for name, date, download, url in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
                     if self.movie:
                         name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
-                        name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
+                        name = name + ' ' + date[0:10] + ' ' + 'Down: ' + download
                     else:
                         name = name.replace('_', ' ').replace('mmk', 'MMark').replace('.zip', '')
-                        name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
+                        name = name + ' ' + date[0:10] + ' ' + 'Down:' + download
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))
@@ -782,7 +784,9 @@ class MMarkFolderScreen(Screen):
         self['space'].setText(fspace)
 
     def downxmlpage(self):
-        url = six.ensure_binary(self.url)
+        url = host_trs
+        if PY3:
+            url = six.ensure_binary(self.url)
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
 
     def errorLoad(self, error):
@@ -792,7 +796,9 @@ class MMarkFolderScreen(Screen):
         # self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        r = data
+        if PY3:
+            r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -801,7 +807,7 @@ class MMarkFolderScreen(Screen):
             data2 = r[n1:n2]
             regex = '{"folderkey":"(.*?)".*?"name":"(.*?)".*?"created":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
-            for url, name, data in match:
+            for url, name, date in match:
                 url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
                 url = url.replace('\\', '')
                 pic = no_cover
@@ -943,7 +949,9 @@ class MMarkFolderSkinZeta(Screen):
         self['space'].setText(fspace)
 
     def downxmlpage(self):
-        url = six.ensure_binary(self.url)
+        url = self.url
+        if PY3:
+            url = six.ensure_binary(self.url)
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
 
     def errorLoad(self, error):
@@ -953,7 +961,9 @@ class MMarkFolderSkinZeta(Screen):
         # self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        r = data
+        if PY3:
+            r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -962,11 +972,11 @@ class MMarkFolderSkinZeta(Screen):
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
-            for name, data, download, url in match:
+            for name, date, download, url in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
                     name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
-                    name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
+                    name = name + ' ' + date[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))

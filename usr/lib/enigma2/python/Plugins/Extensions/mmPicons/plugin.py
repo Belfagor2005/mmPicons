@@ -11,7 +11,7 @@
 ****************************************
 '''
 #Info https://e2skin.blogspot.com/
-from __future__ import print_function#, unicode_literals
+# from __future__ import print_function
 from . import _
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch
@@ -66,14 +66,19 @@ import six
 from sys import version_info
 global skin_path, mmkpicon, mpdDreamOs, pngs, pngl, pngx, XStreamity
 PY3 = sys.version_info.major >= 3
-print('Py3: ',PY3)
+# if PY3:
+    # from urllib.request import urlopen, Request
+    # from urllib.error import URLError, HTTPError
+    # from urllib.request import urlretrieve
+# else:
+    # from urllib2 import urlopen, Request, URLError
+    # from urllib import urlretrieve
+    
+from six.moves.urllib.request import urlretrieve    
+from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
-from six.moves.urllib.error import HTTPError, URLError
-from six.moves.urllib.request import urlretrieve    
-import six.moves.urllib.request
 
-mpdDreamOs = False
 try:
     from enigma import eMediaDatabase
     mpdDreamOs = True
@@ -90,10 +95,9 @@ try:
 except:
     pass
     
-
-
+mpdDreamOs = False
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}  
         
 def logdata(name='', data=None):
     try:
@@ -105,6 +109,7 @@ def logdata(name='', data=None):
     except:
         trace_error()
         pass
+
 
 def getversioninfo():
     currversion = '1.2'
@@ -142,6 +147,7 @@ def checkInternet():
     else:
         return True
 
+
 try:
     from OpenSSL import SSL
     from twisted.internet import ssl
@@ -151,6 +157,11 @@ except:
     sslverify = False
 
 if sslverify:
+    try:
+        from urlparse import urlparse
+    except:
+        from urllib.parse import urlparse
+
     class SNIFactory(ssl.ClientContextFactory):
         def __init__(self, hostname=None):
             self.hostname = hostname
@@ -217,6 +228,7 @@ def trace_error():
     except:
         pass
 
+
 def freespace():
     try:
         diskSpace = os.statvfs('/')
@@ -228,6 +240,7 @@ def freespace():
         return spacestr
     except:
         return ''
+
 
 def deletetmp():
     os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
@@ -302,6 +315,7 @@ class mmList(MenuList):
         else:
             self.l.setItemHeight(40)
 
+
 def OnclearMem():
     try:
         os.system("sync")
@@ -310,6 +324,7 @@ def OnclearMem():
         os.system("echo 3 > /proc/sys/vm/drop_caches")
     except:
         pass
+
 
 def DailyListEntry(name, idx):
     pngs = ico1_path
@@ -320,8 +335,9 @@ def DailyListEntry(name, idx):
             res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         else:
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=7, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
+            res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=2, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
         return res
+
 
 def oneListEntry(name):
     pngx = ico1_path
@@ -344,12 +360,14 @@ def showlist(data, list):
         icount = icount + 1
         list.setList(plist)
 
+
 Panel_list3 = [
  ('PICONS BLACK'),
  ('PICONS TRANSPARENT'),
  ('PICONS MOVIE'),
  ('SKIN DMM ZETA'),
  ('SKIN OPEN ZETA')]
+
 
 class SelectPicons(Screen):
 
@@ -362,7 +380,7 @@ class SelectPicons(Screen):
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self['text'] = mmList([])
-        self.downloading = False
+        self.working = False
         self.selection = 'all'
         self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
@@ -593,12 +611,10 @@ class MMarkPiconScreen(Screen):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ", error)
-        # self.downloading = False
+        self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data   
-        if PY3:
-            r = six.ensure_str(data)
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -607,15 +623,15 @@ class MMarkPiconScreen(Screen):
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
-            for name, date, download, url in match:
+            for name, data, download, url in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
                     if self.movie:
                         name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
-                        name = name + ' ' + date[0:10] + ' ' + 'Down: ' + download
+                        name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     else:
                         name = name.replace('_', ' ').replace('mmk', 'MMark').replace('.zip', '')
-                        name = name + ' ' + date[0:10] + ' ' + 'Down:' + download
+                        name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))
@@ -649,7 +665,6 @@ class MMarkPiconScreen(Screen):
                 self.download.start().addCallback(self.install).addErrback(self.showError)
             else:
                 self['info'].setText(_('Picons Not Installed ...'))
-                # self.downloading = False
 
     def install(self, fplug):
         if os.path.exists('/tmp/download.zip'):
@@ -657,13 +672,13 @@ class MMarkPiconScreen(Screen):
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
             logdata("install2 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            # self.downloading = False
             self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
+        self.downloading = False                                
 
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
@@ -784,21 +799,17 @@ class MMarkFolderScreen(Screen):
         self['space'].setText(fspace)
 
     def downxmlpage(self):
-        url = host_trs
-        if PY3:
-            url = six.ensure_binary(self.url)
+        url = six.ensure_binary(self.url)
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
 
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ", error)
-        # self.downloading = False
+        self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
-        if PY3:
-            r = six.ensure_str(data)
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -807,7 +818,7 @@ class MMarkFolderScreen(Screen):
             data2 = r[n1:n2]
             regex = '{"folderkey":"(.*?)".*?"name":"(.*?)".*?"created":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
-            for url, name, date in match:
+            for url, name, data in match:
                 url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
                 url = url.replace('\\', '')
                 pic = no_cover
@@ -816,10 +827,9 @@ class MMarkFolderScreen(Screen):
                 self.names.append(name)
             self['info'].setText(_('Please select ...'))
             showlist(self.names, self['text'])
-            # self.downloading = True
+            self.downloading = True
         except:
-            # self.downloading = False
-            pass
+            self.downloading = False
         self.load_poster()
 
     def okRun(self):
@@ -949,21 +959,17 @@ class MMarkFolderSkinZeta(Screen):
         self['space'].setText(fspace)
 
     def downxmlpage(self):
-        url = self.url
-        if PY3:
-            url = six.ensure_binary(self.url)
+        url = six.ensure_binary(self.url)
         getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
 
     def errorLoad(self, error):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ", error)
-        # self.downloading = False
+        self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = data
-        if PY3:
-            r = six.ensure_str(data)
+        r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -972,11 +978,11 @@ class MMarkFolderSkinZeta(Screen):
             data2 = r[n1:n2]
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
-            for name, date, download, url in match:
+            for name, data, download, url in match:
                 if 'zip' in url:
                     url = url.replace('\\', '')
                     name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
-                    name = name + ' ' + date[0:10] + ' ' + 'Down: ' + download
+                    name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))
@@ -1009,10 +1015,8 @@ class MMarkFolderSkinZeta(Screen):
                 self.download = downloadWithProgress(url, dest)
                 self.download.addProgress(self.downloadProgress)
                 self.download.start().addCallback(self.install).addErrback(self.showError)
-                
             else:
                 self['info'].setText(_('Picons Not Installed ...'))
-                # self.downloading = False
 
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
@@ -1027,13 +1031,13 @@ class MMarkFolderSkinZeta(Screen):
             myCmd = "unzip -o -q '/tmp/download.zip' -d /"
             logdata("install4 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            # self.downloading = False
             self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
+        self.downloading = False
             
     def showError(self, error):
         print("download error =", error)

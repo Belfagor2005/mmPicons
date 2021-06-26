@@ -27,17 +27,17 @@ from Components.PluginList import *
 from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
-from Components.SelectionList import SelectionList                                                                           
+from Components.SelectionList import SelectionList
 from Components.Sources.List import List
 from Components.Sources.Progress import Progress
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Source import Source
-from Components.ServiceList import ServiceList                                                    
+from Components.ServiceList import ServiceList
 from Components.config import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
-from Screens.PluginBrowser import PluginBrowser                                                
+from Screens.PluginBrowser import PluginBrowser
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -71,12 +71,13 @@ import six
 from sys import version_info
 global skin_path, mmkpicon, mpdDreamOs, pngs, pngl, pngx, XStreamity
 PY3 = sys.version_info.major >= 3
-   
-from six.moves.urllib.request import urlretrieve    
+from six.moves.urllib.request import urlretrieve
 from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
+
 mpdDreamOs = False
+
 try:
     from enigma import eMediaDatabase
     mpdDreamOs = True
@@ -92,11 +93,10 @@ try:
     import zipfile
 except:
     pass
-    
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}  
-        
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+
 def logdata(name='', data=None):
     try:
         data = str(data)
@@ -225,7 +225,6 @@ def trace_error():
     except:
         pass
 
-
 def freespace():
     try:
         diskSpace = os.statvfs('/')
@@ -237,7 +236,6 @@ def freespace():
         return spacestr
     except:
         return ''
-
 
 def deletetmp():
     os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
@@ -285,7 +283,6 @@ if not os.path.exists(mmkpicon):
 
 logdata("path picons: ", str(mmkpicon))
 
-
 if HD.width() > 1280:
     skin_path = res_plugin_path + 'skins/fhd/'
 else:
@@ -315,11 +312,11 @@ class mmList(MenuList):
         self.l.setFont(7, gFont('Regular', 34))
         self.l.setFont(8, gFont('Regular', 36))
         self.l.setFont(9, gFont('Regular', 40))
-        if HD.width() > 1280:          
+        if HD.width() > 1280:
             self.l.setItemHeight(50)
         else:
-            self.l.setItemHeight(40) 
-            
+            self.l.setItemHeight(40)
+
 def DailyListEntry(name, idx):
     pngs = ico1_path
     res = [name]
@@ -331,7 +328,6 @@ def DailyListEntry(name, idx):
             res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 6), size=(34, 25), png =loadPNG(pngs)))
             res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =2, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))
         return res
-
 
 def oneListEntry(name):
     pngx = ico1_path
@@ -351,8 +347,8 @@ def showlist(data, list):
         name = data[icount]
         plist.append(oneListEntry(name))
         icount = icount + 1
-        list.setList(plist)  
-        
+        list.setList(plist)
+
 Panel_list3 = [
  ('PICONS BLACK'),
  ('PICONS TRANSPARENT'),
@@ -388,9 +384,9 @@ class SelectPicons(Screen):
         self['progresstext'] = StaticText()
         self["progress"].hide()
         self['progresstext'].text = ''
-        self.menulist = []        
+        self.menulist = []
         self.list = []
-        self['text'] = mmList([])  
+        self['text'] = mmList([])
         self.currentList = 'text'
         self['title'] = Label(title_plug)
         self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions"], {'ok': self.okRun,
@@ -503,8 +499,6 @@ class SelectPicons(Screen):
     def load_poster(self):
         global pixmaps
         sel = self['text'].getSelectedIndex()
-        # sel = self['text'].getIndex()
-        # sel = self.menu_list[idx]
         if sel == 0:
             pixmaps = piconsblk
         elif sel == 1:
@@ -541,7 +535,7 @@ class SelectPicons(Screen):
         else:
             print('no cover.. error')
         return
-        
+
 class MMarkPiconScreen(Screen):
 
     def __init__(self, session, name, url, pixmaps, movie=False):
@@ -676,7 +670,7 @@ class MMarkPiconScreen(Screen):
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-        self.downloading = False                                
+        self.downloading = False
 
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
@@ -737,7 +731,6 @@ class MMarkPiconScreen(Screen):
         else:
             print('no cover.. error')
         return
-
 
 class MMarkFolderScreen(Screen):
 
@@ -1036,7 +1029,7 @@ class MMarkFolderSkinZeta(Screen):
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
         self.downloading = False
-            
+
     def showError(self, error):
         print("download error =", error)
         logdata("errorLoad ", error)

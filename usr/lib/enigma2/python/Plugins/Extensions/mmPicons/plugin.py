@@ -27,19 +27,22 @@ from Components.PluginList import *
 from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
+from Components.SelectionList import SelectionList                                                                           
 from Components.Sources.List import List
 from Components.Sources.Progress import Progress
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Source import Source
+from Components.ServiceList import ServiceList                                                    
 from Components.config import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
+from Screens.PluginBrowser import PluginBrowser                                                
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import *
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, Standby
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_PLUGINS, SCOPE_LANGUAGE
 from Tools.Directories import pathExists, resolveFilename, fileExists, copyfile
@@ -50,8 +53,10 @@ from enigma import ePicLoad, loadPic
 from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
 from enigma import getDesktop, loadPNG, gFont
 from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
+from enigma import eSize, eServiceCenter, eServiceReference, iPlayableService
+from os.path import splitext
 from os import path, listdir, remove, mkdir, access, X_OK, chmod
-from twisted.web.client import downloadPage, getPage
+from twisted.web.client import downloadPage, getPage, error
 from xml.dom import Node, minidom
 import base64
 import os
@@ -66,19 +71,12 @@ import six
 from sys import version_info
 global skin_path, mmkpicon, mpdDreamOs, pngs, pngl, pngx, XStreamity
 PY3 = sys.version_info.major >= 3
-# if PY3:
-    # from urllib.request import urlopen, Request
-    # from urllib.error import URLError, HTTPError
-    # from urllib.request import urlretrieve
-# else:
-    # from urllib2 import urlopen, Request, URLError
-    # from urllib import urlretrieve
-    
+   
 from six.moves.urllib.request import urlretrieve    
 from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
-
+mpdDreamOs = False
 try:
     from enigma import eMediaDatabase
     mpdDreamOs = True
@@ -95,7 +93,7 @@ try:
 except:
     pass
     
-mpdDreamOs = False
+
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}  
         
@@ -109,7 +107,6 @@ def logdata(name='', data=None):
     except:
         trace_error()
         pass
-
 
 def getversioninfo():
     currversion = '1.2'
@@ -296,6 +293,14 @@ else:
 if mpdDreamOs:
     skin_path = skin_path + 'dreamOs/'
 
+def OnclearMem():
+    try:
+        os.system("sync")
+        os.system("echo 1 > /proc/sys/vm/drop_caches")
+        os.system("echo 2 > /proc/sys/vm/drop_caches")
+        os.system("echo 3 > /proc/sys/vm/drop_caches")
+    except:
+        pass
 
 class mmList(MenuList):
     def __init__(self, list):
@@ -310,32 +315,21 @@ class mmList(MenuList):
         self.l.setFont(7, gFont('Regular', 34))
         self.l.setFont(8, gFont('Regular', 36))
         self.l.setFont(9, gFont('Regular', 40))
-        if HD.width() > 1280:
+        if HD.width() > 1280:          
             self.l.setItemHeight(50)
         else:
-            self.l.setItemHeight(40)
-
-
-def OnclearMem():
-    try:
-        os.system("sync")
-        os.system("echo 1 > /proc/sys/vm/drop_caches")
-        os.system("echo 2 > /proc/sys/vm/drop_caches")
-        os.system("echo 3 > /proc/sys/vm/drop_caches")
-    except:
-        pass
-
-
+            self.l.setItemHeight(40) 
+            
 def DailyListEntry(name, idx):
     pngs = ico1_path
     res = [name]
     if fileExists(pngs):
         if HD.width() > 1280:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
+            res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =7, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         else:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=2, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
+            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 6), size=(34, 25), png =loadPNG(pngs)))
+            res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =2, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))
         return res
 
 
@@ -344,12 +338,11 @@ def oneListEntry(name):
     res = [name]
     if HD.width() > 1280:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=2, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=2, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))
     return res
-
 
 def showlist(data, list):
     icount = 0
@@ -358,9 +351,8 @@ def showlist(data, list):
         name = data[icount]
         plist.append(oneListEntry(name))
         icount = icount + 1
-        list.setList(plist)
-
-
+        list.setList(plist)  
+        
 Panel_list3 = [
  ('PICONS BLACK'),
  ('PICONS TRANSPARENT'),
@@ -379,8 +371,8 @@ class SelectPicons(Screen):
         self.setup_title = ('Select Picons')
         Screen.__init__(self, session)
         self.setTitle(title_plug)
-        self['text'] = mmList([])
         self.working = False
+        self.icount = 0
         self.selection = 'all'
         self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
@@ -396,8 +388,10 @@ class SelectPicons(Screen):
         self['progresstext'] = StaticText()
         self["progress"].hide()
         self['progresstext'].text = ''
+        self.menulist = []        
+        self.list = []
+        self['text'] = mmList([])  
         self.currentList = 'text'
-        self.menulist = []
         self['title'] = Label(title_plug)
         self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions"], {'ok': self.okRun,
          'green': self.remove,
@@ -437,13 +431,15 @@ class SelectPicons(Screen):
         self.menu_list = []
         for x in self.menu_list:
             del self.menu_list[0]
-        list = []
+        self.list = []
         idx = 0
         for x in Panel_list3:
-            list.append(DailyListEntry(x, idx))
+            self.list.append(DailyListEntry(x, idx))
             self.menu_list.append(x)
             idx += 1
-        self['text'].setList(list)
+            print('idx x  ', idx)
+        self['text'].list = self.list
+        self['text'].setList(self.list)
         self.getfreespace()
         self.load_poster()
 
@@ -452,6 +448,7 @@ class SelectPicons(Screen):
 
     def keyNumberGlobalCB(self, idx):
         sel = self.menu_list[idx]
+        print('selll ', sel)
         if sel == ('PICONS BLACK'):
             self.session.open(MMarkFolderScreen, host_blk, piconsblk)
         elif sel == 'PICONS TRANSPARENT':
@@ -506,6 +503,8 @@ class SelectPicons(Screen):
     def load_poster(self):
         global pixmaps
         sel = self['text'].getSelectedIndex()
+        # sel = self['text'].getIndex()
+        # sel = self.menu_list[idx]
         if sel == 0:
             pixmaps = piconsblk
         elif sel == 1:
@@ -542,8 +541,7 @@ class SelectPicons(Screen):
         else:
             print('no cover.. error')
         return
-
-
+        
 class MMarkPiconScreen(Screen):
 
     def __init__(self, session, name, url, pixmaps, movie=False):

@@ -59,15 +59,15 @@ from os import path, listdir, remove, mkdir, access, X_OK, chmod
 from twisted.web.client import downloadPage, getPage, error
 from xml.dom import Node, minidom
 import base64
+import glob
 import os
 import re
-import sys
 import shutil
-import ssl
-import socket
-import subprocess
-import glob
 import six
+import socket
+import ssl
+import subprocess
+import sys
 from sys import version_info
 global skin_path, mmkpicon, mpdDreamOs, pngs, pngl, pngx, XStreamity
 PY3 = sys.version_info.major >= 3
@@ -75,15 +75,12 @@ from six.moves.urllib.request import urlretrieve
 from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
-
 mpdDreamOs = False
-
 try:
     from enigma import eMediaDatabase
     mpdDreamOs = True
 except:
     mpdDreamOs = False
-
 try:
     from enigma import eDVBDB
 except ImportError:
@@ -93,7 +90,6 @@ try:
     import zipfile
 except:
     pass
-
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
 
@@ -133,17 +129,11 @@ def checkStr(txt):
 
 def checkInternet():
     try:
-        response = checkStr(urlopen("http://google.com", None, 5))
-        response.close()
-    except HTTPError:
-        return False
-    except URLError:
-        return False
-    except socket.timeout:
-        return False
-    else:
+        socket.setdefaulttimeout(0.5)
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
         return True
-
+    except:
+        return False
 
 try:
     from OpenSSL import SSL
@@ -241,16 +231,11 @@ def deletetmp():
     os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
     return
 
-pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
-ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
-ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-ecskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-openskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT0wd3o0M3l2OG5zeDc5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-host_trs = base64.b64decode(ptrs)
-host_blk = base64.b64decode(pblk)
-host_mov = base64.b64decode(ptmov)
-host_skin = base64.b64decode(ecskins)
-host_skinz = base64.b64decode(openskins)
+host_blk = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=ovz04mrpzo9pw&content_type=folders&chunk_size=1000&response_format=json'
+host_trs = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=tvbds59y9hr19&content_type=folders&chunk_size=1000&response_format=json'
+host_mov = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=nk8t522bv4909&content_type=files&chunk_size=1000&response_format=json'
+host_skin = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=c8sw0ahss3si0&content_type=files&chunk_size=1000&response_format=json'
+host_skinz = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=0wz43yv8nsx79&content_type=files&chunk_size=1000&response_format=json'
 config.plugins.mmPicons = ConfigSubsection()
 config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 HD = getDesktop(0).size()

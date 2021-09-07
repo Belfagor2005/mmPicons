@@ -69,18 +69,13 @@ import ssl
 import subprocess
 import sys
 from sys import version_info
-global skin_path, mmkpicon, mpdDreamOs, pngs, pngl, pngx, XStreamity
+global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
 PY3 = sys.version_info.major >= 3
 from six.moves.urllib.request import urlretrieve
 from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
-mpdDreamOs = False
-try:
-    from enigma import eMediaDatabase
-    mpdDreamOs = True
-except:
-    mpdDreamOs = False
+
 try:
     from enigma import eDVBDB
 except ImportError:
@@ -272,7 +267,7 @@ if HD.width() > 1280:
     skin_path = res_plugin_path + 'skins/fhd/'
 else:
     skin_path = res_plugin_path + 'skins/hd/'
-if mpdDreamOs:
+if os.path.exists('/var/lib/dpkg/status'):
     skin_path = skin_path + 'dreamOs/'
 
 def OnclearMem():
@@ -492,7 +487,7 @@ class SelectPicons(Screen):
             pixmaps = piconsmovie
         else:
             pixmaps = piconszeta
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -508,7 +503,7 @@ class SelectPicons(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -558,7 +553,7 @@ class MMarkPiconScreen(Screen):
         self.timer.start(500, 1)
         self.pixmaps = pixmaps
         self.movie = movie
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -688,7 +683,7 @@ class MMarkPiconScreen(Screen):
         self.load_poster()
 
     def load_poster(self):
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -704,7 +699,7 @@ class MMarkPiconScreen(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             if self.picload.startDecode(self.pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -752,7 +747,7 @@ class MMarkFolderScreen(Screen):
         self.timer.start(500, 1)
         self.url = url
         self.pixmaps = pixmaps
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -840,7 +835,7 @@ class MMarkFolderScreen(Screen):
         self.load_poster()
 
     def load_poster(self):
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -856,7 +851,7 @@ class MMarkFolderScreen(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             if self.picload.startDecode(self.pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -905,7 +900,7 @@ class MMarkFolderSkinZeta(Screen):
         self.name = 'MMark-Skins'
         self.timer = eTimer()
         self.timer.start(500, 1)
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -1043,7 +1038,7 @@ class MMarkFolderSkinZeta(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconszeta
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             self['poster'].instance.setPixmap(gPixmapPtr())
         else:
             self['poster'].instance.setPixmap(None)
@@ -1059,7 +1054,7 @@ class MMarkFolderSkinZeta(Screen):
          1,
          '#FF000000'))
         ptr = self.picload.getData()
-        if mpdDreamOs:
+        if os.path.exists('/var/lib/dpkg/status'):
             if self.picload.startDecode(pixmaps, False) == 0:
                 ptr = self.picload.getData()
         else:
@@ -1275,7 +1270,7 @@ def mainmenu(session, **kwargs):
 
 def Plugins(**kwargs):
     ico_path = 'logo.png'
-    if not mpdDreamOs:
+    if not os.path.exists('/var/lib/dpkg/status'):
         ico_path = plugin_path + '/res/pics/logo.png'
     result = [PluginDescriptor(name=desc_plug, description=(title_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
     return result

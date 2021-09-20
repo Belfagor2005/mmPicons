@@ -159,7 +159,7 @@ if sslverify:
 #https://github.com/openatv/enigma2/commit/3974e84a59be2a8eb4d2250a876713d38e8f56b4
 
 def checkMyFile(url):
-    # FIXME urlopen will cause a full download of file and this is not what you want //thank's @jbleyel
+    # FIXME urlopen will cause a full download of file and this != what you want //thank's @jbleyel
     return []
     try:
         dest = "/tmp/download.zip"
@@ -970,7 +970,7 @@ class MMarkFolderSkinZeta(Screen):
         self['info'].setText(_('... please wait'))
         if result:
             if self.downloading == True:
-                if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity/plugin.pyo') and 'xstreamity' in self.name:
+                if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity') and 'xstreamity' in self.name:
                     self.mbox = self.session.open(MessageBox, _('Xstreamity Player not installed'), MessageBox.TYPE_INFO, timeout=4)
                     return
                 idx = self["text"].getSelectionIndex()
@@ -1176,7 +1176,7 @@ class mmConfig(Screen, ConfigListScreen):
             print(('openDirectoryBrowser get failed: ', str(e)))
 
     def openDirectoryBrowserCB(self, path):
-        if path is not None:
+        if path != None:
             if self.setting == 'mmkpicon':
                 config.plugins.mmPicons.mmkpicon.setValue(path)
         return
@@ -1187,7 +1187,7 @@ class mmConfig(Screen, ConfigListScreen):
             self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self['config'].getCurrent()[0], text=self['config'].getCurrent()[1].value)
 
     def VirtualKeyBoardCallback(self, callback=None):
-        if callback is not None and len(callback):
+        if callback != None and len(callback):
             self['config'].getCurrent()[1].value = callback
             self['config'].invalidate(self['config'].getCurrent())
         return

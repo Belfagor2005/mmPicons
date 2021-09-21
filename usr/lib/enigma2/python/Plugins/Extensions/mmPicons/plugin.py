@@ -11,7 +11,7 @@
 ****************************************
 '''
 #Info https://e2skin.blogspot.com/
-# from __future__ import print_function
+from __future__ import print_function
 from . import _
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch
@@ -68,9 +68,7 @@ import socket
 import ssl
 import subprocess
 import sys
-from sys import version_info
 global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
-PY3 = sys.version_info.major >= 3
 from six.moves.urllib.request import urlretrieve
 from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlopen
@@ -114,7 +112,7 @@ def getversioninfo():
     return (currversion)
 
 def checkStr(txt):
-    if PY3:
+    if six.PY3:
         if isinstance(txt, type(bytes())):
             txt = txt.decode('utf-8')
     else:
@@ -476,6 +474,7 @@ class SelectPicons(Screen):
         self[self.currentList].pageDown()
         self.load_poster()
 
+
     def load_poster(self):
         global pixmaps
         sel = self['text'].getSelectedIndex()
@@ -487,34 +486,23 @@ class SelectPicons(Screen):
             pixmaps = piconsmovie
         else:
             pixmaps = piconszeta
-        if os.path.exists('/var/lib/dpkg/status'):
-            self['poster'].instance.setPixmap(gPixmapPtr())
-        else:
-            self['poster'].instance.setPixmap(None)
-        self['poster'].hide()
-        sc = AVSwitch().getFramebufferScale()
-        self.picload = ePicLoad()
-        size = self['poster'].instance.size()
-        self.picload.setPara((size.width(),
-         size.height(),
-         sc[0],
-         sc[1],
-         False,
-         1,
-         '#FF000000'))
-        ptr = self.picload.getData()
-        if os.path.exists('/var/lib/dpkg/status'):
-            if self.picload.startDecode(pixmaps, False) == 0:
-                ptr = self.picload.getData()
-        else:
-            if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
-                ptr = self.picload.getData()
-        if ptr != None:
-            self['poster'].instance.setPixmap(ptr)
-            self['poster'].show()
-        else:
-            print('no cover.. error')
-        return
+        self["poster"].show()
+        if os.path.exists(pixmaps):
+            size = self['poster'].instance.size()
+            self.picload = ePicLoad()
+            sc = AVSwitch().getFramebufferScale()
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            if os.path.exists('/var/lib/dpkg/status'):
+                self.picload.startDecode(pixmaps, False)
+            else:
+                self.picload.startDecode(pixmaps, 0, 0, False)
+            ptr = self.picload.getData()
+            if ptr != None:
+                self['poster'].instance.setPixmap(ptr)
+                self['poster'].show()
+            else:
+                print('no cover.. error')
+            return
 
 class MMarkPiconScreen(Screen):
 
@@ -611,8 +599,8 @@ class MMarkPiconScreen(Screen):
             self.downloading = True
         except:
             self.downloading = False
-        if self.movie:
-            self.load_poster()
+        # if self.movie:
+        self.load_poster()
 
     def okRun(self):
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
@@ -683,35 +671,24 @@ class MMarkPiconScreen(Screen):
         self.load_poster()
 
     def load_poster(self):
-        if os.path.exists('/var/lib/dpkg/status'):
-            self['poster'].instance.setPixmap(gPixmapPtr())
-        else:
-            self['poster'].instance.setPixmap(None)
-        self['poster'].hide()
-        sc = AVSwitch().getFramebufferScale()
-        self.picload = ePicLoad()
-        size = self['poster'].instance.size()
-        self.picload.setPara((size.width(),
-         size.height(),
-         sc[0],
-         sc[1],
-         False,
-         1,
-         '#FF000000'))
-        ptr = self.picload.getData()
-        if os.path.exists('/var/lib/dpkg/status'):
-            if self.picload.startDecode(self.pixmaps, False) == 0:
-                ptr = self.picload.getData()
-        else:
-            if self.picload.startDecode(self.pixmaps, 0, 0, False) == 0:
-                ptr = self.picload.getData()
-        if ptr != None:
-            self['poster'].instance.setPixmap(ptr)
-            self['poster'].show()
-        else:
-            print('no cover.. error')
-        return
-
+        self["poster"].show()
+        if os.path.exists(self.pixmaps):
+            size = self['poster'].instance.size()
+            self.picload = ePicLoad()
+            sc = AVSwitch().getFramebufferScale()
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            if os.path.exists('/var/lib/dpkg/status'):
+                self.picload.startDecode(self.pixmaps, False)
+            else:
+                self.picload.startDecode(self.pixmaps, 0, 0, False)
+            ptr = self.picload.getData()
+            if ptr != None:
+                self['poster'].instance.setPixmap(ptr)
+                self['poster'].show()
+            else:
+                print('no cover.. error')
+            return
+            
 class MMarkFolderScreen(Screen):
 
     def __init__(self, session, url, pixmaps):
@@ -763,7 +740,7 @@ class MMarkFolderScreen(Screen):
          'cancel': self.close}, -2)
 
     def zoom(self):
-        self.session.open(PiconsPreview, pixmaps)
+        self.session.open(PiconsPreview, self.pixmaps)
 
     def getfreespace(self):
         fspace = freespace()
@@ -834,35 +811,25 @@ class MMarkFolderScreen(Screen):
         self[self.currentList].pageDown()
         self.load_poster()
 
+
     def load_poster(self):
-        if os.path.exists('/var/lib/dpkg/status'):
-            self['poster'].instance.setPixmap(gPixmapPtr())
-        else:
-            self['poster'].instance.setPixmap(None)
-        self['poster'].hide()
-        sc = AVSwitch().getFramebufferScale()
-        self.picload = ePicLoad()
-        size = self['poster'].instance.size()
-        self.picload.setPara((size.width(),
-         size.height(),
-         sc[0],
-         sc[1],
-         False,
-         1,
-         '#FF000000'))
-        ptr = self.picload.getData()
-        if os.path.exists('/var/lib/dpkg/status'):
-            if self.picload.startDecode(self.pixmaps, False) == 0:
-                ptr = self.picload.getData()
-        else:
-            if self.picload.startDecode(self.pixmaps, 0, 0, False) == 0:
-                ptr = self.picload.getData()
-        if ptr != None:
-            self['poster'].instance.setPixmap(ptr)
-            self['poster'].show()
-        else:
-            print('no cover.. error')
-        return
+        self["poster"].show()
+        if os.path.exists(self.pixmaps):
+            size = self['poster'].instance.size()
+            self.picload = ePicLoad()
+            sc = AVSwitch().getFramebufferScale()
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            if os.path.exists('/var/lib/dpkg/status'):
+                self.picload.startDecode(self.pixmaps, False)
+            else:
+                self.picload.startDecode(self.pixmaps, 0, 0, False)
+            ptr = self.picload.getData()
+            if ptr != None:
+                self['poster'].instance.setPixmap(ptr)
+                self['poster'].show()
+            else:
+                print('no cover.. error')
+            return
 
 class MMarkFolderSkinZeta(Screen):
 
@@ -876,7 +843,6 @@ class MMarkFolderSkinZeta(Screen):
         self.setTitle(title_plug)
         self.list = []
         self['text'] = mmList([])
-
         self.icount = 0
         self['info'] = Label(_('Load selected filter list, please wait ...'))
         self['pth'] = Label('')
@@ -1038,34 +1004,23 @@ class MMarkFolderSkinZeta(Screen):
     def load_poster(self):
         global pixmaps
         pixmaps = piconszeta
-        if os.path.exists('/var/lib/dpkg/status'):
-            self['poster'].instance.setPixmap(gPixmapPtr())
-        else:
-            self['poster'].instance.setPixmap(None)
-        self['poster'].hide()
-        sc = AVSwitch().getFramebufferScale()
-        self.picload = ePicLoad()
-        size = self['poster'].instance.size()
-        self.picload.setPara((size.width(),
-         size.height(),
-         sc[0],
-         sc[1],
-         False,
-         1,
-         '#FF000000'))
-        ptr = self.picload.getData()
-        if os.path.exists('/var/lib/dpkg/status'):
-            if self.picload.startDecode(pixmaps, False) == 0:
-                ptr = self.picload.getData()
-        else:
-            if self.picload.startDecode(pixmaps, 0, 0, False) == 0:
-                ptr = self.picload.getData()
-        if ptr != None:
-            self['poster'].instance.setPixmap(ptr)
-            self['poster'].show()
-        else:
-            print('no cover.. error')
-        return
+        self["poster"].show()
+        if os.path.exists(pixmaps):
+            size = self['poster'].instance.size()
+            self.picload = ePicLoad()
+            sc = AVSwitch().getFramebufferScale()
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            if os.path.exists('/var/lib/dpkg/status'):
+                self.picload.startDecode(pixmaps, False)
+            else:
+                self.picload.startDecode(pixmaps, 0, 0, False)
+            ptr = self.picload.getData()
+            if ptr != None:
+                self['poster'].instance.setPixmap(ptr)
+                self['poster'].show()
+            else:
+                print('no cover.. error')
+            return
 
 class mmConfig(Screen, ConfigListScreen):
 

@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             09/05/2021               *
+*             09/11/2021               *
 *          fixed by @jbleyel           *
 ****************************************
 '''
@@ -17,7 +17,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
-from Components.HTMLComponent import *
+# from Components.HTMLComponent import HTMLComponent
 from Components.Input import Input
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -51,7 +51,7 @@ from Tools.LoadPixmap import LoadPixmap
 from enigma import *
 from enigma import ePicLoad, loadPic
 from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
-from enigma import getDesktop, loadPNG, gFont
+from enigma import  loadPNG, gFont #,getDesktop
 from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
 from enigma import eSize, eServiceCenter, eServiceReference, iPlayableService
 from os.path import splitext
@@ -64,7 +64,7 @@ import os
 import re
 import shutil
 import six
-import socket
+# import socket
 import ssl
 import subprocess
 import sys
@@ -73,18 +73,18 @@ from six.moves.urllib.request import urlretrieve
 from six.moves.urllib.error import HTTPError, URLError
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
-
-try:
-    from enigma import eDVBDB
-except ImportError:
-    eDVBDB = None
+from Plugins.Extensions.mmPicons.Utils import *
+# try:
+    # from enigma import eDVBDB
+# except ImportError:
+    # eDVBDB = None
 
 try:
     import zipfile
 except:
     pass
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+# headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+        # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
 
 def logdata(name='', data=None):
     try:
@@ -111,22 +111,22 @@ def getversioninfo():
     logdata("Version ", currversion)
     return (currversion)
 
-def checkStr(txt):
-    if six.PY3:
-        if isinstance(txt, type(bytes())):
-            txt = txt.decode('utf-8')
-    else:
-        if isinstance(txt, type(six.text_type())):
-            txt = txt.encode('utf-8')
-    return txt
+# def checkStr(txt):
+    # if six.PY3:
+        # if isinstance(txt, type(bytes())):
+            # txt = txt.decode('utf-8')
+    # else:
+        # if isinstance(txt, type(six.text_type())):
+            # txt = txt.encode('utf-8')
+    # return txt
 
-def checkInternet():
-    try:
-        socket.setdefaulttimeout(0.5)
-        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
-        return True
-    except:
-        return False
+# def checkInternet():
+    # try:
+        # socket.setdefaulttimeout(0.5)
+        # socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
+        # return True
+    # except:
+        # return False
 
 try:
     from OpenSSL import SSL
@@ -183,46 +183,46 @@ def checkMyFile(url):
         return ''
     return
 
-def make_request(url):
-    try:
-        req = Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0')
-        response = urlopen(req)
-        link = response.read()
-        response.close()
-        return link
-    except:
-        e = URLError #, e:
-        print('We failed to open "%s".' % url)
-        if hasattr(e, 'code'):
-            print('We failed with error code - %s.' % e.code)
-        if hasattr(e, 'reason'):
-            print('We failed to reach a server.')
-            print('Reason: ', e.reason)
+# def make_request(url):
+    # try:
+        # req = Request(url)
+        # req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0')
+        # response = urlopen(req)
+        # link = response.read()
+        # response.close()
+        # return link
+    # except:
+        # e = URLError #, e:
+        # print('We failed to open "%s".' % url)
+        # if hasattr(e, 'code'):
+            # print('We failed with error code - %s.' % e.code)
+        # if hasattr(e, 'reason'):
+            # print('We failed to reach a server.')
+            # print('Reason: ', e.reason)
 
-def trace_error():
-    import traceback
-    try:
-        traceback.print_exc(file=sys.stdout)
-        traceback.print_exc(file=open('/tmp/traceback.log', 'a'))
-    except:
-        pass
+# def trace_error():
+    # import traceback
+    # try:
+        # traceback.print_exc(file=sys.stdout)
+        # traceback.print_exc(file=open('/tmp/traceback.log', 'a'))
+    # except:
+        # pass
 
-def freespace():
-    try:
-        diskSpace = os.statvfs('/')
-        capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
-        available = float(diskSpace.f_bsize * diskSpace.f_bavail)
-        fspace = round(float(available / 1048576.0), 2)
-        tspace = round(float(capacity / 1048576.0), 1)
-        spacestr = 'Free space(' + str(fspace) + 'MB)\nTotal space(' + str(tspace) + 'MB)'
-        return spacestr
-    except:
-        return ''
+# def freespace():
+    # try:
+        # diskSpace = os.statvfs('/')
+        # capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
+        # available = float(diskSpace.f_bsize * diskSpace.f_bavail)
+        # fspace = round(float(available / 1048576.0), 2)
+        # tspace = round(float(capacity / 1048576.0), 1)
+        # spacestr = 'Free space(' + str(fspace) + 'MB)\nTotal space(' + str(tspace) + 'MB)'
+        # return spacestr
+    # except:
+        # return ''
 
-def deletetmp():
-    os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
-    return
+# def deletetmp():
+    # os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
+    # return
 
 host_blk = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=ovz04mrpzo9pw&content_type=folders&chunk_size=1000&response_format=json'
 host_trs = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=tvbds59y9hr19&content_type=folders&chunk_size=1000&response_format=json'
@@ -231,7 +231,7 @@ host_skin = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key
 host_skinz = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=0wz43yv8nsx79&content_type=files&chunk_size=1000&response_format=json'
 config.plugins.mmPicons = ConfigSubsection()
 config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
-HD = getDesktop(0).size()
+# HD = getDesktop(0).size()
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
 desc_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
@@ -260,12 +260,13 @@ if not os.path.exists(mmkpicon):
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
 
 logdata("path picons: ", str(mmkpicon))
-
-if HD.width() > 1280:
+# if HD.width() > 1280:
+if isFHD():
     skin_path = res_plugin_path + 'skins/fhd/'
 else:
     skin_path = res_plugin_path + 'skins/hd/'
-if os.path.exists('/var/lib/dpkg/status'):
+# if os.path.exists('/var/lib/dpkg/status'):
+if DreamOS():
     skin_path = skin_path + 'dreamOs/'
 
 def OnclearMem():
@@ -290,7 +291,7 @@ class mmList(MenuList):
         self.l.setFont(7, gFont('Regular', 34))
         self.l.setFont(8, gFont('Regular', 36))
         self.l.setFont(9, gFont('Regular', 40))
-        if HD.width() > 1280:
+        if isFHD():
             self.l.setItemHeight(50)
         else:
             self.l.setItemHeight(40)
@@ -299,7 +300,7 @@ def DailyListEntry(name, idx):
     pngs = ico1_path
     res = [name]
     if fileExists(pngs):
-        if HD.width() > 1280:
+        if isFHD():
             res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
             res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =7, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         else:
@@ -310,7 +311,7 @@ def DailyListEntry(name, idx):
 def oneListEntry(name):
     pngx = ico1_path
     res = [name]
-    if HD.width() > 1280:
+    if isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
@@ -336,7 +337,6 @@ Panel_list3 = [
 
 
 class SelectPicons(Screen):
-
     def __init__(self, session):
         self.session = session
         skin = skin_path + 'mmall.xml'
@@ -492,7 +492,8 @@ class SelectPicons(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if os.path.exists('/var/lib/dpkg/status'):
+            # if os.path.exists('/var/lib/dpkg/status'):
+            if DreamOS():
                 self.picload.startDecode(pixmaps, False)
             else:
                 self.picload.startDecode(pixmaps, 0, 0, False)
@@ -505,7 +506,6 @@ class SelectPicons(Screen):
             return
 
 class MMarkPiconScreen(Screen):
-
     def __init__(self, session, name, url, pixmaps, movie=False):
         self.session = session
         skin = skin_path + 'mmall.xml'
@@ -541,7 +541,8 @@ class MMarkPiconScreen(Screen):
         self.timer.start(500, 1)
         self.pixmaps = pixmaps
         self.movie = movie
-        if os.path.exists('/var/lib/dpkg/status'):
+        # if os.path.exists('/var/lib/dpkg/status'):
+        if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -574,7 +575,8 @@ class MMarkPiconScreen(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        if six.PY3:
+            r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -648,6 +650,7 @@ class MMarkPiconScreen(Screen):
     def showError(self, error):
         print("download error =", error)
         logdata("showerror ", error)
+        self.downloading = False
         self.close()
 
     def cancel(self, result=None):
@@ -677,7 +680,8 @@ class MMarkPiconScreen(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if os.path.exists('/var/lib/dpkg/status'):
+            # if os.path.exists('/var/lib/dpkg/status'):
+            if DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
             else:
                 self.picload.startDecode(self.pixmaps, 0, 0, False)
@@ -690,7 +694,6 @@ class MMarkPiconScreen(Screen):
             return
             
 class MMarkFolderScreen(Screen):
-
     def __init__(self, session, url, pixmaps):
         self.session = session
         skin = skin_path + 'mmall.xml'
@@ -724,7 +727,8 @@ class MMarkFolderScreen(Screen):
         self.timer.start(500, 1)
         self.url = url
         self.pixmaps = pixmaps
-        if os.path.exists('/var/lib/dpkg/status'):
+        # if os.path.exists('/var/lib/dpkg/status'):
+        if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -811,7 +815,6 @@ class MMarkFolderScreen(Screen):
         self[self.currentList].pageDown()
         self.load_poster()
 
-
     def load_poster(self):
         self["poster"].show()
         if os.path.exists(self.pixmaps):
@@ -819,7 +822,8 @@ class MMarkFolderScreen(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if os.path.exists('/var/lib/dpkg/status'):
+            # if os.path.exists('/var/lib/dpkg/status'):
+            if DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
             else:
                 self.picload.startDecode(self.pixmaps, 0, 0, False)
@@ -866,7 +870,8 @@ class MMarkFolderSkinZeta(Screen):
         self.name = 'MMark-Skins'
         self.timer = eTimer()
         self.timer.start(500, 1)
-        if os.path.exists('/var/lib/dpkg/status'):
+        # if os.path.exists('/var/lib/dpkg/status'):
+        if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -1010,7 +1015,8 @@ class MMarkFolderSkinZeta(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if os.path.exists('/var/lib/dpkg/status'):
+            # if os.path.exists('/var/lib/dpkg/status'):
+            if DreamOS():
                 self.picload.startDecode(pixmaps, False)
             else:
                 self.picload.startDecode(pixmaps, 0, 0, False)
@@ -1023,7 +1029,6 @@ class MMarkFolderSkinZeta(Screen):
             return
 
 class mmConfig(Screen, ConfigListScreen):
-
     def __init__(self, session):
         skin = skin_path + 'mmConfig.xml'
         f = open(skin, 'r')
@@ -1193,7 +1198,7 @@ class PiconsPreview(Screen):
 
     def ShowPicture(self):
         myicon = self.previewPng
-        if HD.width() > 1280:
+        if isFHD():
             png = loadPic(myicon, 1920, 1080, 0, 0, 0, 1)
         else:
             png = loadPic(myicon, 1280, 720, 0, 0, 0, 1)
@@ -1225,7 +1230,8 @@ def mainmenu(session, **kwargs):
 
 def Plugins(**kwargs):
     ico_path = 'logo.png'
-    if not os.path.exists('/var/lib/dpkg/status'):
+    # if not os.path.exists('/var/lib/dpkg/status'):
+    if not DreamOS():
         ico_path = plugin_path + '/res/pics/logo.png'
     result = [PluginDescriptor(name=desc_plug, description=(title_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
     return result

@@ -1,1239 +1,1055 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
-# -*- coding: UTF-8 -*-
-
-'''
-****************************************
-*           coded by Lululla           *
-*         improve code by jbleyel      *
-*             skin by MMark            *
-*             09/11/2021               *
-*          fixed by @jbleyel           *
-****************************************
-'''
-#Info https://e2skin.blogspot.com/
+#01/12/2021
+#######################################################################
+#   Enigma2 plugin Freearhey is coded by Lululla and Pcd              #
+#   This is free software; you can redistribute it and/or modify it.  #
+#   But no delete this message support on forum linuxsat-support      #
+#######################################################################
 from __future__ import print_function
-from . import _
-from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch
-from Components.Button import Button
-from Components.ConfigList import ConfigListScreen
-# from Components.HTMLComponent import HTMLComponent
-from Components.Input import Input
+from Components.ActionMap import ActionMap
+from Components.Console import Console as iConsole
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from Components.PluginComponent import plugins
-from Components.PluginList import *
-from Components.ProgressBar import ProgressBar
-from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
-from Components.SelectionList import SelectionList
-from Components.Sources.List import List
-from Components.Sources.Progress import Progress
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Source import Source
-from Components.ServiceList import ServiceList
-from Components.config import *
 from Plugins.Plugin import PluginDescriptor
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Console import Console
-from Screens.PluginBrowser import PluginBrowser
-from Screens.LocationBox import LocationBox
+from Screens.InfoBar import MoviePlayer, InfoBar
+from Screens.InfoBarGenerics import *
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarNotifications, InfoBarMenu, InfoBarSubtitleSupport
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import *
-from Screens.Standby import TryQuitMainloop, Standby
-from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_PLUGINS, SCOPE_LANGUAGE
-from Tools.Directories import pathExists, resolveFilename, fileExists, copyfile
-from Tools.Downloader import downloadWithProgress
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, pathExists
 from Tools.LoadPixmap import LoadPixmap
-from enigma import *
-from enigma import ePicLoad, loadPic
-from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
-from enigma import  loadPNG, gFont #,getDesktop
-from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
-from enigma import eSize, eServiceCenter, eServiceReference, iPlayableService
-from os.path import splitext
-from os import path, listdir, remove, mkdir, access, X_OK, chmod
-from twisted.web.client import downloadPage, getPage, error
-from xml.dom import Node, minidom
-import base64
-import glob
+from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
+from enigma import eConsoleAppContainer,eServiceReference, iPlayableService, eListboxPythonMultiContent
+from enigma import ePicLoad
+from enigma import eSize, iServiceInformation
+from enigma import eTimer, gFont, eListbox
+from enigma import getDesktop
+from enigma import loadPNG
+import hashlib
 import os
 import re
-import shutil
 import six
-# import socket
-import ssl
-import subprocess
 import sys
-global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
-from six.moves.urllib.request import urlretrieve
-from six.moves.urllib.error import HTTPError, URLError
-from six.moves.urllib.request import urlopen
+
+# from six.moves.urllib.error import HTTPError, URLError
+from six.moves.urllib.parse import parse_qs
+from six.moves.urllib.parse import quote
+from six.moves.urllib.parse import quote_plus
+from six.moves.urllib.parse import unquote
+from six.moves.urllib.parse import unquote_plus
+from six.moves.urllib.parse import urlencode
+from six.moves.urllib.parse import urlparse
 from six.moves.urllib.request import Request
-from Plugins.Extensions.mmPicons.Utils import *
-# try:
-    # from enigma import eDVBDB
-# except ImportError:
-    # eDVBDB = None
+from six.moves.urllib.request import build_opener
+from six.moves.urllib.request import urlopen
+from six.moves.urllib.request import urlretrieve
+try:
+    from Plugins.Extensions.freearhey.Utils import *
+except:
+    from . import Utils
+global skin_path, search, downloadm3u
+search = False
+downloadm3u = '/media/hdd/movie/'
 
 try:
-    import zipfile
+    import http.cookiejar
+    from http.client import HTTPConnection, CannotSendRequest, BadStatusLine, HTTPException
 except:
-    pass
-# headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-        # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
-
-def logdata(name='', data=None):
-    try:
-        data = str(data)
-        fp = open('/tmp/mmPicons.log', 'a')
-        fp.write(str(name) + ': ' + data + "\n")
-        fp.seek(0)
-        fp.close()
-    except:
-        trace_error()
-        pass
-
-def getversioninfo():
-    currversion = '1.2'
-    version_file = '/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/version'
-    if os.path.exists(version_file):
-        try:
-            fp = open(version_file, 'r').readlines()
-            for line in fp:
-                if 'version' in line:
-                    currversion = line.split('=')[1].strip()
-        except:
-            pass
-    logdata("Version ", currversion)
-    return (currversion)
-
-# def checkStr(txt):
-    # if six.PY3:
-        # if isinstance(txt, type(bytes())):
-            # txt = txt.decode('utf-8')
-    # else:
-        # if isinstance(txt, type(six.text_type())):
-            # txt = txt.encode('utf-8')
-    # return txt
-
-# def checkInternet():
-    # try:
-        # socket.setdefaulttimeout(0.5)
-        # socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
-        # return True
-    # except:
-        # return False
+    import cookielib
+    from httplib import HTTPConnection, CannotSendRequest, BadStatusLine, HTTPException
 
 try:
-    from OpenSSL import SSL
-    from twisted.internet import ssl
-    from twisted.internet._sslverify import ClientTLSOptions
-    sslverify = True
+    from Components.UsageConfig import defaultMoviePath
+    downloadm3u = defaultMoviePath()
 except:
-    sslverify = False
+    if os.path.exists("/usr/bin/apt-get"):
+        downloadm3u = ('/media/hdd/movie/')
 
-if sslverify:
-    try:
-        from urlparse import urlparse
-    except:
-        from urllib.parse import urlparse
+currversion = '2.6'
+host0='https://iptv-org.github.io/iptv/categories/xxx.m3u'
+host1='https://github.com/iptv-org/iptv'
+host2='https://iptv-org.github.io/iptv/index.language.m3u'
+PLUGIN_PATH = '/usr/lib/enigma2/python/Plugins/Extensions/freearhey'
+desc_plugin = ('..:: Freearhey International Channel List V. %s ::.. ' % currversion)
+name_plugin = 'Freearhey Plugin'
+skin_path= PLUGIN_PATH +'/skin'
 
-    class SNIFactory(ssl.ClientContextFactory):
-        def __init__(self, hostname=None):
-            self.hostname = hostname
-
-        def getContext(self):
-            ctx = self._contextFactory(self.method)
-            if self.hostname:
-                ClientTLSOptions(self.hostname, ctx)
-            return ctx
-
-#for download on ATV 6.5
-#CHECK THI ISSUE
-#https://github.com/openatv/enigma2/commit/3974e84a59be2a8eb4d2250a876713d38e8f56b4
-
-def checkMyFile(url):
-    # FIXME urlopen will cause a full download of file and this != what you want //thank's @jbleyel
-    return []
-    try:
-        dest = "/tmp/download.zip"
-        req = Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
-        req.add_header('Referer', 'https://www.mediafire.com/')
-        req.add_header('X-Requested-With', 'XMLHttpRequest')
-        page = urlopen(req)
-        r = page.read()
-        n1 = r.find('"Download file"', 0)
-        n2 = r.find('Repair your download', n1)
-        r2 = r[n1:n2]
-        myfile = re.findall('href="http://download(.*?)">', r2)
-        return myfile
-    except:
-        e = URLError #, e:
-        print('We failed to open "%s".' % url)
-        if hasattr(e, 'code'):
-            print('We failed with error code - %s.' % e.code)
-        if hasattr(e, 'reason'):
-            print('We failed to reach a server.')
-            print('Reason: ', e.reason)
-        return ''
-    return
-
-# def make_request(url):
-    # try:
-        # req = Request(url)
-        # req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0')
-        # response = urlopen(req)
-        # link = response.read()
-        # response.close()
-        # return link
-    # except:
-        # e = URLError #, e:
-        # print('We failed to open "%s".' % url)
-        # if hasattr(e, 'code'):
-            # print('We failed with error code - %s.' % e.code)
-        # if hasattr(e, 'reason'):
-            # print('We failed to reach a server.')
-            # print('Reason: ', e.reason)
-
-# def trace_error():
-    # import traceback
-    # try:
-        # traceback.print_exc(file=sys.stdout)
-        # traceback.print_exc(file=open('/tmp/traceback.log', 'a'))
-    # except:
-        # pass
-
-# def freespace():
-    # try:
-        # diskSpace = os.statvfs('/')
-        # capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
-        # available = float(diskSpace.f_bsize * diskSpace.f_bavail)
-        # fspace = round(float(available / 1048576.0), 2)
-        # tspace = round(float(capacity / 1048576.0), 1)
-        # spacestr = 'Free space(' + str(fspace) + 'MB)\nTotal space(' + str(tspace) + 'MB)'
-        # return spacestr
-    # except:
-        # return ''
-
-# def deletetmp():
-    # os.system('rm -rf /tmp/unzipped;rm -f /tmp/*.ipk;rm -f /tmp/*.tar;rm -f /tmp/*.zip;rm -f /tmp/*.tar.gz;rm -f /tmp/*.tar.bz2;rm -f /tmp/*.tar.tbz2;rm -f /tmp/*.tar.tbz')
-    # return
-
-host_blk = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=ovz04mrpzo9pw&content_type=folders&chunk_size=1000&response_format=json'
-host_trs = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=tvbds59y9hr19&content_type=folders&chunk_size=1000&response_format=json'
-host_mov = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=nk8t522bv4909&content_type=files&chunk_size=1000&response_format=json'
-host_skin = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=c8sw0ahss3si0&content_type=files&chunk_size=1000&response_format=json'
-host_skinz = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=0wz43yv8nsx79&content_type=files&chunk_size=1000&response_format=json'
-config.plugins.mmPicons = ConfigSubsection()
-config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
-# HD = getDesktop(0).size()
-plugin_path = os.path.dirname(sys.modules[__name__].__file__)
-currversion = getversioninfo()
-desc_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
-title_plug = 'mMark Blog - www.e2skin.blogspot.com'
-XStreamity = False
-skin_path = plugin_path
-ico_path = plugin_path + '/logo.png'
-no_cover = plugin_path + '/no_coverArt.png'
-res_plugin_path = plugin_path + '/res/'
-ico1_path = res_plugin_path + 'pics/plugin.png'
-ico3_path = res_plugin_path + 'pics/setting.png'
-res_picon_plugin_path = res_plugin_path + 'picons/'
-piconstrs = res_picon_plugin_path + 'picon_trs.png'
-piconsblk = res_picon_plugin_path + 'picon_blk.png'
-piconszeta = res_picon_plugin_path + 'picon_z.png'
-piconsmovie = res_picon_plugin_path + 'picon_mv.png'
-pixmaps = res_picon_plugin_path + 'backg.png'
-mmkpicon = config.plugins.mmPicons.mmkpicon.value.strip()
-
-if mmkpicon.endswith('/'):
-    mmkpicon = mmkpicon[:-1]
-if not os.path.exists(mmkpicon):
-    try:
-        os.makedirs(mmkpicon)
-    except OSError as e:
-        print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
-
-logdata("path picons: ", str(mmkpicon))
-# if HD.width() > 1280:
-if isFHD():
-    skin_path = res_plugin_path + 'skins/fhd/'
-else:
-    skin_path = res_plugin_path + 'skins/hd/'
 # if os.path.exists('/var/lib/dpkg/status'):
 if DreamOS():
-    skin_path = skin_path + 'dreamOs/'
+    skin_path= skin_path + '/skin_cvs/'
+else:
+    skin_path= skin_path + '/skin_pli/'
 
-def OnclearMem():
-    try:
-        os.system("sync")
-        os.system("echo 1 > /proc/sys/vm/drop_caches")
-        os.system("echo 2 > /proc/sys/vm/drop_caches")
-        os.system("echo 3 > /proc/sys/vm/drop_caches")
-    except:
-        pass
+def remove_line(filename, what):
+    if os.path.isfile(filename):
+        file_read = open(filename).readlines()
+        file_write = open(filename, 'w')
+        for line in file_read:
+            if what not in line:
+                file_write.write(line)
+        file_write.close()
 
-class mmList(MenuList):
+class free2list(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-        self.l.setFont(0, gFont('Regular', 20))
-        self.l.setFont(1, gFont('Regular', 22))
-        self.l.setFont(2, gFont('Regular', 24))
-        self.l.setFont(3, gFont('Regular', 26))
-        self.l.setFont(4, gFont('Regular', 28))
-        self.l.setFont(5, gFont('Regular', 30))
-        self.l.setFont(6, gFont('Regular', 32))
-        self.l.setFont(7, gFont('Regular', 34))
-        self.l.setFont(8, gFont('Regular', 36))
-        self.l.setFont(9, gFont('Regular', 40))
+        self.l.setFont(0, gFont('Regular', 14))
+        self.l.setFont(1, gFont('Regular', 16))
+        self.l.setFont(2, gFont('Regular', 18))
+        self.l.setFont(3, gFont('Regular', 20))
+        self.l.setFont(4, gFont('Regular', 22))
+        self.l.setFont(5, gFont('Regular', 24))
+        self.l.setFont(6, gFont('Regular', 26))
+        self.l.setFont(7, gFont('Regular', 28))
+        self.l.setFont(8, gFont('Regular', 32))
+        self.l.setFont(9, gFont('Regular', 38))
         if isFHD():
             self.l.setItemHeight(50)
         else:
-            self.l.setItemHeight(40)
+            self.l.setItemHeight(50)
 
-def DailyListEntry(name, idx):
-    pngs = ico1_path
-    res = [name]
-    if fileExists(pngs):
-        if isFHD():
-            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =7, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-        else:
-            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 6), size=(34, 25), png =loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =2, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))
-        return res
-
-def oneListEntry(name):
-    pngx = ico1_path
-    res = [name]
+def show_(name, link):
+    res = [(name,link)]
     if isFHD():
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=7, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryText(pos=(0, 0), size=(800, 40), font=9, text=name, flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=2, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))
+        res.append(MultiContentEntryText(pos=(0, 0), size=(800, 40), font=6, text=name, flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
     return res
 
-def showlist(data, list):
-    icount = 0
-    plist = []
-    for line in data:
-        name = data[icount]
-        plist.append(oneListEntry(name))
-        icount = icount + 1
-        list.setList(plist)
+def FreeListEntry(name,png):
+    res = [name]
+    png = '/usr/lib/enigma2/python/Plugins/Extensions/freearhey/skin/pic/setting.png'
+    if isFHD():
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(png)))
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1200, 50), font=8, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    else:
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(png)))
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=4, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    return res
 
-Panel_list3 = [
- ('PICONS BLACK'),
- ('PICONS TRANSPARENT'),
- ('PICONS MOVIE'),
- ('SKIN DMM ZETA'),
- ('SKIN OPEN ZETA')]
+Panel_list = [
+ ('PLAYLISTS DIRECT'),
+ ('PLAYLISTS BY CATEGORY'),
+ ('PLAYLISTS BY LANGUAGE'),
+ ('PLAYLISTS BY COUNTRY'),
+ ('MOVIE XXX')]
 
-
-class SelectPicons(Screen):
+class freearhey(Screen):
     def __init__(self, session):
-        self.session = session
-        skin = skin_path + 'mmall.xml'
-        with open(skin, 'r') as f:
+        if isFHD():
+            path = skin_path + 'defaultListScreen_new.xml'
+        else:
+            path =  skin_path + 'defaultListScreen.xml'
+        with open(path, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('Select Picons')
+            f.close()
+        self.session = session
         Screen.__init__(self, session)
-        self.setTitle(title_plug)
-        self.working = False
-        self.icount = 0
-        self.selection = 'all'
-        self['pth'] = Label('')
-        self['pth'].setText(_('Picons folder ') + mmkpicon)
-        self['poster'] = Pixmap()
-        self['space'] = Label('')
-        self['info'] = Label('')
-        self['info'].setText(_('Please select ...'))
-        self['key_green'] = Button(_('Remove'))
-        self['key_red'] = Button(_('Exit'))
-        self['key_yellow'] = Button(_('Preview'))
-        self["key_blue"] = Button(_('Restart'))
-        self['progress'] = ProgressBar()
-        self['progresstext'] = StaticText()
-        self["progress"].hide()
-        self['progresstext'].text = ''
-        self.menulist = []
-        self.list = []
-        self['text'] = mmList([])
-        self.currentList = 'text'
-        self['title'] = Label(title_plug)
-        self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions"], {'ok': self.okRun,
-         'green': self.remove,
-         'back': self.closerm,
-         'red': self.closerm,
-         'yellow': self.zoom,
-         'blue': self.msgtqm,
-         'up': self.up,
+        self['actions'] = ActionMap(['OkCancelActions',
+         'ColorActions',
+         'DirectionActions',
+         'MovieSelectionActions'], {'up': self.up,
          'down': self.down,
          'left': self.left,
          'right': self.right,
-         'menu': self.goConfig,
-         'cancel': self.closerm}, -1)
+         'ok': self.ok,
+		 'green': self.ok,
+         'cancel': self.close,
+         'red': self.close}, -1)
+        self['menulist'] = free2list([])
+        self['red'] = Label(_('Exit'))
+        self['green'] = Label('Select')
+        self['category'] = Label("Plugins Channels Free by Lululla")
+        self['title'] = Label("Thank's Freearhey")
+        self['name'] = Label('')
+        self['text'] = Label('')
+        # self['poster'] = Pixmap()
+        self.picload = ePicLoad()
+        self.picfile = ''
+        self.currentList = 'menulist'
+        self.menulist = []
+        self.loading_ok = False
+        self.count = 0
+        self.loading = 0
+        self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
         self.onLayoutFinish.append(self.updateMenuList)
-
-    def zoom(self):
-        self.session.open(PiconsPreview, pixmaps)
-
-    def getfreespace(self):
-        fspace = freespace()
-        self['space'].setText(fspace)
-        logdata("freespace ", fspace)
-
-    def closerm(self):
-        self.close()
-
-    def msgtqm(self):
-        self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Do you want to restart Enigma?"), MessageBox.TYPE_YESNO)
-
-    def restartenigma(self, result):
-        if result:
-            self.session.open(TryQuitMainloop, 3)
-        else:
-            return
 
     def updateMenuList(self):
         self.menu_list = []
         for x in self.menu_list:
             del self.menu_list[0]
-        self.list = []
+        list = []
         idx = 0
-        for x in Panel_list3:
-            self.list.append(DailyListEntry(x, idx))
+        png = '/usr/lib/enigma2/python/Plugins/Extensions/freearhey/res/pics/setting.png'
+        for x in Panel_list:
+            list.append(FreeListEntry(x, png))
             self.menu_list.append(x)
             idx += 1
-            print('idx x  ', idx)
-        self['text'].list = self.list
-        self['text'].setList(self.list)
-        self.getfreespace()
-        self.load_poster()
+        self['menulist'].setList(list)
+        auswahl = self['menulist'].getCurrent()[0]#[0]
+        print('auswahl: ', auswahl)
+        self['name'].setText(str(auswahl))
 
-    def okRun(self):
-        self.keyNumberGlobalCB(self['text'].getSelectedIndex())
+    def ok(self):
+        self.keyNumberGlobalCB(self['menulist'].getSelectedIndex())
 
     def keyNumberGlobalCB(self, idx):
+        global namex, lnk
+        namex = ''
+        lnk = host1
+        # if six.PY3:
+            # url = six.ensure_str(lnk)
         sel = self.menu_list[idx]
-        print('selll ', sel)
-        if sel == ('PICONS BLACK'):
-            self.session.open(MMarkFolderScreen, host_blk, piconsblk)
-        elif sel == 'PICONS TRANSPARENT':
-            self.session.open(MMarkFolderScreen, host_trs, piconstrs)
-        elif sel == ('PICONS MOVIE'):
-            self.session.open(MMarkPiconScreen, 'MMark-Picons', host_mov, piconsmovie, True)
-        elif sel == ('SKIN DMM ZETA'):
-            self.session.open(MMarkFolderSkinZeta, host_skin)
-        elif sel == ('SKIN OPEN ZETA'):
-            self.session.open(MMarkFolderSkinZeta, host_skinz)
+        # sel = self['menulist'].getCurrent()[0][0]
+        if sel == ("PLAYLISTS DIRECT"):
+                namex = "Directy"
+                lnk = host2
+                # self.session.open(xfreearhey)
+                self.session.open(selectplay, namex, lnk)
+        elif sel == ("PLAYLISTS BY CATEGORY"):
+                namex = "Category"
+                self.session.open(main2, namex, lnk)
+        elif sel == ("PLAYLISTS BY LANGUAGE"):
+                namex = "Language"
+                self.session.open(main2, namex, lnk)
+        elif sel == ("PLAYLISTS BY COUNTRY"):
+                namex = "Country"
+                self.session.open(main2, namex, lnk)
         else:
-            self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
-
-    def remove(self):
-        self.session.openWithCallback(self.okRemove, MessageBox, (_("Do you want to remove all picons in folder?\n%s\nIt could take a few minutes, wait .." % mmkpicon)), MessageBox.TYPE_YESNO)
-
-    def okRemove(self, result):
-        if result:
-            self['info'].setText(_('Erase %s... please wait' % mmkpicon))
-            print("Picons folder : ", mmkpicon)
-            piconsx = glob.glob(str(mmkpicon) + '/*.png')
-            logdata("piconsx ", piconsx)
-            for f in piconsx:
-                try:
-                    print("processing file: " + f)
-                    os.remove(f)
-                except OSError as e:
-                    print("Error: %s : %s" % (f, e.strerror))
-                    logdata("Error ", e.strerror)
-        self.mbox = self.session.open(MessageBox, _('%s it has been cleaned' % mmkpicon), MessageBox.TYPE_INFO, timeout=4)
-        self['info'].setText(_('Please select ...'))
-
-    def goConfig(self):
-        self.session.open(mmConfig)
-
-    def up(self):
-        self[self.currentList].up()
-        self.load_poster()
-
-    def down(self):
-        self[self.currentList].down()
-        self.load_poster()
-
-    def left(self):
-        self[self.currentList].pageUp()
-        self.load_poster()
-
-    def right(self):
-        self[self.currentList].pageDown()
-        self.load_poster()
-
-
-    def load_poster(self):
-        global pixmaps
-        sel = self['text'].getSelectedIndex()
-        if sel == 0:
-            pixmaps = piconsblk
-        elif sel == 1:
-            pixmaps = piconstrs
-        elif sel == 2:
-            pixmaps = piconsmovie
-        else:
-            pixmaps = piconszeta
-        self["poster"].show()
-        if os.path.exists(pixmaps):
-            size = self['poster'].instance.size()
-            self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
-            if DreamOS():
-                self.picload.startDecode(pixmaps, False)
-            else:
-                self.picload.startDecode(pixmaps, 0, 0, False)
-            ptr = self.picload.getData()
-            if ptr != None:
-                self['poster'].instance.setPixmap(ptr)
-                self['poster'].show()
-            else:
-                print('no cover.. error')
-            return
-
-class MMarkPiconScreen(Screen):
-    def __init__(self, session, name, url, pixmaps, movie=False):
-        self.session = session
-        skin = skin_path + 'mmall.xml'
-        with open(skin, 'r') as f:
-            self.skin = f.read()
-        self.setup_title = ('Picons & Skins')
-        Screen.__init__(self, session)
-        self.setTitle(title_plug)
-        self.list = []
-        self['text'] = mmList([])
-        self.icount = 0
-        self['info'] = Label(_('Load selected filter list, please wait ...'))
-        self['pth'] = Label('')
-        self['pth'].setText(_('Picons folder ') + mmkpicon)
-        self['poster'] = Pixmap()
-        self['progress'] = ProgressBar()
-        self['progresstext'] = StaticText()
-        self["progress"].hide()
-        self['progresstext'].text = ''
-        self['key_green'] = Button(_('Install'))
-        self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_('Preview'))
-        self["key_blue"] = Button(_(''))
-        self['key_blue'].hide()
-        self['space'] = Label('')
-        self.currentList = 'text'
-        self.menulist = []
-        self.getfreespace()
-        self.downloading = False
-        self.url = url
-        self.name = name
-        self.timer = eTimer()
-        self.timer.start(500, 1)
-        self.pixmaps = pixmaps
-        self.movie = movie
-        # if os.path.exists('/var/lib/dpkg/status'):
-        if DreamOS():
-            self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
-        else:
-            self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(title_plug)
-        self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
-         'green': self.okRun,
-         'red': self.close,
-         "yellow": self.zoom,
-         'up': self.up,
-         'down': self.down,
-         'left': self.left,
-         'right': self.right,
-         'cancel': self.close}, -2)
-
-    def zoom(self):
-        self.session.open(PiconsPreview, self.pixmaps)
-
-    def getfreespace(self):
-        fspace = freespace()
-        self['space'].setText(fspace)
-
-    def downxmlpage(self):
-        url = six.ensure_binary(self.url)
-        getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
-    def errorLoad(self, error):
-        print(str(error))
-        self['info'].setText(_('Try again later ...'))
-        logdata("errorLoad ", error)
-        self.downloading = False
-
-    def _gotPageLoad(self, data):
-        if six.PY3:
-            r = six.ensure_str(data)
-        self.names = []
-        self.urls = []
-        try:
-            n1 = r.find('"quickkey":', 0)
-            n2 = r.find('more_chunks', n1)
-            data2 = r[n1:n2]
-            regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex, re.DOTALL).findall(data2)
-            for name, data, download, url in match:
-                if 'zip' in url:
-                    url = url.replace('\\', '')
-                    if self.movie:
-                        name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
-                        name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
-                    else:
-                        name = name.replace('_', ' ').replace('mmk', 'MMark').replace('.zip', '')
-                        name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
-                    self.urls.append(url)
-                    self.names.append(name)
-            self['info'].setText(_('Please select ...'))
-            showlist(self.names, self['text'])
-            self.downloading = True
-        except:
-            self.downloading = False
-        # if self.movie:
-        self.load_poster()
-
-    def okRun(self):
-        self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
-
-    def okInstall(self, result):
-        self['info'].setText(_('... please wait'))
-        if result:
-            if self.downloading == True:
-
-                idx = self["text"].getSelectionIndex()
-                self.name = self.names[idx]
-                url = self.urls[idx]
-                dest = "/tmp/download.zip"
-                if os.path.exists(dest):
-                    os.remove(dest)
-                myfile = checkMyFile(url)
-                for url in myfile:
-                    img = no_cover
-                    url = 'http://download' + url
-                self.download = downloadWithProgress(url, dest)
-                self.download.addProgress(self.downloadProgress)
-                self.download.start().addCallback(self.install).addErrback(self.showError)
-            else:
-                self['info'].setText(_('Picons Not Installed ...'))
-
-    def install(self, fplug):
-        if os.path.exists('/tmp/download.zip'):
-            self['info'].setText(_('Install ...'))
-            myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
-            logdata("install2 ", myCmd)
-            subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
-        self['info'].setText(_('Please select ...'))
-        self['progresstext'].text = ''
-        self.progclear = 0
-        self['progress'].setValue(self.progclear)
-        self["progress"].hide()
-        self.downloading = False
-
-    def downloadProgress(self, recvbytes, totalbytes):
-        self["progress"].show()
-        self['progress'].value = int(100 * recvbytes / float(totalbytes))
-        self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
-
-    def showError(self, error):
-        print("download error =", error)
-        logdata("showerror ", error)
-        self.downloading = False
-        self.close()
-
-    def cancel(self, result=None):
-        self.close(None)
-        return
-
-    def up(self):
-        self[self.currentList].up()
-        self.load_poster()
-
-    def down(self):
-        self[self.currentList].down()
-        self.load_poster()
-
-    def left(self):
-        self[self.currentList].pageUp()
-        self.load_poster()
-
-    def right(self):
-        self[self.currentList].pageDown()
-        self.load_poster()
-
-    def load_poster(self):
-        self["poster"].show()
-        if os.path.exists(self.pixmaps):
-            size = self['poster'].instance.size()
-            self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
-            if DreamOS():
-                self.picload.startDecode(self.pixmaps, False)
-            else:
-                self.picload.startDecode(self.pixmaps, 0, 0, False)
-            ptr = self.picload.getData()
-            if ptr != None:
-                self['poster'].instance.setPixmap(ptr)
-                self['poster'].show()
-            else:
-                print('no cover.. error')
-            return
-            
-class MMarkFolderScreen(Screen):
-    def __init__(self, session, url, pixmaps):
-        self.session = session
-        skin = skin_path + 'mmall.xml'
-        with open(skin, 'r') as f:
-            self.skin = f.read()
-        self.setup_title = ('Picons & Skins')
-        Screen.__init__(self, session)
-        self.setTitle(title_plug)
-        self.list = []
-        self['text'] = mmList([])
-        self.icount = 0
-        self['info'] = Label(_('Load selected filter list, please wait ...'))
-        self['pth'] = Label('')
-        self['pth'].setText(_('Picons folder ') + mmkpicon)
-        self['poster'] = Pixmap()
-        self['progress'] = ProgressBar()
-        self['progresstext'] = StaticText()
-        self["progress"].hide()
-        self['progresstext'].text = ''
-        self['key_green'] = Button(_('Select'))
-        self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_('Preview'))
-        self["key_blue"] = Button(_(''))
-        self['key_blue'].hide()
-        self['space'] = Label('')
-        self.currentList = 'text'
-        self.menulist = []
-        self.getfreespace()
-        self.downloading = False
-        self.timer = eTimer()
-        self.timer.start(500, 1)
-        self.url = url
-        self.pixmaps = pixmaps
-        # if os.path.exists('/var/lib/dpkg/status'):
-        if DreamOS():
-            self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
-        else:
-            self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(title_plug)
-        self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
-         'green': self.okRun,
-         'red': self.close,
-         "yellow": self.zoom,
-         'up': self.up,
-         'down': self.down,
-         'left': self.left,
-         'right': self.right,
-         'cancel': self.close}, -2)
-
-    def zoom(self):
-        self.session.open(PiconsPreview, self.pixmaps)
-
-    def getfreespace(self):
-        fspace = freespace()
-        self['space'].setText(fspace)
-
-    def downxmlpage(self):
-        url = six.ensure_binary(self.url)
-        getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
-    def errorLoad(self, error):
-        print(str(error))
-        self['info'].setText(_('Try again later ...'))
-        logdata("errorLoad ", error)
-        self.downloading = False
-
-    def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
-        self.names = []
-        self.urls = []
-        try:
-            n1 = r.find('"folderkey"', 0)
-            n2 = r.find('more_chunks', n1)
-            data2 = r[n1:n2]
-            regex = '{"folderkey":"(.*?)".*?"name":"(.*?)".*?"created":"(.*?)"'
-            match = re.compile(regex, re.DOTALL).findall(data2)
-            for url, name, data in match:
-                url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
-                url = url.replace('\\', '')
-                pic = no_cover
-                name = 'Picons-' + name
-                self.urls.append(url)
-                self.names.append(name)
-            self['info'].setText(_('Please select ...'))
-            showlist(self.names, self['text'])
-            self.downloading = True
-        except:
-            self.downloading = False
-        self.load_poster()
-
-    def okRun(self):
-        idx = self['text'].getSelectionIndex()
-        if idx == -1 or None:
-            return
-        name = self.names[idx]
-        url = self.urls[idx]
-        self.session.open(MMarkPiconScreen, name, url, self.pixmaps)
-
-    def cancel(self, result=None):
-        self.close(None)
-        return
-
-    def goConfig(self):
-            self.session.open(mmConfig)
-
-    def up(self):
-        self[self.currentList].up()
-        self.load_poster()
-
-    def down(self):
-        self[self.currentList].down()
-        self.load_poster()
-
-    def left(self):
-        self[self.currentList].pageUp()
-        self.load_poster()
-
-    def right(self):
-        self[self.currentList].pageDown()
-        self.load_poster()
-
-    def load_poster(self):
-        self["poster"].show()
-        if os.path.exists(self.pixmaps):
-            size = self['poster'].instance.size()
-            self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
-            if DreamOS():
-                self.picload.startDecode(self.pixmaps, False)
-            else:
-                self.picload.startDecode(self.pixmaps, 0, 0, False)
-            ptr = self.picload.getData()
-            if ptr != None:
-                self['poster'].instance.setPixmap(ptr)
-                self['poster'].show()
-            else:
-                print('no cover.. error')
-            return
-
-class MMarkFolderSkinZeta(Screen):
-
-    def __init__(self, session, url):
-        self.session = session
-        skin = skin_path + 'mmall.xml'
-        with open(skin, 'r') as f:
-            self.skin = f.read()
-        self.setup_title = ('Picons & Skins')
-        Screen.__init__(self, session)
-        self.setTitle(title_plug)
-        self.list = []
-        self['text'] = mmList([])
-        self.icount = 0
-        self['info'] = Label(_('Load selected filter list, please wait ...'))
-        self['pth'] = Label('')
-        self['pth'].setText(_('Picons folder ') + mmkpicon)
-        self['poster'] = Pixmap()
-        self['progress'] = ProgressBar()
-        self['progresstext'] = StaticText()
-        self["progress"].hide()
-        self['progresstext'].text = ''
-        self['key_green'] = Button(_('Install'))
-        self['key_red'] = Button(_('Back'))
-        self['key_yellow'] = Button(_('Preview'))
-        self["key_blue"] = Button(_(''))
-        self['key_blue'].hide()
-        self['space'] = Label('')
-        self.currentList = 'text'
-        self.menulist = []
-        self.getfreespace()
-        self.downloading = False
-        self.url = url
-        self.name = 'MMark-Skins'
-        self.timer = eTimer()
-        self.timer.start(500, 1)
-        # if os.path.exists('/var/lib/dpkg/status'):
-        if DreamOS():
-            self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
-        else:
-            self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(title_plug)
-        self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
-         'green': self.okRun,
-         'red': self.close,
-         "yellow": self.zoom,
-         'up': self.up,
-         'down': self.down,
-         'left': self.left,
-         'right': self.right,
-         'cancel': self.close}, -2)
-
-    def zoom(self):
-        self.session.open(PiconsPreview, pixmaps)
-
-    def GetPicturePath(self):
-        ActiveZoom = False
-        realpng = pixmaps
-        if path.isfile(realpng):
-            ActiveZoom = True
-        return realpng
-
-    def getfreespace(self):
-        fspace = freespace()
-        self['space'].setText(fspace)
-
-    def downxmlpage(self):
-        url = six.ensure_binary(self.url)
-        getPage(url).addCallback(self._gotPageLoad).addErrback(self.errorLoad)
-
-    def errorLoad(self, error):
-        print(str(error))
-        self['info'].setText(_('Try again later ...'))
-        logdata("errorLoad ", error)
-        self.downloading = False
-
-    def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
-        self.names = []
-        self.urls = []
-        try:
-            n1 = r.find('"quickkey":', 0)
-            n2 = r.find('more_chunks', n1)
-            data2 = r[n1:n2]
-            regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
-            match = re.compile(regex, re.DOTALL).findall(data2)
-            for name, data, download, url in match:
-                if 'zip' in url:
-                    url = url.replace('\\', '')
-                    name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
-                    name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
-                    self.urls.append(url)
-                    self.names.append(name)
-            self['info'].setText(_('Please select ...'))
-            showlist(self.names, self['text'])
-            self.downloading = True
-        except:
-            self.downloading = False
-        self.load_poster()
-
-    def okRun(self):
-        self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
-
-    def okInstall(self, result):
-        self['info'].setText(_('... please wait'))
-        if result:
-            if self.downloading == True:
-                if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity') and 'xstreamity' in self.name:
-                    self.mbox = self.session.open(MessageBox, _('Xstreamity Player not installed'), MessageBox.TYPE_INFO, timeout=4)
-                    return
-                idx = self["text"].getSelectionIndex()
-                self.name = self.names[idx]
-                url = self.urls[idx]
-                dest = "/tmp/download.zip"
-                if os.path.exists(dest):
-                    os.remove(dest)
-                myfile = checkMyFile(url)
-                for url in myfile:
-                    img = no_cover
-                    url = 'http://download' + url
-                self.download = downloadWithProgress(url, dest)
-                self.download.addProgress(self.downloadProgress)
-                self.download.start().addCallback(self.install).addErrback(self.showError)
-            else:
-                self['info'].setText(_('Picons Not Installed ...'))
-
-    def downloadProgress(self, recvbytes, totalbytes):
-        self["progress"].show()
-        self['progress'].value = int(100 * recvbytes / float(totalbytes))
-        self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
-
-    def install(self, fplug):
-        if os.path.exists('/tmp/download.zip'):
-            if os.path.exists('/etc/enigma2/skin_user.xml'):
-                os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
-            self['info'].setText(_('Install ...'))
-            myCmd = "unzip -o -q '/tmp/download.zip' -d /"
-            logdata("install4 ", myCmd)
-            subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
-        self['info'].setText(_('Please select ...'))
-        self['progresstext'].text = ''
-        self.progclear = 0
-        self['progress'].setValue(self.progclear)
-        self["progress"].hide()
-        self.downloading = False
-
-    def showError(self, error):
-        print("download error =", error)
-        logdata("errorLoad ", error)
-        self.close()
-
-    def cancel(self, result=None):
-        self.close(None)
-        return
-
-    def up(self):
-        self[self.currentList].up()
-        self.load_poster()
-
-    def down(self):
-        self[self.currentList].down()
-        self.load_poster()
-
-    def left(self):
-        self[self.currentList].pageUp()
-        self.load_poster()
-
-    def right(self):
-        self[self.currentList].pageDown()
-        self.load_poster()
-
-    def load_poster(self):
-        global pixmaps
-        pixmaps = piconszeta
-        self["poster"].show()
-        if os.path.exists(pixmaps):
-            size = self['poster'].instance.size()
-            self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
-            if DreamOS():
-                self.picload.startDecode(pixmaps, False)
-            else:
-                self.picload.startDecode(pixmaps, 0, 0, False)
-            ptr = self.picload.getData()
-            if ptr != None:
-                self['poster'].instance.setPixmap(ptr)
-                self['poster'].show()
-            else:
-                print('no cover.. error')
-            return
-
-class mmConfig(Screen, ConfigListScreen):
-    def __init__(self, session):
-        skin = skin_path + 'mmConfig.xml'
-        f = open(skin, 'r')
-        self.skin = f.read()
-        f.close()
-        Screen.__init__(self, session)
-        self.setup_title = _("Config")
-        self.onChangedEntry = []
-        self.session = session
-        self.setTitle(title_plug)
-        self['description'] = Label('')
-        info = ''
-        self['info'] = Label(_('Config Panel Addon'))
-        self['key_yellow'] = Button(_('Choice'))
-        self['key_green'] = Button(_('Save'))
-        self['key_red'] = Button(_('Back'))
-        self["key_blue"] = Button(_(''))
-        self['key_blue'].hide()
-        self['title'] = Label(title_plug)
-        self["setupActions"] = ActionMap(['OkCancelActions', 'DirectionActions', 'ColorActions', 'VirtualKeyboardActions', 'ActiveCodeActions'], {'cancel': self.extnok,
-         'red': self.extnok,
-         'back': self.close,
-         'left': self.keyLeft,
-         'right': self.keyRight,
-         'yellow': self.Ok_edit,
-         'ok': self.Ok_edit,
-         'green': self.msgok}, -1)
-        self.list = []
-        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
-        self.createSetup()
-        self.onLayoutFinish.append(self.layoutFinished)
-
-    def layoutFinished(self):
-        self.setTitle(self.setup_title)
-        if not os.path.exists('/tmp/currentip'):
-            os.system('wget -qO- http://ipecho.net/plain > /tmp/currentip')
-        currentip1 = open('/tmp/currentip', 'r')
-        currentip = currentip1.read()
-        self['info'].setText(_('Config Panel Addon\nYour current IP is %s') % currentip)
-
-    def createSetup(self):
-        self.editListEntry = None
-        self.list = []
-        self.list.append(getConfigListEntry(_("Set the path to the Picons folder"), config.plugins.mmPicons.mmkpicon, _("Press Ok to select the folder containing the picons files")))
-        self["config"].list = self.list
-        self["config"].setList(self.list)
-
-    def changedEntry(self):
-        for x in self.onChangedEntry:
-            x()
-
-    def getCurrentEntry(self):
-            return self["config"].getCurrent()[0]
-
-    def getCurrentValue(self):
-        return str(self["config"].getCurrent()[1].getText())
-
-    def createSummary(self):
-        from Screens.Setup import SetupSummary
-        return SetupSummary
-
-    def keyLeft(self):
-        ConfigListScreen.keyLeft(self)
-        print("current selection:", self["config"].l.getCurrentSelection())
-        self.createSetup()
-
-    def keyRight(self):
-        ConfigListScreen.keyRight(self)
-        print("current selection:", self["config"].l.getCurrentSelection())
-        self.createSetup()
-
-    def msgok(self):
-        if self['config'].isChanged():
-            for x in self["config"].list:
-                x[1].save()
-
-            self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Restart Enigma is Required. Do you want to continue?"), MessageBox.TYPE_YESNO)
-        else:
-            self.close(True)
-
-    def Ok_edit(self):
-        ConfigListScreen.keyOK(self)
-        sel = self['config'].getCurrent()[1]
-        if sel and sel == config.plugins.mmPicons.mmkpicon:
-            self.setting = 'mmkpicon'
-            mmkpth = config.plugins.mmPicons.mmkpicon.value
-            self.openDirectoryBrowser(mmkpth)
-        else:
-            pass
-
-    def openDirectoryBrowser(self, path):
-        try:
-            self.session.openWithCallback(
-             self.openDirectoryBrowserCB,
-             LocationBox,
-             windowTitle=_('Choose Directory:'),
-             text=_('Choose directory'),
-             currDir=str(path),
-             bookmarks=config.movielist.videodirs,
-             autoAdd=False,
-             editDir=True,
-             inhibitDirs=['/bin', '/boot', '/dev', '/home', '/lib', '/proc', '/run', '/sbin', '/sys', '/var'],
-             minFree=15)
-        except Exception as e:
-            print(('openDirectoryBrowser get failed: ', str(e)))
-
-    def openDirectoryBrowserCB(self, path):
-        if path != None:
-            if self.setting == 'mmkpicon':
-                config.plugins.mmPicons.mmkpicon.setValue(path)
-        return
-
-    def KeyText(self):
-        sel = self['config'].getCurrent()
-        if sel:
-            self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self['config'].getCurrent()[0], text=self['config'].getCurrent()[1].value)
-
-    def VirtualKeyBoardCallback(self, callback=None):
-        if callback != None and len(callback):
-            self['config'].getCurrent()[1].value = callback
-            self['config'].invalidate(self['config'].getCurrent())
-        return
+            if sel == ("MOVIE XXX"):
+                namex = "moviexxx"
+                lnk = host0
+                if six.PY3:
+                    url = six.ensure_str(lnk)
+                self.adultonly(namex, lnk)
+
+    def adultonly(self, namex, lnk):
+        self.session.openWithCallback(self.cancelConfirm, MessageBox, _('These streams may contain Adult content\n\nare you sure you want to continue??'))
 
     def cancelConfirm(self, result):
         if not result:
             return
-        for x in self['config'].list:
-            x[1].cancel()
-        self.close()
-
-    def restartenigma(self, result):
-        if result:
-            self.session.open(TryQuitMainloop, 3)
         else:
-            self.close(True)
+            self.session.open(selectplay, namex, lnk)
 
-    def extnok(self):
-        if self['config'].isChanged():
-            self.session.openWithCallback(self.cancelConfirm, MessageBox, _('Really close without saving the settings?'), MessageBox.TYPE_YESNO)
+    def up(self):
+        self[self.currentList].up()
+        auswahl = self['menulist'].getCurrent()[0]#[0]
+        print('auswahl: ', auswahl)
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def down(self):
+        self[self.currentList].down()
+        auswahl = self['menulist'].getCurrent()[0]#[0]
+        print('auswahl: ', auswahl)
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def left(self):
+        self[self.currentList].pageUp()
+        auswahl = self['menulist'].getCurrent()[0]#[0]
+        print('auswahl: ', auswahl)
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def right(self):
+        self[self.currentList].pageDown()
+        auswahl = self['menulist'].getCurrent()[0]#[0]
+        print('auswahl: ', auswahl)
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+class main2(Screen):
+    def __init__(self, session, namex, lnk):
+        self.session = session
+        Screen.__init__(self, session)
+        if isFHD():
+            path = skin_path + 'defaultListScreen_new.xml'
         else:
+            path =  skin_path + 'defaultListScreen.xml'
+        with open(path, 'r') as f:
+            self.skin = f.read()
+            f.close()
+        self['menulist'] = free2list([])
+        self['red'] = Label(_('Back'))
+        self['green'] = Label(_('Export'))
+        self['category'] = Label('')
+        self['category'].setText(str(namex))
+        self['title'] = Label("Thank's Freearhey")
+        self['name'] = Label('')
+        self['text'] = Label('')
+        # self['poster'] = Pixmap()
+        self['actions'] = ActionMap(['OkCancelActions',
+         'ColorActions',
+         'DirectionActions',
+         'MovieSelectionActions'], {'up': self.up,
+         'down': self.down,
+         'left': self.left,
+         'right': self.right,
+         'ok': self.ok,
+		 'green': self.message2,
+         'cancel': self.close,
+         'red': self.close}, -1)
+        self.picload = ePicLoad()
+        self.picfile = ''
+        self.currentList = 'menulist'
+        self.menulist = []
+        self.loading_ok = False
+        self.count = 0
+        self.loading = 0
+        self.name =namex
+        self.url = lnk
+        self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
+        self.onLayoutFinish.append(self.updateMenuList)
+
+    def updateMenuList(self):
+        self.menu_list = []
+        items = []
+        if check(self.url):
+            content = ReadUrl(self.url)
+            # if six.PY3:
+                # content = six.ensure_str(content)
+            n1 = content.find("user-content-playlists-by-category", 0)
+            n2 = content.find("user-content-playlists-by-language", n1)
+            n3 = content.find("user-content-playlists-by-country", n2)
+            n4 = content.find("</table>", n3)
+            if "Category" in self.name:
+                    content2 = content[n1:n2]
+                    regexcat = 'td align="left">(.+?)<.*?<code>(.+?)<'
+                    match = re.compile(regexcat,re.DOTALL).findall(content2)
+                    pic = " "
+                    item = ' All###https://iptv-org.github.io/iptv/index.category.m3u'
+                    items.append(item)
+                    for name, url in match:
+                        a = '+18', 'adult', 'Adult', 'Xxx', 'XXX', 'hot', 'porn', 'sex', 'xxx', 'Sex', 'Porn'
+                        if any(s in str(name).lower() for s in a):
+                        # if ("xxx" or "adult" or "Adult" or "Xxx" or "XXX") in name.lower():
+                            continue
+                        name = name.replace('%20', ' ')
+                        item = name + "###" + url
+                        items.append(item)
+            elif "Language" in self.name:
+                    content2 = content[n2:n3]
+                    regexcat = 'td align="left">(.+?)<.*?<code>(.+?)<'
+                    match = re.compile(regexcat,re.DOTALL).findall(content2)
+                    pic = " "
+                    item = ' All###https://iptv-org.github.io/iptv/index.language.m3u'
+                    items.append(item)
+                    for name, url in match:
+                        a = '+18', 'adult', 'Adult', 'Xxx', 'XXX', 'hot', 'porn', 'sex', 'xxx', 'Sex', 'Porn'
+                        if any(s in str(name).lower() for s in a):
+                        # if ("xxx" or "adult" or "Adult" or "Xxx" or "XXX") in name.lower():
+                            continue
+                        name = name.replace('%20', ' ')
+                        item = name + "###" + url
+                        items.append(item)
+            elif "Country" in self.name:
+                    content2 = content[n3:n4]
+                    regexcat = 'alias="(.+?)".*?<code>(.+?)<'
+
+                    match = re.compile(regexcat,re.DOTALL).findall(content2)
+                    pic = " "
+
+                    item = ' All###https://iptv-org.github.io/iptv/index.country.m3u'
+                    items.append(item)
+                    for name, url in match:
+                        a = '+18', 'adult', 'Adult', 'Xxx', 'XXX', 'hot', 'porn', 'sex', 'xxx', 'Sex', 'Porn'
+                        if any(s in str(name).lower() for s in a):
+                        # if ("xxx" or "adult" or "Adult" or "Xxx" or "XXX") in name.lower():
+                            continue
+                        name = name.replace('%20', ' ')
+                        item = name + "###" + url
+                        items.append(item)
+            items.sort()
+            for item in items:
+                name = item.split("###")[0]
+                url = item.split("###")[1]
+                pic = " "
+            # match = re.compile(regexcat,re.DOTALL).findall(content2)
+            # pic = " "
+            # for name, url in match:
+                # if "xxx" in name.lower():
+                    # continue
+                # if "adult" in name.lower():
+                    # continue
+                # if "XXX" in name.lower():
+                    # continue
+                # if "Adult" in name.lower():
+                    # continue
+                self.menu_list.append(show_(name, url))
+                self['menulist'].l.setList(self.menu_list)
+                # self['menulist'].l.setItemHeight(50)
+                # self['menulist'].moveToIndex(0)
+            auswahl = self['menulist'].getCurrent()[0][0]
+            print('auswahl: ', auswahl)
+            self['name'].setText(str(auswahl))
+            self['text'].setText('')
+        else:
+            self.session.open(MessageBox, _("Sorry no found!"), MessageBox.TYPE_INFO, timeout = 5)
+            return
+
+    def ok(self):
+        name = self['menulist'].getCurrent()[0][0]
+        url = self['menulist'].getCurrent()[0][1]
+        print('name: ', name)
+        print('url: ', url)
+        self.session.open(selectplay, name, url)
+
+    def up(self):
+        self[self.currentList].up()
+        auswahl = self['menulist'].getCurrent()[0][0]
+
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def down(self):
+        self[self.currentList].down()
+        auswahl = self['menulist'].getCurrent()[0][0]
+        self['name'].setText(str(auswahl))
+
+        # self.load_poster()
+
+    def left(self):
+        self[self.currentList].pageUp()
+        auswahl = self['menulist'].getCurrent()[0][0]
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def right(self):
+        self[self.currentList].pageDown()
+        auswahl = self['menulist'].getCurrent()[0][0]
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def message2(self):
+        name = self['menulist'].l.getCurrentSelection()[0][0]
+
+        self.session.openWithCallback(self.convert,MessageBox,_("Do you want to Convert %s to favorite .tv ?")% name, MessageBox.TYPE_YESNO, timeout = 15, default = True)
+
+    def convert(self, result):
+        if not result:
+            return
+        else:
+            name = self['menulist'].l.getCurrentSelection()[0][0]
+            url = self['menulist'].getCurrent()[0][1]
+            url = str(url)
+            # print('url convert: ', url)
+            self.convert_bouquet(url, name)
+
+    def convert_bouquet(self, url, name):
+        if check(url):
+            name = name.strip()
+            name = name.lower()
+            content = ReadUrl(url)
+            if six.PY3:
+                content = six.ensure_str(content)
+            if os.path.exists(downloadm3u):
+                xxxname = downloadm3u + name + '.m3u'
+            else:
+                xxxname = '/tmp/' + name + '.m3u'
+            print('path m3u: ', xxxname)
+            try:
+                print("content =", content)
+                with open(xxxname, 'w') as f:
+                    f.write(content)
+                f.close()
+                bqtname = 'userbouquet.%s.tv' % name
+                bouquetTvString = '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + bqtname + '" ORDER BY bouquet\n'
+                bouquet = 'bouquets.tv'
+                desk_tmp = ''
+                in_bouquets = 0
+                # if os.path.isfile('/etc/enigma2/%s' % bqtname):
+                        # os.remove('/etc/enigma2/%s' % bqtname)
+                with open('/etc/enigma2/%s' % bqtname, 'w') as outfile:
+                    outfile.write('#NAME %s\r\n' % name.capitalize())
+                    for line in open(xxxname ):
+                        if line.startswith('http://') or line.startswith('https'):
+                            outfile.write('#SERVICE 4097:0:1:1:0:0:0:0:0:0:%s' % line.replace(':', '%3a'))
+                            outfile.write('#DESCRIPTION %s' % desk_tmp)
+                        elif line.startswith('#EXTINF'):
+                            desk_tmp = '%s' % line.split(',')[-1]
+
+                        elif '<stream_url><![CDATA' in line:
+                            outfile.write('#SERVICE 4097:0:1:1:0:0:0:0:0:0:%s\r\n' % line.split('[')[-1].split(']')[0].replace(':', '%3a'))
+                            outfile.write('#DESCRIPTION %s\r\n' % desk_tmp)
+                        elif '<title>' in line:
+                            if '<![CDATA[' in line:
+                                desk_tmp = '%s\r\n' % line.split('[')[-1].split(']')[0]
+                            else:
+                                desk_tmp = '%s\r\n' % line.split('<')[1].split('>')[1]
+                    outfile.close()
+                if os.path.isfile('/etc/enigma2/bouquets.tv'):
+                    for line in open('/etc/enigma2/bouquets.tv'):
+                        if bqtname in line:
+                            in_bouquets = 1
+                    if in_bouquets == 0:
+                        if os.path.isfile('/etc/enigma2/%s' % bqtname) and os.path.isfile('/etc/enigma2/bouquets.tv'):
+                            remove_line('/etc/enigma2/bouquets.tv', bqtname)
+                            with open('/etc/enigma2/bouquets.tv', 'a') as outfile:
+                                outfile.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "%s" ORDER BY bouquet\r\n' % bqtname)
+                                outfile.close()
+                self.mbox = self.session.open(MessageBox, _('Shuffle Favorite List in Progress') + '\n' + _('Wait please ...'), MessageBox.TYPE_INFO, timeout=7)
+                ReloadBouquet()
+            except:
+                return
+
+class selectplay(Screen):
+    def __init__(self, session, namex, lnk):
+        if isFHD():
+            path = skin_path + 'defaultListScreen_new.xml'
+        else:
+            path =  skin_path + 'defaultListScreen.xml'
+        with open(path, 'r') as f:
+            self.skin = f.read()
+            f.close()
+        self.session = session
+        Screen.__init__(self, session)
+        self['actions'] = ActionMap(['OkCancelActions',
+         'ColorActions',
+         'DirectionActions',
+         'MovieSelectionActions'], {'up': self.up,
+         'down': self.down,
+         'left': self.left,
+         'right': self.right,
+         'ok': self.ok,
+		 'green': self.search_text,
+         'cancel': self.returnback,
+         'red': self.returnback}, -1)
+        self.menulist = []
+        self.loading_ok = False
+        self.count = 0
+        self.loading = 0
+        self.name =namex
+        self.url = lnk
+        self['menulist'] = free2list([])
+        self['red'] = Label(_('Exit'))
+        # self['green'] = Label('')
+        # if 'Directy' in self.name:
+        self['green'] = Label(_('Search'))
+        self['title'] = Label("Thank's Freearhey")
+        self['category'] = Label('')
+        self['category'].setText(str(namex))
+        self['name'] = Label('')
+        self['text'] = Label('')
+        # self['poster'] = Pixmap()
+        self.picload = ePicLoad()
+        self.picfile = ''
+        self.currentList = 'menulist'
+        self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
+        if self.name == 'moviexxx':
+            self.onLayoutFinish.append(self.updateMenuListx)
+        else:
+            self.onLayoutFinish.append(self.updateMenuList)
+
+    def search_text(self):
+        from Screens.VirtualKeyBoard import VirtualKeyBoard
+        print('Search go movie: ', search)
+        self.session.openWithCallback(self.filterChannels, VirtualKeyBoard, title=_("Search..."), text='')
+
+    def filterChannels(self, callback = None):
+        global search
+        if callback is not None and len(callback):
+            callback=callback.lower()
+            del self.menu_list
+            self.menu_list = []
+            if check(self.url):
+                content = ReadUrl(self.url)
+                # if six.PY3:
+                    # content = content.decode("utf-8")
+                if six.PY3:
+                    content = six.ensure_str(self.url)
+                regexcat = 'EXTINF.*?,(.+?)\\n(.+?)\\n'
+                match = re.compile(regexcat,re.DOTALL).findall(content)
+                print( "In showContent match =", match)
+                for name, url in match:
+                    if callback in name.lower():
+                        print('callback: ', callback)
+                        search = True
+                        url = url.replace(" ", "")
+                        url = url.replace("\\n", "")
+                        url = url.replace('\r','')
+                        name = name.replace('\r','')
+                        # print( "In showContent name =", name)
+                        # print( "In showContent url =", url)
+                        self.menu_list.append(show_(name, url))
+                        self['menulist'].l.setList(self.menu_list)
+                        # self['menulist'].l.setItemHeight(40)
+                        # self['menulist'].moveToIndex(0)
+                        auswahl = self['menulist'].getCurrent()[0][0]
+                        self['name'].setText(str(auswahl))
+                        self['text'].setText('')
+            else:
+                self.session.open(MessageBox, _("Sorry no found!"), MessageBox.TYPE_INFO, timeout = 5)
+                return
+        else:
+            self.resetSearch()
+
+    def returnback(self):
+        global search
+        if search == True:
+            search = False
+            del self.menu_list
+            print('sono di la')
+            self.updateMenuList()
+        else:
+            search = False
+            del self.menu_list
+            print('sono di qua')
             self.close()
 
-class PiconsPreview(Screen):
-    x = getDesktop(0).size().width()
-    y = getDesktop(0).size().height()
-    skin = '<screen flags="wfNoBorder" position="0,0" size="%d,%d" title="PiconsPreview" backgroundColor="#00000000">' % (x, y)
-    skin += '<widget name="pixmap" position="0,0" size="%d,%d" zPosition="1" alphatest="on" />' % (x, y)
-    skin += '</screen>'
+    def resetSearch(self):
+        global search
+        search = False
+        del self.menu_list
+        self.updateMenuList()
 
-    def __init__(self, session, previewPng=None):
-        self.skin = PiconsPreview.skin
+    def updateMenuList(self):
+        self.menu_list = []
+        if check(self.url):
+            try:
+                content = ReadUrl(self.url)
+                # if six.PY3:
+                    # content = content.decode("utf-8")
+                # if six.PY3:
+                    # content = six.ensure_str(self.url)
+                # print( "content A =", content)
+                ##EXTINF:-1 tvg-id="" tvg-country="" tvg-language="" tvg-logo="" group-title="",21 Macedonia
+                regexcat = 'EXTINF.*?,(.+?)\\n(.+?)\\n'
+                match = re.compile(regexcat,re.DOTALL).findall(content)
+                print( "In showContent match =", match)
+                # n1 = 0
+                for name, url in match:
+                    if not ".m3u8" in url:
+                        continue
+                    # n1 = n1+1
+                    # if n1 > 100:
+                           # break
+                    url = url.replace(" ", "")
+                    url = url.replace("\\n", "")
+                    url = url.replace('\r','')
+                    name = name.replace('\r','')
+                    print( "In showContent name =", name)
+                    print( "In showContent url =", url)
+                    pic = " "
+                    self.menu_list.append(show_(name, url))
+                self['menulist'].l.setList(self.menu_list)
+                # self['menulist'].l.setItemHeight(40)
+                # self['menulist'].moveToIndex(0)
+                auswahl = self['menulist'].getCurrent()[0][0]
+                self['name'].setText(str(auswahl))
+                self['text'].setText('')
+            except Exception as e:
+                print('exception error II ', e)
+        else:
+            self.session.open(MessageBox, _("Sorry no found!"), MessageBox.TYPE_INFO, timeout = 5)
+            return
+
+    def updateMenuListx(self):
+        self.menu_list = []
+        if check(self.url):
+            try:
+                content = ReadUrl(self.url)
+                # if six.PY3:
+                    # content = six.ensure_str(content)
+                # if six.PY3:
+                    # content = content.decode("utf-8")
+                print( "content A =", content)
+                regexcat = 'EXTINF.*?,(.+?)\\n(.+?)\\n'
+                match = re.compile(regexcat,re.DOTALL).findall(content)
+                print( "In showContent match =", match)
+                # n1 = 0
+                for name, url in match:
+                    if not ".m3u8" in url:
+                        continue
+                    # n1 = n1+1
+                    # if n1 > 50:
+                        # break
+                    url = url.replace(" ", "")
+                    url = url.replace("\\n", "")
+                    url = url.replace('\r','')
+                    name = name.replace('\r','')
+                    print( "In showContent name =", name)
+                    print( "In showContent url =", url)
+                    pic = " "
+                    self.menu_list.append(show_(name, url))
+                self['menulist'].l.setList(self.menu_list)
+                # self['menulist'].l.setItemHeight(40)
+                # self['menulist'].moveToIndex(0)
+                # if n1 == 0: return
+                auswahl = self['menulist'].getCurrent()[0][0]
+                self['name'].setText(str(auswahl))
+                self['text'].setText('')
+
+            except Exception as e:
+                print('exception error ', e)
+        else:
+            self.session.open(MessageBox, _("Sorry no found!"), MessageBox.TYPE_INFO, timeout = 5)
+
+
+    def ok(self):
+        name = self['menulist'].getCurrent()[0][0]
+        url = self['menulist'].getCurrent()[0][1]
+        print('name: ', name)
+        print('url: ', url)
+        if check(url):
+            self.play_that_shit(name, url)
+        else:
+            self.session.open(MessageBox, _("Sorry no found!"), MessageBox.TYPE_INFO, timeout = 5)
+            return
+
+    def play_that_shit(self, name, url):
+        url = url
+        name = name
+        self.session.open(Playstream2, name, url)
+
+    def up(self):
+        self[self.currentList].up()
+        auswahl = self['menulist'].getCurrent()[0][0]
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def down(self):
+        self[self.currentList].down()
+        auswahl = self['menulist'].getCurrent()[0][0]
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def left(self):
+        self[self.currentList].pageUp()
+        auswahl = self['menulist'].getCurrent()[0][0]
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+    def right(self):
+        self[self.currentList].pageDown()
+        auswahl = self['menulist'].getCurrent()[0][0]
+        self['name'].setText(str(auswahl))
+        # self.load_poster()
+
+class TvInfoBarShowHide():
+    """ InfoBar show/hide control, accepts toggleShow and hide actions, might start
+    fancy animations. """
+    STATE_HIDDEN = 0
+    STATE_HIDING = 1
+    STATE_SHOWING = 2
+    STATE_SHOWN = 3
+    skipToggleShow = False
+    def __init__(self):
+        self["ShowHideActions"] = ActionMap(["InfobarShowHideActions"], {"toggleShow": self.toggleShow,
+         "hide": self.hide}, 0)
+        self.__event_tracker = ServiceEventTracker(screen=self, eventmap={iPlayableService.evStart: self.serviceStarted})
+        self.__state = self.STATE_SHOWN
+        self.__locked = 0
+        self.hideTimer = eTimer()
+
+        try:
+            self.hideTimer_conn = self.hideTimer.timeout.connect(self.doTimerHide)
+        except:
+            self.hideTimer.callback.append(self.doTimerHide)
+        self.hideTimer.start(5000, True)
+        self.onShow.append(self.__onShow)
+        self.onHide.append(self.__onHide)
+
+    def serviceStarted(self):
+        if self.execing:
+            if config.usage.show_infobar_on_zap.value:
+                self.doShow()
+
+    def __onShow(self):
+        self.__state = self.STATE_SHOWN
+        self.startHideTimer()
+
+    def __onHide(self):
+        self.__state = self.STATE_HIDDEN
+        
+    def startHideTimer(self):
+        if self.__state == self.STATE_SHOWN and not self.__locked:
+            self.hideTimer.stop()
+            idx = config.usage.infobar_timeout.index
+            if idx:
+                self.hideTimer.start(idx * 1500, True)
+
+    def doShow(self):
+        self.hideTimer.stop()
+        self.show()
+        self.startHideTimer()
+
+    def doTimerHide(self):
+        self.hideTimer.stop()
+        if self.__state == self.STATE_SHOWN:
+            self.hide()
+
+    def OkPressed(self):
+        self.toggleShow()
+    def toggleShow(self):
+        if self.skipToggleShow:
+            self.skipToggleShow = False
+            return
+
+        if self.__state == self.STATE_HIDDEN:
+            self.show()
+            self.hideTimer.stop()
+        else:
+            self.hide()
+            self.startHideTimer()
+
+    def lockShow(self):
+        try:
+            self.__locked += 1
+        except:
+            self.__locked = 0
+        if self.execing:
+            self.show()
+            self.hideTimer.stop()
+            self.skipToggleShow = False
+
+    def unlockShow(self):
+        try:
+            self.__locked -= 1
+        except:
+            self.__locked = 0
+        if self.__locked < 0:
+            self.__locked = 0
+        if self.execing:
+            self.startHideTimer()
+
+    def debug(obj, text = ""):
+        print(text + " %s\n" % obj)
+
+class Playstream2(Screen, InfoBarMenu, InfoBarBase, InfoBarSeek, InfoBarNotifications, InfoBarAudioSelection, TvInfoBarShowHide):#,InfoBarSubtitleSupport
+    STATE_IDLE = 0
+    STATE_PLAYING = 1
+    STATE_PAUSED = 2
+    ENABLE_RESUME_SUPPORT = True
+    ALLOW_SUSPEND = True
+    screen_timeout = 5000
+
+    def __init__(self, session, name, url):
+        global SREF
         Screen.__init__(self, session)
         self.session = session
-        self.Scale = AVSwitch().getFramebufferScale()
-        self.PicLoad = ePicLoad()
-        self['pixmap'] = Pixmap()
+        self.skinName = 'MoviePlayer'
+        title = name
+        InfoBarMenu.__init__(self)
+        InfoBarNotifications.__init__(self)
+        InfoBarBase.__init__(self, steal_current_service=True)
+        TvInfoBarShowHide.__init__(self)
+        InfoBarAudioSelection.__init__(self)
+        InfoBarSeek.__init__(self)
+        # InfoBarSubtitleSupport.__init__(self)
         try:
-            self.PicLoad.PictureData.get().append(self.DecodePicture)
+            self.init_aspect = int(self.getAspect())
         except:
-            self.PicLoad_conn = self.PicLoad.PictureData.connect(self.DecodePicture)
-        self.previewPng = previewPng
-        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'ok': self.close,
-         'cancel': self.close,
-         'blue': self.close}, -1)
+            self.init_aspect = 0
+        self.new_aspect = self.init_aspect
+        self['actions'] = ActionMap(['WizardActions',
+         'MoviePlayerActions',
+         'MovieSelectionActions',
+         'MediaPlayerActions',
+         'EPGSelectActions',
+         'MediaPlayerSeekActions',
+         'SetupActions',
+         'ColorActions',
+         'InfobarShowHideActions',
+         'InfobarActions',
+         'InfobarSeekActions'], {'leavePlayer': self.cancel,
+         'epg': self.showIMDB,
+         'info': self.cicleStreamType,
+         'tv': self.cicleStreamType,
+         'stop': self.leavePlayer,
+         'cancel': self.cancel,
+         'back': self.cancel}, -1)
+        self.allowPiP = False
+        self.service = None
+        service = None
+        self.url = url.replace(':', '%3a').replace(' ','%20')
 
-        self.onLayoutFinish.append(self.ShowPicture)
+        self.icount = 0
+        self.pcip = 'None'
+        self.name = decodeHtml(name)
+        self.state = self.STATE_PLAYING
+        SREF = self.session.nav.getCurrentlyPlayingServiceReference()
+        self.onLayoutFinish.append(self.cicleStreamType)
+        self.onClose.append(self.cancel)
+        # return
 
-    def ShowPicture(self):
-        myicon = self.previewPng
-        if isFHD():
-            png = loadPic(myicon, 1920, 1080, 0, 0, 0, 1)
+    def getAspect(self):
+        return AVSwitch().getAspectRatioSetting()
+
+    def getAspectString(self, aspectnum):
+        return {0: _('4:3 Letterbox'),
+         1: _('4:3 PanScan'),
+         2: _('16:9'),
+         3: _('16:9 always'),
+         4: _('16:10 Letterbox'),
+         5: _('16:10 PanScan'),
+         6: _('16:9 Letterbox')}[aspectnum]
+
+    def setAspect(self, aspect):
+        map = {0: '4_3_letterbox',
+         1: '4_3_panscan',
+         2: '16_9',
+         3: '16_9_always',
+         4: '16_10_letterbox',
+         5: '16_10_panscan',
+         6: '16_9_letterbox'}
+        config.av.aspectratio.setValue(map[aspect])
+        try:
+            AVSwitch().setAspectRatio(aspect)
+        except:
+            pass
+
+    def av(self):
+        temp = int(self.getAspect())
+        temp = temp + 1
+        if temp > 6:
+            temp = 0
+        self.new_aspect = temp
+        self.setAspect(temp)
+
+    def showinfo(self):
+        debug = True
+        sTitle = ''
+        sServiceref = ''
+        try:
+            servicename, serviceurl = getserviceinfo(sref)
+            if servicename != None:
+                sTitle = servicename
+            else:
+                sTitle = ''
+            if serviceurl != None:
+                sServiceref = serviceurl
+            else:
+                sServiceref = ''
+            currPlay = self.session.nav.getCurrentService()
+            sTagCodec = currPlay.info().getInfoString(iServiceInformation.sTagCodec)
+            sTagVideoCodec = currPlay.info().getInfoString(iServiceInformation.sTagVideoCodec)
+            sTagAudioCodec = currPlay.info().getInfoString(iServiceInformation.sTagAudioCodec)
+            message = 'stitle:' + str(sTitle) + '\n' + 'sServiceref:' + str(sServiceref) + '\n' + 'sTagCodec:' + str(sTagCodec) + '\n' + 'sTagVideoCodec: ' + str(sTagVideoCodec) + '\n' + 'sTagAudioCodec :' + str(sTagAudioCodec)
+            self.mbox = self.session.open(MessageBox, message, MessageBox.TYPE_INFO)
+        except:
+            pass
+
+        return
+
+    def showIMDB(self):
+        TMDB = resolveFilename(SCOPE_PLUGINS, "Extensions/{}".format('TMDB'))
+        IMDb = resolveFilename(SCOPE_PLUGINS, "Extensions/{}".format('IMDb'))
+        if os.path.exists(TMDB):
+            from Plugins.Extensions.TMBD.plugin import TMBD
+            text_clear = self.name
+            text = charRemove(text_clear)
+            self.session.open(TMBD, text, False)
+        elif os.path.exists(IMDb):
+            from Plugins.Extensions.IMDb.plugin import IMDB
+            text_clear = self.name
+            text = charRemove(text_clear)
+            self.session.open(IMDB, text)
         else:
-            png = loadPic(myicon, 1280, 720, 0, 0, 0, 1)
-        self["pixmap"].instance.setPixmap(png)
+            # text_clear = self.name
+            # self.session.open(MessageBox, text_clear, MessageBox.TYPE_INFO)
+            self.showinfo()
 
-    def DecodePicture(self, PicInfo=''):
-        ptr = self.picload.getData()
-        self['pixmap'].instance.setPixmap(ptr)
+    def openPlay(self,servicetype, url):
+        if url.endswith('m3u8'):
+            servicetype = "4097"
+        name = self.name
+        ref = "{0}:0:0:0:0:0:0:0:0:0:{1}:{2}".format(servicetype, url.replace(":", "%3A"), name.replace(":", "%3A"))
+        # ref = str(servicetype) +':0:1:0:0:0:0:0:0:0:' + str(url)
+        print('final reference :   ', ref)
+        sref = eServiceReference(ref)
+        sref.setName(name)
+        self.session.nav.stopService()
+        self.session.nav.playService(sref)
 
+    def cicleStreamType(self):
+        from itertools import cycle, islice
+        self.servicetype ='4097'
+        print('servicetype1: ', self.servicetype)
+        url = str(self.url)
+        # if str(os.path.splitext(url)[-1]) == ".m3u8":
+            # if self.servicetype == "1":
+                # self.servicetype = "4097"
+        currentindex = 0
+        streamtypelist = ["4097"]
+        if os.path.exists("/usr/bin/gstplayer"):
+            streamtypelist.append("5001")
+        if os.path.exists("/usr/bin/exteplayer3"):
+            streamtypelist.append("5002")
+        if os.path.exists("/usr/bin/apt-get"):
+            streamtypelist.append("8193")
+        for index, item in enumerate(streamtypelist, start=0):
+            if str(item) == str(self.servicetype):
+                currentindex = index
+                break
+        nextStreamType = islice(cycle(streamtypelist), currentindex + 1, None)
+        self.servicetype = str(next(nextStreamType))
+        print('servicetype2: ', self.servicetype)
+        self.openPlay(self.servicetype, url)
+
+    def up(self):
+        pass
+
+    def down(self):
+        # pass
+        self.up()
+
+    def doEofInternal(self, playing):
+        self.close()
+
+    def __evEOF(self):
+        self.end = True
+    def cancel(self):
+        if os.path.exists('/tmp/hls.avi'):
+            os.remove('/tmp/hls.avi')
+        self.session.nav.stopService()
+        self.session.nav.playService(SREF)
+        if self.pcip != 'None':
+            url2 = 'http://' + self.pcip + ':8080/requests/status.xml?command=pl_stop'
+            resp = urlopen(url2)
+        if not self.new_aspect == self.init_aspect:
+            try:
+                self.setAspect(self.init_aspect)
+            except:
+                pass
+        self.close()
+
+    def showVideoInfo(self):
+        if self.shown:
+            self.hideInfobar()
+        if self.infoCallback != None:
+            self.infoCallback()
+        return
+
+    def showAfterSeek(self):
+        if isinstance(self, TvInfoBarShowHide):
+            self.doShow()
+
+    def leavePlayer(self):
+        self.close()
 
 def main(session, **kwargs):
     if checkInternet():
-        session.open(SelectPicons)
+        try:
+            from Plugins.Extensions.freearhey.Update import upd_done
+            upd_done()
+        except:
+            pass
+
+        session.open(freearhey)
     else:
-        logdata("noInternet ", 'norete')
         session.open(MessageBox, "No Internet", MessageBox.TYPE_INFO)
-
-def menu(menuid, **kwargs):
-    if menuid == 'mainmenu':
-        return [('mMark Picons & Skins',
-          main,
-          'mMark Picons & Skins',
-          44)]
-    return []
-
-def mainmenu(session, **kwargs):
-    main(session, **kwargs)
-
-
 def Plugins(**kwargs):
-    ico_path = 'logo.png'
-    # if not os.path.exists('/var/lib/dpkg/status'):
-    if not DreamOS():
-        ico_path = plugin_path + '/res/pics/logo.png'
-    result = [PluginDescriptor(name=desc_plug, description=(title_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
+    icona = 'plugin.png'
+    extDescriptor = PluginDescriptor(name=name_plugin, description=desc_plugin, where=[PluginDescriptor.WHERE_EXTENSIONSMENU], icon=icona, fnc=main)
+    result = [PluginDescriptor(name=name_plugin, description=desc_plugin, where=[PluginDescriptor.WHERE_PLUGINMENU], icon=icona, fnc=main)]
+    result.append(extDescriptor)
     return result
 
-'''======================================================'''
+

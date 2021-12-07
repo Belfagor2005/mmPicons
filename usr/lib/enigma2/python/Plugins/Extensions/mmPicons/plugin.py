@@ -70,8 +70,7 @@ import subprocess
 import sys
 
 global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
-
-from six.moves.urllib.request import urlretrieve
+# from six.moves.urllib.request import urlretrieve
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
 
@@ -207,23 +206,13 @@ if not os.path.exists(mmkpicon):
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
 
 logdata("path picons: ", str(mmkpicon))
-# if HD.width() > 1280:
 if isFHD():
     skin_path = res_plugin_path + 'skins/fhd/'
 else:
     skin_path = res_plugin_path + 'skins/hd/'
-# if os.path.exists('/var/lib/dpkg/status'):
 if DreamOS():
     skin_path = skin_path + 'dreamOs/'
 
-# def OnclearMem():
-    # try:
-        # os.system("sync")
-        # os.system("echo 1 > /proc/sys/vm/drop_caches")
-        # os.system("echo 2 > /proc/sys/vm/drop_caches")
-        # os.system("echo 3 > /proc/sys/vm/drop_caches")
-    # except:
-        # pass
 
 class mmList(MenuList):
     def __init__(self, list):
@@ -421,7 +410,6 @@ class SelectPicons(Screen):
         self[self.currentList].pageDown()
         self.load_poster()
 
-
     def load_poster(self):
         global pixmaps
         sel = self['text'].getSelectedIndex()
@@ -488,7 +476,6 @@ class MMarkPiconScreen(Screen):
         self.timer.start(500, 1)
         self.pixmaps = pixmaps
         self.movie = movie
-        # if os.path.exists('/var/lib/dpkg/status'):
         if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
@@ -558,7 +545,6 @@ class MMarkPiconScreen(Screen):
         self['info'].setText(_('... please wait'))
         if result:
             if self.downloading == True:
-
                 idx = self["text"].getSelectionIndex()
                 self.name = self.names[idx]
                 url = self.urls[idx]
@@ -627,7 +613,6 @@ class MMarkPiconScreen(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
             if DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
             else:
@@ -674,7 +659,6 @@ class MMarkFolderScreen(Screen):
         self.timer.start(500, 1)
         self.url = url
         self.pixmaps = pixmaps
-        # if os.path.exists('/var/lib/dpkg/status'):
         if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
@@ -769,7 +753,6 @@ class MMarkFolderScreen(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
             if DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
             else:
@@ -817,7 +800,6 @@ class MMarkFolderSkinZeta(Screen):
         self.name = 'MMark-Skins'
         self.timer = eTimer()
         self.timer.start(500, 1)
-        # if os.path.exists('/var/lib/dpkg/status'):
         if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
@@ -962,7 +944,6 @@ class MMarkFolderSkinZeta(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
             if DreamOS():
                 self.picload.startDecode(pixmaps, False)
             else:
@@ -1051,7 +1032,6 @@ class mmConfig(Screen, ConfigListScreen):
         if self['config'].isChanged():
             for x in self["config"].list:
                 x[1].save()
-
             self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Restart Enigma is Required. Do you want to continue?"), MessageBox.TYPE_YESNO)
         else:
             self.close(True)
@@ -1183,7 +1163,6 @@ def mainmenu(session, **kwargs):
 
 def Plugins(**kwargs):
     ico_path = 'logo.png'
-    # if not os.path.exists('/var/lib/dpkg/status'):
     if not DreamOS():
         ico_path = plugin_path + '/res/pics/logo.png'
     result = [PluginDescriptor(name=desc_plug, description=(title_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]

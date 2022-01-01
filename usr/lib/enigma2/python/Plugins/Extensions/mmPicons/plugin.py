@@ -45,7 +45,8 @@ from Screens.Standby import *
 from Screens.Standby import TryQuitMainloop, Standby
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_PLUGINS, SCOPE_LANGUAGE
-from Tools.Directories import pathExists, resolveFilename, fileExists, copyfile
+from Tools.Directories import resolveFilename
+from os.path import exists as file_exists
 from Tools.Downloader import downloadWithProgress
 from Tools.LoadPixmap import LoadPixmap
 from enigma import *
@@ -70,7 +71,6 @@ import subprocess
 import sys
 
 global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
-# from six.moves.urllib.request import urlretrieve
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
 
@@ -87,8 +87,6 @@ try:
     import zipfile
 except:
     pass
-# headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-        # 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
 
 def logdata(name='', data=None):
     try:
@@ -229,7 +227,7 @@ class mmList(MenuList):
 def DailyListEntry(name, idx):
     pngs = ico1_path
     res = [name]
-    if fileExists(pngs):
+    if file_exists(pngs):
         if isFHD():
             res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
             res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =0, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
@@ -344,6 +342,7 @@ class SelectPicons(Screen):
         self['text'].list = self.list
         self['text'].setList(self.list)
         self['info'].setText('Please select ...')
+        logdata("updateMenuList ")
         self.getfreespace()
         self.load_poster()
 
@@ -962,7 +961,6 @@ class mmConfig(Screen, ConfigListScreen):
         self.session = session
         self.setTitle(title_plug)
         self['description'] = Label('')
-        info = ''
         self['info'] = Label(_('Config Panel Addon'))
         self['key_yellow'] = Button(_('Choice'))
         self['key_green'] = Button(_('Save'))
@@ -1137,7 +1135,6 @@ def main(session, **kwargs):
             upd_done()
         except:
             pass    
-            
         session.open(SelectPicons)
     else:
         logdata("noInternet ", 'norete')

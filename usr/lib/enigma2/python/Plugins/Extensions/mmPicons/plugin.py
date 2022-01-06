@@ -69,19 +69,22 @@ import six
 import ssl
 import subprocess
 import sys
-
 global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
-from six.moves.urllib.request import urlopen
-from six.moves.urllib.request import Request
+# from six.moves.urllib.request import urlopen
+# from six.moves.urllib.request import Request
+PY3 = sys.version_info.major >= 3
+print('Py3: ',PY3)
 
+if PY3:
+    from urllib.request import urlopen
+    from urllib.request import Request
+else:
+    from urllib2 import Request
+    from urllib2 import urlopen     
 try:
     from Plugins.Extensions.mmPicons.Utils import *
 except:
     from . import Utils
-# try:
-    # from enigma import eDVBDB
-# except ImportError:
-    # eDVBDB = None
 
 try:
     import zipfile
@@ -317,6 +320,7 @@ class SelectPicons(Screen):
         logdata("freespace ", fspace)
 
     def closerm(self):
+        deletetmp()
         self.close()
 
     def msgtqm(self):

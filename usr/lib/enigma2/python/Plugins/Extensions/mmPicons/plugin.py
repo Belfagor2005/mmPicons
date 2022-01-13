@@ -6,8 +6,8 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             13/01/2022               *
-*         thank's fix by @jbleyel      *
+*             01/12/2021               *
+*          fixed by @jbleyel           *
 ****************************************
 '''
 #Info https://e2skin.blogspot.com/
@@ -161,7 +161,7 @@ def checkMyFile(url):
         myfile = re.findall('href="http://download(.*?)">', r2)
         return myfile
     except:
-        e = URLError
+        e = URLError #, e:
         print('We failed to open "%s".' % url)
         if hasattr(e, 'code'):
             print('We failed with error code - %s.' % e.code)
@@ -176,9 +176,9 @@ host_trs = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=
 host_mov = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=nk8t522bv4909&content_type=files&chunk_size=1000&response_format=json'
 host_skin = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=c8sw0ahss3si0&content_type=files&chunk_size=1000&response_format=json'
 host_skinz = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=0wz43yv8nsx79&content_type=files&chunk_size=1000&response_format=json'
-
 config.plugins.mmPicons = ConfigSubsection()
 config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
+# HD = getDesktop(0).size()
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
 desc_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
@@ -264,7 +264,7 @@ Panel_list3 = [
  ('PICONS TRANSPARENT'),
  ('PICONS MOVIE'),
  ('SKIN DMM ZETA'),
- ('SKIN OPEN ZETA'),]
+ ('SKIN OPEN ZETA')]
 
 
 class SelectPicons(Screen):
@@ -1056,7 +1056,7 @@ class mmConfig(Screen, ConfigListScreen):
              inhibitDirs=['/bin', '/boot', '/dev', '/home', '/lib', '/proc', '/run', '/sbin', '/sys', '/var'],
              minFree=15)
         except Exception as e:
-            print('openDirectoryBrowser get failed: ', str(e))
+            print(('openDirectoryBrowser get failed: ', str(e)))
 
     def openDirectoryBrowserCB(self, path):
         if path != None:

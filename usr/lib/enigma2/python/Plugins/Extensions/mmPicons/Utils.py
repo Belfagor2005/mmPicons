@@ -213,7 +213,7 @@ def checkRedirect(url):
         print("**** redirect url 1 *** %s" % x.url)
         return str(x.url)
     except Exception as e:
-        print(e)
+        print(str(e))
         print("**** redirect url 2 *** %s" % url)
         return str(url)
             
@@ -494,7 +494,7 @@ def AdultUrl(url):
             try:
                 tlink = tlink.decode("utf-8")
             except Exception as e:
-                   print("Error: %s." % e)
+                   print("Error:", str(e))
         return tlink
         
         
@@ -583,7 +583,7 @@ def ReadUrl2(url):
         try:
             content = content.decode("utf-8")                
         except Exception as e:                   
-               print("Error: %s." % e)   
+               print("Error:", str(e))   
     return content
 
 def ReadUrl(url):

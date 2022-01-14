@@ -6,8 +6,8 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             01/12/2021               *
-*          fixed by @jbleyel           *
+*             14/01/2022               *
+*         thank's fix by @jbleyel      *
 ****************************************
 '''
 #Info https://e2skin.blogspot.com/
@@ -18,7 +18,7 @@ from Components.AVSwitch import AVSwitch
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
 # from Components.HTMLComponent import HTMLComponent
-from Components.Input import Input
+# from Components.Input import Input
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -52,7 +52,7 @@ from Tools.LoadPixmap import LoadPixmap
 from enigma import *
 from enigma import ePicLoad, loadPic
 from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
-from enigma import  loadPNG, gFont #,getDesktop
+from enigma import  loadPNG, gFont
 from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
 from enigma import eSize, eServiceCenter, eServiceReference, iPlayableService
 from os.path import splitext
@@ -65,13 +65,10 @@ import os
 import re
 import shutil
 import six
-# import socket
 import ssl
 import subprocess
 import sys
 global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
-# from six.moves.urllib.request import urlopen
-# from six.moves.urllib.request import Request
 PY3 = sys.version_info.major >= 3
 print('Py3: ',PY3)
 
@@ -123,7 +120,6 @@ try:
     sslverify = True
 except:
     sslverify = False
-
 if sslverify:
     try:
         from urlparse import urlparse
@@ -140,12 +136,7 @@ if sslverify:
                 ClientTLSOptions(self.hostname, ctx)
             return ctx
 
-#for download on ATV 6.5
-#CHECK THI ISSUE
-#https://github.com/openatv/enigma2/commit/3974e84a59be2a8eb4d2250a876713d38e8f56b4
-
 def checkMyFile(url):
-    # FIXME urlopen will cause a full download of file and this != what you want //thank's @jbleyel
     return []
     try:
         dest = "/tmp/download.zip"
@@ -161,7 +152,7 @@ def checkMyFile(url):
         myfile = re.findall('href="http://download(.*?)">', r2)
         return myfile
     except:
-        e = URLError #, e:
+        e = URLError
         print('We failed to open "%s".' % url)
         if hasattr(e, 'code'):
             print('We failed with error code - %s.' % e.code)
@@ -169,22 +160,15 @@ def checkMyFile(url):
             print('We failed to reach a server.')
             print('Reason: ', e.reason)
         return ''
-    return
+    # return
 
-host_blk = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=ovz04mrpzo9pw&content_type=folders&chunk_size=1000&response_format=json'
-host_trs = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=tvbds59y9hr19&content_type=folders&chunk_size=1000&response_format=json'
-host_mov = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=nk8t522bv4909&content_type=files&chunk_size=1000&response_format=json'
-host_skin = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=c8sw0ahss3si0&content_type=files&chunk_size=1000&response_format=json'
-host_skinz = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=0wz43yv8nsx79&content_type=files&chunk_size=1000&response_format=json'
 config.plugins.mmPicons = ConfigSubsection()
 config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
-# HD = getDesktop(0).size()
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
 desc_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
 title_plug = 'mMark Blog - www.e2skin.blogspot.com'
 XStreamity = False
-skin_path = plugin_path
 ico_path = plugin_path + '/logo.png'
 no_cover = plugin_path + '/no_coverArt.png'
 res_plugin_path = plugin_path + '/res/'
@@ -197,6 +181,11 @@ piconszeta = res_picon_plugin_path + 'picon_z.png'
 piconsmovie = res_picon_plugin_path + 'picon_mv.png'
 pixmaps = res_picon_plugin_path + 'backg.png'
 mmkpicon = config.plugins.mmPicons.mmkpicon.value.strip()
+pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
+ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
+ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
+ecskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
+openskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT0wd3o0M3l2OG5zeDc5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 
 if mmkpicon.endswith('/'):
     mmkpicon = mmkpicon[:-1]
@@ -205,12 +194,11 @@ if not os.path.exists(mmkpicon):
         os.makedirs(mmkpicon)
     except OSError as e:
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
-
+skin_path = res_plugin_path + 'skins/hd/'
 logdata("path picons: ", str(mmkpicon))
 if isFHD():
     skin_path = res_plugin_path + 'skins/fhd/'
-else:
-    skin_path = res_plugin_path + 'skins/hd/'
+    
 if DreamOS():
     skin_path = skin_path + 'dreamOs/'
 
@@ -264,7 +252,7 @@ Panel_list3 = [
  ('PICONS TRANSPARENT'),
  ('PICONS MOVIE'),
  ('SKIN DMM ZETA'),
- ('SKIN OPEN ZETA')]
+ ('SKIN OPEN ZETA'),]
 
 
 class SelectPicons(Screen):
@@ -357,15 +345,20 @@ class SelectPicons(Screen):
         sel = self.menu_list[idx]
         print('selll ', sel)
         if sel == ('PICONS BLACK'):
-            self.session.open(MMarkFolderScreen, host_blk, piconsblk)
+            self.session.open(MMarkFolderScreen, b64decoder(pblk), piconsblk)        
+            # self.session.open(MMarkFolderScreen, host_blk, piconsblk)
         elif sel == 'PICONS TRANSPARENT':
-            self.session.open(MMarkFolderScreen, host_trs, piconstrs)
+            self.session.open(MMarkFolderScreen, b64decoder(ptrs), piconstrs)        
+            # self.session.open(MMarkFolderScreen, host_trs, piconstrs)
         elif sel == ('PICONS MOVIE'):
-            self.session.open(MMarkPiconScreen, 'MMark-Picons', host_mov, piconsmovie, True)
+            self.session.open(MMarkPiconScreen, 'MMark-Picons', b64decoder(ptmov), piconsmovie, True)        
+            # self.session.open(MMarkPiconScreen, 'MMark-Picons', host_mov, piconsmovie, True)
         elif sel == ('SKIN DMM ZETA'):
-            self.session.open(MMarkFolderSkinZeta, host_skin)
+            self.session.open(MMarkFolderSkinZeta, b64decoder(ecskins))        
+            # self.session.open(MMarkFolderSkinZeta, host_skin)
         elif sel == ('SKIN OPEN ZETA'):
-            self.session.open(MMarkFolderSkinZeta, host_skinz)
+            self.session.open(MMarkFolderSkinZeta, b64decoder(openskins) )        
+            # self.session.open(MMarkFolderSkinZeta, host_skinz)
         else:
             self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
 
@@ -424,7 +417,6 @@ class SelectPicons(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            # if os.path.exists('/var/lib/dpkg/status'):
             if DreamOS():
                 self.picload.startDecode(pixmaps, False)
             else:
@@ -435,7 +427,6 @@ class SelectPicons(Screen):
                 self['poster'].show()
             else:
                 print('no cover.. error')
-            return
 
 class MMarkPiconScreen(Screen):
     def __init__(self, session, name, url, pixmaps, movie=False):
@@ -506,6 +497,7 @@ class MMarkPiconScreen(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
+        r = data
         if six.PY3:
             r = six.ensure_str(data)
         self.names = []
@@ -532,7 +524,6 @@ class MMarkPiconScreen(Screen):
             self.downloading = True
         except:
             self.downloading = False
-        # if self.movie:
         self.load_poster()
 
     def okRun(self):
@@ -689,7 +680,9 @@ class MMarkFolderScreen(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        r = data
+        if six.PY3:
+            r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -837,7 +830,9 @@ class MMarkFolderSkinZeta(Screen):
         self.downloading = False
 
     def _gotPageLoad(self, data):
-        r = six.ensure_str(data)
+        r = data
+        if six.PY3:
+            r = six.ensure_str(data)
         self.names = []
         self.urls = []
         try:
@@ -1056,13 +1051,13 @@ class mmConfig(Screen, ConfigListScreen):
              inhibitDirs=['/bin', '/boot', '/dev', '/home', '/lib', '/proc', '/run', '/sbin', '/sys', '/var'],
              minFree=15)
         except Exception as e:
-            print(('openDirectoryBrowser get failed: ', str(e)))
+            print('openDirectoryBrowser get failed: ', str(e))
 
     def openDirectoryBrowserCB(self, path):
         if path != None:
             if self.setting == 'mmkpicon':
                 config.plugins.mmPicons.mmkpicon.setValue(path)
-        return
+        # return
 
     def KeyText(self):
         sel = self['config'].getCurrent()
@@ -1073,7 +1068,7 @@ class mmConfig(Screen, ConfigListScreen):
         if callback != None and len(callback):
             self['config'].getCurrent()[1].value = callback
             self['config'].invalidate(self['config'].getCurrent())
-        return
+        # return
 
     def cancelConfirm(self, result):
         if not result:
@@ -1154,7 +1149,6 @@ def menu(menuid, **kwargs):
 
 def mainmenu(session, **kwargs):
     main(session, **kwargs)
-
 
 def Plugins(**kwargs):
     ico_path = 'logo.png'

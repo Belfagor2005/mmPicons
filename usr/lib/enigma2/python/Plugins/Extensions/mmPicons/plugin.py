@@ -346,19 +346,14 @@ class SelectPicons(Screen):
         print('selll ', sel)
         if sel == ('PICONS BLACK'):
             self.session.open(MMarkFolderScreen, b64decoder(pblk), piconsblk)        
-            # self.session.open(MMarkFolderScreen, host_blk, piconsblk)
         elif sel == 'PICONS TRANSPARENT':
             self.session.open(MMarkFolderScreen, b64decoder(ptrs), piconstrs)        
-            # self.session.open(MMarkFolderScreen, host_trs, piconstrs)
         elif sel == ('PICONS MOVIE'):
             self.session.open(MMarkPiconScreen, 'MMark-Picons', b64decoder(ptmov), piconsmovie, True)        
-            # self.session.open(MMarkPiconScreen, 'MMark-Picons', host_mov, piconsmovie, True)
         elif sel == ('SKIN DMM ZETA'):
             self.session.open(MMarkFolderSkinZeta, b64decoder(ecskins))        
-            # self.session.open(MMarkFolderSkinZeta, host_skin)
         elif sel == ('SKIN OPEN ZETA'):
             self.session.open(MMarkFolderSkinZeta, b64decoder(openskins) )        
-            # self.session.open(MMarkFolderSkinZeta, host_skinz)
         else:
             self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
 
@@ -561,7 +556,7 @@ class MMarkPiconScreen(Screen):
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-        self.downloading = False
+        # self.downloading = False
 
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
@@ -900,7 +895,7 @@ class MMarkFolderSkinZeta(Screen):
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-        self.downloading = False
+        # self.downloading = False
 
     def showError(self, error):
         print("download error =", error)

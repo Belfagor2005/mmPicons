@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             14/01/2022               *
+*             25/01/2022               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -206,36 +206,33 @@ if DreamOS():
 class mmList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
+        self.l.setItemHeight(50)
+        textfont = int(24)
+        self.l.setFont(0, gFont('Regular', textfont))        
         if isFHD():
             self.l.setItemHeight(50)
             textfont = int(34)
-            self.l.setFont(0, gFont('Regular', textfont))
-        else:
-            self.l.setItemHeight(50)
-            textfont = int(24)
             self.l.setFont(0, gFont('Regular', textfont))
 
 def DailyListEntry(name, idx):
     pngs = ico1_path
     res = [name]
-    if file_exists(pngs):
-        if isFHD():
-            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =0, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-        else:
-            res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 6), size=(34, 25), png =loadPNG(pngs)))
-            res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =0, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))
-        return res
+    # if file_exists(pngs):
+    res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size=(34, 25), png =loadPNG(pngs)))
+    res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =0, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))    
+    if isFHD():
+        res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =0, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    return res
 
 def oneListEntry(name):
     pngx = ico1_path
     res = [name]
+    res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
+    res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))    
     if isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-    else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 6), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))
     return res
 
 def showlist(data, list):

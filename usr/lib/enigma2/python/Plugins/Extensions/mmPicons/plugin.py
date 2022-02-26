@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             25/01/2022               *
+*             07/02/2022               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -217,22 +217,23 @@ class mmList(MenuList):
 def DailyListEntry(name, idx):
     pngs = ico1_path
     res = [name]
-    # if file_exists(pngs):
-    res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size=(34, 25), png =loadPNG(pngs)))
-    res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =0, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))    
     if isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =0, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    else:    
+        res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size=(34, 25), png =loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =0, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))          
     return res
 
 def oneListEntry(name):
     pngx = ico1_path
     res = [name]
-    res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
-    res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))    
     if isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    else:
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))           
     return res
 
 def showlist(data, list):
@@ -251,7 +252,6 @@ Panel_list3 = [
  ('SKIN DMM ZETA'),
  ('SKIN OPEN ZETA'),]
 
-
 class SelectPicons(Screen):
     def __init__(self, session):
         self.session = session
@@ -263,7 +263,10 @@ class SelectPicons(Screen):
         self.setTitle(title_plug)
         self.working = False
         self.icount = 0
-        self.selection = 'all'
+        # self.selection = 'all'
+        self.menulist = []
+        self.list = []
+        self['title'] = Label(title_plug)        
         self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
@@ -277,11 +280,8 @@ class SelectPicons(Screen):
         self['progresstext'] = StaticText()
         self["progress"].hide()
         self['progresstext'].text = ''
-        self.menulist = []
-        self.list = []
         self['text'] = mmList([])
         self.currentList = 'text'
-        self['title'] = Label(title_plug)
         self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions"], {'ok': self.okRun,
          'green': self.remove,
          'back': self.closerm,
@@ -430,8 +430,16 @@ class MMarkPiconScreen(Screen):
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
-        self['text'] = mmList([])
+        self.menulist = []
         self.icount = 0
+        self.downloading = False
+        self.url = url
+        self.name = name
+        self.timer = eTimer()
+        self.timer.start(500, 1)
+        self.pixmaps = pixmaps
+        self.movie = movie        
+        self['text'] = mmList([])
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
@@ -447,15 +455,7 @@ class MMarkPiconScreen(Screen):
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
-        self.menulist = []
-        self.getfreespace()
-        self.downloading = False
-        self.url = url
-        self.name = name
-        self.timer = eTimer()
-        self.timer.start(500, 1)
-        self.pixmaps = pixmaps
-        self.movie = movie
+        # self.getfreespace()
         if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
@@ -470,7 +470,8 @@ class MMarkPiconScreen(Screen):
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
-
+        self.onLayoutFinish.append(self.getfreespace)
+        
     def zoom(self):
         self.session.open(PiconsPreview, self.pixmaps)
 
@@ -615,8 +616,15 @@ class MMarkFolderScreen(Screen):
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
+        self.menulist = []   
+        self.icount = 0        
+        self.downloading = False
+        self.timer = eTimer()
+        self.timer.start(500, 1)
+        self.url = url
+        self.pixmaps = pixmaps      
+        self['title'] = Label(title_plug)        
         self['text'] = mmList([])
-        self.icount = 0
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
@@ -632,18 +640,11 @@ class MMarkFolderScreen(Screen):
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
-        self.menulist = []
-        self.getfreespace()
-        self.downloading = False
-        self.timer = eTimer()
-        self.timer.start(500, 1)
-        self.url = url
-        self.pixmaps = pixmaps
+        # self.getfreespace()
         if DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(title_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -653,6 +654,7 @@ class MMarkFolderScreen(Screen):
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
+        self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
         self.session.open(PiconsPreview, self.pixmaps)
@@ -748,7 +750,6 @@ class MMarkFolderScreen(Screen):
             return
 
 class MMarkFolderSkinZeta(Screen):
-
     def __init__(self, session, url):
         self.session = session
         skin = skin_path + 'mmall.xml'
@@ -758,8 +759,12 @@ class MMarkFolderSkinZeta(Screen):
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
+        self.menulist = []        
+        self.icount = 0        
+        self.downloading = False
+        self.url = url
+        self.name = 'MMark-Skins'  
         self['text'] = mmList([])
-        self.icount = 0
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
@@ -775,11 +780,7 @@ class MMarkFolderSkinZeta(Screen):
         self['key_blue'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
-        self.menulist = []
-        self.getfreespace()
-        self.downloading = False
-        self.url = url
-        self.name = 'MMark-Skins'
+        # self.getfreespace()
         self.timer = eTimer()
         self.timer.start(500, 1)
         if DreamOS():
@@ -796,6 +797,7 @@ class MMarkFolderSkinZeta(Screen):
          'left': self.left,
          'right': self.right,
          'cancel': self.close}, -2)
+        self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
         self.session.open(PiconsPreview, pixmaps)
@@ -949,6 +951,7 @@ class mmConfig(Screen, ConfigListScreen):
         Screen.__init__(self, session)
         self.setup_title = _("Config")
         self.onChangedEntry = []
+        self.list = []        
         self.session = session
         self.setTitle(title_plug)
         self['description'] = Label('')
@@ -967,7 +970,6 @@ class mmConfig(Screen, ConfigListScreen):
          'yellow': self.Ok_edit,
          'ok': self.Ok_edit,
          'green': self.msgok}, -1)
-        self.list = []
         ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
         self.onLayoutFinish.append(self.layoutFinished)
@@ -1094,16 +1096,15 @@ class PiconsPreview(Screen):
         self.session = session
         self.Scale = AVSwitch().getFramebufferScale()
         self.PicLoad = ePicLoad()
+        self.previewPng = previewPng        
         self['pixmap'] = Pixmap()
         try:
             self.PicLoad.PictureData.get().append(self.DecodePicture)
         except:
             self.PicLoad_conn = self.PicLoad.PictureData.connect(self.DecodePicture)
-        self.previewPng = previewPng
         self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'ok': self.close,
          'cancel': self.close,
          'blue': self.close}, -1)
-
         self.onLayoutFinish.append(self.ShowPicture)
 
     def ShowPicture(self):
@@ -1117,7 +1118,6 @@ class PiconsPreview(Screen):
     def DecodePicture(self, PicInfo=''):
         ptr = self.picload.getData()
         self['pixmap'].instance.setPixmap(ptr)
-
 
 def main(session, **kwargs):
     if checkInternet():

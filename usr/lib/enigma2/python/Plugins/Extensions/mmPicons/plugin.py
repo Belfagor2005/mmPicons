@@ -270,10 +270,10 @@ class SelectPicons(Screen):
         self.menulist = []
         self.list = []
         self['title'] = Label(title_plug)        
-        self['pth'] = Label('')
+        self['pth'] = Label(' ')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
-        self['space'] = Label('')
+        self['space'] = Label(' ')
         self['info'] = Label(_('Loading data... Please wait'))
         self['key_green'] = Button(_('Remove'))
         self['key_red'] = Button(_('Exit'))
@@ -304,8 +304,8 @@ class SelectPicons(Screen):
 
     def getfreespace(self):
         fspace = freespace()
-        self['space'].setText(fspace)
-        logdata("freespace ", fspace)
+        self['space'].setText(str(fspace))
+        # logdata("freespace ", fspace)
 
     def closerm(self):
         deletetmp()
@@ -704,7 +704,7 @@ class MMarkFolderScreen(Screen):
 
     def okRun(self):
         idx = self['text'].getSelectionIndex()
-        if idx == -1 or None:
+        if idx < 0:
             return
         name = self.names[idx]
         url = self.urls[idx]

@@ -523,6 +523,10 @@ class MMarkPiconScreen(Screen):
         self.load_poster()
 
     def okRun(self):
+        i = len(self.names)
+        print('iiiiii= ',i)
+        if i < 1:
+            return    
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
 
     def okInstall(self, result):
@@ -703,9 +707,13 @@ class MMarkFolderScreen(Screen):
         self.load_poster()
 
     def okRun(self):
+        i = len(self.names)
+        print('iiiiii= ',i)
+        if i < 1:
+            return    
         idx = self['text'].getSelectionIndex()
-        if idx < 0:
-            return
+        # if idx < 0:
+            # return
         name = self.names[idx]
         url = self.urls[idx]
         self.session.open(MMarkPiconScreen, name, url, self.pixmaps)
@@ -853,6 +861,10 @@ class MMarkFolderSkinZeta(Screen):
         self.load_poster()
 
     def okRun(self):
+        i = len(self.names)
+        print('iiiiii= ',i)
+        if i < 1:
+            return    
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
 
     def okInstall(self, result):

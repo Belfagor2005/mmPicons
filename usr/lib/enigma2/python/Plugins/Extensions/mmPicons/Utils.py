@@ -636,7 +636,7 @@ def ReadUrl2(url):
         try:
             content = content.decode("utf-8")                
         except Exception as e:
-            print('error: ', str(e))  
+            print('error ReadUrl2: ', str(e))  
     return content
 
 def ReadUrl(url):

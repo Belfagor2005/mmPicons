@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             07/02/2022               *
+*             22/04/2022               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -78,6 +78,8 @@ if PY3:
 else:
     from urllib2 import Request
     from urllib2 import urlopen     
+    
+#error import review
 try:
     from Plugins.Extensions.mmPicons.Utils import *
 except:
@@ -141,16 +143,23 @@ def checkMyFile(url):
     try:
         dest = "/tmp/download.zip"
         req = Request(url)
+        # req.add_header('User-Agent', RequestAgent())
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
-        req.add_header('Referer', 'https://www.mediafire.com/')
+        req.add_header('Referer', 'https://www.mediafire.com')
         req.add_header('X-Requested-With', 'XMLHttpRequest')
         page = urlopen(req)
         r = page.read()
-        n1 = r.find('"Download file"', 0)
-        n2 = r.find('Repair your download', n1)
+        n1 = r.find('"download_link', 0)
+        n2 = r.find('downloadButton', n1)
         r2 = r[n1:n2]
-        myfile = re.findall('href="http://download(.*?)">', r2)
-        return myfile
+        print("r2 =", r2)
+        regexcat =  'href="https://download(.*?)"'
+        match = re.compile(regexcat,re.DOTALL).findall(r2)
+        print("match =", match[0])
+       # if match:
+        myfile = match[0] 
+        logdata("Myfile ", myfile)
+        return myfile    
     except:
         e = URLError
         print('We failed to open "%s".' % url)
@@ -160,7 +169,19 @@ def checkMyFile(url):
             print('We failed to reach a server.')
             print('Reason: ', e.reason)
         return ''
-    # return
+    
+    
+def downloadFile(url, target):
+    try:
+        response = ReadUrl2(url)
+        print('response: ', response)
+        # response = urlopen(url, timeout=5)        
+        with open(target, 'w') as output:
+            output.write(response) #.read())
+        return True
+    except Exception as e:
+        print("downloadFile error ", str(e))
+        return False
 
 config.plugins.mmPicons = ConfigSubsection()
 config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
@@ -490,7 +511,7 @@ class MMarkPiconScreen(Screen):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ", error)
-        self.downloading = False
+        #self.downloading = False
 
     def _gotPageLoad(self, data):
         r = data
@@ -537,19 +558,35 @@ class MMarkPiconScreen(Screen):
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
+                print('url333: ', url)
                 if os.path.exists(dest):
                     os.remove(dest)
-                myfile = checkMyFile(url)
-                for url in myfile:
-                    img = no_cover
-                    url = 'http://download' + url
-                self.download = downloadWithProgress(url, dest)
-                self.download.addProgress(self.downloadProgress)
-                self.download.start().addCallback(self.install).addErrback(self.showError)
+                try:
+                    myfile = ReadUrl2(url)
+                    print('response: ', myfile)
+                    regexcat =  'href="https://download(.*?)"'
+                    match = re.compile(regexcat,re.DOTALL).findall(myfile)
+                    print("match =", match[0])
+                    # myfile = checkMyFile(url)
+                    # print('myfile222:  ', myfile)
+                    url =  'https://download' + str(match[0])
+                    print("url final =", url)
+
+                    # myfile = checkMyFile(url)
+                    # print('myfile222:  ', myfile)
+                    # # url =  'https://download' + str(myfile)
+
+                    self.download = downloadWithProgress(url, dest)
+                    self.download.addProgress(self.downloadProgress)
+                    self.download.start().addCallback(self.install).addErrback(self.showError)
+                except Exception as e:
+                    print('error: ', str(e))
+                    print("Error: can't find file or read data")                         
+                
             else:
                 self['info'].setText(_('Picons Not Installed ...'))
 
-    def install(self, fplug):
+    def install(self, fplug):    
         if os.path.exists('/tmp/download.zip'):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
@@ -565,8 +602,10 @@ class MMarkPiconScreen(Screen):
 
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
+        self['info'].setText(_('Download...'))
         self['progress'].value = int(100 * recvbytes / float(totalbytes))
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
+        print('progress = ok')
 
     def showError(self, error):
         print("download error =", error)
@@ -678,7 +717,7 @@ class MMarkFolderScreen(Screen):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ", error)
-        self.downloading = False
+        #self.downloading = False
 
     def _gotPageLoad(self, data):
         r = data
@@ -712,8 +751,6 @@ class MMarkFolderScreen(Screen):
         if i < 1:
             return    
         idx = self['text'].getSelectionIndex()
-        # if idx < 0:
-            # return
         name = self.names[idx]
         url = self.urls[idx]
         self.session.open(MMarkPiconScreen, name, url, self.pixmaps)
@@ -878,15 +915,30 @@ class MMarkFolderSkinZeta(Screen):
                 self.name = self.names[idx]
                 url = self.urls[idx]
                 dest = "/tmp/download.zip"
+                print('url222: ', url)
                 if os.path.exists(dest):
                     os.remove(dest)
-                myfile = checkMyFile(url)
-                for url in myfile:
-                    img = no_cover
-                    url = 'http://download' + url
-                self.download = downloadWithProgress(url, dest)
-                self.download.addProgress(self.downloadProgress)
-                self.download.start().addCallback(self.install).addErrback(self.showError)
+
+                try:
+                    myfile = ReadUrl2(url)
+                    print('response: ', myfile)
+                    regexcat =  'href="https://download(.*?)"'
+                    match = re.compile(regexcat,re.DOTALL).findall(myfile)
+                    print("match =", match[0])
+                    
+                    url =  'https://download' + str(match[0])
+                    print("url final =", url)
+
+                    # myfile = checkMyFile(url)
+                    # print('myfile222:  ', myfile)
+                    # # url =  'https://download' + str(myfile)
+                    
+                    self.download = downloadWithProgress(url, dest)
+                    self.download.addProgress(self.downloadProgress)
+                    self.download.start().addCallback(self.install).addErrback(self.showError)
+                except Exception as e:
+                    print('error: ', str(e))
+                    print("Error: can't find file or read data")  
             else:
                 self['info'].setText(_('Picons Not Installed ...'))
 
@@ -909,7 +961,7 @@ class MMarkFolderSkinZeta(Screen):
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-        # self.downloading = False
+        #self.downloading = False
 
     def showError(self, error):
         print("download error =", error)

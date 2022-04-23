@@ -77,8 +77,8 @@ if PY3:
     from urllib.request import Request
 else:
     from urllib2 import Request
-    from urllib2 import urlopen     
-    
+    from urllib2 import urlopen
+
 #error import review
 try:
     from Plugins.Extensions.mmPicons.Utils import *
@@ -123,11 +123,6 @@ try:
 except:
     sslverify = False
 if sslverify:
-    try:
-        from urlparse import urlparse
-    except:
-        from urllib.parse import urlparse
-
     class SNIFactory(ssl.ClientContextFactory):
         def __init__(self, hostname=None):
             self.hostname = hostname
@@ -157,9 +152,9 @@ def checkMyFile(url):
         match = re.compile(regexcat,re.DOTALL).findall(r2)
         print("match =", match[0])
        # if match:
-        myfile = match[0] 
+        myfile = match[0]
         logdata("Myfile ", myfile)
-        return myfile    
+        return myfile
     except:
         e = URLError
         print('We failed to open "%s".' % url)
@@ -169,13 +164,13 @@ def checkMyFile(url):
             print('We failed to reach a server.')
             print('Reason: ', e.reason)
         return ''
-    
-    
+
+
 def downloadFile(url, target):
     try:
         response = ReadUrl2(url)
         print('response: ', response)
-        # response = urlopen(url, timeout=5)        
+        # response = urlopen(url, timeout=5)
         with open(target, 'w') as output:
             output.write(response) #.read())
         return True
@@ -219,7 +214,7 @@ skin_path = res_plugin_path + 'skins/hd/'
 logdata("path picons: ", str(mmkpicon))
 if isFHD():
     skin_path = res_plugin_path + 'skins/fhd/'
-    
+
 if DreamOS():
     skin_path = skin_path + 'dreamOs/'
 
@@ -227,7 +222,7 @@ if DreamOS():
 class mmList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-      
+
         if isFHD():
             self.l.setItemHeight(50)
             textfont = int(34)
@@ -235,29 +230,29 @@ class mmList(MenuList):
         else:
             self.l.setItemHeight(50)
             textfont = int(24)
-            self.l.setFont(0, gFont('Regular', textfont))          
-            
+            self.l.setFont(0, gFont('Regular', textfont))
+
 
 def DailyListEntry(name, idx):
-    pngs = ico1_path
     res = [name]
+    pngs = ico1_path
     if isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =0, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-    else:    
+    else:
         res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size=(34, 25), png =loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =0, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))          
+        res.append(MultiContentEntryText(pos=(60, 0), size =(1000, 50), font =0, text =name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT))
     return res
 
 def oneListEntry(name):
-    pngx = ico1_path
     res = [name]
+    pngx = ico1_path
     if isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))           
+        res.append(MultiContentEntryText(pos=(60, 0), size=(1000, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT))
     return res
 
 def showlist(data, list):
@@ -290,7 +285,7 @@ class SelectPicons(Screen):
         # self.selection = 'all'
         self.menulist = []
         self.list = []
-        self['title'] = Label(title_plug)        
+        self['title'] = Label(title_plug)
         self['pth'] = Label(' ')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
@@ -366,15 +361,15 @@ class SelectPicons(Screen):
         sel = self.menu_list[idx]
         print('selll ', sel)
         if sel == ('PICONS BLACK'):
-            self.session.open(MMarkFolderScreen, b64decoder(pblk), piconsblk)        
+            self.session.open(MMarkFolderScreen, b64decoder(pblk), piconsblk)
         elif sel == 'PICONS TRANSPARENT':
-            self.session.open(MMarkFolderScreen, b64decoder(ptrs), piconstrs)        
+            self.session.open(MMarkFolderScreen, b64decoder(ptrs), piconstrs)
         elif sel == ('PICONS MOVIE'):
-            self.session.open(MMarkPiconScreen, 'MMark-Picons', b64decoder(ptmov), piconsmovie, True)        
+            self.session.open(MMarkPiconScreen, 'MMark-Picons', b64decoder(ptmov), piconsmovie, True)
         elif sel == ('SKIN DMM ZETA'):
-            self.session.open(MMarkFolderSkinZeta, b64decoder(ecskins))        
+            self.session.open(MMarkFolderSkinZeta, b64decoder(ecskins))
         elif sel == ('SKIN OPEN ZETA'):
-            self.session.open(MMarkFolderSkinZeta, b64decoder(openskins) )        
+            self.session.open(MMarkFolderSkinZeta, b64decoder(openskins) )
         else:
             self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
 
@@ -462,7 +457,7 @@ class MMarkPiconScreen(Screen):
         self.timer = eTimer()
         self.timer.start(500, 1)
         self.pixmaps = pixmaps
-        self.movie = movie        
+        self.movie = movie
         self['text'] = mmList([])
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
@@ -495,7 +490,7 @@ class MMarkPiconScreen(Screen):
          'right': self.right,
          'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
-        
+
     def zoom(self):
         self.session.open(PiconsPreview, self.pixmaps)
 
@@ -547,7 +542,7 @@ class MMarkPiconScreen(Screen):
         i = len(self.names)
         print('iiiiii= ',i)
         if i < 1:
-            return    
+            return
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
 
     def okInstall(self, result):
@@ -581,12 +576,12 @@ class MMarkPiconScreen(Screen):
                     self.download.start().addCallback(self.install).addErrback(self.showError)
                 except Exception as e:
                     print('error: ', str(e))
-                    print("Error: can't find file or read data")                         
-                
+                    print("Error: can't find file or read data")
+
             else:
                 self['info'].setText(_('Picons Not Installed ...'))
 
-    def install(self, fplug):    
+    def install(self, fplug):
         if os.path.exists('/tmp/download.zip'):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
@@ -651,7 +646,7 @@ class MMarkPiconScreen(Screen):
             else:
                 print('no cover.. error')
             return
-            
+
 class MMarkFolderScreen(Screen):
     def __init__(self, session, url, pixmaps):
         self.session = session
@@ -662,14 +657,14 @@ class MMarkFolderScreen(Screen):
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
-        self.menulist = []   
-        self.icount = 0        
+        self.menulist = []
+        self.icount = 0
         self.downloading = False
         self.timer = eTimer()
         self.timer.start(500, 1)
         self.url = url
-        self.pixmaps = pixmaps      
-        self['title'] = Label(title_plug)        
+        self.pixmaps = pixmaps
+        self['title'] = Label(title_plug)
         self['text'] = mmList([])
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
@@ -749,7 +744,7 @@ class MMarkFolderScreen(Screen):
         i = len(self.names)
         print('iiiiii= ',i)
         if i < 1:
-            return    
+            return
         idx = self['text'].getSelectionIndex()
         name = self.names[idx]
         url = self.urls[idx]
@@ -807,11 +802,11 @@ class MMarkFolderSkinZeta(Screen):
         Screen.__init__(self, session)
         self.setTitle(title_plug)
         self.list = []
-        self.menulist = []        
-        self.icount = 0        
+        self.menulist = []
+        self.icount = 0
         self.downloading = False
         self.url = url
-        self.name = 'MMark-Skins'  
+        self.name = 'MMark-Skins'
         self['text'] = mmList([])
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
@@ -901,7 +896,7 @@ class MMarkFolderSkinZeta(Screen):
         i = len(self.names)
         print('iiiiii= ',i)
         if i < 1:
-            return    
+            return
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
 
     def okInstall(self, result):
@@ -925,20 +920,20 @@ class MMarkFolderSkinZeta(Screen):
                     regexcat =  'href="https://download(.*?)"'
                     match = re.compile(regexcat,re.DOTALL).findall(myfile)
                     print("match =", match[0])
-                    
+
                     url =  'https://download' + str(match[0])
                     print("url final =", url)
 
                     # myfile = checkMyFile(url)
                     # print('myfile222:  ', myfile)
                     # # url =  'https://download' + str(myfile)
-                    
+
                     self.download = downloadWithProgress(url, dest)
                     self.download.addProgress(self.downloadProgress)
                     self.download.start().addCallback(self.install).addErrback(self.showError)
                 except Exception as e:
                     print('error: ', str(e))
-                    print("Error: can't find file or read data")  
+                    print("Error: can't find file or read data")
             else:
                 self['info'].setText(_('Picons Not Installed ...'))
 
@@ -1018,7 +1013,7 @@ class mmConfig(Screen, ConfigListScreen):
         Screen.__init__(self, session)
         self.setup_title = _("Config")
         self.onChangedEntry = []
-        self.list = []        
+        self.list = []
         self.session = session
         self.setTitle(title_plug)
         self['description'] = Label('')
@@ -1163,7 +1158,7 @@ class PiconsPreview(Screen):
         self.session = session
         self.Scale = AVSwitch().getFramebufferScale()
         self.PicLoad = ePicLoad()
-        self.previewPng = previewPng        
+        self.previewPng = previewPng
         self['pixmap'] = Pixmap()
         try:
             self.PicLoad.PictureData.get().append(self.DecodePicture)
@@ -1192,7 +1187,7 @@ def main(session, **kwargs):
             from Plugins.Extensions.mmPicons.Update import upd_done
             upd_done()
         except:
-            pass    
+            pass
         session.open(SelectPicons)
     else:
         logdata("noInternet ", 'norete')

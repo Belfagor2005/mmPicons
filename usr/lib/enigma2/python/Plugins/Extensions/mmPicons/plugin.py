@@ -1180,12 +1180,20 @@ class PiconsPreview(Screen):
     def DecodePicture(self, PicInfo=''):
         ptr = self.picload.getData()
         self['pixmap'].instance.setPixmap(ptr)
-
-def main(session, **kwargs):
+        
+def checks():
+    from . import Utils
+    Utils.checkInternet()
+    chekin = False
     if checkInternet():
+        chekin = True
+    return chekin
+    
+def main(session, **kwargs):
+    if checks():
         try:
-            from Plugins.Extensions.mmPicons.Update import upd_done
-            upd_done()
+            from . import Update 
+            Update.upd_done()
         except:
             pass
         session.open(SelectPicons)
@@ -1199,7 +1207,8 @@ def menu(menuid, **kwargs):
           main,
           'mMark Picons & Skins',
           44)]
-    return []
+    else:
+        return []
 
 def mainmenu(session, **kwargs):
     main(session, **kwargs)

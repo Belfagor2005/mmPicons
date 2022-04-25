@@ -1018,6 +1018,7 @@ class mmConfig(Screen, ConfigListScreen):
         self.setTitle(title_plug)
         self['description'] = Label('')
         self['info'] = Label(_('Config Panel Addon'))
+        self["paypal"] = Label()
         self['key_yellow'] = Button(_('Choice'))
         self['key_green'] = Button(_('Save'))
         self['key_red'] = Button(_('Back'))
@@ -1036,8 +1037,17 @@ class mmConfig(Screen, ConfigListScreen):
         self.createSetup()
         self.onLayoutFinish.append(self.layoutFinished)
 
+
+    def paypal2(self):
+        conthelp = "If you like what I do you\n"
+        conthelp += " can contribute with a coffee\n\n"
+        conthelp += "scan the qr code and donate € 1.00"
+        return conthelp
+
     def layoutFinished(self):
         self.setTitle(self.setup_title)
+        paypal = self.paypal2()
+        self["paypal"].setText(paypal)
         if not os.path.exists('/tmp/currentip'):
             os.system('wget -qO- http://ipecho.net/plain > /tmp/currentip')
         currentip1 = open('/tmp/currentip', 'r')
@@ -1183,9 +1193,8 @@ class PiconsPreview(Screen):
         
 def checks():
     from . import Utils
-    Utils.checkInternet()
     chekin = False
-    if checkInternet():
+    if Utils.checkInternet():
         chekin = True
     return chekin
     

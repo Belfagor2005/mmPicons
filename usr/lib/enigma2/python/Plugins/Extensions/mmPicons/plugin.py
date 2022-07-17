@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             22/04/2022               *
+*             10/05/2022               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -182,8 +182,8 @@ config.plugins.mmPicons = ConfigSubsection()
 config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
-desc_plug = '..:: mMark Picons & Skins V. %s ::..' % currversion
-title_plug = 'mMark Blog - www.e2skin.blogspot.com'
+title_plug = 'mMark Picons & Skins'
+desc_plug = '..:: by mMark V. %s - www.e2skin.blogspot.com ::..' % currversion
 XStreamity = False
 ico_path = plugin_path + '/logo.png'
 no_cover = plugin_path + '/no_coverArt.png'
@@ -279,13 +279,13 @@ class SelectPicons(Screen):
             self.skin = f.read()
         self.setup_title = ('Select Picons')
         Screen.__init__(self, session)
-        self.setTitle(title_plug)
+        self.setTitle(desc_plug)
         self.working = False
         self.icount = 0
         # self.selection = 'all'
         self.menulist = []
         self.list = []
-        self['title'] = Label(title_plug)
+        self['title'] = Label(desc_plug)
         self['pth'] = Label(' ')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
@@ -321,7 +321,7 @@ class SelectPicons(Screen):
     def getfreespace(self):
         fspace = freespace()
         self['space'].setText(str(fspace))
-        # logdata("freespace ", fspace)
+        logdata("freespace ", fspace)
 
     def closerm(self):
         deletetmp()
@@ -447,7 +447,7 @@ class MMarkPiconScreen(Screen):
             self.skin = f.read()
         self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
-        self.setTitle(title_plug)
+        self.setTitle(desc_plug)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -472,6 +472,7 @@ class MMarkPiconScreen(Screen):
         self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
+        self['key_green'].hide() 
         self['space'] = Label('')
         self.currentList = 'text'
         # self.getfreespace()
@@ -479,7 +480,7 @@ class MMarkPiconScreen(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(title_plug)
+        self['title'] = Label(desc_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -532,6 +533,7 @@ class MMarkPiconScreen(Screen):
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))
+            self['key_green'].show() 
             showlist(self.names, self['text'])
             self.downloading = True
         except:
@@ -655,7 +657,7 @@ class MMarkFolderScreen(Screen):
             self.skin = f.read()
         self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
-        self.setTitle(title_plug)
+        self.setTitle(desc_plug)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -664,7 +666,7 @@ class MMarkFolderScreen(Screen):
         self.timer.start(500, 1)
         self.url = url
         self.pixmaps = pixmaps
-        self['title'] = Label(title_plug)
+        self['title'] = Label(desc_plug)
         self['text'] = mmList([])
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
@@ -679,6 +681,7 @@ class MMarkFolderScreen(Screen):
         self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
+        self['key_green'].hide() 
         self['space'] = Label('')
         self.currentList = 'text'
         # self.getfreespace()
@@ -734,6 +737,7 @@ class MMarkFolderScreen(Screen):
                 self.urls.append(url)
                 self.names.append(name)
             self['info'].setText(_('Please select ...'))
+            self['key_green'].show() 
             showlist(self.names, self['text'])
             self.downloading = True
         except:
@@ -800,7 +804,7 @@ class MMarkFolderSkinZeta(Screen):
             self.skin = f.read()
         self.setup_title = ('Picons & Skins')
         Screen.__init__(self, session)
-        self.setTitle(title_plug)
+        self.setTitle(desc_plug)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -821,6 +825,7 @@ class MMarkFolderSkinZeta(Screen):
         self['key_yellow'] = Button(_('Preview'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
+        self['key_green'].hide() 
         self['space'] = Label('')
         self.currentList = 'text'
         # self.getfreespace()
@@ -830,7 +835,7 @@ class MMarkFolderSkinZeta(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(title_plug)
+        self['title'] = Label(desc_plug)
         self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
          'green': self.okRun,
          'red': self.close,
@@ -886,6 +891,7 @@ class MMarkFolderSkinZeta(Screen):
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))
+            self['key_green'].show() 
             showlist(self.names, self['text'])
             self.downloading = True
         except:
@@ -1015,7 +1021,7 @@ class mmConfig(Screen, ConfigListScreen):
         self.onChangedEntry = []
         self.list = []
         self.session = session
-        self.setTitle(title_plug)
+        self.setTitle(desc_plug)
         self['description'] = Label('')
         self['info'] = Label(_('Config Panel Addon'))
         self["paypal"] = Label()
@@ -1024,7 +1030,7 @@ class mmConfig(Screen, ConfigListScreen):
         self['key_red'] = Button(_('Back'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
-        self['title'] = Label(title_plug)
+        self['title'] = Label(desc_plug)
         self["setupActions"] = ActionMap(['OkCancelActions', 'DirectionActions', 'ColorActions', 'VirtualKeyboardActions', 'ActiveCodeActions'], {'cancel': self.extnok,
          'red': self.extnok,
          'back': self.close,
@@ -1053,6 +1059,7 @@ class mmConfig(Screen, ConfigListScreen):
         currentip1 = open('/tmp/currentip', 'r')
         currentip = currentip1.read()
         self['info'].setText(_('Config Panel Addon\nYour current IP is %s') % currentip)
+        logdata("Showpicture ", currentip)
 
     def createSetup(self):
         self.editListEntry = None
@@ -1180,6 +1187,7 @@ class PiconsPreview(Screen):
         self.onLayoutFinish.append(self.ShowPicture)
 
     def ShowPicture(self):
+        logdata("Showpicture ", 'Show')
         myicon = self.previewPng
         if isFHD():
             png = loadPic(myicon, 1920, 1080, 0, 0, 0, 1)
@@ -1190,16 +1198,19 @@ class PiconsPreview(Screen):
     def DecodePicture(self, PicInfo=''):
         ptr = self.picload.getData()
         self['pixmap'].instance.setPixmap(ptr)
-        
-def checks():
-    from . import Utils
-    chekin = False
-    if Utils.checkInternet():
-        chekin = True
-    return chekin
+
+def intCheck():
+    import socket
+    try:
+        socket.setdefaulttimeout(1)
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
+        return True
+    except:
+        return False
     
 def main(session, **kwargs):
-    if checks():
+    # from . import Utils
+    if intCheck():
         try:
             from . import Update 
             Update.upd_done()
@@ -1208,13 +1219,13 @@ def main(session, **kwargs):
         session.open(SelectPicons)
     else:
         logdata("noInternet ", 'norete')
-        session.open(MessageBox, "No Internet", MessageBox.TYPE_INFO)
+        Utils.web_info("No Internet")
 
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
-        return [('mMark Picons & Skins',
+        return [(title_plug,
           main,
-          'mMark Picons & Skins',
+          title_plug,
           44)]
     else:
         return []
@@ -1226,7 +1237,7 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not DreamOS():
         ico_path = plugin_path + '/res/pics/logo.png'
-    result = [PluginDescriptor(name=desc_plug, description=(title_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
+    result = [PluginDescriptor(name=title_plug, description=(desc_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
     return result
 
 '''======================================================'''

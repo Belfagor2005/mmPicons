@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import os, re, sys
 from twisted.web.client import downloadPage
 PY3 = sys.version_info.major >= 3
@@ -14,8 +16,10 @@ def upd_done():
     downloadPage(xfile, fdest).addCallback(upd_last)
 
 def upd_last(fplug): 
-    cmd = "tar -xvf /tmp/mmpicons.tar -C /"
-    print( "cmd A =", cmd)
-    os.system(cmd)
-    pass
+    upw= '/tmp/mmpicons.tar'
+    if os.path.isfile(upw) and os.stat(upw).st_size > 0:
+        cmd = "tar -xvf /tmp/mmpicons.tar -C /"
+        print( "cmd A =", cmd)
+        os.system(cmd)
+        pass
 

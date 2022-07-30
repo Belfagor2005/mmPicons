@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             10/05/2022               *
+*             10/07/2022               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -17,22 +17,20 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
-# from Components.HTMLComponent import HTMLComponent
-# from Components.Input import Input
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.ProgressBar import ProgressBar
-from Components.ScrollLabel import ScrollLabel
+# from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
-from Components.SelectionList import SelectionList
+# from Components.SelectionList import SelectionList
 from Components.Sources.List import List
 from Components.Sources.Progress import Progress
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Source import Source
-from Components.ServiceList import ServiceList
+# from Components.ServiceList import ServiceList
 from Components.config import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
@@ -41,22 +39,16 @@ from Screens.PluginBrowser import PluginBrowser
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import *
-from Screens.Standby import TryQuitMainloop, Standby
+from Screens.Standby import TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_PLUGINS, SCOPE_LANGUAGE
-from Tools.Directories import resolveFilename
 from os.path import exists as file_exists
 from Tools.Downloader import downloadWithProgress
 from Tools.LoadPixmap import LoadPixmap
-from enigma import *
 from enigma import ePicLoad, loadPic
-from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
-from enigma import  loadPNG, gFont
-from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
+from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
+from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer, loadPNG, gFont
 from enigma import eSize, eServiceCenter, eServiceReference, iPlayableService
-from os.path import splitext
-from os import path, listdir, remove, mkdir, access, X_OK, chmod
+from os import path, listdir, remove
 from twisted.web.client import downloadPage, getPage, error
 from xml.dom import Node, minidom
 import base64
@@ -277,7 +269,7 @@ class SelectPicons(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('Select Picons')
+        self.setup_title = ('Select zPicons')
         Screen.__init__(self, session)
         self.setTitle(desc_plug)
         self.working = False
@@ -385,7 +377,7 @@ class SelectPicons(Screen):
             for f in piconsx:
                 try:
                     print("processing file: " + f)
-                    os.remove(f)
+                    remove(f)
                 except OSError as e:
                     print("Error: %s : %s" % (f, e.strerror))
                     logdata("Error ", e.strerror)
@@ -445,7 +437,7 @@ class MMarkPiconScreen(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('Picons & Skins')
+        self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
         self.setTitle(desc_plug)
         self.list = []
@@ -557,7 +549,7 @@ class MMarkPiconScreen(Screen):
                 dest = "/tmp/download.zip"
                 print('url333: ', url)
                 if os.path.exists(dest):
-                    os.remove(dest)
+                    remove(dest)
                 try:
                     myfile = ReadUrl2(url)
                     print('response: ', myfile)
@@ -655,7 +647,7 @@ class MMarkFolderScreen(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('Picons & Skins')
+        self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
         self.setTitle(desc_plug)
         self.list = []
@@ -802,7 +794,7 @@ class MMarkFolderSkinZeta(Screen):
         skin = skin_path + 'mmall.xml'
         with open(skin, 'r') as f:
             self.skin = f.read()
-        self.setup_title = ('Picons & Skins')
+        self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
         self.setTitle(desc_plug)
         self.list = []
@@ -918,22 +910,15 @@ class MMarkFolderSkinZeta(Screen):
                 dest = "/tmp/download.zip"
                 print('url222: ', url)
                 if os.path.exists(dest):
-                    os.remove(dest)
-
+                    remove(dest)
                 try:
                     myfile = ReadUrl2(url)
                     print('response: ', myfile)
                     regexcat =  'href="https://download(.*?)"'
                     match = re.compile(regexcat,re.DOTALL).findall(myfile)
                     print("match =", match[0])
-
                     url =  'https://download' + str(match[0])
                     print("url final =", url)
-
-                    # myfile = checkMyFile(url)
-                    # print('myfile222:  ', myfile)
-                    # # url =  'https://download' + str(myfile)
-
                     self.download = downloadWithProgress(url, dest)
                     self.download.addProgress(self.downloadProgress)
                     self.download.start().addCallback(self.install).addErrback(self.showError)
@@ -1017,13 +1002,13 @@ class mmConfig(Screen, ConfigListScreen):
         self.skin = f.read()
         f.close()
         Screen.__init__(self, session)
-        self.setup_title = _("Config")
+        self.setup_title = _("zConfig")
         self.onChangedEntry = []
         self.list = []
         self.session = session
         self.setTitle(desc_plug)
         self['description'] = Label('')
-        self['info'] = Label(_('Config Panel Addon'))
+        self['info'] = Label(_('zConfig Panel Addon'))
         self["paypal"] = Label()
         self['key_yellow'] = Button(_('Choice'))
         self['key_green'] = Button(_('Save'))
@@ -1163,6 +1148,7 @@ class mmConfig(Screen, ConfigListScreen):
             self.close()
 
 class PiconsPreview(Screen):
+    from enigma import getDesktop
     x = getDesktop(0).size().width()
     y = getDesktop(0).size().height()
     skin = '<screen flags="wfNoBorder" position="0,0" size="%d,%d" title="PiconsPreview" backgroundColor="#00000000">' % (x, y)
@@ -1209,11 +1195,12 @@ def intCheck():
         return False
     
 def main(session, **kwargs):
-    # from . import Utils
     if intCheck():
         try:
-            from . import Update 
-            Update.upd_done()
+            upw= plugin_path + '/Update.py'
+            if os.path.isfile(upw):
+                from . import Update 
+                Update.upd_done()
         except:
             pass
         session.open(SelectPicons)

@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             10/07/2022               *
+*             10/08/2022               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -1197,10 +1197,11 @@ def intCheck():
 def main(session, **kwargs):
     if intCheck():
         try:
-            upw= plugin_path + '/Update.py'
-            if os.path.isfile(upw):
-                from . import Update 
-                Update.upd_done()
+            if Utils.zCheckInternet(0):
+                upw= plugin_path + '/Update.py'
+                if os.path.isfile(upw):
+                    from . import Update 
+                    Update.upd_done()
         except:
             pass
         session.open(SelectPicons)

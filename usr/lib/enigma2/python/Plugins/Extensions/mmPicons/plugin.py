@@ -160,7 +160,7 @@ def checkMyFile(url):
 
 def downloadFile(url, target):
     try:
-        response = ReadUrl2(url)
+        response = Utils.ReadUrl2(url)
         print('response: ', response)
         # response = urlopen(url, timeout=5)
         with open(target, 'w') as output:
@@ -204,7 +204,7 @@ if not os.path.exists(mmkpicon):
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
 skin_path = res_plugin_path + 'skins/hd/'
 logdata("path picons: ", str(mmkpicon))
-if isFHD():
+if Utils.isFHD():
     skin_path = res_plugin_path + 'skins/fhd/'
 
 if DreamOS():
@@ -215,7 +215,7 @@ class mmList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
 
-        if isFHD():
+        if Utils.isFHD():
             self.l.setItemHeight(50)
             textfont = int(34)
             self.l.setFont(0, gFont('Regular', textfont))
@@ -228,7 +228,7 @@ class mmList(MenuList):
 def DailyListEntry(name, idx):
     res = [name]
     pngs = ico1_path
-    if isFHD():
+    if Utils.isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos =(10, 12), size =(34, 25), png =loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(60, 0), size =(1900, 50), font =0, text=name, color = 0xa6d1fe, flags =RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
@@ -239,7 +239,7 @@ def DailyListEntry(name, idx):
 def oneListEntry(name):
     res = [name]
     pngx = ico1_path
-    if isFHD():
+    if Utils.isFHD():
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(60, 0), size=(1900, 50), font=0, text=name, color = 0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
@@ -551,7 +551,7 @@ class MMarkPiconScreen(Screen):
                 if os.path.exists(dest):
                     remove(dest)
                 try:
-                    myfile = ReadUrl2(url)
+                    myfile = Utils.ReadUrl2(url)
                     print('response: ', myfile)
                     regexcat =  'href="https://download(.*?)"'
                     match = re.compile(regexcat,re.DOTALL).findall(myfile)
@@ -912,7 +912,7 @@ class MMarkFolderSkinZeta(Screen):
                 if os.path.exists(dest):
                     remove(dest)
                 try:
-                    myfile = ReadUrl2(url)
+                    myfile = Utils.ReadUrl2(url)
                     print('response: ', myfile)
                     regexcat =  'href="https://download(.*?)"'
                     match = re.compile(regexcat,re.DOTALL).findall(myfile)
@@ -1175,7 +1175,7 @@ class PiconsPreview(Screen):
     def ShowPicture(self):
         logdata("Showpicture ", 'Show')
         myicon = self.previewPng
-        if isFHD():
+        if Utils.isFHD():
             png = loadPic(myicon, 1920, 1080, 0, 0, 0, 1)
         else:
             png = loadPic(myicon, 1280, 720, 0, 0, 0, 1)
@@ -1185,29 +1185,17 @@ class PiconsPreview(Screen):
         ptr = self.picload.getData()
         self['pixmap'].instance.setPixmap(ptr)
 
-def intCheck():
-    import socket
-    try:
-        socket.setdefaulttimeout(1)
-        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect(("8.8.8.8", 53))
-        return True
-    except:
-        return False
-    
 def main(session, **kwargs):
-    if intCheck():
-        try:
-            if Utils.zCheckInternet(0):
-                upw= plugin_path + '/Update.py'
-                if os.path.isfile(upw):
-                    from . import Update 
-                    Update.upd_done()
-        except:
-            pass
-        session.open(SelectPicons)
-    else:
+    try:
+        if Utils.zCheckInternet(1):
+            upw= plugin_path + '/Update.py'
+            if os.path.isfile(upw):
+                from . import Update 
+                Update.upd_done()
+    except:
         logdata("noInternet ", 'norete')
         Utils.web_info("No Internet")
+    session.open(SelectPicons)
 
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':

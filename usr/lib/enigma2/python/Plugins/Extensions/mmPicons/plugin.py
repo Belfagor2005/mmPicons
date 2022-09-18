@@ -71,7 +71,6 @@ else:
     from urllib2 import Request
     from urllib2 import urlopen
 
-#error import review
 try:
     from Plugins.Extensions.mmPicons.Utils import *
 except:
@@ -499,7 +498,6 @@ class MMarkPiconScreen(Screen):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ", error)
-        #self.downloading = False
 
     def _gotPageLoad(self, data):
         r = data
@@ -707,7 +705,6 @@ class MMarkFolderScreen(Screen):
         print(str(error))
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ", error)
-        #self.downloading = False
 
     def _gotPageLoad(self, data):
         r = data
@@ -947,7 +944,7 @@ class MMarkFolderSkinZeta(Screen):
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-        #self.downloading = False
+        # self.downloading = False
 
     def showError(self, error):
         print("download error =", error)
@@ -1115,7 +1112,6 @@ class mmConfig(Screen, ConfigListScreen):
         if path != None:
             if self.setting == 'mmkpicon':
                 config.plugins.mmPicons.mmkpicon.setValue(path)
-        # return
 
     def KeyText(self):
         sel = self['config'].getCurrent()
@@ -1126,7 +1122,6 @@ class mmConfig(Screen, ConfigListScreen):
         if callback != None and len(callback):
             self['config'].getCurrent()[1].value = callback
             self['config'].invalidate(self['config'].getCurrent())
-        # return
 
     def cancelConfirm(self, result):
         if not result:

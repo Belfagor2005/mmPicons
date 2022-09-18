@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import os, re, sys
 from twisted.web.client import downloadPage
 PY3 = sys.version_info.major >= 3
@@ -7,14 +8,12 @@ print("Update.py")
 def upd_done():        
     print( "In upd_done")
     xfile ='http://patbuweb.com/mmpicons/mmpicons.tar'
-    print('xfile: ', xfile)
     if PY3:
         xfile = b"http://patbuweb.com/mmpicons/mmpicons.tar"
         print("Update.py in PY3")
     import requests
     response = requests.head(xfile)
     if response.status_code == 200:
-        # print(response.headers['content-length'])
         fdest = "/tmp/mmpicons.tar"
         print("Code 200 upd_done xfile =", xfile)
         downloadPage(xfile, fdest).addCallback(upd_last)

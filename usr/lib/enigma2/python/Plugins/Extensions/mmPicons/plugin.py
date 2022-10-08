@@ -6,28 +6,28 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             10/08/2022               *
+*             10/10/2022               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
 # Info https://e2skin.blogspot.com/
 from __future__ import print_function
 from . import _
-from Components.ActionMap import ActionMap, NumberActionMap
 from Components.AVSwitch import AVSwitch
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigDirectory
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.ProgressBar import ProgressBar
-from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Sources.Progress import Progress
-from Components.Sources.StaticText import StaticText
 from Components.Sources.Source import Source
+from Components.Sources.StaticText import StaticText
+from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigDirectory
 from Plugins.Plugin import PluginDescriptor
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
@@ -36,10 +36,9 @@ from Screens.Standby import TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Downloader import downloadWithProgress
 from Tools.LoadPixmap import LoadPixmap
-from enigma import ePicLoad, loadPic
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
-from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer, loadPNG, gFont
-from os import path, remove
+from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
+from enigma import ePicLoad, loadPic, loadPNG, gFont
 from twisted.web.client import getPage
 import base64
 import glob
@@ -126,7 +125,6 @@ def checkMyFile(url):
     try:
         dest = "/tmp/download.zip"
         req = Request(url)
-        # req.add_header('User-Agent', RequestAgent())
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
         req.add_header('Referer', 'https://www.mediafire.com')
         req.add_header('X-Requested-With', 'XMLHttpRequest')
@@ -139,7 +137,6 @@ def checkMyFile(url):
         regexcat = 'href="https://download(.*?)"'
         match = re.compile(regexcat, re.DOTALL).findall(r2)
         print("match =", match[0])
-        # if match:
         myfile = match[0]
         logdata("Myfile ", myfile)
         return myfile
@@ -158,7 +155,6 @@ def downloadFile(url, target):
     try:
         response = Utils.ReadUrl2(url)
         print('response: ', response)
-        # response = urlopen(url, timeout=5)
         with open(target, 'w') as output:
             output.write(response)  # .read())
         return True
@@ -276,7 +272,6 @@ class SelectPicons(Screen):
         self.setTitle(desc_plug)
         self.working = False
         self.icount = 0
-        # self.selection = 'all'
         self.menulist = []
         self.list = []
         self['title'] = Label(desc_plug)
@@ -379,7 +374,7 @@ class SelectPicons(Screen):
             for f in piconsx:
                 try:
                     print("processing file: " + f)
-                    remove(f)
+                    os.remove(f)
                 except OSError as e:
                     print("Error: %s : %s" % (f, e.strerror))
                     logdata("Error ", e.strerror)
@@ -470,7 +465,6 @@ class MMarkPiconScreen(Screen):
         self['key_green'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
-        # self.getfreespace()
         if Utils.DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
@@ -550,7 +544,7 @@ class MMarkPiconScreen(Screen):
                 dest = "/tmp/download.zip"
                 print('url333: ', url)
                 if os.path.exists(dest):
-                    remove(dest)
+                    os.remove(dest)
                 try:
                     myfile = Utils.ReadUrl2(url)
                     print('response: ', myfile)
@@ -561,11 +555,9 @@ class MMarkPiconScreen(Screen):
                     # print('myfile222:  ', myfile)
                     url = 'https://download' + str(match[0])
                     print("url final =", url)
-
                     # myfile = checkMyFile(url)
                     # print('myfile222:  ', myfile)
                     # # url =  'https://download' + str(myfile)
-
                     self.download = downloadWithProgress(url, dest)
                     self.download.addProgress(self.downloadProgress)
                     self.download.start().addCallback(self.install).addErrback(self.showError)
@@ -588,7 +580,6 @@ class MMarkPiconScreen(Screen):
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-        # self.downloading = False
 
     def downloadProgress(self, recvbytes, totalbytes):
         self["progress"].show()
@@ -677,7 +668,6 @@ class MMarkFolderScreen(Screen):
         self['key_green'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
-        # self.getfreespace()
         if Utils.DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
@@ -819,7 +809,6 @@ class MMarkFolderSkinZeta(Screen):
         self['key_green'].hide()
         self['space'] = Label('')
         self.currentList = 'text'
-        # self.getfreespace()
         self.timer = eTimer()
         self.timer.start(500, 1)
         if Utils.DreamOS():
@@ -842,10 +831,8 @@ class MMarkFolderSkinZeta(Screen):
         self.session.open(PiconsPreview, pixmaps)
 
     def GetPicturePath(self):
-        # ActiveZoom = False
         realpng = pixmaps
-        if path.isfile(realpng):
-            # ActiveZoom = True
+        if os.path.isfile(realpng):
             print(realpng)
         return realpng
 
@@ -907,7 +894,7 @@ class MMarkFolderSkinZeta(Screen):
                 dest = "/tmp/download.zip"
                 print('url222: ', url)
                 if os.path.exists(dest):
-                    remove(dest)
+                    os.remove(dest)
                 try:
                     myfile = Utils.ReadUrl2(url)
                     print('response: ', myfile)
@@ -944,7 +931,6 @@ class MMarkFolderSkinZeta(Screen):
         self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-        # self.downloading = False
 
     def showError(self):
         self.close()

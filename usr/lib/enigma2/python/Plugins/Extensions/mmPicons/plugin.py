@@ -19,15 +19,14 @@ from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText
+from Components.MultiContent import MultiContentEntryPixmapAlphaTest
 from Components.Pixmap import Pixmap
-from Components.PluginComponent import plugins
 from Components.ProgressBar import ProgressBar
-from Components.Sources.List import List
 from Components.Sources.Progress import Progress
-from Components.Sources.Source import Source
 from Components.Sources.StaticText import StaticText
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigDirectory
+from Components.config import config, getConfigListEntry
+from Components.config import ConfigSubsection, ConfigDirectory
 from Plugins.Plugin import PluginDescriptor
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
@@ -37,7 +36,8 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Downloader import downloadWithProgress
 from Tools.LoadPixmap import LoadPixmap
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
-from enigma import eListbox, eTimer, eListboxPythonMultiContent, eConsoleAppContainer
+from enigma import eTimer
+from enigma import eListboxPythonMultiContent
 from enigma import ePicLoad, loadPic, loadPNG, gFont
 from twisted.web.client import getPage
 import base64

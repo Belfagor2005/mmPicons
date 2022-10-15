@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os
 import sys
 PY3 = sys.version_info.major >= 3
 print("Update.py")
@@ -30,7 +29,8 @@ def upd_last(fplug):
     import os
     import time
     time.sleep(5)
-    if os.path.isfile('/tmp/mmpicons.tar') and os.stat('/tmp/mmpicons.tar').st_size > 10000:
+    fdest = "/tmp/mmpicons.tar"
+    if os.path.isfile(fdest) and os.stat(fdest).st_size > 10000:
         cmd = "tar -xvf /tmp/mmpicons.tar -C /"
         print("cmd A =", cmd)
         os.system(cmd)

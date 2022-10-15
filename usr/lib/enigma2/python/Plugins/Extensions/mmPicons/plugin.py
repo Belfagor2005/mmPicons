@@ -123,7 +123,6 @@ if sslverify:
 def checkMyFile(url):
     return []
     try:
-        dest = "/tmp/download.zip"
         req = Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
         req.add_header('Referer', 'https://www.mediafire.com')
@@ -227,7 +226,7 @@ def DailyListEntry(name, idx):
         res.append(MultiContentEntryText(pos=(80, 0), size=(1900, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
+        res.append(MultiContentEntryText(pos=(80, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -239,7 +238,7 @@ def oneListEntry(name):
         res.append(MultiContentEntryText(pos=(80, 0), size=(1900, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT))
+        res.append(MultiContentEntryText(pos=(80, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -290,18 +289,21 @@ class SelectPicons(Screen):
         self['progresstext'].text = ''
         self['text'] = mmList([])
         self.currentList = 'text'
-        self['actions'] = NumberActionMap(['SetupActions', 'DirectionActions', 'ColorActions', "MenuActions"], {'ok': self.okRun,
-                                                                                                                'green': self.remove,
-                                                                                                                'back': self.closerm,
-                                                                                                                'red': self.closerm,
-                                                                                                                'yellow': self.zoom,
-                                                                                                                'blue': self.msgtqm,
-                                                                                                                'up': self.up,
-                                                                                                                'down': self.down,
-                                                                                                                'left': self.left,
-                                                                                                                'right': self.right,
-                                                                                                                'menu': self.goConfig,
-                                                                                                                'cancel': self.closerm}, -1)
+        self['actions'] = NumberActionMap(['SetupActions',
+                                           'DirectionActions',
+                                           'ColorActions', 
+                                           "MenuActions"], {'ok': self.okRun,
+                                                            'green': self.remove,
+                                                            'back': self.closerm,
+                                                            'red': self.closerm,
+                                                            'yellow': self.zoom,
+                                                            'blue': self.msgtqm,
+                                                            'up': self.up,
+                                                            'down': self.down,
+                                                            'left': self.left,
+                                                            'right': self.right,
+                                                            'menu': self.goConfig,
+                                                            'cancel': self.closerm}, -1)
         self.onLayoutFinish.append(self.updateMenuList)
 
     def zoom(self):
@@ -470,15 +472,17 @@ class MMarkPiconScreen(Screen):
         else:
             self.timer.callback.append(self.downxmlpage)
         self['title'] = Label(desc_plug)
-        self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
-                                                                                           'green': self.okRun,
-                                                                                           'red': self.close,
-                                                                                           'yellow': self.zoom,
-                                                                                           'up': self.up,
-                                                                                           'down': self.down,
-                                                                                           'left': self.left,
-                                                                                           'right': self.right,
-                                                                                           'cancel': self.close}, -2)
+        self['actions'] = ActionMap(['SetupActions',
+                                     'DirectionActions',
+                                     'ColorActions'], {'ok': self.okRun,
+                                                       'green': self.okRun,
+                                                       'red': self.close,
+                                                       'yellow': self.zoom,
+                                                       'up': self.up,
+                                                       'down': self.down,
+                                                       'left': self.left,
+                                                       'right': self.right,
+                                                       'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
@@ -672,15 +676,17 @@ class MMarkFolderScreen(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
-                                                                                           'green': self.okRun,
-                                                                                           'red': self.close,
-                                                                                           "yellow": self.zoom,
-                                                                                           'up': self.up,
-                                                                                           'down': self.down,
-                                                                                           'left': self.left,
-                                                                                           'right': self.right,
-                                                                                           'cancel': self.close}, -2)
+        self['actions'] = ActionMap(['SetupActions',
+                                     'DirectionActions',
+                                     'ColorActions'], {'ok': self.okRun,
+                                                       'green': self.okRun,
+                                                       'red': self.close,
+                                                       "yellow": self.zoom,
+                                                       'up': self.up,
+                                                       'down': self.down,
+                                                       'left': self.left,
+                                                       'right': self.right,
+                                                       'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
@@ -816,15 +822,17 @@ class MMarkFolderSkinZeta(Screen):
         else:
             self.timer.callback.append(self.downxmlpage)
         self['title'] = Label(desc_plug)
-        self['actions'] = ActionMap(['SetupActions', 'DirectionActions', 'ColorActions'], {'ok': self.okRun,
-                                                                                           'green': self.okRun,
-                                                                                           'red': self.close,
-                                                                                           "yellow": self.zoom,
-                                                                                           'up': self.up,
-                                                                                           'down': self.down,
-                                                                                           'left': self.left,
-                                                                                           'right': self.right,
-                                                                                           'cancel': self.close}, -2)
+        self['actions'] = ActionMap(['SetupActions',
+                                     'DirectionActions',
+                                     'ColorActions'], {'ok': self.okRun,
+                                                       'green': self.okRun,
+                                                       'red': self.close,
+                                                       "yellow": self.zoom,
+                                                       'up': self.up,
+                                                       'down': self.down,
+                                                       'left': self.left,
+                                                       'right': self.right,
+                                                       'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
@@ -998,14 +1006,18 @@ class mmConfig(Screen, ConfigListScreen):
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
         self['title'] = Label(desc_plug)
-        self["setupActions"] = ActionMap(['OkCancelActions', 'DirectionActions', 'ColorActions', 'VirtualKeyboardActions', 'ActiveCodeActions'], {'cancel': self.extnok,
-                                                                                                                                                  'red': self.extnok,
-                                                                                                                                                  'back': self.close,
-                                                                                                                                                  'left': self.keyLeft,
-                                                                                                                                                  'right': self.keyRight,
-                                                                                                                                                  'yellow': self.Ok_edit,
-                                                                                                                                                  'ok': self.Ok_edit,
-                                                                                                                                                  'green': self.msgok}, -1)
+        self["setupActions"] = ActionMap(['OkCancelActions',
+                                          'DirectionActions',
+                                          'ColorActions',
+                                          'VirtualKeyboardActions',
+                                          'ActiveCodeActions'], {'cancel': self.extnok,
+                                                                  'red': self.extnok,
+                                                                  'back': self.close,
+                                                                  'left': self.keyLeft,
+                                                                  'right': self.keyRight,
+                                                                  'yellow': self.Ok_edit,
+                                                                  'ok': self.Ok_edit,
+                                                                  'green': self.msgok}, -1)
         ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
         self.onLayoutFinish.append(self.layoutFinished)
@@ -1147,9 +1159,10 @@ class PiconsPreview(Screen):
             self.PicLoad.PictureData.get().append(self.DecodePicture)
         except:
             self.PicLoad_conn = self.PicLoad.PictureData.connect(self.DecodePicture)
-        self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'ok': self.close,
-                                                                          'cancel': self.close,
-                                                                          'blue': self.close}, -1)
+        self['actions'] = ActionMap(['OkCancelActions',
+                                     'ColorActions'], {'ok': self.close,
+                                                       'cancel': self.close,
+                                                       'blue': self.close}, -1)
         self.onLayoutFinish.append(self.ShowPicture)
 
     def ShowPicture(self):

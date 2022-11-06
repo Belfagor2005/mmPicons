@@ -167,7 +167,7 @@ config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
 title_plug = 'mMark Picons & Skins'
-desc_plug = '..:: by mMark V. %s - www.e2skin.blogspot.com ::..' % currversion
+desc_plugin = '..:: by mMark V. %s - www.e2skin.blogspot.com ::..' % currversion
 XStreamity = False
 ico_path = plugin_path + '/logo.png'
 no_cover = plugin_path + '/no_coverArt.png'
@@ -186,7 +186,7 @@ ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5w
 ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 ecskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 openskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT0wd3o0M3l2OG5zeDc5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-
+_firstStartmmp = True
 
 if mmkpicon.endswith('/'):
     mmkpicon = mmkpicon[:-1]
@@ -268,12 +268,12 @@ class SelectPicons(Screen):
             self.skin = f.read()
         self.setup_title = ('Select zPicons')
         Screen.__init__(self, session)
-        self.setTitle(desc_plug)
+        self.setTitle(desc_plugin)
         self.working = False
         self.icount = 0
         self.menulist = []
         self.list = []
-        self['title'] = Label(desc_plug)
+        self['title'] = Label(desc_plugin)
         self['pth'] = Label(' ')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
@@ -439,7 +439,7 @@ class MMarkPiconScreen(Screen):
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
-        self.setTitle(desc_plug)
+        self.setTitle(desc_plugin)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -471,7 +471,7 @@ class MMarkPiconScreen(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(desc_plug)
+        self['title'] = Label(desc_plugin)
         self['actions'] = ActionMap(['SetupActions',
                                      'DirectionActions',
                                      'ColorActions'], {'ok': self.okRun,
@@ -645,7 +645,7 @@ class MMarkFolderScreen(Screen):
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
-        self.setTitle(desc_plug)
+        self.setTitle(desc_plugin)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -654,7 +654,7 @@ class MMarkFolderScreen(Screen):
         self.timer.start(500, 1)
         self.url = url
         self.pixmaps = pixmaps
-        self['title'] = Label(desc_plug)
+        self['title'] = Label(desc_plugin)
         self['text'] = mmList([])
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
@@ -791,7 +791,7 @@ class MMarkFolderSkinZeta(Screen):
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
-        self.setTitle(desc_plug)
+        self.setTitle(desc_plugin)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -821,7 +821,7 @@ class MMarkFolderSkinZeta(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['title'] = Label(desc_plug)
+        self['title'] = Label(desc_plugin)
         self['actions'] = ActionMap(['SetupActions',
                                      'DirectionActions',
                                      'ColorActions'], {'ok': self.okRun,
@@ -996,7 +996,7 @@ class mmConfig(Screen, ConfigListScreen):
         self.onChangedEntry = []
         self.list = []
         self.session = session
-        self.setTitle(desc_plug)
+        self.setTitle(desc_plugin)
         self['description'] = Label('')
         self['info'] = Label(_('zConfig Panel Addon'))
         self["paypal"] = Label()
@@ -1005,7 +1005,7 @@ class mmConfig(Screen, ConfigListScreen):
         self['key_red'] = Button(_('Back'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
-        self['title'] = Label(desc_plug)
+        self['title'] = Label(desc_plugin)
         self["setupActions"] = ActionMap(['OkCancelActions',
                                           'DirectionActions',
                                           'ColorActions',
@@ -1179,17 +1179,46 @@ class PiconsPreview(Screen):
         self['pixmap'].instance.setPixmap(ptr)
 
 
+class AutoStartTimermmp:
+
+    def __init__(self, session):
+        self.session = session
+        global _firstStartmmp
+        print("*** running AutoStartTimermmp ***")
+        if _firstStartmmp:
+            self.runUpdate()
+
+    def runUpdate(self):
+        print("*** running update ***")
+        try:
+            from . import Update
+            Update.upd_done()
+            _firstStartmmp = False
+        except Exception as e:
+            print('error Fxy', str(e))
+
+def autostart(reason, session=None, **kwargs):
+    print("*** running autostart ***")
+    global autoStartTimermmp
+    global _firstStartmmp
+    if reason == 0:
+        if session is not None:
+            _firstStartmmp = True
+            autoStartTimermmp = AutoStartTimermmp(session)
+    return
+
+
 def main(session, **kwargs):
     try:
-        if Utils.zCheckInternet(1):
-            upw = plugin_path + '/Update.py'
-            if os.path.isfile(upw):
-                from . import Update
-                Update.upd_done()
+        # if Utils.zCheckInternet(1):
+            # upw = plugin_path + '/Update.py'
+            # if os.path.isfile(upw):
+                # from . import Update
+                # Update.upd_done()
+        session.open(SelectPicons)
     except:
         logdata("noInternet ", 'norete')
         Utils.web_info("No Internet")
-    session.open(SelectPicons)
 
 
 def menu(menuid, **kwargs):
@@ -1207,5 +1236,7 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not Utils.DreamOS():
         ico_path = plugin_path + '/res/pics/logo.png'
-    result = [PluginDescriptor(name=title_plug, description=(desc_plug), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
+    # result = [PluginDescriptor(name=title_plug, description=(desc_plugin), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
+    result = [PluginDescriptor(name=title_plug, description=desc_plugin, where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=autostart),
+              PluginDescriptor(name=title_plug, description=desc_plugin, where=PluginDescriptor.WHERE_PLUGINMENU, icon=ico_path, fnc=main)]  
     return result

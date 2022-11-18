@@ -291,7 +291,7 @@ class SelectPicons(Screen):
         self.currentList = 'text'
         self['actions'] = NumberActionMap(['SetupActions',
                                            'DirectionActions',
-                                           'ColorActions', 
+                                           'ColorActions',
                                            "MenuActions"], {'ok': self.okRun,
                                                             'green': self.remove,
                                                             'back': self.closerm,
@@ -1011,13 +1011,13 @@ class mmConfig(Screen, ConfigListScreen):
                                           'ColorActions',
                                           'VirtualKeyboardActions',
                                           'ActiveCodeActions'], {'cancel': self.extnok,
-                                                                  'red': self.extnok,
-                                                                  'back': self.close,
-                                                                  'left': self.keyLeft,
-                                                                  'right': self.keyRight,
-                                                                  'yellow': self.Ok_edit,
-                                                                  'ok': self.Ok_edit,
-                                                                  'green': self.msgok}, -1)
+                                                                 'red': self.extnok,
+                                                                 'back': self.close,
+                                                                 'left': self.keyLeft,
+                                                                 'right': self.keyRight,
+                                                                 'yellow': self.Ok_edit,
+                                                                 'ok': self.Ok_edit,
+                                                                 'green': self.msgok}, -1)
         ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
         self.onLayoutFinish.append(self.layoutFinished)
@@ -1197,6 +1197,7 @@ class AutoStartTimermmp:
         except Exception as e:
             print('error Fxy', str(e))
 
+
 def autostart(reason, session=None, **kwargs):
     print("*** running autostart ***")
     global autoStartTimermmp
@@ -1210,11 +1211,6 @@ def autostart(reason, session=None, **kwargs):
 
 def main(session, **kwargs):
     try:
-        # if Utils.zCheckInternet(1):
-            # upw = plugin_path + '/Update.py'
-            # if os.path.isfile(upw):
-                # from . import Update
-                # Update.upd_done()
         session.open(SelectPicons)
     except:
         logdata("noInternet ", 'norete')
@@ -1236,7 +1232,6 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not Utils.DreamOS():
         ico_path = plugin_path + '/res/pics/logo.png'
-    # result = [PluginDescriptor(name=title_plug, description=(desc_plugin), where=[PluginDescriptor.WHERE_PLUGINMENU], icon=ico_path, fnc=main)]
     result = [PluginDescriptor(name=title_plug, description=desc_plugin, where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=autostart),
-              PluginDescriptor(name=title_plug, description=desc_plugin, where=PluginDescriptor.WHERE_PLUGINMENU, icon=ico_path, fnc=main)]  
+              PluginDescriptor(name=title_plug, description=desc_plugin, where=PluginDescriptor.WHERE_PLUGINMENU, icon=ico_path, fnc=main)]
     return result

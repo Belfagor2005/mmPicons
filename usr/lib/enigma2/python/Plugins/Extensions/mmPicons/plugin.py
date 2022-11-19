@@ -472,17 +472,17 @@ class MMarkPiconScreen(Screen):
         else:
             self.timer.callback.append(self.downxmlpage)
         self['title'] = Label(desc_plugin)
-        self['actions'] = ActionMap(['SetupActions',
-                                     'DirectionActions',
-                                     'ColorActions'], {'ok': self.okRun,
-                                                       'green': self.okRun,
-                                                       'red': self.close,
-                                                       'yellow': self.zoom,
-                                                       'up': self.up,
-                                                       'down': self.down,
-                                                       'left': self.left,
-                                                       'right': self.right,
-                                                       'cancel': self.close}, -2)
+        self['actions'] = ActionMap(['OkCancelActions',
+                                     'ColorActions',
+                                     'DirectionActions'], {'ok': self.okRun,
+                                                           'green': self.okRun,
+                                                           'red': self.close,
+                                                           'yellow': self.zoom,
+                                                           'up': self.up,
+                                                           'down': self.down,
+                                                           'left': self.left,
+                                                           'right': self.right,
+                                                           'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
@@ -676,17 +676,17 @@ class MMarkFolderScreen(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
-        self['actions'] = ActionMap(['SetupActions',
-                                     'DirectionActions',
-                                     'ColorActions'], {'ok': self.okRun,
-                                                       'green': self.okRun,
-                                                       'red': self.close,
-                                                       "yellow": self.zoom,
-                                                       'up': self.up,
-                                                       'down': self.down,
-                                                       'left': self.left,
-                                                       'right': self.right,
-                                                       'cancel': self.close}, -2)
+        self['actions'] = ActionMap(['OkCancelActions',
+                                     'ColorActions',
+                                     'DirectionActions'],{'ok': self.okRun,
+                                                          'green': self.okRun,
+                                                          'red': self.close,
+                                                          "yellow": self.zoom,
+                                                          'up': self.up,
+                                                          'down': self.down,
+                                                          'left': self.left,
+                                                          'right': self.right,
+                                                          'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
@@ -822,17 +822,17 @@ class MMarkFolderSkinZeta(Screen):
         else:
             self.timer.callback.append(self.downxmlpage)
         self['title'] = Label(desc_plugin)
-        self['actions'] = ActionMap(['SetupActions',
-                                     'DirectionActions',
-                                     'ColorActions'], {'ok': self.okRun,
-                                                       'green': self.okRun,
-                                                       'red': self.close,
-                                                       "yellow": self.zoom,
-                                                       'up': self.up,
-                                                       'down': self.down,
-                                                       'left': self.left,
-                                                       'right': self.right,
-                                                       'cancel': self.close}, -2)
+        self['actions'] = ActionMap(['OkCancelActions',
+                                     'ColorActions',
+                                     'DirectionActions'], {'ok': self.okRun,
+                                                           'green': self.okRun,
+                                                           'red': self.close,
+                                                           "yellow": self.zoom,
+                                                           'up': self.up,
+                                                           'down': self.down,
+                                                           'left': self.left,
+                                                           'right': self.right,
+                                                           'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):

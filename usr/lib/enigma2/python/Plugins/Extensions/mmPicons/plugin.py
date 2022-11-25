@@ -292,6 +292,7 @@ class SelectPicons(Screen):
         self['actions'] = NumberActionMap(['SetupActions',
                                            'DirectionActions',
                                            'ColorActions',
+                                           'ButtonSetupActions',
                                            "MenuActions"], {'ok': self.okRun,
                                                             'green': self.remove,
                                                             'back': self.closerm,
@@ -474,6 +475,7 @@ class MMarkPiconScreen(Screen):
         self['title'] = Label(desc_plugin)
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
+                                     'ButtonSetupActions',
                                      'DirectionActions'], {'ok': self.okRun,
                                                            'green': self.okRun,
                                                            'red': self.close,
@@ -678,6 +680,7 @@ class MMarkFolderScreen(Screen):
             self.timer.callback.append(self.downxmlpage)
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
+                                     'ButtonSetupActions',
                                      'DirectionActions'],{'ok': self.okRun,
                                                           'green': self.okRun,
                                                           'red': self.close,
@@ -824,6 +827,7 @@ class MMarkFolderSkinZeta(Screen):
         self['title'] = Label(desc_plugin)
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
+                                     'ButtonSetupActions',
                                      'DirectionActions'], {'ok': self.okRun,
                                                            'green': self.okRun,
                                                            'red': self.close,
@@ -1009,6 +1013,7 @@ class mmConfig(Screen, ConfigListScreen):
         self["setupActions"] = ActionMap(['OkCancelActions',
                                           'DirectionActions',
                                           'ColorActions',
+                                          'ButtonSetupActions',
                                           'VirtualKeyboardActions',
                                           'ActiveCodeActions'], {'cancel': self.extnok,
                                                                  'red': self.extnok,

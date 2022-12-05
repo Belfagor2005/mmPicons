@@ -53,15 +53,20 @@ global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
 PY3 = sys.version_info.major >= 3
 print('Py3: ', PY3)
 
-if PY3:
-    from urllib.request import urlopen
-    from urllib.request import Request
-    from urllib.error import URLError
-else:
-    from urllib2 import Request
-    from urllib2 import urlopen
+try:
     from urllib2 import URLError
+except:
+    from urllib.request import URLError
 
+try:
+    from urllib2 import urlopen
+except:
+    from urllib.request import urlopen
+
+try:
+    from urllib2 import Request
+except:
+    from urllib.request import Request
 
 def trace_error():
     import traceback
@@ -150,13 +155,35 @@ def checkMyFile(url):
         return ''
 
 
+# def downloadFile(url, target):
+    # try:
+        # response = Utils.ReadUrl2(url)
+        # print('response: ', response)
+        # with open(target, 'w') as output:
+            # output.write(response)  # .read())
+        # return True
+    # except Exception as e:
+        # print("downloadFile error ", str(e))
+        # return False
+
 def downloadFile(url, target):
     try:
-        response = Utils.ReadUrl2(url)
-        print('response: ', response)
-        with open(target, 'w') as output:
-            output.write(response)  # .read())
-        return True
+        try:
+            from urllib2 import Request, urlopen
+        except:
+            from urllib.request import urlopen, Request
+        agents = {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)'}
+        request = Request(url, headers=agents)
+        if six.PY2:
+            response = urlopen(request, timeout=10).read()
+            with open(target, 'w') as output:
+                output.write(response)  # .read())
+            return True
+        else:
+            response = urlopen(request, timeout=10).read().decode('utf-8')
+            with open(target, 'w') as output:
+                output.write(response)  # .read())
+            return True        
     except Exception as e:
         print("downloadFile error ", str(e))
         return False
@@ -209,7 +236,7 @@ class mmList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         if Utils.isFHD():
-            self.l.setItemHeight(50)
+            self.l.setItemHeight(60)
             textfont = int(34)
             self.l.setFont(0, gFont('Regular', textfont))
         else:
@@ -222,7 +249,7 @@ def DailyListEntry(name, idx):
     res = [name]
     pngs = ico1_path
     if Utils.isFHD():
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngs)))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(50, 50), png=loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(80, 0), size=(1900, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngs)))
@@ -234,7 +261,7 @@ def oneListEntry(name):
     res = [name]
     pngx = ico1_path
     if Utils.isFHD():
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(50, 50), png=loadPNG(pngx)))
         res.append(MultiContentEntryText(pos=(80, 0), size=(1900, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))

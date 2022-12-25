@@ -236,11 +236,11 @@ class mmList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         if Utils.isFHD():
-            self.l.setItemHeight(60)
+            self.l.setItemHeight(90)
             textfont = int(34)
             self.l.setFont(0, gFont('Regular', textfont))
         else:
-            self.l.setItemHeight(50)
+            self.l.setItemHeight(70)
             textfont = int(24)
             self.l.setFont(0, gFont('Regular', textfont))
 
@@ -252,19 +252,7 @@ def DailyListEntry(name, idx):
         res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(50, 50), png=loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(80, 0), size=(1900, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-    return res
-
-
-def oneListEntry(name):
-    res = [name]
-    pngx = ico1_path
-    if Utils.isFHD():
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(50, 50), png=loadPNG(pngx)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(1900, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-    else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(34, 25), png=loadPNG(pngx)))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(50, 50), png=loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(80, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
@@ -274,7 +262,7 @@ def showlist(data, list):
     plist = []
     for line in data:
         name = data[icount]
-        plist.append(oneListEntry(name))
+        plist.append(DailyListEntry(name, icount))
         icount = icount + 1
         list.setList(plist)
 

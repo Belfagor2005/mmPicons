@@ -157,7 +157,7 @@ def checkMyFile(url):
 
 # def downloadFile(url, target):
     # try:
-        # response = Utils.ReadUrl2(url)
+        # response = Utils.ReadUrl(url)
         # print('response: ', response)
         # with open(target, 'w') as output:
             # output.write(response)  # .read())
@@ -240,7 +240,7 @@ class mmList(MenuList):
             textfont = int(34)
             self.l.setFont(0, gFont('Regular', textfont))
         else:
-            self.l.setItemHeight(70)
+            self.l.setItemHeight(80)
             textfont = int(24)
             self.l.setFont(0, gFont('Regular', textfont))
 
@@ -249,11 +249,11 @@ def DailyListEntry(name, idx):
     res = [name]
     pngs = ico1_path
     if Utils.isFHD():
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(50, 50), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(1900, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(80, 80), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(100, 0), size=(1900, 80), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(50, 50), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(80, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(80, 80), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(1000, 0), size=(1000, 80), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -567,7 +567,7 @@ class MMarkPiconScreen(Screen):
                 if os.path.exists(dest):
                     os.remove(dest)
                 try:
-                    myfile = Utils.ReadUrl2(url)
+                    myfile = Utils.ReadUrl(url)
                     print('response: ', myfile)
                     regexcat = 'href="https://download(.*?)"'
                     match = re.compile(regexcat, re.DOTALL).findall(myfile)
@@ -668,7 +668,6 @@ class MMarkFolderScreen(Screen):
         self.icount = 0
         self.downloading = False
         self.timer = eTimer()
-        self.timer.start(500, 1)
         self.url = url
         self.pixmaps = pixmaps
         self['title'] = Label(desc_plugin)
@@ -693,6 +692,7 @@ class MMarkFolderScreen(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
+        self.timer.start(500, 1)
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
                                      'ButtonSetupActions',
@@ -834,11 +834,11 @@ class MMarkFolderSkinZeta(Screen):
         self['space'] = Label('')
         self.currentList = 'text'
         self.timer = eTimer()
-        self.timer.start(500, 1)
         if Utils.DreamOS():
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
+        self.timer.start(500, 1)
         self['title'] = Label(desc_plugin)
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
@@ -887,9 +887,17 @@ class MMarkFolderSkinZeta(Screen):
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
             for name, data, download, url in match:
-                if 'zip' in url:
+                if '.jpg' in str(url):
+                    continue
+                if '.sh' in str(url):
+                    continue
+                if '.png' in str(url):
+                    continue                
+                if '.zip' or '.ipk' or '.deb' in str(url):
                     url = url.replace('\\', '')
-                    name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
+                    name = name.replace('enigma2-plugin-skins-', '')
+                    name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '')
+                    name = name.replace('.zip', '').replace('.ipk', '').replace('.deb', '')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -923,12 +931,16 @@ class MMarkFolderSkinZeta(Screen):
                 if os.path.exists(dest):
                     os.remove(dest)
                 try:
-                    myfile = Utils.ReadUrl2(url)
+                    myfile = Utils.ReadUrl(url)
                     print('response: ', myfile)
                     regexcat = 'href="https://download(.*?)"'
                     match = re.compile(regexcat, re.DOTALL).findall(myfile)
                     print("match =", match[0])
                     url = 'https://download' + str(match[0])
+                    if '.deb' in str(url):
+                        dest = "/tmp/download.deb"
+                    if '.ipk' in str(url):
+                        dest = "/tmp/download.ipk"
                     print("url final =", url)
                     self.download = downloadWithProgress(url, dest)
                     self.download.addProgress(self.downloadProgress)
@@ -950,7 +962,25 @@ class MMarkFolderSkinZeta(Screen):
                 os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d /"
-            logdata("install4 ", myCmd)
+            logdata("install1 ", myCmd)
+            subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+            self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
+       
+        elif os.path.exists('/tmp/download.deb'):
+            if os.path.exists('/etc/enigma2/skin_user.xml'):
+                os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
+            self['info'].setText(_('Install ...'))
+            myCmd = 'apt-get install --reinstall /tmp/download.deb -y'
+            if Utils.DreamOS():
+                logdata("install2 ", myCmd)
+                subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
+                self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
+        elif os.path.exists('/tmp/download.ipk'):
+            if os.path.exists('/etc/enigma2/skin_user.xml'):
+                os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
+            self['info'].setText(_('Install ...'))
+            myCmd = 'opkg install --force-reinstall /tmp/download.ipk > /dev/null'
+            logdata("install3 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
             self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))

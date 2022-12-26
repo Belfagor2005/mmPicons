@@ -14,7 +14,7 @@
 	<widget name="key_green" position="565,1006" size="300,40" font="Regular;30" halign="left" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1"/>
 	<widget name="key_yellow" position="866,1006" size="300,40" font="Regular;30" halign="left" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1"/>
 	<widget name="key_blue" position="1170,1006" size="300,40" font="Regular;30" halign="left" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1"/>
-	<widget name="text" position="230,192" scrollbarMode="showOnDemand" size="962,600" itemHeight="50" zPosition="4" backgroundColor="#000000" transparent="1" scrollbarWidth="10" backgroundColorSelected="barColor"/>
+	<widget name="text" position="230,192" scrollbarMode="showOnDemand" size="962,600" zPosition="4" backgroundColor="#000000" transparent="1" scrollbarWidth="10" backgroundColorSelected="barColor"/>
 	<widget name="info" position="232,131" size="965,50" font="Regular;30" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#202020" transparent="0" zPosition="5"/>
 	<widget name="progress" position="835,847" size="496,50" foregroundColor="#2a70a4" backgroundColor="#202020" transparent="0" zPosition="5"/>
 	<widget source="progresstext" render="Label" position="834,847" size="494,50" font="Regular;28" backgroundColor="#202020" transparent="1" halign="center" valign="center" zPosition="6"/>

@@ -463,7 +463,6 @@ class MMarkPiconScreen(Screen):
         self.url = url
         self.name = name
         self.timer = eTimer()
-        self.timer.start(500, 1)
         self.pixmaps = pixmaps
         self.movie = movie
         self['text'] = mmList([])
@@ -487,6 +486,7 @@ class MMarkPiconScreen(Screen):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
+        self.timer.start(500, 1)
         self['title'] = Label(desc_plugin)
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',

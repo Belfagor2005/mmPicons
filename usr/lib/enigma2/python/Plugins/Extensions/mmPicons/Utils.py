@@ -512,7 +512,7 @@ def freespace():
         available = float(diskSpace.f_bsize * diskSpace.f_bavail)
         fspace = round(float(available / 1048576.0), 2)
         tspace = round(float(capacity / 1048576.0), 1)
-        spacestr = 'Free space(' + str(fspace) + 'MB) Total space(' + str(tspace) + 'MB)'
+        spacestr = 'Free space(' + str(fspace) + 'MB)\nTotal space(' + str(tspace) + 'MB)'
         return spacestr
     except:
         return ''

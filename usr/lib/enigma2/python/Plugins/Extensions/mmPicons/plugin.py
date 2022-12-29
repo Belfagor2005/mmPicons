@@ -194,7 +194,7 @@ config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 currversion = getversioninfo()
 title_plug = 'mMark Picons & Skins'
-desc_plugin = '..:: by mMark V. %s - www.e2skin.blogspot.com ::..' % currversion
+desc_plugin = 'by mMark V.%s - www.e2skin.blogspot.com' % currversion
 XStreamity = False
 ico_path = plugin_path + '/logo.png'
 no_cover = plugin_path + '/no_coverArt.png'
@@ -236,11 +236,11 @@ class mmList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         if Utils.isFHD():
-            self.l.setItemHeight(90)
+            self.l.setItemHeight(70)
             textfont = int(34)
             self.l.setFont(0, gFont('Regular', textfont))
         else:
-            self.l.setItemHeight(80)
+            self.l.setItemHeight(60)
             textfont = int(24)
             self.l.setFont(0, gFont('Regular', textfont))
 
@@ -249,11 +249,11 @@ def DailyListEntry(name, idx):
     res = [name]
     pngs = ico1_path
     if Utils.isFHD():
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(80, 80), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(100, 0), size=(1900, 80), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(50, 50), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(70, 0), size=(1900, 70), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 2), size=(80, 80), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(1000, 0), size=(1000, 80), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 7), size=(50, 50), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(70, 0), size=(1000, 60), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -267,12 +267,11 @@ def showlist(data, list):
         list.setList(plist)
 
 
-Panel_list3 = [
- ('PICONS BLACK'),
- ('PICONS TRANSPARENT'),
- ('PICONS MOVIE'),
- ('SKIN DMM ZETA'),
- ('SKIN OPEN ZETA')]
+Panel_list3 = [('PICONS TRANSPARENT'),
+               ('PICONS BLACK'),
+               ('PICONS MOVIE'),
+               ('SKIN DMM ZETA'),
+               ('SKIN OPEN ZETA')]
 
 
 class SelectPicons(Screen):
@@ -456,6 +455,7 @@ class MMarkPiconScreen(Screen):
         self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
         self.setTitle(desc_plugin)
+        self['title'] = Label(desc_plugin)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -487,7 +487,6 @@ class MMarkPiconScreen(Screen):
         else:
             self.timer.callback.append(self.downxmlpage)
         self.timer.start(500, 1)
-        self['title'] = Label(desc_plugin)
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
                                      'ButtonSetupActions',
@@ -661,6 +660,7 @@ class MMarkFolderScreen(Screen):
         with open(skin, 'r') as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
+        self['title'] = Label(desc_plugin)        
         Screen.__init__(self, session)
         self.setTitle(desc_plugin)
         self.list = []
@@ -670,7 +670,6 @@ class MMarkFolderScreen(Screen):
         self.timer = eTimer()
         self.url = url
         self.pixmaps = pixmaps
-        self['title'] = Label(desc_plugin)
         self['text'] = mmList([])
         self['info'] = Label(_('Loading data... Please wait'))
         self['pth'] = Label('')
@@ -810,6 +809,7 @@ class MMarkFolderSkinZeta(Screen):
         self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
         self.setTitle(desc_plugin)
+        self['title'] = Label(desc_plugin)
         self.list = []
         self.menulist = []
         self.icount = 0
@@ -839,7 +839,7 @@ class MMarkFolderSkinZeta(Screen):
         else:
             self.timer.callback.append(self.downxmlpage)
         self.timer.start(500, 1)
-        self['title'] = Label(desc_plugin)
+
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
                                      'ButtonSetupActions',
@@ -1042,6 +1042,7 @@ class mmConfig(Screen, ConfigListScreen):
         f.close()
         Screen.__init__(self, session)
         self.setup_title = _("zConfig")
+        # self['title'] = Label(desc_plugin)        
         self.onChangedEntry = []
         self.list = []
         self.session = session
@@ -1054,7 +1055,6 @@ class mmConfig(Screen, ConfigListScreen):
         self['key_red'] = Button(_('Back'))
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
-        self['title'] = Label(desc_plugin)
         self["setupActions"] = ActionMap(['OkCancelActions',
                                           'DirectionActions',
                                           'ColorActions',
@@ -1262,9 +1262,10 @@ def autostart(reason, session=None, **kwargs):
 def main(session, **kwargs):
     try:
         session.open(SelectPicons)
-    except:
-        logdata("noInternet ", 'norete')
-        Utils.web_info("No Internet")
+    except Exception as e:
+        # logdata("noInternet ", 'norete')
+        # Utils.web_info("No Internet")
+        print('error open plugin')
 
 
 def menu(menuid, **kwargs):

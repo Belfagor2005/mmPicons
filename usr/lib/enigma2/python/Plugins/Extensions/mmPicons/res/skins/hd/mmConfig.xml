@@ -1,6 +1,5 @@
 <!-- Skin mmConfig 09/01/2022 -->
 <screen name="mmConfig" position="0,0" size="1280,720" title="..::mMark Picons Manager::.." backgroundColor="transparent" flags="wfNoBorder">
-	<widget name="title" position="215,14" size="553,48" font="Regular;22" halign="left" valign="center" foregroundColor="#ffff00" backgroundColor="black" transparent="1" zPosition="5" />
 	<widget name="info" position="145,86" size="684,60" font="Regular;20" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#202020" transparent="0" zPosition="5" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/main22.png" position="0,0" size="1280,720" zPosition="1" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/tvs.png" position="146,16" size="53,40" alphatest="blend" scale="1" zPosition="5" />

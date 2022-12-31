@@ -49,7 +49,7 @@ import ssl
 import subprocess
 import sys
 from . import Utils
-global skin_path, mmkpicon, pngs, pngl, pngx, XStreamity
+global skin_path, mmkpicon, XStreamity
 PY3 = sys.version_info.major >= 3
 print('Py3: ', PY3)
 
@@ -199,7 +199,7 @@ XStreamity = False
 ico_path = plugin_path + '/logo.png'
 no_cover = plugin_path + '/no_coverArt.png'
 res_plugin_path = plugin_path + '/res/'
-ico1_path = res_plugin_path + 'pics/plugin.png'
+ico1_path = res_plugin_path + 'pics/4logo.png'
 ico3_path = res_plugin_path + 'pics/setting.png'
 res_picon_plugin_path = res_plugin_path + 'picons/'
 piconstrs = res_picon_plugin_path + 'picon_trs.png'
@@ -222,11 +222,12 @@ if not os.path.exists(mmkpicon):
         os.makedirs(mmkpicon)
     except OSError as e:
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
-skin_path = res_plugin_path + 'skins/hd/'
+
 logdata("path picons: ", str(mmkpicon))
 if Utils.isFHD():
     skin_path = res_plugin_path + 'skins/fhd/'
-
+else:
+    skin_path = res_plugin_path + 'skins/hd/'
 if Utils.DreamOS():
     skin_path = skin_path + 'dreamOs/'
 
@@ -236,24 +237,24 @@ class mmList(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         if Utils.isFHD():
-            self.l.setItemHeight(70)
-            textfont = int(34)
+            self.l.setItemHeight(50)
+            textfont = int(30)
             self.l.setFont(0, gFont('Regular', textfont))
         else:
-            self.l.setItemHeight(60)
+            self.l.setItemHeight(30)
             textfont = int(24)
             self.l.setFont(0, gFont('Regular', textfont))
 
 
-def DailyListEntry(name, idx):
+def zxListEntry(name, idx):
     res = [name]
     pngs = ico1_path
     if Utils.isFHD():
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(50, 50), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(70, 0), size=(1900, 70), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 5), size=(40, 40), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(70, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 7), size=(50, 50), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(70, 0), size=(1000, 60), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(3, 3), size=(30, 30), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(50, 0), size=(500, 30), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -262,7 +263,7 @@ def showlist(data, list):
     plist = []
     for line in data:
         name = data[icount]
-        plist.append(DailyListEntry(name, icount))
+        plist.append(zxListEntry(name, icount))
         icount = icount + 1
         list.setList(plist)
 
@@ -349,7 +350,7 @@ class SelectPicons(Screen):
         self.list = []
         idx = 0
         for x in Panel_list3:
-            self.list.append(DailyListEntry(x, idx))
+            self.list.append(zxListEntry(x, idx))
             self.menu_list.append(x)
             idx += 1
             print('idx x  ', idx)
@@ -391,6 +392,7 @@ class SelectPicons(Screen):
             for f in piconsx:
                 try:
                     print("processing file: " + f)
+                    logdata("process ", f)
                     os.remove(f)
                 except OSError as e:
                     print("Error: %s : %s" % (f, e.strerror))

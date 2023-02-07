@@ -64,7 +64,7 @@ if sys.version_info >= (2, 7, 9):
 def checkGZIP(url):
     from io import StringIO
     import gzip
-    hdr = {"User-Agent": "Enigma2 - XCForever Plugin"}
+    hdr = {"User-Agent": "Enigma2 - Plugin"}
     response = None
     request = Request(url, headers=hdr)
 
@@ -316,7 +316,7 @@ def downloadFilest(url, target):
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
         # context=ssl._create_unverified_context()
         response = ssl_urlopen(req)
-        with open(target, 'w') as output:
+        with open(target, 'wb') as output:
             if PY3:
                 output.write(response.read().decode('utf-8'))
             else:
@@ -477,7 +477,7 @@ def checkRedirect(url):
     # print("*** check redirect ***")
     import requests
     from requests.adapters import HTTPAdapter
-    hdr = {"User-Agent": "Enigma2 - XCForever Plugin"}
+    hdr = {"User-Agent": "Enigma2 - Plugin"}
     x = ""
     adapter = HTTPAdapter()
     http = requests.Session()
@@ -489,8 +489,9 @@ def checkRedirect(url):
     except Exception as e:
         print(e)
         return str(url)
-            
-            
+
+                   
+                    
 def freespace():
     try:
         diskSpace = os.statvfs('/')

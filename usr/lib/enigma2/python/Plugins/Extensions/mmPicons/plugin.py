@@ -6,13 +6,14 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             10/10/2022               *
+*             02/02/2023               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
 # Info https://e2skin.blogspot.com/
 from __future__ import print_function
 from . import _
+from . import Utils
 from Components.AVSwitch import AVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
@@ -48,7 +49,7 @@ import six
 import ssl
 import subprocess
 import sys
-from . import Utils
+
 global skin_path, mmkpicon, XStreamity
 PY3 = sys.version_info.major >= 3
 print('Py3: ', PY3)
@@ -67,6 +68,7 @@ try:
     from urllib2 import Request
 except:
     from urllib.request import Request
+
 
 def trace_error():
     import traceback
@@ -176,12 +178,12 @@ def downloadFile(url, target):
         request = Request(url, headers=agents)
         if six.PY2:
             response = urlopen(request, timeout=10).read()
-            with open(target, 'w') as output:
+            with open(target, 'wb') as output:
                 output.write(response)  # .read())
             return True
         else:
             response = urlopen(request, timeout=10).read().decode('utf-8')
-            with open(target, 'w') as output:
+            with open(target, 'wb') as output:
                 output.write(response)  # .read())
             return True        
     except Exception as e:
@@ -190,24 +192,25 @@ def downloadFile(url, target):
 
 
 config.plugins.mmPicons = ConfigSubsection()
-config.plugins.mmPicons.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
-plugin_path = os.path.dirname(sys.modules[__name__].__file__)
+cfg = config.plugins.mmPicons
+cfg.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
+plugin_path = '/usr/lib/enigma2/python/Plugins/Extensions/mmPicons'
 currversion = getversioninfo()
 title_plug = 'mMark Picons & Skins'
 desc_plugin = 'by mMark V.%s - www.e2skin.blogspot.com' % currversion
 XStreamity = False
-ico_path = plugin_path + '/logo.png'
-no_cover = plugin_path + '/no_coverArt.png'
-res_plugin_path = plugin_path + '/res/'
-ico1_path = res_plugin_path + 'pics/4logo.png'
-ico3_path = res_plugin_path + 'pics/setting.png'
-res_picon_plugin_path = res_plugin_path + 'picons/'
-piconstrs = res_picon_plugin_path + 'picon_trs.png'
-piconsblk = res_picon_plugin_path + 'picon_blk.png'
-piconszeta = res_picon_plugin_path + 'picon_z.png'
-piconsmovie = res_picon_plugin_path + 'picon_mv.png'
-pixmaps = res_picon_plugin_path + 'backg.png'
-mmkpicon = config.plugins.mmPicons.mmkpicon.value.strip()
+ico_path = os.path.join(plugin_path, 'logo.png')
+no_cover = os.path.join(plugin_path, 'no_coverArt.png')
+res_plugin_path = os.path.join(plugin_path, 'res/')
+ico1_path = os.path.join(res_plugin_path, 'pics/4logo.png')
+ico3_path = os.path.join(res_plugin_path, 'pics/setting.png')
+res_picon_plugin_path = os.path.join(res_plugin_path, 'picons/')
+piconstrs = os.path.join(res_picon_plugin_path, 'picon_trs.png')
+piconsblk = os.path.join(res_picon_plugin_path, 'picon_blk.png')
+piconszeta = os.path.join(res_picon_plugin_path, 'picon_z.png')
+piconsmovie = os.path.join(res_picon_plugin_path, 'picon_mv.png')
+pixmaps = os.path.join(res_picon_plugin_path, 'backg.png')
+mmkpicon = cfg.mmkpicon.value.strip()
 pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
@@ -225,9 +228,9 @@ if not os.path.exists(mmkpicon):
 
 logdata("path picons: ", str(mmkpicon))
 if Utils.isFHD():
-    skin_path = res_plugin_path + 'skins/fhd/'
+    skin_path = os.path.join(res_plugin_path, 'skins/fhd/')
 else:
-    skin_path = res_plugin_path + 'skins/hd/'
+    skin_path = os.path.join(res_plugin_path, 'skins/hd/')
 if Utils.DreamOS():
     skin_path = skin_path + 'dreamOs/'
 
@@ -278,7 +281,7 @@ Panel_list3 = [('PICONS TRANSPARENT'),
 class SelectPicons(Screen):
     def __init__(self, session):
         self.session = session
-        skin = skin_path + 'mmall.xml'
+        skin = os.path.join(skin_path, 'mmall.xml')
         with open(skin, 'r') as f:
             self.skin = f.read()
         self.setup_title = ('Select zPicons')
@@ -444,14 +447,12 @@ class SelectPicons(Screen):
             if ptr is not None:
                 self['poster'].instance.setPixmap(ptr)
                 self['poster'].show()
-            else:
-                print('no cover.. error')
 
 
 class MMarkPiconScreen(Screen):
     def __init__(self, session, name, url, pixmaps, movie=False):
         self.session = session
-        skin = skin_path + 'mmall.xml'
+        skin = os.path.join(skin_path, 'mmall.xml')
         with open(skin, 'r') as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
@@ -650,15 +651,12 @@ class MMarkPiconScreen(Screen):
             if ptr is not None:
                 self['poster'].instance.setPixmap(ptr)
                 self['poster'].show()
-            else:
-                print('no cover.. error')
-            return
 
 
 class MMarkFolderScreen(Screen):
     def __init__(self, session, url, pixmaps):
         self.session = session
-        skin = skin_path + 'mmall.xml'
+        skin = os.path.join(skin_path, 'mmall.xml')
         with open(skin, 'r') as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
@@ -797,15 +795,12 @@ class MMarkFolderScreen(Screen):
             if ptr is not None:
                 self['poster'].instance.setPixmap(ptr)
                 self['poster'].show()
-            else:
-                print('no cover.. error')
-            return
 
 
 class MMarkFolderSkinZeta(Screen):
     def __init__(self, session, url):
         self.session = session
-        skin = skin_path + 'mmall.xml'
+        skin = os.path.join(skin_path, 'mmall.xml')
         with open(skin, 'r') as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
@@ -875,6 +870,7 @@ class MMarkFolderSkinZeta(Screen):
 
     def errorLoad(self):
         self.downloading = False
+        pass
 
     def _gotPageLoad(self, data):
         r = data
@@ -889,12 +885,10 @@ class MMarkFolderSkinZeta(Screen):
             regex = 'filename":"(.*?)".*?"created":"(.*?)".*?"downloads":"(.*?)".*?"normal_download":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
             for name, data, download, url in match:
-                if '.jpg' in str(url):
+                if '.jpg' or '.png' in str(url):
                     continue
-                if '.sh' in str(url):
+                if '.sh' or '.txt' in str(url):
                     continue
-                if '.png' in str(url):
-                    continue                
                 if '.zip' or '.ipk' or '.deb' in str(url):
                     url = url.replace('\\', '')
                     name = name.replace('enigma2-plugin-skins-', '')
@@ -1031,23 +1025,20 @@ class MMarkFolderSkinZeta(Screen):
             if ptr is not None:
                 self['poster'].instance.setPixmap(ptr)
                 self['poster'].show()
-            else:
-                print('no cover.. error')
-            return
 
 
 class mmConfig(Screen, ConfigListScreen):
     def __init__(self, session):
-        skin = skin_path + 'mmConfig.xml'
-        f = open(skin, 'r')
-        self.skin = f.read()
-        f.close()
+        self.session = session
+        skin = os.path.join(skin_path, 'mmConfig.xml')
+        with open(skin, 'r') as f:
+            self.skin = f.read()
         Screen.__init__(self, session)
         self.setup_title = _("zConfig")
         # self['title'] = Label(desc_plugin)        
         self.onChangedEntry = []
         self.list = []
-        self.session = session
+        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.setTitle(desc_plugin)
         self['description'] = Label('')
         self['info'] = Label(_('zConfig Panel Addon'))
@@ -1070,7 +1061,6 @@ class mmConfig(Screen, ConfigListScreen):
                                                                  'yellow': self.Ok_edit,
                                                                  'ok': self.Ok_edit,
                                                                  'green': self.msgok}, -1)
-        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
         self.onLayoutFinish.append(self.layoutFinished)
 
@@ -1094,7 +1084,7 @@ class mmConfig(Screen, ConfigListScreen):
     def createSetup(self):
         self.editListEntry = None
         self.list = []
-        self.list.append(getConfigListEntry(_("Set the path to the Picons folder"), config.plugins.mmPicons.mmkpicon, _("Press Ok to select the folder containing the picons files")))
+        self.list.append(getConfigListEntry(_("Set the path to the Picons folder"), cfg.mmkpicon, _("Press Ok to select the folder containing the picons files")))
         self["config"].list = self.list
         self["config"].l.setList(self.list)
 
@@ -1133,9 +1123,9 @@ class mmConfig(Screen, ConfigListScreen):
     def Ok_edit(self):
         ConfigListScreen.keyOK(self)
         sel = self['config'].getCurrent()[1]
-        if sel and sel == config.plugins.mmPicons.mmkpicon:
+        if sel and sel == cfg.mmkpicon:
             self.setting = 'mmkpicon'
-            mmkpth = config.plugins.mmPicons.mmkpicon.value
+            mmkpth = cfg.mmkpicon.value
             self.openDirectoryBrowser(mmkpth)
         else:
             pass
@@ -1159,7 +1149,7 @@ class mmConfig(Screen, ConfigListScreen):
     def openDirectoryBrowserCB(self, path):
         if path is not None:
             if self.setting == 'mmkpicon':
-                config.plugins.mmPicons.mmkpicon.setValue(path)
+                cfg.mmkpicon.setValue(path)
 
     def KeyText(self):
         sel = self['config'].getCurrent()

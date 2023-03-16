@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             02/02/2023               *
+*             16/03/2023               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -1063,7 +1063,9 @@ class mmConfig(Screen, ConfigListScreen):
                                                                  'green': self.msgok}, -1)
         self.createSetup()
         self.onLayoutFinish.append(self.layoutFinished)
-
+        if self.setInfo not in self['config'].onSelectionChanged:
+            self['config'].onSelectionChanged.append(self.setInfo)
+            
     def paypal2(self):
         conthelp = "If you like what I do you\n"
         conthelp += " can contribute with a coffee\n\n"
@@ -1087,6 +1089,18 @@ class mmConfig(Screen, ConfigListScreen):
         self.list.append(getConfigListEntry(_("Set the path to the Picons folder"), cfg.mmkpicon, _("Press Ok to select the folder containing the picons files")))
         self["config"].list = self.list
         self["config"].l.setList(self.list)
+
+    def setInfo(self):
+        try:
+            sel = self['config'].getCurrent()[2]
+            if sel:
+                # print('sel =: ', sel)
+                self['description'].setText(str(sel))
+            else:
+                self['description'].setText(_('SELECT YOUR CHOICE'))
+            return
+        except Exception as e:
+            print("Error ", e)
 
     def changedEntry(self):
         for x in self.onChangedEntry:
@@ -1262,13 +1276,16 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
-        return [(title_plug, main, title_plug, 44)]
+        return [(title_plug, main, 'mmPicons', 44)]
     else:
         return []
 
 
-def mainmenu(session, **kwargs):
-    main(session, **kwargs)
+def systemmenu(session, **kwargs):
+    if menuid == 'system':
+        return [(title_plug, main, 'mmPicons', 44)]
+    else:
+        return []
 
 
 def Plugins(**kwargs):

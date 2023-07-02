@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             16/03/2023               *
+*             02/07/2023               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -35,13 +35,14 @@ from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Downloader import downloadWithProgress
-from Tools.LoadPixmap import LoadPixmap
+# from Tools.LoadPixmap import LoadPixmap
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from enigma import eTimer
 from enigma import eListboxPythonMultiContent
 from enigma import ePicLoad, loadPic, loadPNG, gFont
+from enigma import getDesktop
 from twisted.web.client import getPage
-import base64
+# import base64
 import glob
 import os
 import re
@@ -185,7 +186,7 @@ def downloadFile(url, target):
             response = urlopen(request, timeout=10).read().decode('utf-8')
             with open(target, 'wb') as output:
                 output.write(response)  # .read())
-            return True        
+            return True
     except Exception as e:
         print("downloadFile error ", str(e))
         return False
@@ -197,7 +198,7 @@ cfg.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 plugin_path = '/usr/lib/enigma2/python/Plugins/Extensions/mmPicons'
 currversion = getversioninfo()
 title_plug = 'mMark Picons & Skins'
-desc_plugin = 'by mMark V.%s - www.e2skin.blogspot.com' % currversion
+desc_plugin = 'by mMark V.%s - www.e2skin.blogspot.com' % str(currversion)
 XStreamity = False
 ico_path = os.path.join(plugin_path, 'logo.png')
 no_cover = os.path.join(plugin_path, 'no_coverArt.png')
@@ -227,19 +228,28 @@ if not os.path.exists(mmkpicon):
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
 
 logdata("path picons: ", str(mmkpicon))
-if Utils.isFHD():
-    skin_path = os.path.join(res_plugin_path, 'skins/fhd/')
+
+
+screenwidth = getDesktop(0).size()
+if screenwidth.width() == 2560:
+    skin_path = res_plugin_path + 'skins/uhd/'
+elif screenwidth.width() == 1920:
+    skin_path = res_plugin_path + 'skins/fhd/'
 else:
-    skin_path = os.path.join(res_plugin_path, 'skins/hd/')
+    skin_path = res_plugin_path + 'skins/hd/'
+
 if Utils.DreamOS():
     skin_path = skin_path + 'dreamOs/'
 
 
 class mmList(MenuList):
-
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-        if Utils.isFHD():
+        if screenwidth.width() == 2560:
+            self.l.setItemHeight(60)
+            textfont = int(42)
+            self.l.setFont(0, gFont('Regular', textfont))
+        elif screenwidth.width() == 1920:
             self.l.setItemHeight(50)
             textfont = int(30)
             self.l.setFont(0, gFont('Regular', textfont))
@@ -252,7 +262,10 @@ class mmList(MenuList):
 def zxListEntry(name, idx):
     res = [name]
     pngs = ico1_path
-    if Utils.isFHD():
+    if screenwidth.width() == 2560:
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 5), size=(55, 55), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(90, 0), size=(1200, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    elif screenwidth.width() == 1920:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 5), size=(40, 40), png=loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(70, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
@@ -292,10 +305,10 @@ class SelectPicons(Screen):
         self.menulist = []
         self.list = []
         self['title'] = Label(desc_plugin)
-        self['pth'] = Label(' ')
+        self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
-        self['space'] = Label(' ')
+        self['space'] = Label('n/a')
         self['info'] = Label(_('Loading data... Please wait'))
         self['key_green'] = Button(_('Remove'))
         self['key_red'] = Button(_('Exit'))
@@ -329,9 +342,11 @@ class SelectPicons(Screen):
         self.session.open(PiconsPreview, pixmaps)
 
     def getfreespace(self):
-        fspace = Utils.freespace()
-        self['space'].setText(str(fspace))
-        logdata("freespace ", fspace)
+        try:
+            fspace = Utils.freespace()
+            self['space'].setText(str(fspace))
+        except Exception as e:
+            print(e)
 
     def closerm(self):
         Utils.deletetmp()
@@ -508,8 +523,11 @@ class MMarkPiconScreen(Screen):
         self.session.open(PiconsPreview, self.pixmaps)
 
     def getfreespace(self):
-        fspace = Utils.freespace()
-        self['space'].setText(fspace)
+        try:
+            fspace = Utils.freespace()
+            self['space'].setText(str(fspace))
+        except Exception as e:
+            print(e)
 
     def downxmlpage(self):
         url = six.ensure_binary(self.url)
@@ -660,7 +678,7 @@ class MMarkFolderScreen(Screen):
         with open(skin, 'r') as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
-        self['title'] = Label(desc_plugin)        
+        self['title'] = Label(desc_plugin)
         Screen.__init__(self, session)
         self.setTitle(desc_plugin)
         self.list = []
@@ -695,23 +713,26 @@ class MMarkFolderScreen(Screen):
         self['actions'] = ActionMap(['OkCancelActions',
                                      'ColorActions',
                                      'ButtonSetupActions',
-                                     'DirectionActions'],{'ok': self.okRun,
-                                                          'green': self.okRun,
-                                                          'red': self.close,
-                                                          "yellow": self.zoom,
-                                                          'up': self.up,
-                                                          'down': self.down,
-                                                          'left': self.left,
-                                                          'right': self.right,
-                                                          'cancel': self.close}, -2)
+                                     'DirectionActions'], {'ok': self.okRun,
+                                                           'green': self.okRun,
+                                                           'red': self.close,
+                                                           "yellow": self.zoom,
+                                                           'up': self.up,
+                                                           'down': self.down,
+                                                           'left': self.left,
+                                                           'right': self.right,
+                                                           'cancel': self.close}, -2)
         self.onLayoutFinish.append(self.getfreespace)
 
     def zoom(self):
         self.session.open(PiconsPreview, self.pixmaps)
 
     def getfreespace(self):
-        fspace = Utils.freespace()
-        self['space'].setText(fspace)
+        try:
+            fspace = Utils.freespace()
+            self['space'].setText(str(fspace))
+        except Exception as e:
+            print(e)
 
     def downxmlpage(self):
         url = six.ensure_binary(self.url)
@@ -861,8 +882,11 @@ class MMarkFolderSkinZeta(Screen):
         return realpng
 
     def getfreespace(self):
-        fspace = Utils.freespace()
-        self['space'].setText(fspace)
+        try:
+            fspace = Utils.freespace()
+            self['space'].setText(str(fspace))
+        except Exception as e:
+            print(e)
 
     def downxmlpage(self):
         url = six.ensure_binary(self.url)
@@ -961,7 +985,7 @@ class MMarkFolderSkinZeta(Screen):
             logdata("install1 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
             self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
-       
+
         elif os.path.exists('/tmp/download.deb'):
             if os.path.exists('/etc/enigma2/skin_user.xml'):
                 os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
@@ -1035,7 +1059,7 @@ class mmConfig(Screen, ConfigListScreen):
             self.skin = f.read()
         Screen.__init__(self, session)
         self.setup_title = _("zConfig")
-        # self['title'] = Label(desc_plugin)        
+        # self['title'] = Label(desc_plugin)
         self.onChangedEntry = []
         self.list = []
         ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
@@ -1065,7 +1089,7 @@ class mmConfig(Screen, ConfigListScreen):
         self.onLayoutFinish.append(self.layoutFinished)
         if self.setInfo not in self['config'].onSelectionChanged:
             self['config'].onSelectionChanged.append(self.setInfo)
-            
+
     def paypal2(self):
         conthelp = "If you like what I do you\n"
         conthelp += " can contribute with a coffee\n\n"
@@ -1224,7 +1248,9 @@ class PiconsPreview(Screen):
     def ShowPicture(self):
         logdata("Showpicture ", 'Show')
         myicon = self.previewPng
-        if Utils.isFHD():
+        if screenwidth.width() == 2560:
+            png = loadPic(myicon, 2560, 1440, 0, 0, 0, 1)
+        elif screenwidth.width() == 1920:
             png = loadPic(myicon, 1920, 1080, 0, 0, 0, 1)
         else:
             png = loadPic(myicon, 1280, 720, 0, 0, 0, 1)
@@ -1271,7 +1297,7 @@ def main(session, **kwargs):
     except Exception as e:
         # logdata("noInternet ", 'norete')
         # Utils.web_info("No Internet")
-        print('error open plugin')
+        print('error open plugin', e)
 
 
 def menu(menuid, **kwargs):
@@ -1281,7 +1307,7 @@ def menu(menuid, **kwargs):
         return []
 
 
-def systemmenu(session, **kwargs):
+def systemmenu(menuid, **kwargs):
     if menuid == 'system':
         return [(title_plug, main, 'mmPicons', 44)]
     else:

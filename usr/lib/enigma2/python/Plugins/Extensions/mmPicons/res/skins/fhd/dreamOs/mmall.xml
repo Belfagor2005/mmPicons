@@ -5,7 +5,7 @@
 	<eLabel position="230,120" size="1100,3" backgroundColor="#303030" zPosition="4" />
 	<ePixmap position="1330,0" size="125,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/pC.png" zPosition="-1" />
 	<eLabel position="230,980" size="1100,3" backgroundColor="#303030" zPosition="5" />
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/revolution/res/pics/main2.png" position="0,0" size="1918,1080" zPosition="1" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/main2.png" position="0,0" size="1918,1080" zPosition="1" />
 	<ePixmap pixmap="skin_default/buttons/key_red.png" position="230,1008" size="30,30" alphatest="on" zPosition="5" />
 	<ePixmap pixmap="skin_default/buttons/key_green.png" position="530,1008" size="30,30" alphatest="on" zPosition="5" />
 	<ePixmap pixmap="skin_default/buttons/key_yellow.png" position="830,1008" size="30,30" alphatest="on" zPosition="5" />

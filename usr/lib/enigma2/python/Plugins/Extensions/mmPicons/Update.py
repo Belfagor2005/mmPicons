@@ -7,6 +7,23 @@ print("Update.py")
 
 
 def upd_done():
+    from os import popen, remove
+    cmd01 = "wget http://patbuweb.com/mmpicons/mmpicons.tar -O /tmp/mmpicons.tar ; tar -xvf /tmp/mmpicons.tar -C /"
+    cmd02 = "wget --no-check-certificate -U 'Enigma2 - mmpicons Plugin' -c 'http://patbuweb.com/mmpicons/mmpicons.tar' -O '/tmp/mmpicons.tar'; tar -xvf /tmp/mmpicons.tar -C /"
+    cmd22 = 'find /usr/bin -name "wget"'
+    res = popen(cmd22).read()
+    if 'wget' not in res.lower():
+        cmd23 = 'apt-get update && apt-get install wget'
+        popen(cmd23)
+    try:
+        popen(cmd02)
+    except:
+        popen(cmd01)
+    remove('/tmp/mmpicons.tar')
+    return
+
+'''
+def upd_done():
     from twisted.web.client import downloadPage
     print("In upd_done")
     xfile = 'http://patbuweb.com/mmpicons/mmpicons.tar'
@@ -36,3 +53,4 @@ def upd_last(fplug):
         os.system(cmd)
         os.remove('/tmp/mmpicons.tar')
     return
+'''

@@ -35,14 +35,12 @@ from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Downloader import downloadWithProgress
-# from Tools.LoadPixmap import LoadPixmap
 from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from enigma import eTimer
 from enigma import eListboxPythonMultiContent
 from enigma import ePicLoad, loadPic, loadPNG, gFont
 from enigma import getDesktop
 from twisted.web.client import getPage
-# import base64
 import glob
 import os
 import re
@@ -158,17 +156,6 @@ def checkMyFile(url):
         return ''
 
 
-# def downloadFile(url, target):
-    # try:
-        # response = Utils.ReadUrl(url)
-        # print('response: ', response)
-        # with open(target, 'w') as output:
-            # output.write(response)  # .read())
-        # return True
-    # except Exception as e:
-        # print("downloadFile error ", str(e))
-        # return False
-
 def downloadFile(url, target):
     try:
         try:
@@ -227,16 +214,15 @@ if not os.path.exists(mmkpicon):
     except OSError as e:
         print(('Error creating directory %s:\n%s') % (mmkpicon, str(e)))
 
+
 logdata("path picons: ", str(mmkpicon))
-
-
 screenwidth = getDesktop(0).size()
 if screenwidth.width() == 2560:
-    skin_path = res_plugin_path + 'skins/uhd/'
+    skin_path = plugin_path + '/res/skins/uhd/'
 elif screenwidth.width() == 1920:
-    skin_path = res_plugin_path + 'skins/fhd/'
+    skin_path = plugin_path + '/res/skins/fhd/'
 else:
-    skin_path = res_plugin_path + 'skins/hd/'
+    skin_path = plugin_path + '/res/skins/hd/'
 
 if Utils.DreamOS():
     skin_path = skin_path + 'dreamOs/'

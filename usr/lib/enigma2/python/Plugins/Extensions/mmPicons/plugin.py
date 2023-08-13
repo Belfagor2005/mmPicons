@@ -14,7 +14,10 @@
 from __future__ import print_function
 from . import _
 from . import Utils
-from Components.AVSwitch import AVSwitch
+try:
+    from Components.AVSwitch import eAVSwitch
+except Exception:
+    from Components.AVSwitch import iAVSwitch as eAVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
@@ -438,7 +441,7 @@ class SelectPicons(Screen):
         if os.path.exists(pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
+            sc = eAVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(pixmaps, False)
@@ -645,7 +648,7 @@ class MMarkPiconScreen(Screen):
         if os.path.exists(self.pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
+            sc = eAVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
@@ -792,7 +795,7 @@ class MMarkFolderScreen(Screen):
         if os.path.exists(self.pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
+            sc = eAVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
@@ -1025,7 +1028,7 @@ class MMarkFolderSkinZeta(Screen):
         if os.path.exists(pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = AVSwitch().getFramebufferScale()
+            sc = eAVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(pixmaps, False)
@@ -1217,7 +1220,7 @@ class PiconsPreview(Screen):
         self.skin = PiconsPreview.skin
         Screen.__init__(self, session)
         self.session = session
-        self.Scale = AVSwitch().getFramebufferScale()
+        self.Scale = eAVSwitch().getFramebufferScale()
         self.PicLoad = ePicLoad()
         self.previewPng = previewPng
         self['pixmap'] = Pixmap()

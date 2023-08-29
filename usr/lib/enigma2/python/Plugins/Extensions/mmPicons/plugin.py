@@ -6,7 +6,7 @@
 *           coded by Lululla           *
 *         improve code by jbleyel      *
 *             skin by MMark            *
-*             02/07/2023               *
+*             28/08/2023               *
 *         thank's fix by @jbleyel      *
 ****************************************
 '''
@@ -15,9 +15,9 @@ from __future__ import print_function
 from . import _
 from . import Utils
 try:
-    from Components.AVSwitch import eAVSwitch
+    from Components.AVSwitch import eAVSwitch as AVSwitch
 except Exception:
-    from Components.AVSwitch import iAVSwitch as eAVSwitch
+    from Components.AVSwitch import iAVSwitch as AVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
@@ -95,7 +95,7 @@ def logdata(name='', data=None):
 
 
 def getversioninfo():
-    currversion = '1.2'
+    currversion = '1.3'
     version_file = '/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/version'
     if os.path.exists(version_file):
         try:
@@ -168,12 +168,12 @@ def downloadFile(url, target):
         agents = {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)'}
         request = Request(url, headers=agents)
         if six.PY2:
-            response = urlopen(request, timeout=10).read()
+            response = urlopen(request, timeout=15).read()
             with open(target, 'wb') as output:
                 output.write(response)  # .read())
             return True
         else:
-            response = urlopen(request, timeout=10).read().decode('utf-8')
+            response = urlopen(request, timeout=15).read().decode('utf-8')
             with open(target, 'wb') as output:
                 output.write(response)  # .read())
             return True
@@ -441,7 +441,7 @@ class SelectPicons(Screen):
         if os.path.exists(pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = eAVSwitch().getFramebufferScale()
+            sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(pixmaps, False)
@@ -599,6 +599,7 @@ class MMarkPiconScreen(Screen):
                 self['info'].setText(_('Picons Not Installed ...'))
 
     def install(self, fplug):
+        self.progclear = 0
         if os.path.exists('/tmp/download.zip'):
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
@@ -607,7 +608,6 @@ class MMarkPiconScreen(Screen):
             self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
-        self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
 
@@ -648,7 +648,7 @@ class MMarkPiconScreen(Screen):
         if os.path.exists(self.pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = eAVSwitch().getFramebufferScale()
+            sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
@@ -795,7 +795,7 @@ class MMarkFolderScreen(Screen):
         if os.path.exists(self.pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = eAVSwitch().getFramebufferScale()
+            sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(self.pixmaps, False)
@@ -920,7 +920,6 @@ class MMarkFolderSkinZeta(Screen):
 
     def okRun(self):
         i = len(self.names)
-        print('iiiiii= ', i)
         if i < 1:
             return
         self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
@@ -966,6 +965,7 @@ class MMarkFolderSkinZeta(Screen):
         self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
 
     def install(self, fplug):
+        self.progclear = 0
         if os.path.exists('/tmp/download.zip'):
             if os.path.exists('/etc/enigma2/skin_user.xml'):
                 os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
@@ -994,7 +994,6 @@ class MMarkFolderSkinZeta(Screen):
             self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
-        self.progclear = 0
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
 
@@ -1028,7 +1027,7 @@ class MMarkFolderSkinZeta(Screen):
         if os.path.exists(pixmaps):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
-            sc = eAVSwitch().getFramebufferScale()
+            sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if Utils.DreamOS():
                 self.picload.startDecode(pixmaps, False)
@@ -1107,7 +1106,6 @@ class mmConfig(Screen, ConfigListScreen):
         try:
             sel = self['config'].getCurrent()[2]
             if sel:
-                # print('sel =: ', sel)
                 self['description'].setText(str(sel))
             else:
                 self['description'].setText(_('SELECT YOUR CHOICE'))
@@ -1220,7 +1218,7 @@ class PiconsPreview(Screen):
         self.skin = PiconsPreview.skin
         Screen.__init__(self, session)
         self.session = session
-        self.Scale = eAVSwitch().getFramebufferScale()
+        self.Scale = AVSwitch().getFramebufferScale()
         self.PicLoad = ePicLoad()
         self.previewPng = previewPng
         self['pixmap'] = Pixmap()
@@ -1284,8 +1282,6 @@ def main(session, **kwargs):
     try:
         session.open(SelectPicons)
     except Exception as e:
-        # logdata("noInternet ", 'norete')
-        # Utils.web_info("No Internet")
         print('error open plugin', e)
 
 

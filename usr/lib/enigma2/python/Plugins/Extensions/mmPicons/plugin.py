@@ -14,10 +14,12 @@
 from __future__ import print_function
 from . import _
 from . import Utils
+import codecs
+from Components.AVSwitch import AVSwitch
 try:
-    from Components.AVSwitch import eAVSwitch as AVSwitch
-except Exception:
-    from Components.AVSwitch import iAVSwitch as AVSwitch
+    from Components.AVSwitch import iAVSwitch
+except:
+    from enigma import eAVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
@@ -284,7 +286,7 @@ class SelectPicons(Screen):
     def __init__(self, session):
         self.session = session
         skin = os.path.join(skin_path, 'mmall.xml')
-        with open(skin, 'r') as f:
+        with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
         self.setup_title = ('Select zPicons')
         Screen.__init__(self, session)
@@ -457,7 +459,7 @@ class MMarkPiconScreen(Screen):
     def __init__(self, session, name, url, pixmaps, movie=False):
         self.session = session
         skin = os.path.join(skin_path, 'mmall.xml')
-        with open(skin, 'r') as f:
+        with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
@@ -664,7 +666,7 @@ class MMarkFolderScreen(Screen):
     def __init__(self, session, url, pixmaps):
         self.session = session
         skin = os.path.join(skin_path, 'mmall.xml')
-        with open(skin, 'r') as f:
+        with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
         self['title'] = Label(desc_plugin)
@@ -811,7 +813,7 @@ class MMarkFolderSkinZeta(Screen):
     def __init__(self, session, url):
         self.session = session
         skin = os.path.join(skin_path, 'mmall.xml')
-        with open(skin, 'r') as f:
+        with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
         self.setup_title = ('zPicons & Skins')
         Screen.__init__(self, session)
@@ -1043,7 +1045,7 @@ class mmConfig(Screen, ConfigListScreen):
     def __init__(self, session):
         self.session = session
         skin = os.path.join(skin_path, 'mmConfig.xml')
-        with open(skin, 'r') as f:
+        with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
         Screen.__init__(self, session)
         self.setup_title = _("zConfig")

@@ -16,10 +16,6 @@ from . import _
 from . import Utils
 import codecs
 from Components.AVSwitch import AVSwitch
-try:
-    from Components.AVSwitch import iAVSwitch
-except:
-    from enigma import eAVSwitch
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
@@ -133,6 +129,7 @@ if sslverify:
 
 def checkMyFile(url):
     return []
+    myfile = None
     try:
         req = Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
@@ -158,7 +155,7 @@ def checkMyFile(url):
         if hasattr(e, 'reason'):
             print('We failed to reach a server.')
             print('Reason: ', e.reason)
-        return ''
+        return myfile
 
 
 def downloadFile(url, target):
@@ -238,7 +235,7 @@ class mmList(MenuList):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         if screenwidth.width() == 2560:
             self.l.setItemHeight(60)
-            textfont = int(42)
+            textfont = int(44)
             self.l.setFont(0, gFont('Regular', textfont))
         elif screenwidth.width() == 1920:
             self.l.setItemHeight(50)
@@ -254,14 +251,14 @@ def zxListEntry(name, idx):
     res = [name]
     pngs = ico1_path
     if screenwidth.width() == 2560:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 5), size=(55, 55), png=loadPNG(pngs)))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(40, 40), png=loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(90, 0), size=(1200, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     elif screenwidth.width() == 1920:
         res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 5), size=(40, 40), png=loadPNG(pngs)))
         res.append(MultiContentEntryText(pos=(70, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     else:
-        res.append(MultiContentEntryPixmapAlphaTest(pos=(3, 3), size=(30, 30), png=loadPNG(pngs)))
-        res.append(MultiContentEntryText(pos=(50, 0), size=(500, 30), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryPixmapAlphaTest(pos=(3, 10), size=(40, 40), png=loadPNG(pngs)))
+        res.append(MultiContentEntryText(pos=(50, 0), size=(500, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
     return res
 
 
@@ -271,7 +268,7 @@ def showlist(data, list):
     for line in data:
         name = data[icount]
         plist.append(zxListEntry(name, icount))
-        icount = icount + 1
+        icount += 1
         list.setList(plist)
 
 

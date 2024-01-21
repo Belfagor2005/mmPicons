@@ -187,7 +187,7 @@ cfg.mmkpicon = ConfigDirectory(default='/media/hdd/picon/')
 plugin_path = '/usr/lib/enigma2/python/Plugins/Extensions/mmPicons'
 currversion = getversioninfo()
 title_plug = 'mMark Picons & Skins'
-desc_plugin = 'by mMark V.%s - www.e2skin.blogspot.com' % str(currversion)
+desc_plugin = 'V.%s - e2skin.blogspot.com' % str(currversion)
 XStreamity = False
 ico_path = os.path.join(plugin_path, 'logo.png')
 no_cover = os.path.join(plugin_path, 'no_coverArt.png')

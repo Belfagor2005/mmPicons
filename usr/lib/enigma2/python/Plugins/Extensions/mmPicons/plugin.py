@@ -127,58 +127,58 @@ if sslverify:
             return ctx
 
 
-def checkMyFile(url):
-    return []
-    myfile = None
-    try:
-        req = Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
-        req.add_header('Referer', 'https://www.mediafire.com')
-        req.add_header('X-Requested-With', 'XMLHttpRequest')
-        page = urlopen(req)
-        r = page.read()
-        n1 = r.find('"download_link', 0)
-        n2 = r.find('downloadButton', n1)
-        r2 = r[n1:n2]
-        print("r2 =", r2)
-        regexcat = 'href="https://download(.*?)"'
-        match = re.compile(regexcat, re.DOTALL).findall(r2)
-        print("match =", match[0])
-        myfile = match[0]
-        logdata("Myfile ", myfile)
-        return myfile
-    except:
-        e = URLError
-        print('We failed to open "%s".' % url)
-        if hasattr(e, 'code'):
-            print('We failed with error code - %s.' % e.code)
-        if hasattr(e, 'reason'):
-            print('We failed to reach a server.')
-            print('Reason: ', e.reason)
-        return myfile
+# def checkMyFile(url):
+    # return []
+    # myfile = None
+    # try:
+        # req = Request(url)
+        # req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14')
+        # req.add_header('Referer', 'https://www.mediafire.com')
+        # req.add_header('X-Requested-With', 'XMLHttpRequest')
+        # page = urlopen(req)
+        # r = page.read()
+        # n1 = r.find('"download_link', 0)
+        # n2 = r.find('downloadButton', n1)
+        # r2 = r[n1:n2]
+        # print("r2 =", r2)
+        # regexcat = 'href="https://download(.*?)"'
+        # match = re.compile(regexcat, re.DOTALL).findall(r2)
+        # print("match =", match[0])
+        # myfile = match[0]
+        # logdata("Myfile ", myfile)
+        # return myfile
+    # except:
+        # e = URLError
+        # print('We failed to open "%s".' % url)
+        # if hasattr(e, 'code'):
+            # print('We failed with error code - %s.' % e.code)
+        # if hasattr(e, 'reason'):
+            # print('We failed to reach a server.')
+            # print('Reason: ', e.reason)
+        # return myfile
 
 
-def downloadFile(url, target):
-    try:
-        try:
-            from urllib2 import Request, urlopen
-        except:
-            from urllib.request import urlopen, Request
-        agents = {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)'}
-        request = Request(url, headers=agents)
-        if six.PY2:
-            response = urlopen(request, timeout=15).read()
-            with open(target, 'wb') as output:
-                output.write(response)  # .read())
-            return True
-        else:
-            response = urlopen(request, timeout=15).read().decode('utf-8')
-            with open(target, 'wb') as output:
-                output.write(response)  # .read())
-            return True
-    except Exception as e:
-        print("downloadFile error ", str(e))
-        return False
+# def downloadFile(url, target):
+    # try:
+        # try:
+            # from urllib2 import Request, urlopen
+        # except:
+            # from urllib.request import urlopen, Request
+        # agents = {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)'}
+        # request = Request(url, headers=agents)
+        # if six.PY2:
+            # response = urlopen(request, timeout=15).read()
+            # with open(target, 'wb') as output:
+                # output.write(response)  # .read())
+            # return True
+        # else:
+            # response = urlopen(request, timeout=15).read().decode('utf-8')
+            # with open(target, 'wb') as output:
+                # output.write(response)  # .read())
+            # return True
+    # except Exception as e:
+        # print("downloadFile error ", str(e))
+        # return False
 
 
 config.plugins.mmPicons = ConfigSubsection()
@@ -193,7 +193,7 @@ ico_path = os.path.join(plugin_path, 'logo.png')
 no_cover = os.path.join(plugin_path, 'no_coverArt.png')
 res_plugin_path = os.path.join(plugin_path, 'res/')
 ico1_path = os.path.join(res_plugin_path, 'pics/4logo.png')
-ico3_path = os.path.join(res_plugin_path, 'pics/setting.png')
+# ico3_path = os.path.join(res_plugin_path, 'pics/setting.png')
 res_picon_plugin_path = os.path.join(res_plugin_path, 'picons/')
 piconstrs = os.path.join(res_picon_plugin_path, 'picon_trs.png')
 piconsblk = os.path.join(res_picon_plugin_path, 'picon_blk.png')
@@ -226,7 +226,7 @@ elif screenwidth.width() == 1920:
 else:
     skin_path = plugin_path + '/res/skins/hd/'
 
-if Utils.DreamOS():
+if os.path.exists('/var/lib/dpkg/info'):
     skin_path = skin_path + 'dreamOs/'
 
 
@@ -296,7 +296,7 @@ class SelectPicons(Screen):
         self['pth'] = Label('')
         self['pth'].setText(_('Picons folder ') + mmkpicon)
         self['poster'] = Pixmap()
-        self['space'] = Label('n/a')
+        self['pform'] = Label('n/a')
         self['info'] = Label(_('Loading data... Please wait'))
         self['key_green'] = Button(_('Remove'))
         self['key_red'] = Button(_('Exit'))
@@ -332,7 +332,7 @@ class SelectPicons(Screen):
     def getfreespace(self):
         try:
             fspace = Utils.freespace()
-            self['space'].setText(str(fspace))
+            self['pform'].setText(str(fspace))
         except Exception as e:
             print(e)
 
@@ -442,7 +442,7 @@ class SelectPicons(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if Utils.DreamOS():
+            if os.path.exists('/var/lib/dpkg/info'):
                 self.picload.startDecode(pixmaps, False)
             else:
                 self.picload.startDecode(pixmaps, 0, 0, False)
@@ -486,9 +486,9 @@ class MMarkPiconScreen(Screen):
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
         self['key_green'].hide()
-        self['space'] = Label('')
+        self['pform'] = Label('')
         self.currentList = 'text'
-        if Utils.DreamOS():
+        if os.path.exists('/var/lib/dpkg/info'):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -513,7 +513,7 @@ class MMarkPiconScreen(Screen):
     def getfreespace(self):
         try:
             fspace = Utils.freespace()
-            self['space'].setText(str(fspace))
+            self['pform'].setText(str(fspace))
         except Exception as e:
             print(e)
 
@@ -649,7 +649,7 @@ class MMarkPiconScreen(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if Utils.DreamOS():
+            if os.path.exists('/var/lib/dpkg/info'):
                 self.picload.startDecode(self.pixmaps, False)
             else:
                 self.picload.startDecode(self.pixmaps, 0, 0, False)
@@ -691,9 +691,9 @@ class MMarkFolderScreen(Screen):
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
         self['key_green'].hide()
-        self['space'] = Label('')
+        self['pform'] = Label('')
         self.currentList = 'text'
-        if Utils.DreamOS():
+        if os.path.exists('/var/lib/dpkg/info'):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -718,7 +718,7 @@ class MMarkFolderScreen(Screen):
     def getfreespace(self):
         try:
             fspace = Utils.freespace()
-            self['space'].setText(str(fspace))
+            self['pform'].setText(str(fspace))
         except Exception as e:
             print(e)
 
@@ -729,6 +729,7 @@ class MMarkFolderScreen(Screen):
     def errorLoad(self):
         self['info'].setText(_('Try again later ...'))
         logdata("errorLoad ")
+        self.downloading = False
 
     def _gotPageLoad(self, data):
         r = data
@@ -759,7 +760,7 @@ class MMarkFolderScreen(Screen):
     def okRun(self):
         i = len(self.names)
         print('iiiiii= ', i)
-        if i < 1:
+        if i < 0:
             return
         idx = self['text'].getSelectionIndex()
         name = self.names[idx]
@@ -796,7 +797,7 @@ class MMarkFolderScreen(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if Utils.DreamOS():
+            if os.path.exists('/var/lib/dpkg/info'):
                 self.picload.startDecode(self.pixmaps, False)
             else:
                 self.picload.startDecode(self.pixmaps, 0, 0, False)
@@ -837,10 +838,10 @@ class MMarkFolderSkinZeta(Screen):
         self["key_blue"] = Button(_(''))
         self['key_blue'].hide()
         self['key_green'].hide()
-        self['space'] = Label('')
+        self['pform'] = Label('')
         self.currentList = 'text'
         self.timer = eTimer()
-        if Utils.DreamOS():
+        if os.path.exists('/var/lib/dpkg/info'):
             self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
         else:
             self.timer.callback.append(self.downxmlpage)
@@ -872,7 +873,7 @@ class MMarkFolderSkinZeta(Screen):
     def getfreespace(self):
         try:
             fspace = Utils.freespace()
-            self['space'].setText(str(fspace))
+            self['pform'].setText(str(fspace))
         except Exception as e:
             print(e)
 
@@ -944,10 +945,6 @@ class MMarkFolderSkinZeta(Screen):
                     match = re.compile(regexcat, re.DOTALL).findall(myfile)
                     print("match =", match[0])
                     url = 'https://download' + str(match[0])
-                    if '.deb' in str(url):
-                        dest = "/tmp/download.deb"
-                    if '.ipk' in str(url):
-                        dest = "/tmp/download.ipk"
                     print("url final =", url)
                     self.download = downloadWithProgress(url, dest)
                     self.download.addProgress(self.downloadProgress)
@@ -979,7 +976,7 @@ class MMarkFolderSkinZeta(Screen):
                 os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
             self['info'].setText(_('Install ...'))
             myCmd = 'apt-get install --reinstall /tmp/download.deb -y'
-            if Utils.DreamOS():
+            if os.path.exists('/var/lib/dpkg/info'):
                 logdata("install2 ", myCmd)
                 subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
                 self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
@@ -1028,7 +1025,7 @@ class MMarkFolderSkinZeta(Screen):
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
             self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
-            if Utils.DreamOS():
+            if os.path.exists('/var/lib/dpkg/info'):
                 self.picload.startDecode(pixmaps, False)
             else:
                 self.picload.startDecode(pixmaps, 0, 0, False)

@@ -1048,8 +1048,8 @@ class mmConfig(Screen, ConfigListScreen):
         self.list = []
         ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.setTitle(desc_plugin)
-        self['description'] = Label('')
-        self['info'] = Label(_('zConfig Panel Addon'))
+        self['description'] = Label('Config mmPicons Panel')
+        self['info'] = Label(_('SELECT YOUR CHOICE'))
         self["paypal"] = Label()
         self['key_yellow'] = Button(_('Choice'))
         self['key_green'] = Button(_('Save'))
@@ -1076,7 +1076,7 @@ class mmConfig(Screen, ConfigListScreen):
 
     def paypal2(self):
         conthelp = "If you like what I do you\n"
-        conthelp += " can contribute with a coffee\n\n"
+        conthelp += "can contribute with a coffee\n\n"
         conthelp += "scan the qr code and donate € 1.00"
         return conthelp
 
@@ -1088,7 +1088,7 @@ class mmConfig(Screen, ConfigListScreen):
             os.system('wget -qO- http://ipecho.net/plain > /tmp/currentip')
         currentip1 = open('/tmp/currentip', 'r')
         currentip = currentip1.read()
-        self['info'].setText(_('Config Panel Addon\nYour current IP is %s') % currentip)
+        self['description'].setText(_('Config Panel Addon\nYour current IP is %s') % currentip)
         logdata("Showpicture ", currentip)
 
     def createSetup(self):
@@ -1102,9 +1102,9 @@ class mmConfig(Screen, ConfigListScreen):
         try:
             sel = self['config'].getCurrent()[2]
             if sel:
-                self['description'].setText(str(sel))
+                self['info'].setText(str(sel))
             else:
-                self['description'].setText(_('SELECT YOUR CHOICE'))
+                self['info'].setText(_('SELECT YOUR CHOICE'))
             return
         except Exception as e:
             print("Error ", e)

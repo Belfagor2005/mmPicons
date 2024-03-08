@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-12-29 19:06+0100\n"
+"POT-Creation-Date: 2024-03-08 19:17+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,72 +9,43 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Utils.py:407
-#, python-format
-msgid "Status Internet: %s:%s -> OK"
-msgstr ""
-
-#: Utils.py:411
-#, python-format
-msgid "Status Internet: %s:%s -> KO"
-msgstr ""
-
-#: Utils.py:414
-msgid "Restart Check 1 Internet."
-msgstr ""
-
-#: Utils.py:418
-msgid "Restart Check 2 Internet."
-msgstr ""
-
-#: Utils.py:917 Utils.py:984
-#, python-format
-msgid ""
-"ReadUrl1:\n"
-"  url = %s"
-msgstr ""
-
-#: Utils.py:1542
-msgid "Stream already added to bouquet"
-msgstr "Stream gi‡ aggiunto al bouquet"
-
-#: plugin.py:293 plugin.py:472 plugin.py:677 plugin.py:823
+#: plugin.py:297 plugin.py:477 plugin.py:682 plugin.py:829
 msgid "Picons folder "
 msgstr "Percorso Picons "
 
-#: plugin.py:296 plugin.py:470 plugin.py:675 plugin.py:821
+#: plugin.py:300 plugin.py:475 plugin.py:680 plugin.py:827
 msgid "Loading data... Please wait"
 msgstr ""
 
-#: plugin.py:297
+#: plugin.py:301
 msgid "Remove"
 msgstr "Rimuovere"
 
-#: plugin.py:298
+#: plugin.py:302
 msgid "Exit"
 msgstr "Uscire"
 
-#: plugin.py:299 plugin.py:480 plugin.py:685 plugin.py:831
+#: plugin.py:303 plugin.py:485 plugin.py:690 plugin.py:837
 msgid "Preview"
 msgstr "Anteprima"
 
-#: plugin.py:300
+#: plugin.py:304
 msgid "Restart"
 msgstr "Riavviare"
 
-#: plugin.py:338
+#: plugin.py:344
 msgid "Do you want to restart Enigma?"
 msgstr "Vuoi riavviare Enigma?"
 
-#: plugin.py:381
+#: plugin.py:387
 msgid ":P  COMING SOON!!!"
 msgstr ""
 
-#: plugin.py:384
+#: plugin.py:390
 #, python-format
 msgid ""
 "Do you want to remove all picons in folder?\n"
@@ -85,34 +56,34 @@ msgstr ""
 "%s\n"
 "Potrebbero volerci alcuni minuti, aspetta .."
 
-#: plugin.py:388
+#: plugin.py:394
 #, python-format
 msgid "Erase %s... please wait"
 msgstr "Cancello %s...attendi prego"
 
-#: plugin.py:399
+#: plugin.py:406
 #, python-format
 msgid "%s it has been cleaned"
 msgstr "%s Ë stato eliminato"
 
-#: plugin.py:400 plugin.py:543 plugin.py:599 plugin.py:743 plugin.py:905
-#: plugin.py:987
+#: plugin.py:407 plugin.py:551 plugin.py:608 plugin.py:752 plugin.py:913
+#: plugin.py:991
 msgid "Please select ..."
 msgstr "Seleziona Prego ..."
 
-#: plugin.py:478 plugin.py:829
+#: plugin.py:483 plugin.py:835
 msgid "Install"
 msgstr "Installa"
 
-#: plugin.py:479 plugin.py:684 plugin.py:830 plugin.py:1056
+#: plugin.py:484 plugin.py:689 plugin.py:836 plugin.py:1056
 msgid "Back"
 msgstr "Indietro"
 
-#: plugin.py:517 plugin.py:722
+#: plugin.py:525 plugin.py:730
 msgid "Try again later ..."
 msgstr "Riprovare pi√π tardi ..."
 
-#: plugin.py:556 plugin.py:918
+#: plugin.py:564 plugin.py:925
 msgid ""
 "Do you want to install?\n"
 "It could take a few minutes, wait .."
@@ -120,35 +91,35 @@ msgstr ""
 "Vuoi installare? \n"
 "Potrebbero volerci alcuni minuti, aspetta .."
 
-#: plugin.py:559 plugin.py:921
+#: plugin.py:567 plugin.py:928
 msgid "... please wait"
 msgstr "... attendere prego"
 
-#: plugin.py:590 plugin.py:953
+#: plugin.py:598 plugin.py:956
 msgid "Picons Not Installed ..."
 msgstr "Picons Non Installati"
 
-#: plugin.py:594 plugin.py:964 plugin.py:973 plugin.py:982
+#: plugin.py:603 plugin.py:968 plugin.py:977 plugin.py:986
 msgid "Install ..."
 msgstr "Installo ..."
 
-#: plugin.py:598
+#: plugin.py:607
 msgid "Successfully Picons Installed"
 msgstr "Picons installati con successo"
 
-#: plugin.py:607
+#: plugin.py:615
 msgid "Download..."
 msgstr ""
 
-#: plugin.py:683
+#: plugin.py:688
 msgid "Select"
 msgstr "Seleziona"
 
-#: plugin.py:925
+#: plugin.py:932
 msgid "Xstreamity Player not installed"
 msgstr "Xstreamity Player non installato"
 
-#: plugin.py:968 plugin.py:978 plugin.py:986
+#: plugin.py:972 plugin.py:982 plugin.py:990
 msgid "Successfully Skin Installed"
 msgstr "Skin installata con successo"
 
@@ -156,9 +127,9 @@ msgstr "Skin installata con successo"
 msgid "zConfig"
 msgstr ""
 
-#: plugin.py:1052
-msgid "zConfig Panel Addon"
-msgstr ""
+#: plugin.py:1052 plugin.py:1107
+msgid "SELECT YOUR CHOICE"
+msgstr "FAI LA TUA SCELTA"
 
 #: plugin.py:1054
 msgid "Choice"
@@ -168,7 +139,7 @@ msgstr "Scegli"
 msgid "Save"
 msgstr "Salva"
 
-#: plugin.py:1090
+#: plugin.py:1091
 #, python-format
 msgid ""
 "Config Panel Addon\n"
@@ -177,29 +148,32 @@ msgstr ""
 "Config Panel Addon\n"
 "Il tuo IP attuale Ë %s"
 
-#: plugin.py:1096
+#: plugin.py:1097
 msgid "Set the path to the Picons folder"
 msgstr "Imposta il percorso della cartella Picons"
 
-#: plugin.py:1096
+#: plugin.py:1097
 msgid "Press Ok to select the folder containing the picons files"
 msgstr "Premere Ok per selezionare la cartella contenente i file picons"
 
-#: plugin.py:1128
+#: plugin.py:1140
 msgid "Restart Enigma is Required. Do you want to continue?"
 msgstr "E' richiesto il riavvio Enigma. Vuoi continuare?"
 
-#: plugin.py:1147
+#: plugin.py:1159
 msgid "Choose Directory:"
 msgstr "Scegli cartella"
 
-#: plugin.py:1148
+#: plugin.py:1160
 msgid "Choose directory"
 msgstr "Scegli Cartella:"
 
-#: plugin.py:1188
+#: plugin.py:1200
 msgid "Really close without saving the settings?"
 msgstr "Uscire senza salvare le impostazioni?"
+
+#~ msgid "Stream already added to bouquet"
+#~ msgstr "Stream gi‡ aggiunto al bouquet"
 
 #~ msgid "Adding to bouquet failed"
 #~ msgstr "Aggiunta al bouquet non riuscita"

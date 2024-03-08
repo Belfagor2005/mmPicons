@@ -239,7 +239,7 @@ class mmList(MenuList):
             self.l.setFont(0, gFont('Regular', textfont))
         elif screenwidth.width() == 1920:
             self.l.setItemHeight(50)
-            textfont = int(30)
+            textfont = int(32)
             self.l.setFont(0, gFont('Regular', textfont))
         else:
             self.l.setItemHeight(30)
@@ -483,7 +483,7 @@ class MMarkPiconScreen(Screen):
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_('Preview'))
-        self["key_blue"] = Button(_(''))
+        self["key_blue"] = Button()
         self['key_blue'].hide()
         self['key_green'].hide()
         self['pform'] = Label('')
@@ -688,7 +688,7 @@ class MMarkFolderScreen(Screen):
         self['key_green'] = Button(_('Select'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_('Preview'))
-        self["key_blue"] = Button(_(''))
+        self["key_blue"] = Button()
         self['key_blue'].hide()
         self['key_green'].hide()
         self['pform'] = Label('')
@@ -835,7 +835,7 @@ class MMarkFolderSkinZeta(Screen):
         self['key_green'] = Button(_('Install'))
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_('Preview'))
-        self["key_blue"] = Button(_(''))
+        self["key_blue"] = Button()
         self['key_blue'].hide()
         self['key_green'].hide()
         self['pform'] = Label('')
@@ -1042,7 +1042,7 @@ class mmConfig(Screen, ConfigListScreen):
         with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
         Screen.__init__(self, session)
-        self.setup_title = _("zConfig")
+        self.setup_title = _("Config")
         # self['title'] = Label(desc_plugin)
         self.onChangedEntry = []
         self.list = []
@@ -1054,7 +1054,7 @@ class mmConfig(Screen, ConfigListScreen):
         self['key_yellow'] = Button(_('Choice'))
         self['key_green'] = Button(_('Save'))
         self['key_red'] = Button(_('Back'))
-        self["key_blue"] = Button(_(''))
+        self["key_blue"] = Button()
         self['key_blue'].hide()
         self["setupActions"] = ActionMap(['OkCancelActions',
                                           'DirectionActions',

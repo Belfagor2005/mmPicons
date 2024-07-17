@@ -1,8 +1,8 @@
 #!/bin/sh
 echo "Restart GUI after intallation..."
-echo "................................"
+echo "........................."
 echo "Checking for an older version in the system..."
-echo "................................"
+echo "........................."
 if [ -d /usr/lib/enigma2/python/Plugins/Extensions/mmPicons ]
 then
 rm -rf /usr/lib/enigma2/python/Plugins/Extensions/mmPicons > /dev/null 2>&1

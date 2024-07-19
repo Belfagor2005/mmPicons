@@ -14,11 +14,13 @@
     <ePixmap pixmap="skin_default/buttons/key_green.png" position="685,1308" size="60,60" alphatest="on" zPosition="5" />
     <ePixmap pixmap="skin_default/buttons/key_yellow.png" position="1050,1308" size="60,60" alphatest="on" zPosition="5" />
     <ePixmap pixmap="skin_default/buttons/key_blue.png" position="1426,1308" size="60,60" alphatest="on" zPosition="5" />
+
     <widget name="key_red" position="375,1306" size="300,60" font="Regular; 42" halign="left" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1" />
     <widget name="key_green" position="750,1306" size="300,60" font="Regular; 42" halign="left" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1" />
     <widget name="key_yellow" position="1116,1306" size="300,60" font="Regular; 42" halign="left" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1" />
     <widget name="key_blue" position="1493,1306" size="300,60" font="Regular; 42" halign="left" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1" />
-    <widget name="text" position="307,283" scrollbarMode="showOnDemand" size="1291,800" itemHeight="67" zPosition="4" backgroundColor="#000000" transparent="1" scrollbarWidth="10" backgroundColorSelected="#001b3c85" />
+
+    <widget name="text" position="307,283" scrollbarMode="showOnDemand" size="1291,800" zPosition="4" backgroundColor="#000000" transparent="1" scrollbarWidth="10" backgroundColorSelected="#001b3c85" />
     <widget name="info" position="309,192" size="1292,81" font="Regular; 36" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#202020" transparent="0" zPosition="5" />
     <widget name="progress" position="1102,1130" size="496,70" foregroundColor="#2a70a4" backgroundColor="#202020" transparent="0" zPosition="5" />
     <widget source="progresstext" render="Label" position="1106,1130" size="494,70" font="Regular;32" backgroundColor="#202020" transparent="1" halign="center" valign="center" zPosition="6" />

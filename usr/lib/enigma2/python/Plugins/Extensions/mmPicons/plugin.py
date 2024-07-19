@@ -12,7 +12,7 @@
 '''
 # Info https://e2skin.blogspot.com/
 from __future__ import print_function
-from . import _
+from . import _, logdata, getversioninfo
 from . import Utils
 from . import html_conv
 from .Downloader import downloadWithProgress
@@ -88,43 +88,6 @@ except:
     from urllib.request import Request
 
 
-def trace_error():
-    import traceback
-    try:
-        traceback.print_exc(file=sys.stdout)
-        traceback.print_exc(file=open('/tmp/Error.log', 'a'))
-    except Exception as e:
-        print('error: ', str(e))
-        pass
-
-
-def logdata(name='', data=None):
-    try:
-        data = str(data)
-        fp = open('/tmp/mmPicons.log', 'a')
-        fp.write(str(name) + ': ' + data + "\n")
-        fp.seek(0)
-        fp.close()
-    except:
-        trace_error()
-        pass
-
-
-def getversioninfo():
-    currversion = '1.4'
-    version_file = '/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/version'
-    if os.path.exists(version_file):
-        try:
-            fp = open(version_file, 'r').readlines()
-            for line in fp:
-                if 'version' in line:
-                    currversion = line.split('=')[1].strip()
-        except:
-            pass
-    logdata("Version ", currversion)
-    return (currversion)
-
-
 sslverify = False
 try:
     from twisted.internet import ssl
@@ -169,7 +132,6 @@ ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5w
 ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 ecskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1jOHN3MGFoc3Mzc2kwJmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
 openskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT0wd3o0M3l2OG5zeDc5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
-#
 installer_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0JlbGZhZ29yMjAwNS9tbVBpY29ucy9tYWluL2luc3RhbGxlci5zaA=='
 developer_url = 'aHR0cHM6Ly9hcGkuZ2l0aHViLmNvbS9yZXBvcy9CZWxmYWdvcjIwMDUvbW1QaWNvbnM='
 
@@ -656,13 +618,6 @@ class MMarkPiconScreen(Screen):
         self['progresstext'].text = ''
         self['progress'].setValue(self.progclear)
         self["progress"].hide()
-
-    # def downloadProgress(self, recvbytes, totalbytes):
-        # self["progress"].show()
-        # self['info'].setText(_('Download...'))
-        # self['progress'].value = int(100 * recvbytes / float(totalbytes))
-        # self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (recvbytes / 1024, totalbytes / 1024, 100 * recvbytes / float(totalbytes))
-        # print('progress = ok')
 
     def downloadProgress2(self, recvbytes, totalbytes):
         try:

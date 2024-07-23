@@ -1327,7 +1327,11 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
     if menuid == 'mainmenu':
-        return [(title_plug, main, 'mmPicons', 44)]
+        from Tools.BoundFunction import boundFunction
+        return [(title_plug,
+                 boundFunction(main, showExtentionMenuOption=True),
+                 'mmPicons',
+                 -1)]
     else:
         return []
 

@@ -1,11 +1,20 @@
-<!-- Skin mmConfig 09/07/2022 -->
-<screen name="mmConfig" position="center,200" size="1310,300" title="mMark Picons Manager" backgroundColor="#20000000">
-		<widget name="config" position="10,160" size="1295,50" scrollbarMode="showOnDemand" itemHeight="50" transparent="1" zPosition="2" />
-		<eLabel  position="10,225" size="1295,3" backgroundColor="#303030" zPosition="3" />
-		<ePixmap position="20,245" pixmap="skin_default/buttons/key_red.png" size="80,40" alphatest="blend" zPosition="2" />
-		<widget name="key_red" font="Regular;30" position="110,245" size="150,40" halign="left" valign="center" backgroundColor="black" zPosition="3" transparent="1" />
-		<ePixmap position="280,245" pixmap="skin_default/buttons/key_green.png" size="80,40" alphatest="blend" zPosition="2" />
-		<widget name="key_green" font="Regular;30" position="370,245" size="150,40" halign="left" valign="center" backgroundColor="black" zPosition="3" transparent="1" />
-		<ePixmap position="540,245" pixmap="skin_default/buttons/key_yellow.png" size="80,40" alphatest="blend" zPosition="2" />
-		<widget name="key_yellow" font="Regular;30" position="630,245" size="150,40" halign="left" valign="center" backgroundColor="black" zPosition="1" transparent="1" />
+<!-- Skin mmConfig 09/01/2022 -->
+<screen name="mmConfig" position="0,0" size="1920,1080" title="..::mMark Picons Manager::.." backgroundColor="transparent" flags="wfNoBorder">
+	<widget name="info" position="218,129" size="1026,90" font="Regular;30" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#202020" transparent="0" zPosition="5" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/main22.png" position="0,0" size="1920,1080" scale="stretch" zPosition="1" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/tvs.png" position="220,14" size="100,80" scale="stretch" alphatest="blend" zPosition="5" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/sep.png" position="218,110" size="1013,8" zPosition="5" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/sep.png" position="218,935" size="1013,8" zPosition="5" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/PayPal.png" position="585,942" size="233,111" scale="stretch" zPosition="2" alphatest="blend" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/qr-code.png" position="885,590" size="338,338" scale="stretch" zPosition="2" alphatest="blend" />
+	<widget name="paypal" position="218,606" size="648,323" font="Regular;36" halign="center" foregroundColor="#ffffff" backgroundColor="#101010" transparent="1" zPosition="2" />
+	<!-- Menu List -->
+	<widget name="config" position="218,225" size="1007,347" font="Regular;33" itemHeight="75" scrollbarMode="showOnDemand" transparent="1" zPosition="5" foregroundColor="#00a0a0a0" foregroundColorSelected="#ffffff" backgroundColor="#20000000" backgroundColorSelected="#0b2049" />
+	<!-- Colors 1220 -->
+    <eLabel backgroundColor="#00ff0000" position="270,991" size="300,6" zPosition="4" />
+    <eLabel backgroundColor="#0000ff00" position="271,1042" size="300,6" zPosition="4" />
+    <eLabel backgroundColor="#00ffff00" position="835,992" size="300,6" zPosition="4" />
+	<widget name="key_red" position="270,950" size="300,39" font="Regular;30" halign="center" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1" />
+	<widget name="key_green" position="270,1004" size="300,39" font="Regular;30" halign="center" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1" />
+	<widget name="key_yellow" position="834,950" size="300,39" font="Regular;30" halign="center" valign="center" backgroundColor="#20000000" zPosition="5" transparent="1" />
 </screen>

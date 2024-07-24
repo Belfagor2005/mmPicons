@@ -33,6 +33,7 @@ from Components.config import (
     getConfigListEntry,
     ConfigSubsection,
     ConfigDirectory,
+    configfile,
     # ConfigSelection,
 )
 from Plugins.Plugin import PluginDescriptor
@@ -90,10 +91,11 @@ if sslverify:
             return ctx
 
 
+dirpics = '/media/hdd/picon/'
 piconpathss = Utils.mountipkpth()
 config.plugins.mmPicons = ConfigSubsection()
 cfg = config.plugins.mmPicons
-cfg.mmkpicon = ConfigDirectory(default='/media/hdd/picon/', choices=piconpathss)
+cfg.mmkpicon = ConfigDirectory(default=dirpics)
 plugin_path = '/usr/lib/enigma2/python/Plugins/Extensions/mmPicons'
 currversion = getversioninfo()
 title_plug = 'mMark Picons & Skins'
@@ -110,7 +112,7 @@ piconsblk = os.path.join(res_picon_plugin_path, 'picon_blk.png')
 piconszeta = os.path.join(res_picon_plugin_path, 'picon_z.png')
 piconsmovie = os.path.join(res_picon_plugin_path, 'picon_mv.png')
 pixmaps = os.path.join(res_picon_plugin_path, 'backg.png')
-mmkpicon = cfg.mmkpicon.value.strip()
+# mmkpicon = cfg.mmkpicon.value.strip()
 pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
@@ -119,7 +121,7 @@ openskins = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGV
 installer_url = 'aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0JlbGZhZ29yMjAwNS9tbVBpY29ucy9tYWluL2luc3RhbGxlci5zaA=='
 developer_url = 'aHR0cHM6Ly9hcGkuZ2l0aHViLmNvbS9yZXBvcy9CZWxmYWdvcjIwMDUvbW1QaWNvbnM='
 
-
+mmkpicon = str(cfg.mmkpicon.value)
 if mmkpicon.endswith('/'):
     mmkpicon = mmkpicon[:-1]
 if not os.path.exists(mmkpicon):
@@ -816,7 +818,7 @@ class MMarkFolderScreen(Screen):
         if error_message == "" and failure_instance is not None:
             self.error_message = failure_instance.getErrorMessage()
         self.downloading = False
-        info = 'Download Failed!!! ' + self.error_message
+        info = _('Download Failed! ') + self.error_message
         self['info'].setText(info)
         self.session.open(MessageBox, _(info), MessageBox.TYPE_INFO, timeout=5)
 
@@ -982,7 +984,7 @@ class MMarkFolderSkinZeta(Screen):
             # if self.last_recvbytes == recvbytes:
                 # self.getfreespace()
         except ZeroDivisionError:
-            self['info'].setText(_('Download Failed!'))
+            self['info'].setText(_('Download Failed! '))
             self["progress"].hide()
             self['progress'].setRange((0, 100))
             self['progress'].setValue(0)
@@ -1072,7 +1074,6 @@ class mmConfig(Screen, ConfigListScreen):
             self.skin = f.read()
         Screen.__init__(self, session)
         self.setup_title = _("Config")
-        # self['title'] = Label(desc_plugin)
         self.onChangedEntry = []
         self.list = []
         ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
@@ -1083,8 +1084,8 @@ class mmConfig(Screen, ConfigListScreen):
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_('Choice'))
         self['key_green'] = Button(_('Save'))
-        self["key_blue"] = Button()
-        self['key_blue'].hide()
+        # self["key_blue"] = Button()
+        # self['key_blue'].hide()
         self["setupActions"] = ActionMap(['OkCancelActions',
                                           'DirectionActions',
                                           'ColorActions',
@@ -1096,6 +1097,7 @@ class mmConfig(Screen, ConfigListScreen):
                                                                  'left': self.keyLeft,
                                                                  'right': self.keyRight,
                                                                  'yellow': self.Ok_edit,
+                                                                 'showVirtualKeyboard': self.KeyText,
                                                                  'ok': self.Ok_edit,
                                                                  'green': self.msgok}, -1)
         self.createSetup()
@@ -1163,43 +1165,56 @@ class mmConfig(Screen, ConfigListScreen):
         self.createSetup()
 
     def msgok(self):
+        if os.path.exists(cfg.mmkpicon.value) is False:
+            self.session.open(MessageBox, _('Device not detected!'), MessageBox.TYPE_INFO, timeout=4)
+
         if self['config'].isChanged():
             for x in self["config"].list:
                 x[1].save()
-            self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Restart Enigma is Required. Do you want to continue?"), MessageBox.TYPE_YESNO)
-        else:
+            cfg.save()
+            configfile.save()
+            # self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Restart Enigma is Required. Do you want to continue?"), MessageBox.TYPE_YESNO)
+            self.session.open(MessageBox, _('Successfully saved configuration'), MessageBox.TYPE_INFO, timeout=4)
             self.close(True)
+        else:
+            self.close()
 
     def Ok_edit(self):
-        # ConfigListScreen.keyOK(self)
         sel = self['config'].getCurrent()[1]
-        if sel and sel == cfg.mmkpicon:
-            self.setting = 'mmkpicon'
-            mmkpth = cfg.mmkpicon.value
-            self.openDirectoryBrowser(mmkpth)
+        if sel:
+            if sel == cfg.mmkpicon:
+                self.setting = 'mmkpicon'
+                mmkpth = cfg.mmkpicon.value
+                self.openDirectoryBrowser(mmkpth, 'pthpicon')
         else:
             pass
 
-    def openDirectoryBrowser(self, path):
+    def openDirectoryBrowser(self, path, itemcfg):
         try:
-            self.session.openWithCallback(
-                self.openDirectoryBrowserCB,
-                LocationBox,
-                windowTitle=_('Choose Directory:'),
-                text=_('Choose directory'),
-                currDir=str(path),
-                bookmarks=config.movielist.videodirs,
-                autoAdd=False,
-                editDir=True,
-                inhibitDirs=['/bin', '/boot', '/dev', '/home', '/lib', '/proc', '/run', '/sbin', '/sys', '/var'],
-                minFree=15)
-        except Exception as e:
-            print('openDirectoryBrowser get failed: ', str(e))
+            callback_map = {
+                "pthpicon": self.openDirectoryBrowserCB(cfg.mmkpicon)
+            }
 
-    def openDirectoryBrowserCB(self, path):
-        if path is not None:
-            if self.setting == 'mmkpicon':
-                cfg.mmkpicon.setValue(path)
+            if itemcfg in callback_map:
+                self.session.openWithCallback(
+                    callback_map[itemcfg],
+                    LocationBox,
+                    windowTitle=_("Choose Directory:"),
+                    text=_("Choose directory"),
+                    currDir=str(path),
+                    bookmarks=config.movielist.videodirs,
+                    autoAdd=True,
+                    editDir=True,
+                    inhibitDirs=["/bin", "/boot", "/dev", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"]
+                )
+        except Exception as e:
+            print(e)
+
+    def openDirectoryBrowserCB(self, config_entry):
+        def callback(path):
+            if path is not None:
+                config_entry.setValue(path)
+        return callback
 
     def KeyText(self):
         sel = self['config'].getCurrent()

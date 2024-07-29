@@ -8,7 +8,7 @@
 	<widget name="pth" position="219,870" size="972,50" font="Regular;30" halign="left" foregroundColor="#808080" backgroundColor="#000000" transparent="1" zPosition="5" />
 	<eLabel position="1370,39" size="540,320" backgroundColor="#30000000" zPosition="1" />
 	<widget name="poster" position="1389,60" size="500,281" backgroundColor="#30000000" transparent="1" borderWidth="3" borderColor="#00ffffff" alphatest="blend" zPosition="4" />
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/main22.png" position="0,0" size="1920,1080" scale="stretch" zPosition="1" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/main2.png" position="0,0" size="1920,1080" scale="stretch" zPosition="1" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/tvs.png" position="220,14" size="100,80" scale="stretch" alphatest="blend" zPosition="5" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/sep.png" position="219,132" size="969,8" zPosition="5" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/mmPicons/res/pics/sep.png" position="219,759" size="969,5" zPosition="5" />	

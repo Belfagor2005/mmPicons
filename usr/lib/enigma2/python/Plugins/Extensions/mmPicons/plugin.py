@@ -1296,14 +1296,15 @@ def main(session, **kwargs):
 
 
 def menu(menuid, **kwargs):
-    if menuid == 'mainmenu':
-        from Tools.BoundFunction import boundFunction
-        return [(title_plug,
-                 boundFunction(main, showExtentionMenuOption=True),
-                 'mmPicons',
-                 -1)]
-    else:
-        return []
+    return [(title_plug, main(), 'mmPicons by mMark', 44)] if menuid == "mainmenu" else []
+    # if menuid == 'mainmenu':
+        # from Tools.BoundFunction import boundFunction
+        # return [(title_plug,
+                 # boundFunction(main, showExtentionMenuOption=True),
+                 # 'mmPicons',
+                 # -1)]
+    # else:
+        # return []
 
 
 def systemmenu(menuid, **kwargs):

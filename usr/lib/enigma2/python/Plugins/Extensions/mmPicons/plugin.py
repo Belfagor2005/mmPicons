@@ -224,7 +224,6 @@ class SelectPicons(Screen):
         self.currentList = 'text'
         self.Update = False
         self['actions'] = ActionMap(['OkCancelActions',
-                                     'ColorActions',
                                      'HotkeyActions',
                                      'InfobarEPGActions',
                                      'MenuActions',

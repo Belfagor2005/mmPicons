@@ -6,6 +6,8 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import gettext
 from os import environ as os_environ
 import os
+import sys
+
 PluginLanguageDomain = 'mmPicons'
 PluginLanguagePath = 'Extensions/mmPicons/res/locale'
 

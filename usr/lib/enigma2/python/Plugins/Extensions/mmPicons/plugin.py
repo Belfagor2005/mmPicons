@@ -1082,7 +1082,7 @@ class mmConfig(Screen, ConfigListScreen):
         self["paypal"] = Label()
         self['key_red'] = Button(_('Back'))
         self['key_yellow'] = Button(_('Choice'))
-        self['key_green'] = Button(_('Save'))
+        self['key_green'] = Button(_('- - - -'))
         # self["key_blue"] = Button()
         # self['key_blue'].hide()
         self["setupActions"] = ActionMap(['OkCancelActions',
@@ -1140,6 +1140,7 @@ class mmConfig(Screen, ConfigListScreen):
             print("Error ", e)
 
     def changedEntry(self):
+        self['key_green'].instance.setText(_('Save') if self['config'].isChanged() else '- - - -')
         for x in self.onChangedEntry:
             x()
 

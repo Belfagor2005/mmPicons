@@ -146,43 +146,44 @@ if os.path.exists('/usr/bin/apt-get'):
 class mmList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-		if screenwidth.width() == 2560:
-			self.l.setItemHeight(60)
-			textfont = int(44)
-			self.l.setFont(0, gFont('Regular', textfont))
-		elif screenwidth.width() == 1920:
-			self.l.setItemHeight(50)
-			textfont = int(32)
-			self.l.setFont(0, gFont('Regular', textfont))
+
+		screen_width = screenwidth.width()
+
+		if screen_width == 2560:
+			item_height = 60
+			textfont = 44
+		elif screen_width == 1920:
+			item_height = 50
+			textfont = 32
 		else:
-			self.l.setItemHeight(45)
-			textfont = int(24)
-			self.l.setFont(0, gFont('Regular', textfont))
+			item_height = 45
+			textfont = 24
+
+		self.l.setItemHeight(item_height)
+		self.l.setFont(0, gFont("Regular", textfont))
 
 
 def zxListEntry(name, idx):
 	res = [name]
 	pngs = ico1_path
-	if screenwidth.width() == 2560:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 10), size=(40, 40), png=loadPNG(pngs)))
-		res.append(MultiContentEntryText(pos=(90, 0), size=(1200, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-	elif screenwidth.width() == 1920:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 5), size=(40, 40), png=loadPNG(pngs)))
-		res.append(MultiContentEntryText(pos=(70, 0), size=(1000, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+	screen_width = screenwidth.width()
+
+	if screen_width == 2560:
+		pos_pixmap, pos_text, size_text = (10, 10), (90, 0), (1200, 50)
+	elif screen_width == 1920:
+		pos_pixmap, pos_text, size_text = (5, 5), (70, 0), (1000, 50)
 	else:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(3, 10), size=(40, 40), png=loadPNG(pngs)))
-		res.append(MultiContentEntryText(pos=(50, 0), size=(500, 50), font=0, text=name, color=0xa6d1fe, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+		pos_pixmap, pos_text, size_text = (3, 10), (50, 0), (500, 50)
+
+	res.append(MultiContentEntryPixmapAlphaTest(pos=pos_pixmap, size=(40, 40), png=loadPNG(pngs)))
+	res.append(MultiContentEntryText(pos=pos_text, size=size_text, font=0, text=name, color=0xA6D1FE, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+
 	return res
 
 
 def showlist(data, list):
-	icount = 0
-	plist = []
-	for line in data:
-		name = data[icount]
-		plist.append(zxListEntry(name, icount))
-		icount += 1
-		list.setList(plist)
+	plist = [zxListEntry(name, idx) for idx, name in enumerate(data)]
+	list.setList(plist)
 
 
 Panel_list3 = [('PICONS TRANSPARENT'),
@@ -222,26 +223,34 @@ class SelectPicons(Screen):
 		self['text'] = mmList([])
 		self.currentList = 'text'
 		self.Update = False
-		self['actions'] = ActionMap(['OkCancelActions',
-									 'HotkeyActions',
-									 'InfobarEPGActions',
-									 'MenuActions',
-									 'ChannelSelectBaseActions',
-									 'DirectionActions'], {'ok': self.okRun,
-														   'menu': self.goConfig,
-														   'blue': self.msgtqm,
-														   'up': self.up,
-														   'down': self.down,
-														   'left': self.left,
-														   'right': self.right,
-														   'yellow': self.zoom,  # update_me,
-														   'yellow_long': self.update_dev,
-														   'info_long': self.update_dev,
-														   'infolong': self.update_dev,
-														   'showEventInfoPlugin': self.update_dev,
-														   'green': self.remove,
-														   'cancel': self.closerm,
-														   'red': self.closerm}, -1)
+		self["actions"] = ActionMap(
+			[
+				"OkCancelActions",
+				"HotkeyActions",
+				"InfobarEPGActions",
+				"MenuActions",
+				"ChannelSelectBaseActions",
+				"DirectionActions",
+			],
+			{
+				"ok": self.okRun,
+				"menu": self.goConfig,
+				"blue": self.msgtqm,
+				"up": self.up,
+				"down": self.down,
+				"left": self.left,
+				"right": self.right,
+				"yellow": self.zoom,  # update_me
+				"yellow_long": self.update_dev,
+				"info_long": self.update_dev,
+				"infolong": self.update_dev,
+				"showEventInfoPlugin": self.update_dev,
+				"green": self.remove,
+				"cancel": self.closerm,
+				"red": self.closerm,
+			},
+			-1,
+		)
 		self.timer = eTimer()
 		if os.path.exists('/usr/bin/apt-get'):
 			self.timer_conn = self.timer.timeout.connect(self.check_vers)
@@ -475,18 +484,26 @@ class MMarkPiconScreen(Screen):
 		self['key_green'].hide()
 		self['pform'] = Label('')
 		self.currentList = 'text'
-		self['actions'] = ActionMap(['OkCancelActions',
-									 'ColorActions',
-									 'ButtonSetupActions',
-									 'DirectionActions'], {'ok': self.okRun,
-														   'green': self.okRun,
-														   'red': self.close,
-														   'yellow': self.zoom,
-														   'up': self.up,
-														   'down': self.down,
-														   'left': self.left,
-														   'right': self.right,
-														   'cancel': self.close}, -2)
+		self["actions"] = ActionMap(
+			[
+				"OkCancelActions",
+				"ColorActions",
+				"ButtonSetupActions",
+				"DirectionActions",
+			],
+			{
+				"ok": self.okRun,
+				"green": self.okRun,
+				"red": self.close,
+				"yellow": self.zoom,
+				"up": self.up,
+				"down": self.down,
+				"left": self.left,
+				"right": self.right,
+				"cancel": self.close,
+			},
+			-2,
+		)
 		if os.path.exists('/usr/bin/apt-get'):
 			self.timer_conn = self.timer.timeout.connect(self.downxmlpage)
 		else:
@@ -693,18 +710,26 @@ class MMarkFolderScreen(Screen):
 		else:
 			self.timer.callback.append(self.downxmlpage)
 		self.timer.start(500, 1)
-		self['actions'] = ActionMap(['OkCancelActions',
-									 'ColorActions',
-									 'ButtonSetupActions',
-									 'DirectionActions'], {'ok': self.okRun,
-														   'green': self.okRun,
-														   'red': self.close,
-														   "yellow": self.zoom,
-														   'up': self.up,
-														   'down': self.down,
-														   'left': self.left,
-														   'right': self.right,
-														   'cancel': self.close}, -2)
+		self["actions"] = ActionMap(
+			[
+				"OkCancelActions",
+				"ColorActions",
+				"ButtonSetupActions",
+				"DirectionActions",
+			],
+			{
+				"ok": self.okRun,
+				"green": self.okRun,
+				"red": self.close,
+				"yellow": self.zoom,
+				"up": self.up,
+				"down": self.down,
+				"left": self.left,
+				"right": self.right,
+				"cancel": self.close,
+			},
+			-2,
+		)
 		self.onLayoutFinish.append(self.getfreespace)
 
 	def zoom(self):
@@ -861,19 +886,26 @@ class MMarkFolderSkinZeta(Screen):
 		else:
 			self.timer.callback.append(self.downxmlpage)
 		self.timer.start(500, 1)
-
-		self['actions'] = ActionMap(['OkCancelActions',
-									 'ColorActions',
-									 'ButtonSetupActions',
-									 'DirectionActions'], {'ok': self.okRun,
-														   'green': self.okRun,
-														   'red': self.close,
-														   "yellow": self.zoom,
-														   'up': self.up,
-														   'down': self.down,
-														   'left': self.left,
-														   'right': self.right,
-														   'cancel': self.close}, -2)
+		self["actions"] = ActionMap(
+			[
+				"OkCancelActions",
+				"ColorActions",
+				"ButtonSetupActions",
+				"DirectionActions",
+			],
+			{
+				"ok": self.okRun,
+				"green": self.okRun,
+				"red": self.close,
+				"yellow": self.zoom,
+				"up": self.up,
+				"down": self.down,
+				"left": self.left,
+				"right": self.right,
+				"cancel": self.close,
+			},
+			-2,
+		)
 		self.onLayoutFinish.append(self.getfreespace)
 
 	def zoom(self):
@@ -1083,20 +1115,28 @@ class mmConfig(Screen, ConfigListScreen):
 		self['key_green'] = Button(_('- - - -'))
 		# self["key_blue"] = Button()
 		# self['key_blue'].hide()
-		self["setupActions"] = ActionMap(['OkCancelActions',
-										  'DirectionActions',
-										  'ColorActions',
-										  'ButtonSetupActions',
-										  'VirtualKeyboardActions',
-										  'ActiveCodeActions'], {'cancel': self.extnok,
-																 'red': self.extnok,
-																 'back': self.close,
-																 'left': self.keyLeft,
-																 'right': self.keyRight,
-																 'yellow': self.Ok_edit,
-																 'showVirtualKeyboard': self.KeyText,
-																 'ok': self.Ok_edit,
-																 'green': self.msgok}, -1)
+		self["setupActions"] = ActionMap(
+			[
+				"OkCancelActions",
+				"DirectionActions",
+				"ColorActions",
+				"ButtonSetupActions",
+				"VirtualKeyboardActions",
+				"ActiveCodeActions",
+			],
+			{
+				"cancel": self.extnok,
+				"red": self.extnok,
+				"back": self.close,
+				"left": self.keyLeft,
+				"right": self.keyRight,
+				"yellow": self.Ok_edit,
+				"showVirtualKeyboard": self.KeyText,
+				"ok": self.Ok_edit,
+				"green": self.msgok,
+			},
+			-1,
+		)
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 		if self.setInfo not in self['config'].onSelectionChanged:
@@ -1171,7 +1211,6 @@ class mmConfig(Screen, ConfigListScreen):
 				x[1].save()
 			cfg.save()
 			configfile.save()
-			# self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Restart Enigma is Required. Do you want to continue?"), MessageBox.TYPE_YESNO)
 			self.session.open(MessageBox, _('Successfully saved configuration'), MessageBox.TYPE_INFO, timeout=4)
 			self.close(True)
 		else:
@@ -1264,10 +1303,18 @@ class PiconsPreview(Screen):
 			self.PicLoad.PictureData.get().append(self.DecodePicture)
 		except:
 			self.PicLoad_conn = self.PicLoad.PictureData.connect(self.DecodePicture)
-		self['actions'] = ActionMap(['OkCancelActions',
-									 'ColorActions'], {'ok': self.close,
-													   'cancel': self.close,
-													   'blue': self.close}, -1)
+		self["actions"] = ActionMap(
+			[
+				"OkCancelActions",
+				"ColorActions",
+			],
+			{
+				"ok": self.close,
+				"cancel": self.close,
+				"blue": self.close,
+			},
+			-1,
+		)
 		self.onLayoutFinish.append(self.ShowPicture)
 
 	def ShowPicture(self):

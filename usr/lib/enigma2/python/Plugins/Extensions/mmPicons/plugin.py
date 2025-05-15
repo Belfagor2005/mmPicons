@@ -12,50 +12,8 @@
 '''
 # Info https://e2skin.blogspot.com/
 from __future__ import print_function
-from . import _, logdata, getversioninfo
-from . import Utils
-from .Downloader import downloadWithProgress
-from .Console import Console as xConsole
 
-from Components.AVSwitch import AVSwitch
-from Components.ActionMap import ActionMap
-from Components.Button import Button
-from Components.ConfigList import ConfigListScreen
-from Components.Label import Label
-from Components.MenuList import MenuList
-from Components.MultiContent import (MultiContentEntryPixmapAlphaTest, MultiContentEntryText)
-from Components.Pixmap import Pixmap
-from Components.ProgressBar import ProgressBar
-from Components.Sources.Progress import Progress
-from Components.Sources.StaticText import StaticText
-from Components.config import (
-	config,
-	getConfigListEntry,
-	ConfigSubsection,
-	ConfigDirectory,
-	configfile,
-	# ConfigSelection,
-)
-from Plugins.Plugin import PluginDescriptor
-from Screens.LocationBox import LocationBox
-from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
-from Screens.VirtualKeyBoard import VirtualKeyBoard
-# from Tools.Downloader import downloadWithProgress
-from enigma import (
-	RT_VALIGN_CENTER,
-	RT_HALIGN_LEFT,
-	eTimer,
-	eListboxPythonMultiContent,
-	gFont,
-	ePicLoad,
-	loadPic,
-	loadPNG,
-	getDesktop,
-)
-from twisted.web.client import getPage
-from datetime import datetime
+# Standard library
 import codecs
 import glob
 import json
@@ -64,6 +22,53 @@ import re
 import six
 import subprocess
 import sys
+from datetime import datetime
+
+# Enigma2
+from Components.AVSwitch import AVSwitch
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.ConfigList import ConfigListScreen
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
+from Components.Pixmap import Pixmap
+from Components.ProgressBar import ProgressBar
+from Components.Sources.StaticText import StaticText
+from Components.config import (
+	config,
+	configfile,
+	ConfigDirectory,
+	ConfigSubsection,
+	getConfigListEntry,
+	# ConfigSelection,
+)
+from Plugins.Plugin import PluginDescriptor
+from Screens.LocationBox import LocationBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+from enigma import (
+	RT_HALIGN_LEFT,
+	RT_VALIGN_CENTER,
+	eListboxPythonMultiContent,
+	ePicLoad,
+	eTimer,
+	gFont,
+	getDesktop,
+	loadPic,
+	loadPNG,
+)
+
+# Twisted
+from twisted.web.client import getPage
+
+# Import internal
+from . import _, getversioninfo, logdata
+from . import Utils
+from .Console import Console as xConsole
+from .Downloader import downloadWithProgress
 
 global skin_path, mmkpicon, XStreamity
 PY3 = sys.version_info.major >= 3
@@ -104,14 +109,12 @@ ico_path = os.path.join(plugin_path, 'logo.png')
 no_cover = os.path.join(plugin_path, 'no_coverArt.png')
 res_plugin_path = os.path.join(plugin_path, 'res/')
 ico1_path = os.path.join(res_plugin_path, 'pics/4logo.png')
-# ico3_path = os.path.join(res_plugin_path, 'pics/setting.png')
 res_picon_plugin_path = os.path.join(res_plugin_path, 'picons/')
 piconstrs = os.path.join(res_picon_plugin_path, 'picon_trs.png')
 piconsblk = os.path.join(res_picon_plugin_path, 'picon_blk.png')
 piconszeta = os.path.join(res_picon_plugin_path, 'picon_z.png')
 piconsmovie = os.path.join(res_picon_plugin_path, 'picon_mv.png')
 pixmaps = os.path.join(res_picon_plugin_path, 'backg.png')
-# mmkpicon = cfg.mmkpicon.value.strip()
 pblk = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1vdnowNG1ycHpvOXB3JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptrs = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT10dmJkczU5eTlocjE5JmNvbnRlbnRfdHlwZT1mb2xkZXJzJmNodW5rX3NpemU9MTAwMCZyZXNwb25zZV9mb3JtYXQ9anNvbg=='
 ptmov = 'aHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9hcGkvMS41L2ZvbGRlci9nZXRfY29udGVudC5waHA/Zm9sZGVyX2tleT1uazh0NTIyYnY0OTA5JmNvbnRlbnRfdHlwZT1maWxlcyZjaHVua19zaXplPTEwMDAmcmVzcG9uc2VfZm9ybWF0PWpzb24='
@@ -532,7 +535,7 @@ class MMarkPiconScreen(Screen):
 
 	def _gotPageLoad(self, data):
 		r = data
-		if six.PY3:
+		if PY3:
 			r = six.ensure_str(data)
 		self.names = []
 		self.urls = []
@@ -753,7 +756,7 @@ class MMarkFolderScreen(Screen):
 
 	def _gotPageLoad(self, data):
 		r = data
-		if six.PY3:
+		if PY3:
 			r = six.ensure_str(data)
 		self.names = []
 		self.urls = []
@@ -934,7 +937,7 @@ class MMarkFolderSkinZeta(Screen):
 
 	def _gotPageLoad(self, data):
 		r = data
-		if six.PY3:
+		if PY3:
 			r = six.ensure_str(data)
 		self.names = []
 		self.urls = []

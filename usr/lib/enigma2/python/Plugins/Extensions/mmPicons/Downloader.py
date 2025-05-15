@@ -7,12 +7,13 @@
 #      22/09/2023     #
 # --------------------#
 
-from .Utils import RequestAgent
 from enigma import eTimer
 from os import unlink
 from twisted.internet import reactor
 import os
 import requests
+from .Utils import RequestAgent
+
 
 try:
 	from urllib.request import urlopen, Request

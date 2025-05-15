@@ -22,16 +22,13 @@ def trace_error():
 		pass
 
 
-def logdata(name='', data=None):
+def logdata(name="", data=None):
 	try:
-		data = str(data)
-		fp = open('/tmp/mmPicons.log', 'a')
-		fp.write(str(name) + ': ' + data + "\n")
-		fp.seek(0)
-		fp.close()
+		line = str(name) + ": " + str(data) + "\n"
+		with open("/tmp/mmPicons.log", "a") as fp:
+			fp.write(line)
 	except:
 		trace_error()
-		pass
 
 
 def getversioninfo():

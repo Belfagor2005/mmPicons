@@ -1,5 +1,11 @@
 mmPicons Addon Enigma2 project
 
+
+[![Python package](https://github.com/Belfagor2005/mmPicons/actions/workflows/pylint.yml/badge.svg)](https://github.com/Belfagor2005/mmPicons/actions/workflows/pylint.yml)
+
+![](https://komarev.com/ghpvc/?username=Belfagor2005)
+
+
 for my friend mMark
 
 https://e2skin.blogspot.com/

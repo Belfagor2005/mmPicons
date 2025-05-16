@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-08 19:18+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: ))^^(( <>\n"
+"Last-Translator: Masta2002\n"
 "Language-Team: *\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -12,17 +12,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: plugin.py\n"
 
 #: plugin.py:297 plugin.py:477 plugin.py:682 plugin.py:829
 msgid "Picons folder "
-msgstr "Picons-Ordner"
+msgstr "Picons Ordner "
 
 #: plugin.py:300 plugin.py:475 plugin.py:680 plugin.py:827
 msgid "Loading data... Please wait"
-msgstr ""
+msgstr "Daten werden geladen... Bitte warten"
 
 #: plugin.py:301
 msgid "Remove"
@@ -46,7 +46,7 @@ msgstr "Möchten Sie Enigma neu starten?"
 
 #: plugin.py:387
 msgid ":P  COMING SOON!!!"
-msgstr ""
+msgstr ":P DEMNÄCHST!!!"
 
 #: plugin.py:390
 #, python-format
@@ -104,7 +104,7 @@ msgstr "Picons nicht installiert ..."
 
 #: plugin.py:603 plugin.py:968 plugin.py:977 plugin.py:986
 msgid "Install ..."
-msgstr ""
+msgstr "Installieren ..."
 
 #: plugin.py:607
 msgid "Successfully Picons Installed"
@@ -112,7 +112,7 @@ msgstr "Picons erfolgreich installiert"
 
 #: plugin.py:615
 msgid "Download..."
-msgstr ""
+msgstr "Download..."
 
 #: plugin.py:688
 msgid "Select"
@@ -120,7 +120,7 @@ msgstr "Wählen"
 
 #: plugin.py:932
 msgid "Xstreamity Player not installed"
-msgstr ""
+msgstr "Xstreamity Player nicht installiert"
 
 #: plugin.py:972 plugin.py:982 plugin.py:990
 msgid "Successfully Skin Installed"
@@ -128,11 +128,11 @@ msgstr "Skin erfolgreich installiert"
 
 #: plugin.py:1045
 msgid "Config"
-msgstr ""
+msgstr "Konfiguration"
 
 #: plugin.py:1052 plugin.py:1107
 msgid "SELECT YOUR CHOICE"
-msgstr ""
+msgstr "WÄHLEN SIE IHRE AUSWAHL"
 
 #: plugin.py:1054
 msgid "Choice"
@@ -165,11 +165,11 @@ msgstr "Enigma neu starten ist erforderlich. Möchtest du fortfahren?"
 
 #: plugin.py:1159
 msgid "Choose Directory:"
-msgstr ""
+msgstr "Verzeichnis auswählen:"
 
 #: plugin.py:1160
 msgid "Choose directory"
-msgstr ""
+msgstr "Verzeichnis wählen"
 
 #: plugin.py:1200
 msgid "Really close without saving the settings?"

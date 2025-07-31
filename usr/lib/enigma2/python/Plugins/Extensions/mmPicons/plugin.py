@@ -23,6 +23,7 @@ import six
 import subprocess
 import sys
 from datetime import datetime
+import base64
 
 # Enigma2
 from Components.AVSwitch import AVSwitch
@@ -79,7 +80,7 @@ try:
     from twisted.internet import ssl
     from twisted.internet._sslverify import ClientTLSOptions
     sslverify = True
-except BaseException:
+except:
     sslverify = False
 
 
@@ -178,18 +179,8 @@ def zxListEntry(name, idx):
     else:
         pos_pixmap, pos_text, size_text = (3, 10), (50, 0), (500, 50)
 
-    res.append(
-        MultiContentEntryPixmapAlphaTest(
-            pos=pos_pixmap, size=(
-                40, 40), png=loadPNG(pngs)))
-    res.append(
-        MultiContentEntryText(
-            pos=pos_text,
-            size=size_text,
-            font=0,
-            text=name,
-            color=0xA6D1FE,
-            flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+    res.append(MultiContentEntryPixmapAlphaTest(pos=pos_pixmap, size=(40, 40), png=loadPNG(pngs)))
+    res.append(MultiContentEntryText(pos=pos_text, size=size_text, font=0, text=name, color=0xA6D1FE, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
 
     return res
 
@@ -275,9 +266,7 @@ class SelectPicons(Screen):
     def check_vers(self):
         remote_version = '0.0'
         remote_changelog = ''
-        req = Utils.Request(
-            Utils.b64decoder(installer_url), headers={
-                'User-Agent': 'Mozilla/5.0'})
+        req = Utils.Request(Utils.b64decoder(installer_url), headers={'User-Agent': 'Mozilla/5.0'})
         page = Utils.urlopen(req).read()
         if PY3:
             data = page.decode("utf-8")
@@ -300,67 +289,33 @@ class SelectPicons(Screen):
             self.Update = True
             # self['key_yellow'].show()
             # self['key_green'].show()
-            self.session.open(
-                MessageBox,
-                _('New version %s is available\n\nChangelog: %s\n\nPress info_long or yellow_long button to start force updating.') %
-                (self.new_version,
-                 self.new_changelog),
-                MessageBox.TYPE_INFO,
-                timeout=5)
+            self.session.open(MessageBox, _('New version %s is available\n\nChangelog: %s\n\nPress info_long or yellow_long button to start force updating.') % (self.new_version, self.new_changelog), MessageBox.TYPE_INFO, timeout=5)
         # self.update_me()
 
     def update_me(self):
         if self.Update is True:
-            self.session.openWithCallback(
-                self.install_update,
-                MessageBox,
-                _("New version %s is available.\n\nChangelog: %s \n\nDo you want to install it now?") %
-                (self.new_version,
-                 self.new_changelog),
-                MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.install_update, MessageBox, _("New version %s is available.\n\nChangelog: %s \n\nDo you want to install it now?") % (self.new_version, self.new_changelog), MessageBox.TYPE_YESNO)
         else:
-            self.session.open(
-                MessageBox,
-                _("Congrats! You already have the latest version..."),
-                MessageBox.TYPE_INFO,
-                timeout=4)
+            self.session.open(MessageBox, _("Congrats! You already have the latest version..."),  MessageBox.TYPE_INFO, timeout=4)
 
     def update_dev(self):
         try:
-            req = Utils.Request(
-                Utils.b64decoder(developer_url), headers={
-                    'User-Agent': 'Mozilla/5.0'})
+            req = Utils.Request(Utils.b64decoder(developer_url), headers={'User-Agent': 'Mozilla/5.0'})
             page = Utils.urlopen(req).read()
             data = json.loads(page)
             remote_date = data['pushed_at']
-            strp_remote_date = datetime.strptime(
-                remote_date, '%Y-%m-%dT%H:%M:%SZ')
+            strp_remote_date = datetime.strptime(remote_date, '%Y-%m-%dT%H:%M:%SZ')
             remote_date = strp_remote_date.strftime('%Y-%m-%d')
-            self.session.openWithCallback(
-                self.install_update,
-                MessageBox,
-                _("Do you want to install update ( %s ) now?") %
-                (remote_date),
-                MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.install_update, MessageBox, _("Do you want to install update ( %s ) now?") % (remote_date), MessageBox.TYPE_YESNO)
         except Exception as e:
             print('error xcons:', e)
 
     def install_update(self, answer=False):
         if answer:
-            cmd1 = 'wget -q "--no-check-certificate" ' + \
-                Utils.b64decoder(installer_url) + ' -O - | /bin/sh'
-            self.session.open(
-                xConsole,
-                'Upgrading...',
-                cmdlist=[cmd1],
-                finishedCallback=self.myCallback,
-                closeOnSuccess=False)
+            cmd1 = 'wget -q "--no-check-certificate" ' + Utils.b64decoder(installer_url) + ' -O - | /bin/sh'
+            self.session.open(xConsole, 'Upgrading...', cmdlist=[cmd1], finishedCallback=self.myCallback, closeOnSuccess=False)
         else:
-            self.session.open(
-                MessageBox,
-                _("Update Aborted!"),
-                MessageBox.TYPE_INFO,
-                timeout=3)
+            self.session.open(MessageBox, _("Update Aborted!"),  MessageBox.TYPE_INFO, timeout=3)
 
     def myCallback(self, result=None):
         print('result:', result)
@@ -381,11 +336,7 @@ class SelectPicons(Screen):
         self.close()
 
     def msgtqm(self):
-        self.mbox = self.session.openWithCallback(
-            self.restartenigma,
-            MessageBox,
-            _("Do you want to restart Enigma?"),
-            MessageBox.TYPE_YESNO)
+        self.mbox = self.session.openWithCallback(self.restartenigma, MessageBox, _("Do you want to restart Enigma?"), MessageBox.TYPE_YESNO)
 
     def restartenigma(self, result):
         if result:
@@ -418,38 +369,20 @@ class SelectPicons(Screen):
         sel = self.menu_list[idx]
         print('selll ', sel)
         if sel == ('PICONS BLACK'):
-            self.session.open(
-                MMarkFolderScreen,
-                Utils.b64decoder(pblk),
-                piconsblk)
+            self.session.open(MMarkFolderScreen, Utils.b64decoder(pblk), piconsblk)
         elif sel == 'PICONS TRANSPARENT':
-            self.session.open(
-                MMarkFolderScreen,
-                Utils.b64decoder(ptrs),
-                piconstrs)
+            self.session.open(MMarkFolderScreen, Utils.b64decoder(ptrs), piconstrs)
         elif sel == ('PICONS MOVIE'):
-            self.session.open(
-                MMarkPiconScreen,
-                'MMark-Picons',
-                Utils.b64decoder(ptmov),
-                piconsmovie,
-                True)
+            self.session.open(MMarkPiconScreen, 'MMark-Picons', Utils.b64decoder(ptmov), piconsmovie, True)
         elif sel == ('SKIN DMM ZETA'):
             self.session.open(MMarkFolderSkinZeta, Utils.b64decoder(ecskins))
         elif sel == ('SKIN OPEN ZETA'):
             self.session.open(MMarkFolderSkinZeta, Utils.b64decoder(openskins))
         else:
-            self.mbox = self.session.open(
-                MessageBox,
-                _(':P  COMING SOON!!!'),
-                MessageBox.TYPE_INFO,
-                timeout=4)
+            self.mbox = self.session.open(MessageBox, _(':P  COMING SOON!!!'), MessageBox.TYPE_INFO, timeout=4)
 
     def remove(self):
-        self.session.openWithCallback(
-            self.okRemove, MessageBox, (_(
-                "Do you want to remove all picons in folder?\n%s\nIt could take a few minutes, wait .." %
-                mmkpicon)), MessageBox.TYPE_YESNO)
+        self.session.openWithCallback(self.okRemove, MessageBox, (_("Do you want to remove all picons in folder?\n%s\nIt could take a few minutes, wait .." % mmkpicon)), MessageBox.TYPE_YESNO)
 
     def okRemove(self, result):
         if result:
@@ -465,10 +398,7 @@ class SelectPicons(Screen):
                 except OSError as e:
                     print("Error: %s : %s" % (f, e.strerror))
                     logdata("Error ", e.strerror)
-        self.mbox = self.session.open(
-            MessageBox, _(
-                '%s it has been cleaned' %
-                mmkpicon), MessageBox.TYPE_INFO, timeout=4)
+        self.mbox = self.session.open(MessageBox, _('%s it has been cleaned' % mmkpicon), MessageBox.TYPE_INFO, timeout=4)
         self['info'].setText(_('Please select ...'))
 
     def goConfig(self):
@@ -506,8 +436,7 @@ class SelectPicons(Screen):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara(
-                [size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if os.path.exists('/usr/bin/apt-get'):
                 self.picload.startDecode(pixmaps, False)
             else:
@@ -621,34 +550,18 @@ class MMarkPiconScreen(Screen):
                 if 'zip' in url:
                     url = url.replace('\\', '')
                     if self.movie:
-                        name = name.replace(
-                            '_',
-                            ' ').replace(
-                            '-',
-                            ' ').replace(
-                            'mmk',
-                            '').replace(
-                            '.zip',
-                            '')
-                        name = name + ' ' + \
-                            data[0:10] + ' ' + 'Down: ' + download
+                        name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '').replace('.zip', '')
+                        name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     else:
-                        name = name.replace(
-                            '_',
-                            ' ').replace(
-                            'mmk',
-                            'MMark').replace(
-                            '.zip',
-                            '')
-                        name = name + ' ' + \
-                            data[0:10] + ' ' + 'Down:' + download
+                        name = name.replace('_', ' ').replace('mmk', 'MMark').replace('.zip', '')
+                        name = name + ' ' + data[0:10] + ' ' + 'Down:' + download
                     self.urls.append(url)
                     self.names.append(name)
             self['info'].setText(_('Please select ...'))
             self['key_green'].show()
             showlist(self.names, self['text'])
             self.downloading = True
-        except BaseException:
+        except:
             self.downloading = False
         self.load_poster()
 
@@ -657,11 +570,7 @@ class MMarkPiconScreen(Screen):
         print('iiiiii= ', i)
         if i < 1:
             return
-        self.session.openWithCallback(
-            self.okInstall,
-            MessageBox,
-            (_("Do you want to install?\nIt could take a few minutes, wait ..")),
-            MessageBox.TYPE_YESNO)
+        self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
 
     def okInstall(self, result):
         self['info'].setText(_('... please wait'))
@@ -675,25 +584,22 @@ class MMarkPiconScreen(Screen):
                 if os.path.exists(dest):
                     os.remove(dest)
                 try:
-                    myfile = Utils.ReadUrl(url)
-                    regexcat = 'href="https://download(.*?)"'
-                    match = re.compile(regexcat, re.DOTALL).findall(myfile)
-                    url = 'https://download' + str(match[0])
-                    print("url final =", url)
-                    if os.path.exists('/usr/bin/apt-get'):
-                        cmd = [
-                            "wget --no-check-certificate -U '%s' -c '%s' -O '%s' --post-data='action=purge' > /dev/null" %
-                            (Utils.RequestAgent(), str(url), dest)]
-                        print('command:', cmd)
-                        subprocess.Popen(
-                            cmd[0], shell=True, executable='/bin/bash')
-                        self.session.openWithCallback(
-                            self.install,
-                            MessageBox,
-                            _('Download file in /tmp successful!'),
-                            MessageBox.TYPE_INFO,
-                            timeout=5)
-                        return
+					myfile = Utils.ReadUrl(url)
+					pattern = r'aria-label="Download file"[^>]*?data-scrambled-url="([^"]+)"'
+					match = re.search(pattern, myfile)
+					if match:
+						scrambled_url = match.group(1)
+						url = base64.b64decode(scrambled_url).decode("utf-8")
+						print(url)
+					else:
+						print("No match found.")
+					print("url final =", url)
+					if os.path.exists('/usr/bin/apt-get'):
+						cmd = ["wget --no-check-certificate -U '%s' -c '%s' -O '%s' --post-data='action=purge' > /dev/null" % (Utils.RequestAgent(), str(url), dest)]
+						print('command:', cmd)
+						subprocess.Popen(cmd[0], shell=True, executable='/bin/bash')
+						self.session.openWithCallback(self.install, MessageBox, _('Download file in /tmp successful!'), MessageBox.TYPE_INFO, timeout=5)
+						return
                     self.download = downloadWithProgress(url, dest)
                     self.download.addProgress(self.downloadProgress2)
                     self.download.start().addCallback(self.install).addErrback(self.showError)
@@ -711,11 +617,7 @@ class MMarkPiconScreen(Screen):
             myCmd = "unzip -o -q '/tmp/download.zip' -d %s/" % str(mmkpicon)
             logdata("install2 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            self.mbox = self.session.open(
-                MessageBox,
-                _('Successfully Picons Installed'),
-                MessageBox.TYPE_INFO,
-                timeout=5)
+            self.mbox = self.session.open(MessageBox, _('Successfully Picons Installed'), MessageBox.TYPE_INFO, timeout=5)
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
         self['progress'].setValue(self.progclear)
@@ -726,10 +628,8 @@ class MMarkPiconScreen(Screen):
             if "info" in self:
                 self["info"].setText(_("Download in progress..."))
             self["progress"].show()
-            self['progress'].value = int(
-                100 * self.last_recvbytes / float(totalbytes))
-            self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (
-                self.last_recvbytes / 1024, totalbytes / 1024, 100 * self.last_recvbytes / float(totalbytes))
+            self['progress'].value = int(100 * self.last_recvbytes / float(totalbytes))
+            self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (self.last_recvbytes / 1024, totalbytes / 1024, 100 * self.last_recvbytes / float(totalbytes))
             self.last_recvbytes = recvbytes
         except ZeroDivisionError:
             if "info" in self:
@@ -769,8 +669,7 @@ class MMarkPiconScreen(Screen):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara(
-                [size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if os.path.exists('/usr/bin/apt-get'):
                 self.picload.startDecode(self.pixmaps, False)
             else:
@@ -874,8 +773,7 @@ class MMarkFolderScreen(Screen):
             regex = '{"folderkey":"(.*?)".*?"name":"(.*?)".*?"created":"(.*?)"'
             match = re.compile(regex, re.DOTALL).findall(data2)
             for url, name, data in match:
-                url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + \
-                    url + '&content_type=files&chunk_size=1000&response_format=json'
+                url = 'https://www.mediafire.com/api/1.5/folder/get_content.php?folder_key=' + url + '&content_type=files&chunk_size=1000&response_format=json'
                 url = url.replace('\\', '')
                 name = 'Picons-' + name
                 self.urls.append(url)
@@ -884,7 +782,7 @@ class MMarkFolderScreen(Screen):
             self['key_green'].show()
             showlist(self.names, self['text'])
             self.downloading = True
-        except BaseException:
+        except:
             self.downloading = False
         self.load_poster()
 
@@ -927,8 +825,7 @@ class MMarkFolderScreen(Screen):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara(
-                [size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if os.path.exists('/usr/bin/apt-get'):
                 self.picload.startDecode(self.pixmaps, False)
             else:
@@ -1064,20 +961,8 @@ class MMarkFolderSkinZeta(Screen):
                 if '.zip' or '.ipk' or '.deb' in str(url):
                     url = url.replace('\\', '')
                     name = name.replace('enigma2-plugin-skins-', '')
-                    name = name.replace(
-                        '_',
-                        ' ').replace(
-                        '-',
-                        ' ').replace(
-                        'mmk',
-                        '')
-                    name = name.replace(
-                        '.zip',
-                        '').replace(
-                        '.ipk',
-                        '').replace(
-                        '.deb',
-                        '')
+                    name = name.replace('_', ' ').replace('-', ' ').replace('mmk', '')
+                    name = name.replace('.zip', '').replace('.ipk', '').replace('.deb', '')
                     name = name + ' ' + data[0:10] + ' ' + 'Down: ' + download
                     self.urls.append(url)
                     self.names.append(name)
@@ -1085,7 +970,7 @@ class MMarkFolderSkinZeta(Screen):
             self['key_green'].show()
             showlist(self.names, self['text'])
             self.downloading = True
-        except BaseException:
+        except:
             self.downloading = False
         self.load_poster()
 
@@ -1093,23 +978,14 @@ class MMarkFolderSkinZeta(Screen):
         i = len(self.names)
         if i < 1:
             return
-        self.session.openWithCallback(
-            self.okInstall,
-            MessageBox,
-            (_("Do you want to install?\nIt could take a few minutes, wait ..")),
-            MessageBox.TYPE_YESNO)
+        self.session.openWithCallback(self.okInstall, MessageBox, (_("Do you want to install?\nIt could take a few minutes, wait ..")), MessageBox.TYPE_YESNO)
 
     def okInstall(self, result):
         self['info'].setText(_('... please wait'))
         if result:
             if self.downloading is True:
-                if not os.path.exists(
-                        '/usr/lib/enigma2/python/Plugins/Extensions/XStreamity') and 'xstreamity' in self.name:
-                    self.mbox = self.session.open(
-                        MessageBox,
-                        _('Xstreamity Player not installed'),
-                        MessageBox.TYPE_INFO,
-                        timeout=4)
+                if not os.path.exists('/usr/lib/enigma2/python/Plugins/Extensions/XStreamity') and 'xstreamity' in self.name:
+                    self.mbox = self.session.open(MessageBox, _('Xstreamity Player not installed'), MessageBox.TYPE_INFO, timeout=4)
                     return
                 idx = self["text"].getSelectionIndex()
                 self.name = self.names[idx]
@@ -1119,23 +995,27 @@ class MMarkFolderSkinZeta(Screen):
                     os.remove(dest)
                 try:
                     myfile = Utils.ReadUrl(url)
-                    regexcat = 'href="https://download(.*?)"'
-                    match = re.compile(regexcat, re.DOTALL).findall(myfile)
-                    url = 'https://download' + str(match[0])
+
+                    pattern = r'aria-label="Download file"[^>]*?data-scrambled-url="([^"]+)"'
+                    match = re.search(pattern, myfile)
+
+                    if match:
+                        scrambled_url = match.group(1)
+                        url = base64.b64decode(scrambled_url).decode("utf-8")
+                        print(url)
+                    else:
+                        print("No match found.")
+                    
+                    # regexcat = 'href="https://download(.*?)"'
+                    # match = re.compile(regexcat, re.DOTALL).findall(myfile)
+                    
+                    # url = 'https://download' + str(match[0])
                     print("url final =", url)
                     if os.path.exists('/usr/bin/apt-get'):
-                        cmd = [
-                            "wget --no-check-certificate -U '%s' -c '%s' -O '%s' --post-data='action=purge' > /dev/null" %
-                            (Utils.RequestAgent(), str(url), dest)]
+                        cmd = ["wget --no-check-certificate -U '%s' -c '%s' -O '%s' --post-data='action=purge' > /dev/null" % (Utils.RequestAgent(), str(url), dest)]
                         print('command:', cmd)
-                        subprocess.Popen(
-                            cmd[0], shell=True, executable='/bin/bash')
-                        self.session.openWithCallback(
-                            self.install,
-                            MessageBox,
-                            _('Download file in /tmp successful!'),
-                            MessageBox.TYPE_INFO,
-                            timeout=5)
+                        subprocess.Popen(cmd[0], shell=True, executable='/bin/bash')
+                        self.session.openWithCallback(self.install, MessageBox, _('Download file in /tmp successful!'), MessageBox.TYPE_INFO, timeout=5)
                         return
                     self.download = downloadWithProgress(url, dest)
                     self.download.addProgress(self.downloadProgress2)
@@ -1150,10 +1030,8 @@ class MMarkFolderSkinZeta(Screen):
         try:
             self['info'].setText(_('Download in progress...'))
             self["progress"].show()
-            self['progress'].value = int(
-                100 * self.last_recvbytes / float(totalbytes))
-            self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (
-                self.last_recvbytes / 1024, totalbytes / 1024, 100 * self.last_recvbytes / float(totalbytes))
+            self['progress'].value = int(100 * self.last_recvbytes / float(totalbytes))
+            self['progresstext'].text = '%d of %d kBytes (%.2f%%)' % (self.last_recvbytes / 1024, totalbytes / 1024, 100 * self.last_recvbytes / float(totalbytes))
             self.last_recvbytes = recvbytes
         except ZeroDivisionError:
             self['info'].setText(_('Download Failed! '))
@@ -1165,49 +1043,31 @@ class MMarkFolderSkinZeta(Screen):
         self.progclear = 0
         if os.path.exists('/tmp/download.zip'):
             if os.path.exists('/etc/enigma2/skin_user.xml'):
-                os.rename(
-                    '/etc/enigma2/skin_user.xml',
-                    '/etc/enigma2/skin_user-bak.xml')
+                os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
             self['info'].setText(_('Install ...'))
             myCmd = "unzip -o -q '/tmp/download.zip' -d /"
             logdata("install1 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            self.mbox = self.session.open(
-                MessageBox,
-                _('Successfully Skin Installed'),
-                MessageBox.TYPE_INFO,
-                timeout=5)
+            self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
 
         elif os.path.exists('/tmp/download.deb'):
             if os.path.exists('/etc/enigma2/skin_user.xml'):
-                os.rename(
-                    '/etc/enigma2/skin_user.xml',
-                    '/etc/enigma2/skin_user-bak.xml')
+                os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
             self['info'].setText(_('Install ...'))
             myCmd = 'apt-get install --reinstall /tmp/download.deb -y'
             if os.path.exists('/usr/bin/apt-get'):
                 logdata("install2 ", myCmd)
                 subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-                self.mbox = self.session.open(
-                    MessageBox,
-                    _('Successfully Skin Installed'),
-                    MessageBox.TYPE_INFO,
-                    timeout=5)
+                self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
 
         elif os.path.exists('/tmp/download.ipk'):
             if os.path.exists('/etc/enigma2/skin_user.xml'):
-                os.rename(
-                    '/etc/enigma2/skin_user.xml',
-                    '/etc/enigma2/skin_user-bak.xml')
+                os.rename('/etc/enigma2/skin_user.xml', '/etc/enigma2/skin_user-bak.xml')
             self['info'].setText(_('Install ...'))
             myCmd = 'opkg install --force-reinstall --force-overwrite /tmp/download.ipk > /dev/null'
             logdata("install3 ", myCmd)
             subprocess.Popen(myCmd, shell=True, executable='/bin/bash')
-            self.mbox = self.session.open(
-                MessageBox,
-                _('Successfully Skin Installed'),
-                MessageBox.TYPE_INFO,
-                timeout=5)
+            self.mbox = self.session.open(MessageBox, _('Successfully Skin Installed'), MessageBox.TYPE_INFO, timeout=5)
 
         self['info'].setText(_('Please select ...'))
         self['progresstext'].text = ''
@@ -1245,8 +1105,7 @@ class MMarkFolderSkinZeta(Screen):
             size = self['poster'].instance.size()
             self.picload = ePicLoad()
             sc = AVSwitch().getFramebufferScale()
-            self.picload.setPara(
-                [size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
+            self.picload.setPara([size.width(), size.height(), sc[0], sc[1], False, 1, '#00000000'])
             if os.path.exists('/usr/bin/apt-get'):
                 self.picload.startDecode(pixmaps, False)
             else:
@@ -1267,11 +1126,7 @@ class mmConfig(Screen, ConfigListScreen):
         self.setup_title = _("Config")
         self.onChangedEntry = []
         self.list = []
-        ConfigListScreen.__init__(
-            self,
-            self.list,
-            session=self.session,
-            on_change=self.changedEntry)
+        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.setTitle(desc_plugin)
         self['description'] = Label('Config mmPicons Panel')
         self['info'] = Label(_('SELECT YOUR CHOICE'))
@@ -1322,19 +1177,13 @@ class mmConfig(Screen, ConfigListScreen):
             os.system('wget -qO- http://ipecho.net/plain > /tmp/currentip')
         currentip1 = open('/tmp/currentip', 'r')
         currentip = currentip1.read()
-        self['description'].setText(
-            _('Config Panel Addon\nYour current IP is %s') %
-            currentip)
+        self['description'].setText(_('Config Panel Addon\nYour current IP is %s') % currentip)
         logdata("Showpicture ", currentip)
 
     def createSetup(self):
         self.editListEntry = None
         self.list = []
-        self.list.append(
-            getConfigListEntry(
-                _("Set the path to the Picons folder"),
-                cfg.mmkpicon,
-                _("Press Ok to select the folder containing the picons files")))
+        self.list.append(getConfigListEntry(_("Set the path to the Picons folder"), cfg.mmkpicon, _("Press Ok to select the folder containing the picons files")))
         self["config"].list = self.list
         self["config"].l.setList(self.list)
 
@@ -1350,8 +1199,7 @@ class mmConfig(Screen, ConfigListScreen):
             print("Error ", e)
 
     def changedEntry(self):
-        self['key_green'].instance.setText(
-            _('Save') if self['config'].isChanged() else '- - - -')
+        self['key_green'].instance.setText(_('Save') if self['config'].isChanged() else '- - - -')
         for x in self.onChangedEntry:
             x()
 
@@ -1377,22 +1225,14 @@ class mmConfig(Screen, ConfigListScreen):
 
     def msgok(self):
         if os.path.exists(cfg.mmkpicon.value) is False:
-            self.session.open(
-                MessageBox,
-                _('Device not detected!'),
-                MessageBox.TYPE_INFO,
-                timeout=4)
+            self.session.open(MessageBox, _('Device not detected!'), MessageBox.TYPE_INFO, timeout=4)
 
         if self['config'].isChanged():
             for x in self["config"].list:
                 x[1].save()
             cfg.save()
             configfile.save()
-            self.session.open(
-                MessageBox,
-                _('Successfully saved configuration'),
-                MessageBox.TYPE_INFO,
-                timeout=4)
+            self.session.open(MessageBox, _('Successfully saved configuration'), MessageBox.TYPE_INFO, timeout=4)
             self.close(True)
         else:
             self.close()
@@ -1423,18 +1263,8 @@ class mmConfig(Screen, ConfigListScreen):
                     bookmarks=config.movielist.videodirs,
                     autoAdd=True,
                     editDir=True,
-                    inhibitDirs=[
-                        "/bin",
-                        "/boot",
-                        "/dev",
-                        "/home",
-                        "/lib",
-                        "/proc",
-                        "/run",
-                        "/sbin",
-                        "/sys",
-                        "/usr",
-                        "/var"])
+                    inhibitDirs=["/bin", "/boot", "/dev", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"]
+                )
         except Exception as e:
             print(e)
 
@@ -1447,11 +1277,7 @@ class mmConfig(Screen, ConfigListScreen):
     def KeyText(self):
         sel = self['config'].getCurrent()
         if sel:
-            self.session.openWithCallback(
-                self.VirtualKeyBoardCallback,
-                VirtualKeyBoard,
-                title=self['config'].getCurrent()[0],
-                text=self['config'].getCurrent()[1].value)
+            self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self['config'].getCurrent()[0], text=self['config'].getCurrent()[1].value)
 
     def VirtualKeyBoardCallback(self, callback=None):
         if callback is not None and len(callback):
@@ -1473,8 +1299,7 @@ class mmConfig(Screen, ConfigListScreen):
 
     def extnok(self):
         if self['config'].isChanged():
-            self.session.openWithCallback(self.cancelConfirm, MessageBox, _(
-                'Really close without saving the settings?'), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.cancelConfirm, MessageBox, _('Really close without saving the settings?'), MessageBox.TYPE_YESNO)
         else:
             self.close()
 
@@ -1483,10 +1308,8 @@ class PiconsPreview(Screen):
     from enigma import getDesktop
     x = getDesktop(0).size().width()
     y = getDesktop(0).size().height()
-    skin = '<screen flags="wfNoBorder" position="0,0" size="%d,%d" title="PiconsPreview" backgroundColor="#00000000">' % (
-        x, y)
-    skin += '<widget name="pixmap" position="0,0" size="%d,%d" zPosition="1" alphatest="on" />' % (
-        x, y)
+    skin = '<screen flags="wfNoBorder" position="0,0" size="%d,%d" title="PiconsPreview" backgroundColor="#00000000">' % (x, y)
+    skin += '<widget name="pixmap" position="0,0" size="%d,%d" zPosition="1" alphatest="on" />' % (x, y)
     skin += '</screen>'
 
     def __init__(self, session, previewPng=None):
@@ -1499,9 +1322,8 @@ class PiconsPreview(Screen):
         self['pixmap'] = Pixmap()
         try:
             self.PicLoad.PictureData.get().append(self.DecodePicture)
-        except BaseException:
-            self.PicLoad_conn = self.PicLoad.PictureData.connect(
-                self.DecodePicture)
+        except:
+            self.PicLoad_conn = self.PicLoad.PictureData.connect(self.DecodePicture)
         self["actions"] = ActionMap(
             [
                 "OkCancelActions",
@@ -1540,8 +1362,7 @@ def main(session, **kwargs):
 
 
 def menu(menuid, **kwargs):
-    return [(title_plug, main(), 'mmPicons by mMark', 44)
-            ] if menuid == "mainmenu" else []
+    return [(title_plug, main(), 'mmPicons by mMark', 44)] if menuid == "mainmenu" else []
 
 
 def systemmenu(menuid, **kwargs):
@@ -1555,11 +1376,5 @@ def Plugins(**kwargs):
     ico_path = 'logo.png'
     if not Utils.DreamOS():
         ico_path = plugin_path + '/res/pics/logo.png'
-    result = [
-        PluginDescriptor(
-            name=title_plug,
-            description=desc_plugin,
-            where=PluginDescriptor.WHERE_PLUGINMENU,
-            icon=ico_path,
-            fnc=main)]
+    result = [PluginDescriptor(name=title_plug, description=desc_plugin, where=PluginDescriptor.WHERE_PLUGINMENU, icon=ico_path, fnc=main)]
     return result

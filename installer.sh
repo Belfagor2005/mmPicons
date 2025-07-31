@@ -1,8 +1,8 @@
 #!/bin/bash
 ## setup command=wget -q --no-check-certificate https://raw.githubusercontent.com/Belfagor2005/mmPicons/main/installer.sh -O - | /bin/sh
 
-version='1.4'
-changelog='\nAdd Live Upgrade\nFix screen'
+version='1.5'
+changelog='\nFix Download'
 TMPPATH=/tmp/mmPicons-main
 FILEPATH=/tmp/mmpicons.tar.gz
 

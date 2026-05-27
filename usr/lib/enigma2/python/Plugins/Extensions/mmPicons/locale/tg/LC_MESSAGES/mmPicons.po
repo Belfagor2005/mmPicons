@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:47+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Tajik <rkovacs@khujand.org>\n"
+"Language: tg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s тоза карда шуд"
+
+msgid "... please wait"
+msgstr "... илтимос истед"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ЗУД !!!"
+
+msgid "Back"
+msgstr "Бозгашт"
+
+msgid "Cancel"
+msgstr "Бекор кардан"
+
+msgid "Cancel execution?"
+msgstr "Иҷроро бекор кунед?"
+
+msgid "Choice"
+msgstr "Интихоб"
+
+msgid "Choose Directory:"
+msgstr "Директорияро интихоб кунед:"
+
+msgid "Choose directory"
+msgstr "Директорияро интихоб кунед"
+
+msgid "Config"
+msgstr "Конфигуратсия"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Табрик! Шумо аллакай версияи охиринро доред..."
+
+msgid "Console"
+msgstr "Консол"
+
+msgid "Device not detected!"
+msgstr "Дастгоҳ ошкор нашудааст!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Оё шумо мехоҳед навсозиро ( %s ) ҳозир насб кунед?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Оё шумо мехоҳед Enigma-ро аз нав оғоз кунед?"
+
+msgid "Download Failed!"
+msgstr "Зеркашӣ карда нашуд!"
+
+msgid "Download Failed..."
+msgstr "Зеркашӣ карда нашуд..."
+
+msgid "Download failed"
+msgstr "Зеркашӣ ноком шуд"
+
+msgid "Download in progress..."
+msgstr "Зеркашӣ идома дорад..."
+
+msgid "Erase %s... please wait"
+msgstr "%s-ро тоза кунед... лутфан интизор шавед"
+
+msgid "Exit"
+msgstr "Баромадгоҳ"
+
+msgid "Hide/Show"
+msgstr "Пинҳон / Намоиш"
+
+msgid "Install"
+msgstr "Насб кунед"
+
+msgid "Install ..."
+msgstr "Насб кунед ..."
+
+msgid "Loading data... Please wait"
+msgstr "Маълумот бор карда мешавад... Лутфан интизор шавед"
+
+msgid "Picons folder"
+msgstr "Папкаи Пиконҳо"
+
+msgid "Please select ..."
+msgstr "Лутфан интихоб кунед ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Барои интихоби ҷузвдони дорои файлҳои пиконҳо, OK -ро пахш кунед"
+
+msgid "Preview"
+msgstr "Пешнамоиш"
+
+msgid "Really close without saving the settings?"
+msgstr "Дар ҳақиқат бе захира кардани танзимот пӯшидаед?"
+
+msgid "Remove"
+msgstr "Хориҷ кунед"
+
+msgid "Restart"
+msgstr "Оғози дубора"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ИНТИХОБИ ХУДРО ИНТИХОБ КУНЕД"
+
+msgid "Save"
+msgstr "Захира кунед"
+
+msgid "Select"
+msgstr "Интихоб кунед"
+
+msgid "Set the path to the Picons folder"
+msgstr "Роҳро ба папкаи Picons таъин кунед"
+
+msgid "Successfully Picons Installed"
+msgstr "Пиконҳо бомуваффақият насб карда шуданд"
+
+msgid "Successfully Skin Installed"
+msgstr "Пӯст бомуваффақият насб карда шуд"
+
+msgid "Successfully saved configuration"
+msgstr "Конфигуратсия бомуваффақият захира карда шуд"
+
+msgid "Try again later ..."
+msgstr "Баъдтар бори дигар кӯшиш кунед..."
+
+msgid "Update Aborted!"
+msgstr "Навсозӣ қатъ карда шуд!"

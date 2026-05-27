@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:39+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s het is schoongemaakt"
+
+msgid "... please wait"
+msgstr "... even geduld alstublieft"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P BINNENKORT!!!"
+
+msgid "Back"
+msgstr "Rug"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Cancel execution?"
+msgstr "Uitvoering annuleren?"
+
+msgid "Choice"
+msgstr "Keuze"
+
+msgid "Choose Directory:"
+msgstr "Kies map:"
+
+msgid "Choose directory"
+msgstr "Kies map"
+
+msgid "Config"
+msgstr "Configuratie"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Gefeliciteerd! Je beschikt al over de nieuwste versie..."
+
+msgid "Console"
+msgstr "Troosten"
+
+msgid "Device not detected!"
+msgstr "Apparaat niet gedetecteerd!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Wilt u update ( %s ) nu installeren?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Wil je Enigma opnieuw opstarten?"
+
+msgid "Download Failed!"
+msgstr "Downloaden mislukt!"
+
+msgid "Download Failed..."
+msgstr "Downloaden mislukt..."
+
+msgid "Download failed"
+msgstr "Downloaden mislukt"
+
+msgid "Download in progress..."
+msgstr "Bezig met downloaden..."
+
+msgid "Erase %s... please wait"
+msgstr "Wis %s... even geduld a.u.b"
+
+msgid "Exit"
+msgstr "Uitgang"
+
+msgid "Hide/Show"
+msgstr "Verbergen/Tonen"
+
+msgid "Install"
+msgstr "Installeren"
+
+msgid "Install ..."
+msgstr "Installeren..."
+
+msgid "Loading data... Please wait"
+msgstr "Gegevens worden geladen... Een ogenblik geduld"
+
+msgid "Picons folder"
+msgstr "map Picons"
+
+msgid "Please select ..."
+msgstr "Selecteer a.u.b...."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Druk op Ok om de map met de picons-bestanden te selecteren"
+
+msgid "Preview"
+msgstr "Voorbeeld"
+
+msgid "Really close without saving the settings?"
+msgstr "Echt afsluiten zonder de instellingen op te slaan?"
+
+msgid "Remove"
+msgstr "Verwijderen"
+
+msgid "Restart"
+msgstr "Opnieuw opstarten"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "SELECTEER UW KEUZE"
+
+msgid "Save"
+msgstr "Redden"
+
+msgid "Select"
+msgstr "Selecteer"
+
+msgid "Set the path to the Picons folder"
+msgstr "Stel het pad naar de map Picons in"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons zijn succesvol geïnstalleerd"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin succesvol geïnstalleerd"
+
+msgid "Successfully saved configuration"
+msgstr "Configuratie succesvol opgeslagen"
+
+msgid "Try again later ..."
+msgstr "Probeer het later opnieuw..."
+
+msgid "Update Aborted!"
+msgstr "Update afgebroken!"

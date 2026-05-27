@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:20+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s det er blevet renset"
+
+msgid "... please wait"
+msgstr "... vent venligst"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P KOMMER SNART!!!"
+
+msgid "Back"
+msgstr "Tilbage"
+
+msgid "Cancel"
+msgstr "Ophæve"
+
+msgid "Cancel execution?"
+msgstr "Vil du annullere udførelsen?"
+
+msgid "Choice"
+msgstr "Valg"
+
+msgid "Choose Directory:"
+msgstr "Vælg bibliotek:"
+
+msgid "Choose directory"
+msgstr "Vælg bibliotek"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Tillykke! Du har allerede den seneste version..."
+
+msgid "Console"
+msgstr "Konsol"
+
+msgid "Device not detected!"
+msgstr "Enhed ikke fundet!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Vil du installere opdatering ( %s ) nu?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Vil du genstarte Enigma?"
+
+msgid "Download Failed!"
+msgstr "Download mislykkedes!"
+
+msgid "Download Failed..."
+msgstr "Download mislykkedes..."
+
+msgid "Download failed"
+msgstr "Download mislykkedes"
+
+msgid "Download in progress..."
+msgstr "Download i gang..."
+
+msgid "Erase %s... please wait"
+msgstr "Slet %s... vent venligst"
+
+msgid "Exit"
+msgstr "Udgang"
+
+msgid "Hide/Show"
+msgstr "Skjul/Vis"
+
+msgid "Install"
+msgstr "Installere"
+
+msgid "Install ..."
+msgstr "Installer..."
+
+msgid "Loading data... Please wait"
+msgstr "Indlæser data... Vent venligst"
+
+msgid "Picons folder"
+msgstr "Picons mappe"
+
+msgid "Please select ..."
+msgstr "Vælg venligst..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Tryk på Ok for at vælge den mappe, der indeholder picons-filerne"
+
+msgid "Preview"
+msgstr "Forhåndsvisning"
+
+msgid "Really close without saving the settings?"
+msgstr "Virkelig lukke uden at gemme indstillingerne?"
+
+msgid "Remove"
+msgstr "Fjerne"
+
+msgid "Restart"
+msgstr "Genstart"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "VÆLG DIT VALG"
+
+msgid "Save"
+msgstr "Spare"
+
+msgid "Select"
+msgstr "Vælge"
+
+msgid "Set the path to the Picons folder"
+msgstr "Indstil stien til mappen Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons installeret med succes"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin installeret med succes"
+
+msgid "Successfully saved configuration"
+msgstr "Konfigurationen blev gemt"
+
+msgid "Try again later ..."
+msgstr "Prøv igen senere..."
+
+msgid "Update Aborted!"
+msgstr "Opdatering afbrudt!"

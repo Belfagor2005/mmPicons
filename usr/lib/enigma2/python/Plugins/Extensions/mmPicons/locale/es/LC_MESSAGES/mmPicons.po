@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:21+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Spanish <es@tp.org.es>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s ha sido limpiado"
+
+msgid "... please wait"
+msgstr "... espere por favor"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ¡¡¡MUY PRONTO!!!"
+
+msgid "Back"
+msgstr "Atrás"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Cancel execution?"
+msgstr "¿Cancelar la ejecución?"
+
+msgid "Choice"
+msgstr "Elección"
+
+msgid "Choose Directory:"
+msgstr "Elija Directorio:"
+
+msgid "Choose directory"
+msgstr "Elige directorio"
+
+msgid "Config"
+msgstr "configuración"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "¡Felicitaciones! Ya tienes la última versión..."
+
+msgid "Console"
+msgstr "Consola"
+
+msgid "Device not detected!"
+msgstr "¡Dispositivo no detectado!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "¿Quieres instalar la actualización ( %s ) ahora?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "¿Quieres reiniciar Enigma?"
+
+msgid "Download Failed!"
+msgstr "¡Error en la descarga!"
+
+msgid "Download Failed..."
+msgstr "Descarga fallida..."
+
+msgid "Download failed"
+msgstr "Descarga fallida"
+
+msgid "Download in progress..."
+msgstr "Descarga en curso..."
+
+msgid "Erase %s... please wait"
+msgstr "Borrar %s... por favor espera"
+
+msgid "Exit"
+msgstr "Salida"
+
+msgid "Hide/Show"
+msgstr "Ocultar/Mostrar"
+
+msgid "Install"
+msgstr "Instalar"
+
+msgid "Install ..."
+msgstr "Instalar ..."
+
+msgid "Loading data... Please wait"
+msgstr "Cargando datos... Por favor espera"
+
+msgid "Picons folder"
+msgstr "carpeta picones"
+
+msgid "Please select ..."
+msgstr "Por favor seleccione..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Presione Ok para seleccionar la carpeta que contiene los archivos picons"
+
+msgid "Preview"
+msgstr "Avance"
+
+msgid "Really close without saving the settings?"
+msgstr "¿Realmente cerrar sin guardar la configuración?"
+
+msgid "Remove"
+msgstr "Eliminar"
+
+msgid "Restart"
+msgstr "Reanudar"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "SELECCIONA TU ELECCIÓN"
+
+msgid "Save"
+msgstr "Ahorrar"
+
+msgid "Select"
+msgstr "Seleccionar"
+
+msgid "Set the path to the Picons folder"
+msgstr "Establecer la ruta a la carpeta Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Picones instalados correctamente"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin instalado correctamente"
+
+msgid "Successfully saved configuration"
+msgstr "Configuración guardada correctamente"
+
+msgid "Try again later ..."
+msgstr "Vuelve a intentarlo más tarde..."
+
+msgid "Update Aborted!"
+msgstr "¡Actualización cancelada!"

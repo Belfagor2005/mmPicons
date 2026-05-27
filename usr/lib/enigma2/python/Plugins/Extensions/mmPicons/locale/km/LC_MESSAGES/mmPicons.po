@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:32+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Central Khmer\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s វាត្រូវបានសម្អាត"
+
+msgid "... please wait"
+msgstr "... សូមរង់ចាំ"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P មកដល់ឆាប់ៗនេះ!!!"
+
+msgid "Back"
+msgstr "ត្រឡប់មកវិញ"
+
+msgid "Cancel"
+msgstr "បោះបង់"
+
+msgid "Cancel execution?"
+msgstr "បោះបង់ការប្រតិបត្តិ?"
+
+msgid "Choice"
+msgstr "ជម្រើស"
+
+msgid "Choose Directory:"
+msgstr "ជ្រើសរើស​ថត៖"
+
+msgid "Choose directory"
+msgstr "ជ្រើសរើសថត"
+
+msgid "Config"
+msgstr "កំណត់រចនាសម្ព័ន្ធ"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "អបអរសាទរ! អ្នកមានកំណែចុងក្រោយបង្អស់..."
+
+msgid "Console"
+msgstr "កុងសូល។"
+
+msgid "Device not detected!"
+msgstr "ឧបករណ៍រកមិនឃើញ!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "តើអ្នកចង់ដំឡើងអាប់ដេត (%s) ឥឡូវនេះទេ?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "តើអ្នកចង់ចាប់ផ្ដើម Enigma ឡើងវិញទេ?"
+
+msgid "Download Failed!"
+msgstr "ទាញយកបរាជ័យ!"
+
+msgid "Download Failed..."
+msgstr "ការទាញយកបរាជ័យ..."
+
+msgid "Download failed"
+msgstr "ការទាញយកបរាជ័យ"
+
+msgid "Download in progress..."
+msgstr "ការទាញយកកំពុងដំណើរការ..."
+
+msgid "Erase %s... please wait"
+msgstr "លុប %s... សូមរង់ចាំ"
+
+msgid "Exit"
+msgstr "ចេញ"
+
+msgid "Hide/Show"
+msgstr "លាក់/បង្ហាញ"
+
+msgid "Install"
+msgstr "ដំឡើង"
+
+msgid "Install ..."
+msgstr "ដំឡើង..."
+
+msgid "Loading data... Please wait"
+msgstr "កំពុងផ្ទុកទិន្នន័យ... សូមរង់ចាំ"
+
+msgid "Picons folder"
+msgstr "ថតឯកសារ Picons"
+
+msgid "Please select ..."
+msgstr "សូមជ្រើសរើស..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "ចុច យល់ព្រម ដើម្បីជ្រើសរើសថតដែលមានឯកសារ picons"
+
+msgid "Preview"
+msgstr "មើលជាមុន"
+
+msgid "Really close without saving the settings?"
+msgstr "ពិតជាបិទដោយមិនរក្សាទុកការកំណត់មែនទេ?"
+
+msgid "Remove"
+msgstr "ដកចេញ"
+
+msgid "Restart"
+msgstr "ចាប់ផ្តើមឡើងវិញ"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ជ្រើសរើសជម្រើសរបស់អ្នក។"
+
+msgid "Save"
+msgstr "រក្សាទុក"
+
+msgid "Select"
+msgstr "ជ្រើសរើស"
+
+msgid "Set the path to the Picons folder"
+msgstr "កំណត់ផ្លូវទៅកាន់ថត Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "បានដំឡើង Picons ដោយជោគជ័យ"
+
+msgid "Successfully Skin Installed"
+msgstr "បានដំឡើងស្បែកដោយជោគជ័យ"
+
+msgid "Successfully saved configuration"
+msgstr "បានរក្សាទុកការកំណត់រចនាសម្ព័ន្ធដោយជោគជ័យ"
+
+msgid "Try again later ..."
+msgstr "ព្យាយាមម្តងទៀតពេលក្រោយ..."
+
+msgid "Update Aborted!"
+msgstr "ការអាប់ដេតត្រូវបានលុបចោល!"

@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:27+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s इसे साफ़ कर दिया गया है"
+
+msgid "... please wait"
+msgstr "... कृपया प्रतीक्षा करें"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P जल्द आ रहा है!!!"
+
+msgid "Back"
+msgstr "पीछे"
+
+msgid "Cancel"
+msgstr "रद्द करना"
+
+msgid "Cancel execution?"
+msgstr "निष्पादन रद्द करें?"
+
+msgid "Choice"
+msgstr "पसंद"
+
+msgid "Choose Directory:"
+msgstr "निर्देशिका चुनें:"
+
+msgid "Choose directory"
+msgstr "निर्देशिका चुनें"
+
+msgid "Config"
+msgstr "कॉन्फ़िग"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "बधाई! आपके पास पहले से ही नवीनतम संस्करण है..."
+
+msgid "Console"
+msgstr "सांत्वना देना"
+
+msgid "Device not detected!"
+msgstr "डिवाइस का पता नहीं चला!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "क्या आप अभी अपडेट ( %s ) इंस्टॉल करना चाहते हैं?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "क्या आप एनिग्मा को पुनः आरंभ करना चाहते हैं?"
+
+msgid "Download Failed!"
+msgstr "डाउनलोड विफल!"
+
+msgid "Download Failed..."
+msgstr "डाउनलोड विफल..."
+
+msgid "Download failed"
+msgstr "डाउनलोड विफल रहा"
+
+msgid "Download in progress..."
+msgstr "डाउनलोड जारी है..."
+
+msgid "Erase %s... please wait"
+msgstr "%s मिटाएं...कृपया प्रतीक्षा करें"
+
+msgid "Exit"
+msgstr "बाहर निकलना"
+
+msgid "Hide/Show"
+msgstr "छिपाएं दिखाएं"
+
+msgid "Install"
+msgstr "स्थापित करना"
+
+msgid "Install ..."
+msgstr "स्थापित करना ..."
+
+msgid "Loading data... Please wait"
+msgstr "डेटा लोड हो रहा है... कृपया प्रतीक्षा करें"
+
+msgid "Picons folder"
+msgstr "पिकोन्स फ़ोल्डर"
+
+msgid "Please select ..."
+msgstr "कृपया चयन कीजिए ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "पिकन्स फ़ाइलों वाले फ़ोल्डर का चयन करने के लिए ओके दबाएँ"
+
+msgid "Preview"
+msgstr "पूर्व दर्शन"
+
+msgid "Really close without saving the settings?"
+msgstr "सेटिंग्स को सहेजे बिना वास्तव में बंद करें?"
+
+msgid "Remove"
+msgstr "निकालना"
+
+msgid "Restart"
+msgstr "पुनः आरंभ करें"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "अपनी पसंद चुनें"
+
+msgid "Save"
+msgstr "बचाना"
+
+msgid "Select"
+msgstr "चुनना"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons फ़ोल्डर के लिए पथ सेट करें"
+
+msgid "Successfully Picons Installed"
+msgstr "सफलतापूर्वक Picons स्थापित"
+
+msgid "Successfully Skin Installed"
+msgstr "त्वचा सफलतापूर्वक स्थापित हो गई"
+
+msgid "Successfully saved configuration"
+msgstr "कॉन्फ़िगरेशन सफलतापूर्वक सहेजा गया"
+
+msgid "Try again later ..."
+msgstr "बाद में पुन: प्रयास ..."
+
+msgid "Update Aborted!"
+msgstr "अद्यतन निरस्त किया गया!"

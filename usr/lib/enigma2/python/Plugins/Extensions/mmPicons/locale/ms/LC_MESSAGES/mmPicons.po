@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:37+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Malay <translation-team-ms@lists.sourceforge.net>\n"
+"Language: ms\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s ia telah dibersihkan"
+
+msgid "... please wait"
+msgstr "... sila tunggu"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P AKAN DATANG!!!"
+
+msgid "Back"
+msgstr "belakang"
+
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "Cancel execution?"
+msgstr "Batalkan pelaksanaan?"
+
+msgid "Choice"
+msgstr "Pilihan"
+
+msgid "Choose Directory:"
+msgstr "Pilih Direktori:"
+
+msgid "Choose directory"
+msgstr "Pilih direktori"
+
+msgid "Config"
+msgstr "Konfigurasi"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "tahniah! Anda sudah mempunyai versi terkini..."
+
+msgid "Console"
+msgstr "Konsol"
+
+msgid "Device not detected!"
+msgstr "Peranti tidak dikesan!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Adakah anda mahu memasang kemas kini ( %s ) sekarang?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Adakah anda mahu memulakan semula Enigma?"
+
+msgid "Download Failed!"
+msgstr "Muat turun Gagal!"
+
+msgid "Download Failed..."
+msgstr "Muat turun Gagal..."
+
+msgid "Download failed"
+msgstr "Muat turun gagal"
+
+msgid "Download in progress..."
+msgstr "Muat turun sedang dijalankan..."
+
+msgid "Erase %s... please wait"
+msgstr "Padamkan %s... sila tunggu"
+
+msgid "Exit"
+msgstr "Keluar"
+
+msgid "Hide/Show"
+msgstr "Sembunyi/Tunjukkan"
+
+msgid "Install"
+msgstr "Pasang"
+
+msgid "Install ..."
+msgstr "Pasang..."
+
+msgid "Loading data... Please wait"
+msgstr "Memuatkan data... Sila tunggu"
+
+msgid "Picons folder"
+msgstr "folder Picons"
+
+msgid "Please select ..."
+msgstr "Sila pilih..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Tekan Ok untuk memilih folder yang mengandungi fail picons"
+
+msgid "Preview"
+msgstr "Pratonton"
+
+msgid "Really close without saving the settings?"
+msgstr "Benar-benar tutup tanpa menyimpan tetapan?"
+
+msgid "Remove"
+msgstr "Alih keluar"
+
+msgid "Restart"
+msgstr "Mulakan semula"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "PILIH PILIHAN ANDA"
+
+msgid "Save"
+msgstr "Jimat"
+
+msgid "Select"
+msgstr "Pilih"
+
+msgid "Set the path to the Picons folder"
+msgstr "Tetapkan laluan ke folder Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons Berjaya Dipasang"
+
+msgid "Successfully Skin Installed"
+msgstr "Berjaya Memasang Kulit"
+
+msgid "Successfully saved configuration"
+msgstr "Berjaya menyimpan konfigurasi"
+
+msgid "Try again later ..."
+msgstr "Cuba lagi nanti..."
+
+msgid "Update Aborted!"
+msgstr "Kemas Kini Dibatalkan!"

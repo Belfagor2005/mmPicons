@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:33+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Kurdish <translation-team-ku (at) ferheng.org>\n"
+"Language: ku\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s hat paqijkirin"
+
+msgid "... please wait"
+msgstr "... ji kerema xwe bisekinin"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ZÊDE BIKE!!!"
+
+msgid "Back"
+msgstr "Paş"
+
+msgid "Cancel"
+msgstr "Bişûndekirin"
+
+msgid "Cancel execution?"
+msgstr "îdamê betal bike?"
+
+msgid "Choice"
+msgstr "Helbijartî"
+
+msgid "Choose Directory:"
+msgstr "Peldanka hilbijêrin:"
+
+msgid "Choose directory"
+msgstr "Peldanka hilbijêre"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Pîroz be! Berê te guhertoya herî dawî heye..."
+
+msgid "Console"
+msgstr "Konsolê"
+
+msgid "Device not detected!"
+msgstr "Amûr nehat dîtin!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Tu dixwazî ​​nûvekirina ( %s ) niha saz bikî?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Ma hûn dixwazin Enigma ji nû ve bidin destpêkirin?"
+
+msgid "Download Failed!"
+msgstr "Daxistin Biserneket!"
+
+msgid "Download Failed..."
+msgstr "Daxistin Biserneket..."
+
+msgid "Download failed"
+msgstr "Daxistin bi ser neket"
+
+msgid "Download in progress..."
+msgstr "Dakêşandin di pêşveçûnê de ye..."
+
+msgid "Erase %s... please wait"
+msgstr "%s jêbirin... ji kerema xwe li bendê bin"
+
+msgid "Exit"
+msgstr "Derî"
+
+msgid "Hide/Show"
+msgstr "Veşêre / Nîşan bide"
+
+msgid "Install"
+msgstr "Lêkirin"
+
+msgid "Install ..."
+msgstr "Saz bike..."
+
+msgid "Loading data... Please wait"
+msgstr "Daneyên barkirin... Ji kerema xwe li bendê bin"
+
+msgid "Picons folder"
+msgstr "Peldanka Picons"
+
+msgid "Please select ..."
+msgstr "Ji kerema xwe hilbijêrin ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Ok bikirtînin da ku peldanka ku pelên pîkonan vedihewîne hilbijêrin"
+
+msgid "Preview"
+msgstr "Pêşnerîn"
+
+msgid "Really close without saving the settings?"
+msgstr "Bi rastî bêyî hilanîna mîhengan bigire?"
+
+msgid "Remove"
+msgstr "Dûrxistin"
+
+msgid "Restart"
+msgstr ""
+
+msgid "SELECT YOUR CHOICE"
+msgstr "HILBIJARTINA XWE HILBIJARTIN"
+
+msgid "Save"
+msgstr "Rizgarkirin"
+
+msgid "Select"
+msgstr "Neqandin"
+
+msgid "Set the path to the Picons folder"
+msgstr "Rêya peldanka Picons saz bikin"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons bi serfirazî hate saz kirin"
+
+msgid "Successfully Skin Installed"
+msgstr "Çermê bi serkeftî hate saz kirin"
+
+msgid "Successfully saved configuration"
+msgstr "Veavakirina bi serketî hate tomarkirin"
+
+msgid "Try again later ..."
+msgstr "Dûv re dîsa biceribîne ..."
+
+msgid "Update Aborted!"
+msgstr "Nûvekirin hate betal kirin!"

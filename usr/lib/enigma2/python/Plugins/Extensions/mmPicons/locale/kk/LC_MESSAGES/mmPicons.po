@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:31+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Kazakh <(nothing)>\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s ол тазартылды"
+
+msgid "... please wait"
+msgstr "... күте тұрыңыз"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ЖАҚЫНДА!!!"
+
+msgid "Back"
+msgstr "Артқа"
+
+msgid "Cancel"
+msgstr "Болдырмау"
+
+msgid "Cancel execution?"
+msgstr "Орындаудан бас тарту керек пе?"
+
+msgid "Choice"
+msgstr "Таңдау"
+
+msgid "Choose Directory:"
+msgstr "Каталогты таңдаңыз:"
+
+msgid "Choose directory"
+msgstr "Каталогты таңдаңыз"
+
+msgid "Config"
+msgstr "Конфигурация"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Құттықтаймыз! Сізде соңғы нұсқа әлдеқашан бар..."
+
+msgid "Console"
+msgstr "Консоль"
+
+msgid "Device not detected!"
+msgstr "Құрылғы анықталмады!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Жаңартуды ( %s ) қазір орнатқыңыз келе ме?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Enigma-ны қайта іске қосқыңыз келе ме?"
+
+msgid "Download Failed!"
+msgstr "Жүктеп алу сәтсіз аяқталды!"
+
+msgid "Download Failed..."
+msgstr "Жүктеп алу сәтсіз аяқталды..."
+
+msgid "Download failed"
+msgstr "Жүктеп алу сәтсіз аяқталды"
+
+msgid "Download in progress..."
+msgstr "Жүктеп алу орындалуда..."
+
+msgid "Erase %s... please wait"
+msgstr "%s өшіру... күте тұрыңыз"
+
+msgid "Exit"
+msgstr "Шығу"
+
+msgid "Hide/Show"
+msgstr "Жасыру/көрсету"
+
+msgid "Install"
+msgstr "Орнату"
+
+msgid "Install ..."
+msgstr "Орнату..."
+
+msgid "Loading data... Please wait"
+msgstr "Деректер жүктелуде... Күте тұрыңыз"
+
+msgid "Picons folder"
+msgstr "Пикондар қалтасы"
+
+msgid "Please select ..."
+msgstr "таңдаңыз..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Пикондар файлдары бар қалтаны таңдау үшін Ok түймесін басыңыз"
+
+msgid "Preview"
+msgstr "Алдын ала қарау"
+
+msgid "Really close without saving the settings?"
+msgstr "Параметрлерді сақтамай шынымен жабу керек пе?"
+
+msgid "Remove"
+msgstr "Жою"
+
+msgid "Restart"
+msgstr "Қайтадан қосу"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ТАҢДАУЫҢЫЗДЫ ТАҢДАҢЫЗ"
+
+msgid "Save"
+msgstr "Сақтау"
+
+msgid "Select"
+msgstr "таңдаңыз"
+
+msgid "Set the path to the Picons folder"
+msgstr "Пикондар қалтасына жолды орнатыңыз"
+
+msgid "Successfully Picons Installed"
+msgstr "Пикондар сәтті орнатылды"
+
+msgid "Successfully Skin Installed"
+msgstr "Тері сәтті орнатылды"
+
+msgid "Successfully saved configuration"
+msgstr "Конфигурация сәтті сақталды"
+
+msgid "Try again later ..."
+msgstr "Әрекетті кейінірек қайталаңыз..."
+
+msgid "Update Aborted!"
+msgstr "Жаңарту тоқтатылды!"

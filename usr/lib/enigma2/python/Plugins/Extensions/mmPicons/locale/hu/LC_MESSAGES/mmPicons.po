@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:28+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s meg lett tisztítva"
+
+msgid "... please wait"
+msgstr "... kérem várjon"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P HAMAROSAN!!!"
+
+msgid "Back"
+msgstr "Vissza"
+
+msgid "Cancel"
+msgstr "Mégsem"
+
+msgid "Cancel execution?"
+msgstr "Megszakítja a végrehajtást?"
+
+msgid "Choice"
+msgstr "Választás"
+
+msgid "Choose Directory:"
+msgstr "Válasszon könyvtárat:"
+
+msgid "Choose directory"
+msgstr "Válasszon könyvtárat"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Gratulálunk! Már megvan a legújabb verzió..."
+
+msgid "Console"
+msgstr "Konzol"
+
+msgid "Device not detected!"
+msgstr "Az eszköz nem észlelhető!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Szeretné most telepíteni a frissítést ( %s )?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Szeretné újraindítani az Enigmát?"
+
+msgid "Download Failed!"
+msgstr "Letöltés sikertelen!"
+
+msgid "Download Failed..."
+msgstr "Sikertelen letöltés..."
+
+msgid "Download failed"
+msgstr "Letöltés sikertelen"
+
+msgid "Download in progress..."
+msgstr "Letöltés folyamatban..."
+
+msgid "Erase %s... please wait"
+msgstr "%s törlése... kérem várjon"
+
+msgid "Exit"
+msgstr "Kijárat"
+
+msgid "Hide/Show"
+msgstr "Elrejtés/Megjelenítés"
+
+msgid "Install"
+msgstr "Telepítés"
+
+msgid "Install ..."
+msgstr "Telepítse..."
+
+msgid "Loading data... Please wait"
+msgstr "Adatok betöltése... Kérjük, várjon"
+
+msgid "Picons folder"
+msgstr "Picons mappa"
+
+msgid "Please select ..."
+msgstr "Kérjük, válasszon..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Nyomja meg az Ok gombot a picon fájlokat tartalmazó mappa kiválasztásához"
+
+msgid "Preview"
+msgstr "Előnézet"
+
+msgid "Really close without saving the settings?"
+msgstr "Tényleg bezárja a beállítások mentése nélkül?"
+
+msgid "Remove"
+msgstr "Távolítsa el"
+
+msgid "Restart"
+msgstr "Indítsa újra"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "VÁLASZD A VÁLASZTÁST"
+
+msgid "Save"
+msgstr "Megtakarítás"
+
+msgid "Select"
+msgstr "Válassza ki"
+
+msgid "Set the path to the Picons folder"
+msgstr "Állítsa be a Picons mappa elérési útját"
+
+msgid "Successfully Picons Installed"
+msgstr "A Picons sikeresen telepítve"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin sikeresen telepítve"
+
+msgid "Successfully saved configuration"
+msgstr "A konfiguráció sikeresen mentve"
+
+msgid "Try again later ..."
+msgstr "Próbáld újra később..."
+
+msgid "Update Aborted!"
+msgstr "Frissítés megszakítva!"

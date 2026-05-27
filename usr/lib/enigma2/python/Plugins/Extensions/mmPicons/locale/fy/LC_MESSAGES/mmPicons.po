@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:24+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Western Frisian\n"
+"Language: fy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s it is skjinmakke"
+
+msgid "... please wait"
+msgstr "... wachtsje asjebleaft"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P KOMT DAN!!!"
+
+msgid "Back"
+msgstr "Rêch"
+
+msgid "Cancel"
+msgstr "Ofbrekke"
+
+msgid "Cancel execution?"
+msgstr "Eksekúsje annulearje?"
+
+msgid "Choice"
+msgstr "Kar"
+
+msgid "Choose Directory:"
+msgstr "Kies Directory:"
+
+msgid "Choose directory"
+msgstr "Kies map"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Lokwinske! Jo hawwe de lêste ferzje al ..."
+
+msgid "Console"
+msgstr "Konsole"
+
+msgid "Device not detected!"
+msgstr "Apparaat net ûntdutsen!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Wolle jo de fernijing ( %s ) no ynstallearje?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Wolle jo Enigma opnij starte?"
+
+msgid "Download Failed!"
+msgstr "Download mislearre!"
+
+msgid "Download Failed..."
+msgstr "Download mislearre..."
+
+msgid "Download failed"
+msgstr "Download mislearre"
+
+msgid "Download in progress..."
+msgstr "Download yn wurking..."
+
+msgid "Erase %s... please wait"
+msgstr "%s wiskje... wachtsje asjebleaft"
+
+msgid "Exit"
+msgstr "Útgong"
+
+msgid "Hide/Show"
+msgstr "Ferbergje / sjen litte"
+
+msgid "Install"
+msgstr "Ynstallearje"
+
+msgid "Install ..."
+msgstr "Ynstallearje ..."
+
+msgid "Loading data... Please wait"
+msgstr "Gegevens laden... Wachtsje asjebleaft"
+
+msgid "Picons folder"
+msgstr "Picons map"
+
+msgid "Please select ..."
+msgstr "Selektearje asjebleaft ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Druk op Ok om de map te selektearjen mei de piconsbestannen"
+
+msgid "Preview"
+msgstr "Foarbyld"
+
+msgid "Really close without saving the settings?"
+msgstr "Echt slute sûnder de ynstellingen te bewarjen?"
+
+msgid "Remove"
+msgstr "Fuortsmite"
+
+msgid "Restart"
+msgstr "Op 'e nij begjinne"
+
+msgid "SELECT YOUR CHOICE"
+msgstr ""
+
+msgid "Save"
+msgstr "Rêde"
+
+msgid "Select"
+msgstr "Selektearje"
+
+msgid "Set the path to the Picons folder"
+msgstr "Stel it paad yn nei de map Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons ynstallearre mei súkses"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin ynstallearre mei súkses"
+
+msgid "Successfully saved configuration"
+msgstr "Súksesfol bewarre konfiguraasje"
+
+msgid "Try again later ..."
+msgstr "Besykje it letter nochris ..."
+
+msgid "Update Aborted!"
+msgstr "Update ôfbrutsen!"

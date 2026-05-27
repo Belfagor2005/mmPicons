@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:38+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Burmese\n"
+"Language: my\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s ကို သန့်စင်ပြီးပါပြီ။"
+
+msgid "... please wait"
+msgstr "... ကျေးဇူးပြုပြီးခဏစောင့်ပါ"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P မကြာမီလာမည်!!!"
+
+msgid "Back"
+msgstr "ကျော"
+
+msgid "Cancel"
+msgstr "မလုပ်တော့"
+
+msgid "Cancel execution?"
+msgstr "လုပ်ဆောင်မှုကို ပယ်ဖျက်မလား။"
+
+msgid "Choice"
+msgstr "ရွေးချယ်မှု"
+
+msgid "Choose Directory:"
+msgstr "လမ်းညွှန်ကို ရွေးပါ-"
+
+msgid "Choose directory"
+msgstr "လမ်းညွှန်ကို ရွေးပါ။"
+
+msgid "Config"
+msgstr "ပြင်ဆင်မှု"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "ဂုဏ်ပြုပါသည်။ သင့်တွင် နောက်ဆုံးထွက်ဗားရှင်းရှိနေပြီဖြစ်သည်။"
+
+msgid "Console"
+msgstr "ဖြေသိမ့်"
+
+msgid "Device not detected!"
+msgstr "စက်ပစ္စည်းကို ရှာမတွေ့ပါ။"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "အပ်ဒိတ် (%s) ကို ယခု ထည့်သွင်းလိုပါသလား။"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Enigma ကို ပြန်လည်စတင်လိုပါသလား။"
+
+msgid "Download Failed!"
+msgstr "ဒေါင်းလုဒ် မအောင်မြင်ပါ။"
+
+msgid "Download Failed..."
+msgstr "ဒေါင်းလုဒ် မအောင်မြင်ပါ..."
+
+msgid "Download failed"
+msgstr "ဒေါင်းလုဒ် မအောင်မြင်ပါ။"
+
+msgid "Download in progress..."
+msgstr "ဒေါင်းလုဒ်လုပ်နေသည်..."
+
+msgid "Erase %s... please wait"
+msgstr "%s ကိုဖျက်ပါ... ခဏစောင့်ပါ။"
+
+msgid "Exit"
+msgstr "ထွက်ပေါက်"
+
+msgid "Hide/Show"
+msgstr "ဖျောက်/ပြပါ။"
+
+msgid "Install"
+msgstr "တပ်ဆင်ပါ။"
+
+msgid "Install ..."
+msgstr "တပ်ဆင်ပါ..."
+
+msgid "Loading data... Please wait"
+msgstr "ဒေတာကို ဖွင့်နေသည်... ကျေးဇူးပြု၍ ခဏစောင့်ပါ။"
+
+msgid "Picons folder"
+msgstr "Picons ဖိုင်တွဲ"
+
+msgid "Please select ..."
+msgstr "ရွေးပါ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "picons ဖိုင်များပါရှိသော ဖိုင်တွဲကို ရွေးရန် Ok ကိုနှိပ်ပါ။"
+
+msgid "Preview"
+msgstr "စမ်းကြည့်ပါ။"
+
+msgid "Really close without saving the settings?"
+msgstr "ဆက်တင်များကို မသိမ်းဆည်းဘဲ အမှန်တကယ် ပိတ်ပါသလား။"
+
+msgid "Remove"
+msgstr "ဖယ်ရှားပါ။"
+
+msgid "Restart"
+msgstr "ပြန်စတင်သည်"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "သင့်ရွေးချယ်မှုကို ရွေးချယ်ပါ။"
+
+msgid "Save"
+msgstr "သိမ်းဆည်းပါ။"
+
+msgid "Select"
+msgstr "ရွေးချယ်ပါ။"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons ဖိုဒါသို့ လမ်းကြောင်းကို သတ်မှတ်ပါ။"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons ကို အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ။"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin ထည့်သွင်းပြီးပါပြီ။"
+
+msgid "Successfully saved configuration"
+msgstr "စီစဉ်ဖွဲ့စည်းမှုကို အောင်မြင်စွာ သိမ်းဆည်းပြီးပါပြီ။"
+
+msgid "Try again later ..."
+msgstr "နောက်မှ ထပ်ကြိုးစားပါ..."
+
+msgid "Update Aborted!"
+msgstr "အပ်ဒိတ်ကို ဖျက်သိမ်းလိုက်ပါပြီ။"

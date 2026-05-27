@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:23+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Persian <translation-team-fa@lists.sourceforge.net>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s پاک شده است"
+
+msgid "... please wait"
+msgstr "... لطفا صبر کنید"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P به زودی!!!"
+
+msgid "Back"
+msgstr "برگشت"
+
+msgid "Cancel"
+msgstr "لغو کنید"
+
+msgid "Cancel execution?"
+msgstr "لغو اجرا؟"
+
+msgid "Choice"
+msgstr "انتخاب"
+
+msgid "Choose Directory:"
+msgstr "دایرکتوری را انتخاب کنید:"
+
+msgid "Choose directory"
+msgstr "دایرکتوری را انتخاب کنید"
+
+msgid "Config"
+msgstr "پیکربندی"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "تبریک میگم شما در حال حاضر آخرین نسخه را دارید ..."
+
+msgid "Console"
+msgstr "کنسول"
+
+msgid "Device not detected!"
+msgstr "دستگاه شناسایی نشد!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "آیا می خواهید به روز رسانی ( %s ) را اکنون نصب کنید؟"
+
+msgid "Do you want to restart Enigma?"
+msgstr "آیا می خواهید Enigma را دوباره راه اندازی کنید؟"
+
+msgid "Download Failed!"
+msgstr "دانلود انجام نشد!"
+
+msgid "Download Failed..."
+msgstr "دانلود انجام نشد..."
+
+msgid "Download failed"
+msgstr "دانلود انجام نشد"
+
+msgid "Download in progress..."
+msgstr "دانلود در حال انجام است..."
+
+msgid "Erase %s... please wait"
+msgstr "%s را پاک کنید... لطفاً صبر کنید"
+
+msgid "Exit"
+msgstr "خارج شوید"
+
+msgid "Hide/Show"
+msgstr "پنهان کردن/نمایش"
+
+msgid "Install"
+msgstr "نصب کنید"
+
+msgid "Install ..."
+msgstr "نصب ..."
+
+msgid "Loading data... Please wait"
+msgstr "در حال بارگیری داده ها... لطفاً صبر کنید"
+
+msgid "Picons folder"
+msgstr "پوشه Picons"
+
+msgid "Please select ..."
+msgstr "لطفا انتخاب کنید..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Ok را فشار دهید تا پوشه حاوی فایل های picons را انتخاب کنید"
+
+msgid "Preview"
+msgstr "پیش نمایش"
+
+msgid "Really close without saving the settings?"
+msgstr "آیا واقعاً بدون ذخیره تنظیمات بسته می شود؟"
+
+msgid "Remove"
+msgstr "حذف کنید"
+
+msgid "Restart"
+msgstr "راه اندازی مجدد"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "انتخاب خود را انتخاب کنید"
+
+msgid "Save"
+msgstr "ذخیره کنید"
+
+msgid "Select"
+msgstr "انتخاب کنید"
+
+msgid "Set the path to the Picons folder"
+msgstr "مسیر را به پوشه Picons تنظیم کنید"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons با موفقیت نصب شد"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin با موفقیت نصب شد"
+
+msgid "Successfully saved configuration"
+msgstr "پیکربندی با موفقیت ذخیره شد"
+
+msgid "Try again later ..."
+msgstr "بعدا دوباره امتحان کنید..."
+
+msgid "Update Aborted!"
+msgstr "به روز رسانی لغو شد!"

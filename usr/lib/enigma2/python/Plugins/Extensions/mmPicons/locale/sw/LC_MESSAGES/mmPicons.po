@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:46+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Swahili <(nothing)>\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s imesafishwa"
+
+msgid "... please wait"
+msgstr "... tafadhali subiri"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P INAKUJA HIVI KARIBUNI!!!"
+
+msgid "Back"
+msgstr "Nyuma"
+
+msgid "Cancel"
+msgstr "Ghairi"
+
+msgid "Cancel execution?"
+msgstr "Ungependa kughairi utekelezaji?"
+
+msgid "Choice"
+msgstr "Chaguo"
+
+msgid "Choose Directory:"
+msgstr "Chagua Saraka:"
+
+msgid "Choose directory"
+msgstr "Chagua saraka"
+
+msgid "Config"
+msgstr "Sanidi"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Hongera! Tayari una toleo jipya zaidi..."
+
+msgid "Console"
+msgstr ""
+
+msgid "Device not detected!"
+msgstr "Kifaa hakijatambuliwa!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Je, ungependa kusakinisha sasisho ( %s ) sasa?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Je, ungependa kuwasha upya Enigma?"
+
+msgid "Download Failed!"
+msgstr "Imeshindwa Kupakua!"
+
+msgid "Download Failed..."
+msgstr "Imeshindwa Kupakua..."
+
+msgid "Download failed"
+msgstr "Imeshindwa kupakua"
+
+msgid "Download in progress..."
+msgstr "Upakuaji unaendelea..."
+
+msgid "Erase %s... please wait"
+msgstr "Futa %s... tafadhali subiri"
+
+msgid "Exit"
+msgstr "Utgång"
+
+msgid "Hide/Show"
+msgstr "Ficha/Onyesha"
+
+msgid "Install"
+msgstr "Sakinisha"
+
+msgid "Install ..."
+msgstr "Sakinisha..."
+
+msgid "Loading data... Please wait"
+msgstr "Inapakia data... Tafadhali subiri"
+
+msgid "Picons folder"
+msgstr "Folda ya Picons"
+
+msgid "Please select ..."
+msgstr "Tafadhali chagua..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Bonyeza Sawa ili kuchagua folda iliyo na faili za picha"
+
+msgid "Preview"
+msgstr "Hakiki"
+
+msgid "Really close without saving the settings?"
+msgstr "Je, ungependa kufunga bila kuhifadhi mipangilio?"
+
+msgid "Remove"
+msgstr "Ondoa"
+
+msgid "Restart"
+msgstr "Anzisha upya"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "CHAGUA UCHAGUZI WAKO"
+
+msgid "Save"
+msgstr "Hifadhi"
+
+msgid "Select"
+msgstr "Chagua"
+
+msgid "Set the path to the Picons folder"
+msgstr "Weka njia ya folda ya Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons Imesakinishwa"
+
+msgid "Successfully Skin Installed"
+msgstr "Imefaulu Kusakinisha Ngozi"
+
+msgid "Successfully saved configuration"
+msgstr "Imefaulu kuhifadhi usanidi"
+
+msgid "Try again later ..."
+msgstr "Jaribu tena baadaye..."
+
+msgid "Update Aborted!"
+msgstr "Usasishaji Umeghairiwa!"

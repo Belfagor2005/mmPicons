@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:35+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s tas ir iztīrīts"
+
+msgid "... please wait"
+msgstr "... lūdzu uzgaidiet"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P DRĪZ!!!"
+
+msgid "Back"
+msgstr "Atpakaļ"
+
+msgid "Cancel"
+msgstr "Atcelt"
+
+msgid "Cancel execution?"
+msgstr "Vai atcelt izpildi?"
+
+msgid "Choice"
+msgstr "Izvēle"
+
+msgid "Choose Directory:"
+msgstr "Izvēlieties direktoriju:"
+
+msgid "Choose directory"
+msgstr "Izvēlieties direktoriju"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Apsveicam! Jums jau ir jaunākā versija..."
+
+msgid "Console"
+msgstr "Konsole"
+
+msgid "Device not detected!"
+msgstr "Ierīce nav noteikta!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Vai vēlaties instalēt atjauninājumu ( %s ) tūlīt?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Vai vēlaties restartēt Enigma?"
+
+msgid "Download Failed!"
+msgstr "Lejupielāde neizdevās!"
+
+msgid "Download Failed..."
+msgstr "Lejupielāde neizdevās..."
+
+msgid "Download failed"
+msgstr "Lejupielāde neizdevās"
+
+msgid "Download in progress..."
+msgstr "Notiek lejupielāde..."
+
+msgid "Erase %s... please wait"
+msgstr "Dzēst %s... lūdzu, uzgaidiet"
+
+msgid "Exit"
+msgstr "Iziet"
+
+msgid "Hide/Show"
+msgstr "Paslēpt/rādīt"
+
+msgid "Install"
+msgstr "Instalējiet"
+
+msgid "Install ..."
+msgstr "Instalēt..."
+
+msgid "Loading data... Please wait"
+msgstr "Notiek datu ielāde... Lūdzu, uzgaidiet"
+
+msgid "Picons folder"
+msgstr "Picons mape"
+
+msgid "Please select ..."
+msgstr "Lūdzu, atlasiet..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Nospiediet Labi, lai atlasītu mapi, kurā ir picon faili"
+
+msgid "Preview"
+msgstr "Priekšskatījums"
+
+msgid "Really close without saving the settings?"
+msgstr "Vai tiešām aizvērt, nesaglabājot iestatījumus?"
+
+msgid "Remove"
+msgstr "Noņemt"
+
+msgid "Restart"
+msgstr "Restartēt"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "IZVĒLIES SAVU IZVĒLI"
+
+msgid "Save"
+msgstr "Saglabāt"
+
+msgid "Select"
+msgstr "Izvēlieties"
+
+msgid "Set the path to the Picons folder"
+msgstr "Iestatiet ceļu uz mapi Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons veiksmīgi instalēts"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin ir veiksmīgi instalēta"
+
+msgid "Successfully saved configuration"
+msgstr "Konfigurācija ir veiksmīgi saglabāta"
+
+msgid "Try again later ..."
+msgstr "Mēģiniet vēlāk vēlreiz..."
+
+msgid "Update Aborted!"
+msgstr "Atjaunināšana pārtraukta!"

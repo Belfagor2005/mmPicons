@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:32+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Kannada <debian-l10n-kannada@lists.debian.org>\n"
+"Language: kn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s ಅದನ್ನು ಸ್ವಚ್ಛಗೊಳಿಸಲಾಗಿದೆ"
+
+msgid "... please wait"
+msgstr "... ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ!!!"
+
+msgid "Back"
+msgstr "ಹಿಂದೆ"
+
+msgid "Cancel"
+msgstr "ರದ್ದುಮಾಡಿ"
+
+msgid "Cancel execution?"
+msgstr "ಕಾರ್ಯಗತಗೊಳಿಸುವಿಕೆಯನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"
+
+msgid "Choice"
+msgstr "ಆಯ್ಕೆ"
+
+msgid "Choose Directory:"
+msgstr "ಡೈರೆಕ್ಟರಿಯನ್ನು ಆರಿಸಿ:"
+
+msgid "Choose directory"
+msgstr "ಡೈರೆಕ್ಟರಿಯನ್ನು ಆರಿಸಿ"
+
+msgid "Config"
+msgstr "ಸಂರಚನೆ"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "ಅಭಿನಂದನೆಗಳು! ನೀವು ಈಗಾಗಲೇ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ಹೊಂದಿರುವಿರಿ..."
+
+msgid "Console"
+msgstr "ಕನ್ಸೋಲ್"
+
+msgid "Device not detected!"
+msgstr "ಸಾಧನ ಪತ್ತೆಯಾಗಿಲ್ಲ!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "ನೀವು ಈಗ ನವೀಕರಣವನ್ನು (%s ) ಸ್ಥಾಪಿಸಲು ಬಯಸುವಿರಾ?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "ನೀವು ಎನಿಗ್ಮಾವನ್ನು ಮರುಪ್ರಾರಂಭಿಸಲು ಬಯಸುವಿರಾ?"
+
+msgid "Download Failed!"
+msgstr "ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ!"
+
+msgid "Download Failed..."
+msgstr "ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ..."
+
+msgid "Download failed"
+msgstr "ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ"
+
+msgid "Download in progress..."
+msgstr "ಡೌನ್‌ಲೋಡ್ ಪ್ರಗತಿಯಲ್ಲಿದೆ..."
+
+msgid "Erase %s... please wait"
+msgstr "%s ಅಳಿಸಿ... ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ"
+
+msgid "Exit"
+msgstr "ನಿರ್ಗಮಿಸಿ"
+
+msgid "Hide/Show"
+msgstr "ಮರೆಮಾಡಿ / ತೋರಿಸು"
+
+msgid "Install"
+msgstr "ಸ್ಥಾಪಿಸಿ"
+
+msgid "Install ..."
+msgstr "ಸ್ಥಾಪಿಸು..."
+
+msgid "Loading data... Please wait"
+msgstr "ಡೇಟಾವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ... ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ"
+
+msgid "Picons folder"
+msgstr "ಪಿಕಾನ್ಸ್ ಫೋಲ್ಡರ್"
+
+msgid "Please select ..."
+msgstr "ದಯವಿಟ್ಟು ಆಯ್ಕೆಮಾಡಿ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "ಪಿಕಾನ್ಸ್ ಫೈಲ್‌ಗಳನ್ನು ಹೊಂದಿರುವ ಫೋಲ್ಡರ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಸರಿ ಒತ್ತಿರಿ"
+
+msgid "Preview"
+msgstr "ಪೂರ್ವವೀಕ್ಷಣೆ"
+
+msgid "Really close without saving the settings?"
+msgstr "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಉಳಿಸದೆಯೇ ನಿಜವಾಗಿಯೂ ಮುಚ್ಚುವುದೇ?"
+
+msgid "Remove"
+msgstr "ತೆಗೆದುಹಾಕಿ"
+
+msgid "Restart"
+msgstr "ಮರುಪ್ರಾರಂಭಿಸಿ"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ನಿಮ್ಮ ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ"
+
+msgid "Save"
+msgstr "ಉಳಿಸಿ"
+
+msgid "Select"
+msgstr "ಆಯ್ಕೆ ಮಾಡಿ"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons ಫೋಲ್ಡರ್‌ಗೆ ಮಾರ್ಗವನ್ನು ಹೊಂದಿಸಿ"
+
+msgid "Successfully Picons Installed"
+msgstr "ಪಿಕಾನ್‌ಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸ್ಥಾಪಿಸಲಾಗಿದೆ"
+
+msgid "Successfully Skin Installed"
+msgstr "ಸ್ಕಿನ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸ್ಥಾಪಿಸಲಾಗಿದೆ"
+
+msgid "Successfully saved configuration"
+msgstr "ಕಾನ್ಫಿಗರೇಶನ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ"
+
+msgid "Try again later ..."
+msgstr "ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ..."
+
+msgid "Update Aborted!"
+msgstr "ನವೀಕರಣವನ್ನು ಸ್ಥಗಿತಗೊಳಿಸಲಾಗಿದೆ!"

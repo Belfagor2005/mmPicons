@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:43+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s bolo vyčistené"
+
+msgid "... please wait"
+msgstr "... počkajte prosím"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ČOSKORO!!!"
+
+msgid "Back"
+msgstr "Späť"
+
+msgid "Cancel"
+msgstr "Zrušiť"
+
+msgid "Cancel execution?"
+msgstr "Zrušiť exekúciu?"
+
+msgid "Choice"
+msgstr "Voľba"
+
+msgid "Choose Directory:"
+msgstr "Vyberte adresár:"
+
+msgid "Choose directory"
+msgstr "Vyberte adresár"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "gratulujem! Už máte najnovšiu verziu..."
+
+msgid "Console"
+msgstr "Konzola"
+
+msgid "Device not detected!"
+msgstr "Zariadenie nebolo rozpoznané!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Chcete nainštalovať aktualizáciu ( %s) teraz?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Chcete reštartovať Enigmu?"
+
+msgid "Download Failed!"
+msgstr "Sťahovanie zlyhalo!"
+
+msgid "Download Failed..."
+msgstr "Sťahovanie zlyhalo..."
+
+msgid "Download failed"
+msgstr "Sťahovanie zlyhalo"
+
+msgid "Download in progress..."
+msgstr "Prebieha sťahovanie..."
+
+msgid "Erase %s... please wait"
+msgstr "Vymazať %s... počkajte prosím"
+
+msgid "Exit"
+msgstr "VÝCHOD"
+
+msgid "Hide/Show"
+msgstr "Skryť/Zobraziť"
+
+msgid "Install"
+msgstr "Inštalovať"
+
+msgid "Install ..."
+msgstr "Inštalovať..."
+
+msgid "Loading data... Please wait"
+msgstr "Načítavajú sa údaje... Čakajte prosím"
+
+msgid "Picons folder"
+msgstr "Priečinok Picons"
+
+msgid "Please select ..."
+msgstr "Vyberte prosím..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Stlačením tlačidla Ok vyberte priečinok obsahujúci súbory s ikonami"
+
+msgid "Preview"
+msgstr "Ukážka"
+
+msgid "Really close without saving the settings?"
+msgstr "Naozaj zavrieť bez uloženia nastavení?"
+
+msgid "Remove"
+msgstr "Odstrániť"
+
+msgid "Restart"
+msgstr "Reštartujte"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "VYBERTE SI SVOJ VÝBER"
+
+msgid "Save"
+msgstr "Uložiť"
+
+msgid "Select"
+msgstr "Vyberte"
+
+msgid "Set the path to the Picons folder"
+msgstr "Nastavte cestu k priečinku Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Pikony boli úspešne nainštalované"
+
+msgid "Successfully Skin Installed"
+msgstr "Vzhľad bol úspešne nainštalovaný"
+
+msgid "Successfully saved configuration"
+msgstr "Konfigurácia bola úspešne uložená"
+
+msgid "Try again later ..."
+msgstr "Skúste to neskôr..."
+
+msgid "Update Aborted!"
+msgstr "Aktualizácia prerušená!"

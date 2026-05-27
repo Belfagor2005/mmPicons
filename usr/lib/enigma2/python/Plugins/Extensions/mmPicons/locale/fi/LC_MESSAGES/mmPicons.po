@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:23+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s se on puhdistettu"
+
+msgid "... please wait"
+msgstr "... ole hyvä ja odota"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P TULOSSA PIAN!!!"
+
+msgid "Back"
+msgstr "Takaisin"
+
+msgid "Cancel"
+msgstr "Peruuttaa"
+
+msgid "Cancel execution?"
+msgstr "Peruutetaanko suoritus?"
+
+msgid "Choice"
+msgstr "Valinta"
+
+msgid "Choose Directory:"
+msgstr "Valitse hakemisto:"
+
+msgid "Choose directory"
+msgstr "Valitse hakemisto"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Onnittelut! Sinulla on jo uusin versio..."
+
+msgid "Console"
+msgstr "Konsoli"
+
+msgid "Device not detected!"
+msgstr "Laitetta ei tunnistettu!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Haluatko asentaa päivityksen ( %s ) nyt?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Haluatko käynnistää Enigman uudelleen?"
+
+msgid "Download Failed!"
+msgstr "Lataus epäonnistui!"
+
+msgid "Download Failed..."
+msgstr "Lataus epäonnistui..."
+
+msgid "Download failed"
+msgstr "Lataus epäonnistui"
+
+msgid "Download in progress..."
+msgstr "Lataus käynnissä..."
+
+msgid "Erase %s... please wait"
+msgstr "Poista %s... odota"
+
+msgid "Exit"
+msgstr "Poistu"
+
+msgid "Hide/Show"
+msgstr "Piilota/Näytä"
+
+msgid "Install"
+msgstr "Asentaa"
+
+msgid "Install ..."
+msgstr "Asenna..."
+
+msgid "Loading data... Please wait"
+msgstr "Ladataan tietoja... Odota"
+
+msgid "Picons folder"
+msgstr "Picons-kansio"
+
+msgid "Please select ..."
+msgstr "Ole hyvä ja valitse..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Paina Ok valitaksesi picon-tiedostot sisältävän kansion"
+
+msgid "Preview"
+msgstr "Esikatselu"
+
+msgid "Really close without saving the settings?"
+msgstr "Suljetko todella tallentamatta asetuksia?"
+
+msgid "Remove"
+msgstr "Poistaa"
+
+msgid "Restart"
+msgstr "Käynnistä uudelleen"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "VALITSE VALINTASI"
+
+msgid "Save"
+msgstr "Tallentaa"
+
+msgid "Select"
+msgstr "Valitse"
+
+msgid "Set the path to the Picons folder"
+msgstr "Aseta polku Picons-kansioon"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons asennettu onnistuneesti"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin asennettu onnistuneesti"
+
+msgid "Successfully saved configuration"
+msgstr "Määritysten tallennus onnistui"
+
+msgid "Try again later ..."
+msgstr "Yritä myöhemmin uudelleen..."
+
+msgid "Update Aborted!"
+msgstr "Päivitys keskeytetty!"

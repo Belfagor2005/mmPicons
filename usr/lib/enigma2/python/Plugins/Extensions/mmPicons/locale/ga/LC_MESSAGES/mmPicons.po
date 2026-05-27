@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:25+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s tá sé glanta"
+
+msgid "... please wait"
+msgstr "... fan le do thoil"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ag teacht go luath!!!"
+
+msgid "Back"
+msgstr "Ar ais"
+
+msgid "Cancel"
+msgstr "Cealaigh"
+
+msgid "Cancel execution?"
+msgstr "Cealaigh an fhorghníomhú?"
+
+msgid "Choice"
+msgstr "Rogha"
+
+msgid "Choose Directory:"
+msgstr "Roghnaigh Eolaire:"
+
+msgid "Choose directory"
+msgstr "Roghnaigh eolaire"
+
+msgid "Config"
+msgstr "Cumraíocht"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Comhghairdeachas! Tá an leagan is déanaí agat cheana féin..."
+
+msgid "Console"
+msgstr "Consól"
+
+msgid "Device not detected!"
+msgstr "Gléas gan braitheadh!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Ar mhaith leat nuashonrú ( % s ) a shuiteáil anois?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Ar mhaith leat Enigma a atosú?"
+
+msgid "Download Failed!"
+msgstr "Theip ar Íoslódáil!"
+
+msgid "Download Failed..."
+msgstr "Íoslódáil Theip ar..."
+
+msgid "Download failed"
+msgstr "Theip ar an íoslódáil"
+
+msgid "Download in progress..."
+msgstr "Íosluchtaigh ag dul ar aghaidh. ."
+
+msgid "Erase %s... please wait"
+msgstr "Scrios %s... fan"
+
+msgid "Exit"
+msgstr "Scoir"
+
+msgid "Hide/Show"
+msgstr "Folaigh/Taispeáin"
+
+msgid "Install"
+msgstr "Suiteáil"
+
+msgid "Install ..."
+msgstr "Suiteáil ..."
+
+msgid "Loading data... Please wait"
+msgstr "Sonraí á lódáil... Fan go fóill"
+
+msgid "Picons folder"
+msgstr "Fillteán picons"
+
+msgid "Please select ..."
+msgstr "Roghnaigh le do thoil ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Brúigh OK chun an fillteán ina bhfuil na comhaid picons a roghnú"
+
+msgid "Preview"
+msgstr "Réamhamharc"
+
+msgid "Really close without saving the settings?"
+msgstr "Dún i ndáiríre gan na socruithe a shábháil?"
+
+msgid "Remove"
+msgstr "Bain"
+
+msgid "Restart"
+msgstr "Atosaigh"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ROGHNAIGH DO ROGHA"
+
+msgid "Save"
+msgstr "Sábháil"
+
+msgid "Select"
+msgstr "Roghnaigh"
+
+msgid "Set the path to the Picons folder"
+msgstr "Socraigh an cosán chuig an bhfillteán Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "D'éirigh le Picons Suiteáilte"
+
+msgid "Successfully Skin Installed"
+msgstr "D'éirigh le Suiteáil Craiceann"
+
+msgid "Successfully saved configuration"
+msgstr "D'éirigh le cumraíocht a shábháil"
+
+msgid "Try again later ..."
+msgstr "Bain triail eile as ar ball..."
+
+msgid "Update Aborted!"
+msgstr "Tobscoireadh an Nuashonrú!"

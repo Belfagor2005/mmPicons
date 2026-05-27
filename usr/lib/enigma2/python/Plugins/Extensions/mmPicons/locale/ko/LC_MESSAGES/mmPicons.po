@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:33+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Korean <translation-team-ko@googlegroups.com>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s 청소되었습니다"
+
+msgid "... please wait"
+msgstr "... 기다리세요"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P 곧 출시됩니다!!!"
+
+msgid "Back"
+msgstr "뒤쪽에"
+
+msgid "Cancel"
+msgstr "취소"
+
+msgid "Cancel execution?"
+msgstr "실행을 취소하시겠습니까?"
+
+msgid "Choice"
+msgstr "선택"
+
+msgid "Choose Directory:"
+msgstr "디렉토리 선택:"
+
+msgid "Choose directory"
+msgstr "디렉토리 선택"
+
+msgid "Config"
+msgstr "구성"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "축하해요! 이미 최신 버전이 있습니다..."
+
+msgid "Console"
+msgstr "콘솔"
+
+msgid "Device not detected!"
+msgstr "장치가 감지되지 않습니다!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "지금 업데이트( %s )를 설치하시겠습니까?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Enigma를 다시 시작하시겠습니까?"
+
+msgid "Download Failed!"
+msgstr "다운로드 실패!"
+
+msgid "Download Failed..."
+msgstr "다운로드 실패..."
+
+msgid "Download failed"
+msgstr "다운로드 실패"
+
+msgid "Download in progress..."
+msgstr "다운로드 진행 중..."
+
+msgid "Erase %s... please wait"
+msgstr "%s 지우기... 잠시 기다려 주세요."
+
+msgid "Exit"
+msgstr "출구"
+
+msgid "Hide/Show"
+msgstr "숨기기/보이기"
+
+msgid "Install"
+msgstr "설치하다"
+
+msgid "Install ..."
+msgstr "설치하다 ..."
+
+msgid "Loading data... Please wait"
+msgstr "데이터 로드 중... 잠시 기다려 주세요."
+
+msgid "Picons folder"
+msgstr "Picons 폴더"
+
+msgid "Please select ..."
+msgstr "선택하세요 ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "확인을 눌러 picons 파일이 포함된 폴더를 선택하세요."
+
+msgid "Preview"
+msgstr "시사"
+
+msgid "Really close without saving the settings?"
+msgstr "설정을 저장하지 않고 닫으시겠습니까?"
+
+msgid "Remove"
+msgstr "제거하다"
+
+msgid "Restart"
+msgstr "다시 시작"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "원하는 것을 선택하세요"
+
+msgid "Save"
+msgstr "구하다"
+
+msgid "Select"
+msgstr "선택하다"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons 폴더의 경로를 설정하세요."
+
+msgid "Successfully Picons Installed"
+msgstr "Picons가 성공적으로 설치되었습니다."
+
+msgid "Successfully Skin Installed"
+msgstr "스킨이 성공적으로 설치되었습니다."
+
+msgid "Successfully saved configuration"
+msgstr "구성이 성공적으로 저장되었습니다."
+
+msgid "Try again later ..."
+msgstr "나중에 다시 시도해 보세요..."
+
+msgid "Update Aborted!"
+msgstr "업데이트가 중단되었습니다!"

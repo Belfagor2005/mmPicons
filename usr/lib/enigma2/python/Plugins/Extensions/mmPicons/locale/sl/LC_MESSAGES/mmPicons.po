@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:44+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Slovenian <translation-team-sl@lists.sourceforge.net>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s je bilo očiščeno"
+
+msgid "... please wait"
+msgstr "... prosim počakajte"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P KMALU!!!"
+
+msgid "Back"
+msgstr "Nazaj"
+
+msgid "Cancel"
+msgstr "Prekliči"
+
+msgid "Cancel execution?"
+msgstr "Preklic izvršitve?"
+
+msgid "Choice"
+msgstr "Izbira"
+
+msgid "Choose Directory:"
+msgstr "Izberite imenik:"
+
+msgid "Choose directory"
+msgstr "Izberite imenik"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "čestitke Najnovejšo različico že imate..."
+
+msgid "Console"
+msgstr "Konzola"
+
+msgid "Device not detected!"
+msgstr "Naprava ni zaznana!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Ali želite zdaj namestiti posodobitev ( %s )?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Ali želite znova zagnati Enigmo?"
+
+msgid "Download Failed!"
+msgstr "Prenos ni uspel!"
+
+msgid "Download Failed..."
+msgstr "Prenos ni uspel ..."
+
+msgid "Download failed"
+msgstr "Prenos ni uspel"
+
+msgid "Download in progress..."
+msgstr "Prenos v teku ..."
+
+msgid "Erase %s... please wait"
+msgstr "Izbriši %s ... prosim počakajte"
+
+msgid "Exit"
+msgstr "Izhod"
+
+msgid "Hide/Show"
+msgstr "Skrij/prikaži"
+
+msgid "Install"
+msgstr "Namestite"
+
+msgid "Install ..."
+msgstr "Namestite ..."
+
+msgid "Loading data... Please wait"
+msgstr "Nalaganje podatkov ... Počakajte"
+
+msgid "Picons folder"
+msgstr "Mapa Picons"
+
+msgid "Please select ..."
+msgstr "Prosim izberite ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Pritisnite OK, da izberete mapo, ki vsebuje datoteke picons"
+
+msgid "Preview"
+msgstr "Predogled"
+
+msgid "Really close without saving the settings?"
+msgstr "Ali res zaprete brez shranjevanja nastavitev?"
+
+msgid "Remove"
+msgstr "Odstrani"
+
+msgid "Restart"
+msgstr "Znova zaženite"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "IZBERITE SVOJO IZBIRO"
+
+msgid "Save"
+msgstr "Shrani"
+
+msgid "Select"
+msgstr "Izberite"
+
+msgid "Set the path to the Picons folder"
+msgstr "Nastavite pot do mape Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Pikone so bile uspešno nameščene"
+
+msgid "Successfully Skin Installed"
+msgstr "Preobleka je bila uspešno nameščena"
+
+msgid "Successfully saved configuration"
+msgstr "Konfiguracija je bila uspešno shranjena"
+
+msgid "Try again later ..."
+msgstr "Poskusite znova pozneje ..."
+
+msgid "Update Aborted!"
+msgstr "Posodobitev prekinjena!"

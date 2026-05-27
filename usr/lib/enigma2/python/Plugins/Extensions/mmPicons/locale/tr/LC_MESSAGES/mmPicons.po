@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:49+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s temizlendi"
+
+msgid "... please wait"
+msgstr "... Lütfen bekleyin"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ÇOK YAKINDA!!!"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Cancel"
+msgstr "İptal etmek"
+
+msgid "Cancel execution?"
+msgstr "Yürütme iptal edilsin mi?"
+
+msgid "Choice"
+msgstr "Seçenek"
+
+msgid "Choose Directory:"
+msgstr "Dizin Seçin:"
+
+msgid "Choose directory"
+msgstr "Dizin seçin"
+
+msgid "Config"
+msgstr "Yapılandırma"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Tebrikler! Zaten en son sürüme sahipsiniz..."
+
+msgid "Console"
+msgstr "Konsol"
+
+msgid "Device not detected!"
+msgstr "Cihaz algılanmadı!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Güncellemeyi ( %s ) şimdi yüklemek istiyor musunuz?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Enigma'yı yeniden başlatmak istiyor musunuz?"
+
+msgid "Download Failed!"
+msgstr "İndirme Başarısız!"
+
+msgid "Download Failed..."
+msgstr "İndirme Başarısız..."
+
+msgid "Download failed"
+msgstr "İndirme başarısız oldu"
+
+msgid "Download in progress..."
+msgstr "İndirme işlemi devam ediyor..."
+
+msgid "Erase %s... please wait"
+msgstr "%s'yi sil... lütfen bekleyin"
+
+msgid "Exit"
+msgstr "Çıkış"
+
+msgid "Hide/Show"
+msgstr "Gizle/Göster"
+
+msgid "Install"
+msgstr "Düzenlemek"
+
+msgid "Install ..."
+msgstr "Düzenlemek ..."
+
+msgid "Loading data... Please wait"
+msgstr "Veri yükleniyor... Lütfen bekleyin"
+
+msgid "Picons folder"
+msgstr "Picons klasörü"
+
+msgid "Please select ..."
+msgstr "Lütfen seçin..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Picons dosyalarını içeren klasörü seçmek için Tamam'a basın"
+
+msgid "Preview"
+msgstr "Önizleme"
+
+msgid "Really close without saving the settings?"
+msgstr "Ayarları kaydetmeden gerçekten kapatılsın mı?"
+
+msgid "Remove"
+msgstr "Kaldırmak"
+
+msgid "Restart"
+msgstr "Tekrar başlat"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "SEÇİMİNİZİ SEÇİN"
+
+msgid "Save"
+msgstr "Kaydetmek"
+
+msgid "Select"
+msgstr "Seçme"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons klasörünün yolunu ayarlayın"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons Başarıyla Yüklendi"
+
+msgid "Successfully Skin Installed"
+msgstr "Dış Görünüm Başarıyla Yüklendi"
+
+msgid "Successfully saved configuration"
+msgstr "Yapılandırma başarıyla kaydedildi"
+
+msgid "Try again later ..."
+msgstr "Daha sonra tekrar deneyin..."
+
+msgid "Update Aborted!"
+msgstr "Güncelleme İptal Edildi!"

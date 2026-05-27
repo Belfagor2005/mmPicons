@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:52+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Vietnamese <translation-team-vi@lists.sourceforge.net>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s nó đã được làm sạch"
+
+msgid "... please wait"
+msgstr "... Vui lòng chờ"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P SẮP RA MẮT!!!"
+
+msgid "Back"
+msgstr "Mặt sau"
+
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+msgid "Cancel execution?"
+msgstr "Hủy thực hiện?"
+
+msgid "Choice"
+msgstr "Sự lựa chọn"
+
+msgid "Choose Directory:"
+msgstr "Chọn thư mục:"
+
+msgid "Choose directory"
+msgstr "Chọn thư mục"
+
+msgid "Config"
+msgstr "Cấu hình"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Xin chúc mừng! Bạn đã có phiên bản mới nhất..."
+
+msgid "Console"
+msgstr "Bảng điều khiển"
+
+msgid "Device not detected!"
+msgstr "Thiết bị không được phát hiện!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Bạn có muốn cài đặt bản cập nhật ( %s ) ngay bây giờ không?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Bạn có muốn khởi động lại Enigma không?"
+
+msgid "Download Failed!"
+msgstr "Tải xuống không thành công!"
+
+msgid "Download Failed..."
+msgstr "Tải xuống không thành công..."
+
+msgid "Download failed"
+msgstr "Tải xuống không thành công"
+
+msgid "Download in progress..."
+msgstr "Đang tải xuống..."
+
+msgid "Erase %s... please wait"
+msgstr "Xóa %s... vui lòng đợi"
+
+msgid "Exit"
+msgstr "Ra"
+
+msgid "Hide/Show"
+msgstr "Ẩn/Hiển thị"
+
+msgid "Install"
+msgstr "Cài đặt"
+
+msgid "Install ..."
+msgstr "Cài đặt ..."
+
+msgid "Loading data... Please wait"
+msgstr "Đang tải dữ liệu... Vui lòng đợi"
+
+msgid "Picons folder"
+msgstr "Thư mục Picons"
+
+msgid "Please select ..."
+msgstr "Hãy chọn..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Nhấn Ok để chọn thư mục chứa file picons"
+
+msgid "Preview"
+msgstr "Xem trước"
+
+msgid "Really close without saving the settings?"
+msgstr "Thực sự đóng mà không lưu cài đặt?"
+
+msgid "Remove"
+msgstr "Di dời"
+
+msgid "Restart"
+msgstr "Khởi động lại"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "CHỌN LỰA CHỌN CỦA BẠN"
+
+msgid "Save"
+msgstr "Cứu"
+
+msgid "Select"
+msgstr "Lựa chọn"
+
+msgid "Set the path to the Picons folder"
+msgstr "Đặt đường dẫn tới thư mục Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Đã cài đặt thành công Picons"
+
+msgid "Successfully Skin Installed"
+msgstr "Đã cài đặt Skin thành công"
+
+msgid "Successfully saved configuration"
+msgstr "Đã lưu cấu hình thành công"
+
+msgid "Try again later ..."
+msgstr "Hãy thử lại sau..."
+
+msgid "Update Aborted!"
+msgstr "Cập nhật bị hủy bỏ!"

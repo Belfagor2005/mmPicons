@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:51+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Uzbek\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s tozalandi"
+
+msgid "... please wait"
+msgstr "... Iltimos kuting"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P Tez orada!!!"
+
+msgid "Back"
+msgstr "Orqaga"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Cancel execution?"
+msgstr "Bajarish bekor qilinsinmi?"
+
+msgid "Choice"
+msgstr "Tanlov"
+
+msgid "Choose Directory:"
+msgstr "Katalogni tanlang:"
+
+msgid "Choose directory"
+msgstr "Katalogni tanlang"
+
+msgid "Config"
+msgstr "Konfiguratsiya"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Tabriklaymiz! Sizda allaqachon oxirgi versiya mavjud..."
+
+msgid "Console"
+msgstr "Konsol"
+
+msgid "Device not detected!"
+msgstr "Qurilma aniqlanmadi!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Yangilanishni ( %s ) hozir oʻrnatmoqchimisiz?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Enigma-ni qayta ishga tushirmoqchimisiz?"
+
+msgid "Download Failed!"
+msgstr "Yuklab bo'lmadi!"
+
+msgid "Download Failed..."
+msgstr "Yuklab olinmadi..."
+
+msgid "Download failed"
+msgstr "Yuklab bo‘lmadi"
+
+msgid "Download in progress..."
+msgstr "Yuklab olish davom etmoqda..."
+
+msgid "Erase %s... please wait"
+msgstr "%sni oʻchirish... kuting"
+
+msgid "Exit"
+msgstr "Chiqish"
+
+msgid "Hide/Show"
+msgstr "Yashirish/Ko‘rsatish"
+
+msgid "Install"
+msgstr "O'rnatish"
+
+msgid "Install ..."
+msgstr "O'rnatish ..."
+
+msgid "Loading data... Please wait"
+msgstr "Maʼlumotlar yuklanmoqda... Iltimos, kuting"
+
+msgid "Picons folder"
+msgstr "Picons papkasi"
+
+msgid "Please select ..."
+msgstr "Iltimos, tanlang ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Picon fayllari joylashgan jildni tanlash uchun Ok tugmasini bosing"
+
+msgid "Preview"
+msgstr "Ko‘rib chiqish"
+
+msgid "Really close without saving the settings?"
+msgstr "Haqiqatan ham sozlamalarni saqlamasdan yopilsinmi?"
+
+msgid "Remove"
+msgstr "O'chirish"
+
+msgid "Restart"
+msgstr "Qayta ishga tushirish"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "TANLOVINGIZNI TANlang"
+
+msgid "Save"
+msgstr "Saqlash"
+
+msgid "Select"
+msgstr "Tanlang"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons jildiga yo'lni o'rnating"
+
+msgid "Successfully Picons Installed"
+msgstr "Pikonlar muvaffaqiyatli oʻrnatildi"
+
+msgid "Successfully Skin Installed"
+msgstr "Skin muvaffaqiyatli o'rnatildi"
+
+msgid "Successfully saved configuration"
+msgstr "Konfiguratsiya muvaffaqiyatli saqlandi"
+
+msgid "Try again later ..."
+msgstr "Keyinroq qayta urinib ko'ring..."
+
+msgid "Update Aborted!"
+msgstr "Yangilash bekor qilindi!"

@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:41+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s został wyczyszczony"
+
+msgid "... please wait"
+msgstr "... proszę czekać"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P JUŻ WKRÓTCE!!!"
+
+msgid "Back"
+msgstr "Z powrotem"
+
+msgid "Cancel"
+msgstr "Anulować"
+
+msgid "Cancel execution?"
+msgstr "Anulować wykonanie?"
+
+msgid "Choice"
+msgstr "Wybór"
+
+msgid "Choose Directory:"
+msgstr "Wybierz katalog:"
+
+msgid "Choose directory"
+msgstr "Wybierz katalog"
+
+msgid "Config"
+msgstr "Konfig"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Gratulacje! Masz już najnowszą wersję..."
+
+msgid "Console"
+msgstr "Konsola"
+
+msgid "Device not detected!"
+msgstr "Nie wykryto urządzenia!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Czy chcesz teraz zainstalować aktualizację ( %s )?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Czy chcesz ponownie uruchomić Enigmę?"
+
+msgid "Download Failed!"
+msgstr "Pobieranie nie powiodło się!"
+
+msgid "Download Failed..."
+msgstr "Pobieranie nie powiodło się..."
+
+msgid "Download failed"
+msgstr "Pobieranie nie powiodło się"
+
+msgid "Download in progress..."
+msgstr "Pobieranie w toku..."
+
+msgid "Erase %s... please wait"
+msgstr "Usuń %s... proszę czekać"
+
+msgid "Exit"
+msgstr "Wyjście"
+
+msgid "Hide/Show"
+msgstr "Ukryj/pokaż"
+
+msgid "Install"
+msgstr "Zainstalować"
+
+msgid "Install ..."
+msgstr "Zainstaluj..."
+
+msgid "Loading data... Please wait"
+msgstr "Ładowanie danych... Proszę czekać"
+
+msgid "Picons folder"
+msgstr "Folder Picons"
+
+msgid "Please select ..."
+msgstr "Proszę wybrać..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Naciśnij OK, aby wybrać folder zawierający pliki picons"
+
+msgid "Preview"
+msgstr "Zapowiedź"
+
+msgid "Really close without saving the settings?"
+msgstr "Naprawdę zamknąć bez zapisywania ustawień?"
+
+msgid "Remove"
+msgstr "Usunąć"
+
+msgid "Restart"
+msgstr "Uruchom ponownie"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "WYBIERZ SWÓJ WYBÓR"
+
+msgid "Save"
+msgstr "Ratować"
+
+msgid "Select"
+msgstr "Wybierać"
+
+msgid "Set the path to the Picons folder"
+msgstr "Ustaw ścieżkę do folderu Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Pomyślnie zainstalowano Picons"
+
+msgid "Successfully Skin Installed"
+msgstr "Pomyślnie zainstalowano skórkę"
+
+msgid "Successfully saved configuration"
+msgstr "Pomyślnie zapisano konfigurację"
+
+msgid "Try again later ..."
+msgstr "Spróbuj ponownie później..."
+
+msgid "Update Aborted!"
+msgstr "Aktualizacja przerwana!"

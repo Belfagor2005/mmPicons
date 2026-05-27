@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:46+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Tamil <tamil@systemreboot.net>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s அது சுத்தம் செய்யப்பட்டது"
+
+msgid "... please wait"
+msgstr "... தயவு செய்து காத்திருக்கவும்"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P விரைவில்!!!"
+
+msgid "Back"
+msgstr "மீண்டும்"
+
+msgid "Cancel"
+msgstr "ரத்து செய்"
+
+msgid "Cancel execution?"
+msgstr "செயல்படுத்துவதை ரத்து செய்யவா?"
+
+msgid "Choice"
+msgstr "தேர்வு"
+
+msgid "Choose Directory:"
+msgstr "கோப்பகத்தைத் தேர்வுசெய்க:"
+
+msgid "Choose directory"
+msgstr "கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Config"
+msgstr "கட்டமைப்பு"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "வாழ்த்துகள்! உங்களிடம் ஏற்கனவே சமீபத்திய பதிப்பு உள்ளது..."
+
+msgid "Console"
+msgstr "பணியகம்"
+
+msgid "Device not detected!"
+msgstr "சாதனம் கண்டறியப்படவில்லை!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "புதுப்பிப்பை (%s) இப்போது நிறுவ விரும்புகிறீர்களா?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "எனிக்மாவை மீண்டும் தொடங்க விரும்புகிறீர்களா?"
+
+msgid "Download Failed!"
+msgstr "பதிவிறக்கம் தோல்வி!"
+
+msgid "Download Failed..."
+msgstr "பதிவிறக்கம் தோல்வியடைந்தது..."
+
+msgid "Download failed"
+msgstr "பதிவிறக்கம் தோல்வியடைந்தது"
+
+msgid "Download in progress..."
+msgstr "பதிவிறக்கம் செயலில் உள்ளது..."
+
+msgid "Erase %s... please wait"
+msgstr "%s ஐ அழிக்கவும்... தயவுசெய்து காத்திருக்கவும்"
+
+msgid "Exit"
+msgstr "வெளியேறு"
+
+msgid "Hide/Show"
+msgstr "மறை/காட்டு"
+
+msgid "Install"
+msgstr "நிறுவவும்"
+
+msgid "Install ..."
+msgstr "நிறுவு..."
+
+msgid "Loading data... Please wait"
+msgstr "தரவை ஏற்றுகிறது... காத்திருக்கவும்"
+
+msgid "Picons folder"
+msgstr "Picons கோப்புறை"
+
+msgid "Please select ..."
+msgstr "தயவுசெய்து தேர்ந்தெடுக்கவும்..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "பிகான்கள் கோப்புகளைக் கொண்ட கோப்புறையைத் தேர்ந்தெடுக்க சரி என்பதை அழுத்தவும்"
+
+msgid "Preview"
+msgstr "முன்னோட்டம்"
+
+msgid "Really close without saving the settings?"
+msgstr "அமைப்புகளைச் சேமிக்காமல் உண்மையில் மூடவா?"
+
+msgid "Remove"
+msgstr "அகற்று"
+
+msgid "Restart"
+msgstr "மறுதொடக்கம்"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "உங்கள் விருப்பத்தைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Save"
+msgstr "சேமிக்கவும்"
+
+msgid "Select"
+msgstr "தேர்ந்தெடு"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons கோப்புறைக்கு பாதையை அமைக்கவும்"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons வெற்றிகரமாக நிறுவப்பட்டது"
+
+msgid "Successfully Skin Installed"
+msgstr "தோல் வெற்றிகரமாக நிறுவப்பட்டது"
+
+msgid "Successfully saved configuration"
+msgstr "உள்ளமைவு வெற்றிகரமாகச் சேமிக்கப்பட்டது"
+
+msgid "Try again later ..."
+msgstr "பிறகு முயலவும்..."
+
+msgid "Update Aborted!"
+msgstr "புதுப்பிப்பு நிறுத்தப்பட்டது!"

@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:30+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s það hefur verið hreinsað"
+
+msgid "... please wait"
+msgstr "... vinsamlegast bíðið"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P KEMUR!!!"
+
+msgid "Back"
+msgstr "Til baka"
+
+msgid "Cancel"
+msgstr "Hætta við"
+
+msgid "Cancel execution?"
+msgstr "Hætta við framkvæmd?"
+
+msgid "Choice"
+msgstr "Val"
+
+msgid "Choose Directory:"
+msgstr "Veldu möppu:"
+
+msgid "Choose directory"
+msgstr "Veldu möppu"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Til hamingju! Þú ert nú þegar með nýjustu útgáfuna..."
+
+msgid "Console"
+msgstr "Stjórnborð"
+
+msgid "Device not detected!"
+msgstr "Tæki fannst ekki!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Viltu setja upp uppfærslu ( %s ) núna?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Viltu endurræsa Enigma?"
+
+msgid "Download Failed!"
+msgstr "Niðurhal mistókst!"
+
+msgid "Download Failed..."
+msgstr "Niðurhal mistókst..."
+
+msgid "Download failed"
+msgstr "Niðurhal mistókst"
+
+msgid "Download in progress..."
+msgstr "Niðurhal í gangi..."
+
+msgid "Erase %s... please wait"
+msgstr "Eyða %s... vinsamlegast bíðið"
+
+msgid "Exit"
+msgstr "Hætta"
+
+msgid "Hide/Show"
+msgstr "Fela/Sýna"
+
+msgid "Install"
+msgstr "Settu upp"
+
+msgid "Install ..."
+msgstr "Settu upp..."
+
+msgid "Loading data... Please wait"
+msgstr "Hleður gögnum... Vinsamlegast bíddu"
+
+msgid "Picons folder"
+msgstr "Picons mappa"
+
+msgid "Please select ..."
+msgstr "Vinsamlegast veldu..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Ýttu á Ok til að velja möppuna sem inniheldur picons skrárnar"
+
+msgid "Preview"
+msgstr "Forskoðun"
+
+msgid "Really close without saving the settings?"
+msgstr "Virkilega loka án þess að vista stillingarnar?"
+
+msgid "Remove"
+msgstr "Fjarlægja"
+
+msgid "Restart"
+msgstr "Endurræstu"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "VELDU ÞITT VAL"
+
+msgid "Save"
+msgstr "Vista"
+
+msgid "Select"
+msgstr "Veldu"
+
+msgid "Set the path to the Picons folder"
+msgstr "Stilltu slóðina að Picons möppunni"
+
+msgid "Successfully Picons Installed"
+msgstr "Tókst að setja upp Picons"
+
+msgid "Successfully Skin Installed"
+msgstr "Húð sett upp með góðum árangri"
+
+msgid "Successfully saved configuration"
+msgstr "Tókst vistuð stilling"
+
+msgid "Try again later ..."
+msgstr "Reyndu aftur seinna..."
+
+msgid "Update Aborted!"
+msgstr "Uppfærsla hætt!"

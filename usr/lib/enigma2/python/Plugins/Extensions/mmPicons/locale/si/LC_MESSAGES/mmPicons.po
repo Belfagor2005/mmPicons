@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:43+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Sinhala\n"
+"Language: si\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s එය පිරිසිදු කර ඇත"
+
+msgid "... please wait"
+msgstr "... කරුණාකර රැඳී සිටින්න"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P ළඟදීම!!!"
+
+msgid "Back"
+msgstr "ආපසු"
+
+msgid "Cancel"
+msgstr "අවලංගු කරන්න"
+
+msgid "Cancel execution?"
+msgstr "ක්‍රියාත්මක කිරීම අවලංගු කරන්නද?"
+
+msgid "Choice"
+msgstr "තේරීම"
+
+msgid "Choose Directory:"
+msgstr "නාමාවලිය තෝරන්න:"
+
+msgid "Choose directory"
+msgstr "නාමාවලිය තෝරන්න"
+
+msgid "Config"
+msgstr "වින්යාසය"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "සුභ පැතුම්! ඔබට දැනටමත් නවතම අනුවාදය ඇත..."
+
+msgid "Console"
+msgstr "කොන්සෝලය"
+
+msgid "Device not detected!"
+msgstr "උපාංගය හඳුනාගෙන නොමැත!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "ඔබට දැන් යාවත්කාලීන (%s ) ස්ථාපනය කිරීමට අවශ්‍යද?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "ඔබට Enigma නැවත ආරම්භ කිරීමට අවශ්‍යද?"
+
+msgid "Download Failed!"
+msgstr "බාගැනීම අසාර්ථකයි!"
+
+msgid "Download Failed..."
+msgstr "බාගැනීම අසාර්ථකයි..."
+
+msgid "Download failed"
+msgstr "බාගැනීම අසාර්ථක විය"
+
+msgid "Download in progress..."
+msgstr "බාගැනීම සිදු වෙමින් පවතී..."
+
+msgid "Erase %s... please wait"
+msgstr "%s මකන්න... කරුණාකර රැඳී සිටින්න"
+
+msgid "Exit"
+msgstr "පිටවෙන්න"
+
+msgid "Hide/Show"
+msgstr "සඟවන්න/පෙන්වන්න"
+
+msgid "Install"
+msgstr "ස්ථාපනය කරන්න"
+
+msgid "Install ..."
+msgstr "ස්ථාපනය කරන්න..."
+
+msgid "Loading data... Please wait"
+msgstr "දත්ත පූරණය කරමින්... කරුණාකර රැඳී සිටින්න"
+
+msgid "Picons folder"
+msgstr "Picons ෆෝල්ඩරය"
+
+msgid "Please select ..."
+msgstr "කරුණාකර තෝරන්න..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "picons ගොනු අඩංගු ෆෝල්ඩරය තේරීමට Ok ඔබන්න"
+
+msgid "Preview"
+msgstr "පෙරදසුන"
+
+msgid "Really close without saving the settings?"
+msgstr "සැකසීම් සුරැකීමෙන් තොරව ඇත්තටම වසන්නද?"
+
+msgid "Remove"
+msgstr "ඉවත් කරන්න"
+
+msgid "Restart"
+msgstr "යළි අරඹන්න"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ඔබේ තේරීම තෝරන්න"
+
+msgid "Save"
+msgstr "සුරකින්න"
+
+msgid "Select"
+msgstr "තෝරන්න"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons ෆෝල්ඩරය වෙත මාර්ගය සකසන්න"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons සාර්ථකව ස්ථාපනය කර ඇත"
+
+msgid "Successfully Skin Installed"
+msgstr "සම සාර්ථකව ස්ථාපනය කර ඇත"
+
+msgid "Successfully saved configuration"
+msgstr "වින්‍යාස කිරීම සාර්ථකව සුරකින ලදී"
+
+msgid "Try again later ..."
+msgstr "පසුව නැවත උත්සාහ කරන්න..."
+
+msgid "Update Aborted!"
+msgstr "යාවත්කාලීන කිරීම නවත්වන ලදී!"

@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:52+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Yiddish\n"
+"Language: yi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s עס איז ריין"
+
+msgid "... please wait"
+msgstr "... ביטע וואַרטן"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P קומענדיק באַלד!!!"
+
+msgid "Back"
+msgstr "צוריק"
+
+msgid "Cancel"
+msgstr "באָטל מאַכן"
+
+msgid "Cancel execution?"
+msgstr "באָטל מאַכן דורכפירונג?"
+
+msgid "Choice"
+msgstr "ברירה"
+
+msgid "Choose Directory:"
+msgstr "קלייַבן Directory:"
+
+msgid "Choose directory"
+msgstr "קלייַבן וועגווייַזער"
+
+msgid "Config"
+msgstr "קאָנפיג"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "מאַזל - טאָוו! איר האָט שוין די לעצטע ווערסיע ..."
+
+msgid "Console"
+msgstr "קאַנסאָול"
+
+msgid "Device not detected!"
+msgstr "מיטל ניט דיטעקטאַד!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "צי איר ווילן צו ינסטאַלירן דערהייַנטיקן (%s) איצט?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "צי איר ווילן צו ריסטאַרט עניגמאַ?"
+
+msgid "Download Failed!"
+msgstr "אראפקאפיע ניט אַנדערש!"
+
+msgid "Download Failed..."
+msgstr "אראפקאפיע דורכפאַל ..."
+
+msgid "Download failed"
+msgstr "אראפקאפיע ניט אַנדערש"
+
+msgid "Download in progress..."
+msgstr "אראפקאפיע אין פּראָגרעס ..."
+
+msgid "Erase %s... please wait"
+msgstr "מעקן %s... ביטע וואַרטן"
+
+msgid "Exit"
+msgstr "אַרויסגאַנג"
+
+msgid "Hide/Show"
+msgstr "באַהאַלטן / ווייַזן"
+
+msgid "Install"
+msgstr "ינסטאַלירן"
+
+msgid "Install ..."
+msgstr "ינסטאַלירן ..."
+
+msgid "Loading data... Please wait"
+msgstr "לאָודינג דאַטן... ביטע וואַרטן"
+
+msgid "Picons folder"
+msgstr "פּיקאָנס טעקע"
+
+msgid "Please select ..."
+msgstr "ביטע אויסקלייַבן ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "דרוק Ok צו סעלעקטירן דעם טעקע מיט די פּיקאָנס טעקעס"
+
+msgid "Preview"
+msgstr "פאָרויסיקע ווייַזונג"
+
+msgid "Really close without saving the settings?"
+msgstr "טאַקע נאָענט אָן שפּאָרן די סעטטינגס?"
+
+msgid "Remove"
+msgstr "אַראָפּנעמען"
+
+msgid "Restart"
+msgstr "ריסטאַרט"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "אויסקלייַבן דיין ברירה"
+
+msgid "Save"
+msgstr "היט"
+
+msgid "Select"
+msgstr "אויסקלייַבן"
+
+msgid "Set the path to the Picons folder"
+msgstr "שטעלן דעם דרך צו די פּיקאָנס טעקע"
+
+msgid "Successfully Picons Installed"
+msgstr "הצלחה פּיקאָנס אינסטאַלירן"
+
+msgid "Successfully Skin Installed"
+msgstr "הצלחה סקין אינסטאַלירן"
+
+msgid "Successfully saved configuration"
+msgstr "הצלחה געראטעוועט קאַנפיגיעריישאַן"
+
+msgid "Try again later ..."
+msgstr "פּרוּווט ווידער שפּעטער..."
+
+msgid "Update Aborted!"
+msgstr "דערהייַנטיקן אַבאָרטיד!"

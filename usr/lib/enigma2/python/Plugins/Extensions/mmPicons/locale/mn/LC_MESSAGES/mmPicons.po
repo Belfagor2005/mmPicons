@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:36+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Mongolian <openmn-translation@lists.sourceforge.net>\n"
+"Language: mn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s үүнийг цэвэрлэв"
+
+msgid "... please wait"
+msgstr "... түр хүлээнэ үү"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P УДАХГҮЙ!!!"
+
+msgid "Back"
+msgstr "Буцах"
+
+msgid "Cancel"
+msgstr "Цуцлах"
+
+msgid "Cancel execution?"
+msgstr "Гүйцэтгэлийг цуцлах уу?"
+
+msgid "Choice"
+msgstr "Сонголт"
+
+msgid "Choose Directory:"
+msgstr "Лавлахыг сонгоно уу:"
+
+msgid "Choose directory"
+msgstr "Лавлахыг сонгоно уу"
+
+msgid "Config"
+msgstr "Тохиргоо"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Баяр хүргэе! Танд хамгийн сүүлийн хувилбар байгаа..."
+
+msgid "Console"
+msgstr "Консол"
+
+msgid "Device not detected!"
+msgstr "Төхөөрөмж илэрсэнгүй!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Та одоо шинэчлэлтийг ( %s ) суулгахыг хүсэж байна уу?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Та Enigma-г дахин эхлүүлэхийг хүсэж байна уу?"
+
+msgid "Download Failed!"
+msgstr "Татаж чадсангүй!"
+
+msgid "Download Failed..."
+msgstr "Татаж чадсангүй..."
+
+msgid "Download failed"
+msgstr "Татаж чадсангүй"
+
+msgid "Download in progress..."
+msgstr "Татаж авч байна..."
+
+msgid "Erase %s... please wait"
+msgstr "%s-г устгана уу... түр хүлээнэ үү"
+
+msgid "Exit"
+msgstr "Гарах"
+
+msgid "Hide/Show"
+msgstr "Нуух/Үзүүлэх"
+
+msgid "Install"
+msgstr "Суулгах"
+
+msgid "Install ..."
+msgstr "Суулгах ..."
+
+msgid "Loading data... Please wait"
+msgstr "Өгөгдлийг ачаалж байна... Түр хүлээнэ үү"
+
+msgid "Picons folder"
+msgstr "Пикон хавтас"
+
+msgid "Please select ..."
+msgstr "Сонгоно уу ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Ok товчийг дарж пикон файлуудыг агуулсан хавтсыг сонгоно уу"
+
+msgid "Preview"
+msgstr "Урьдчилан үзэх"
+
+msgid "Really close without saving the settings?"
+msgstr "Тохиргоог хадгалахгүйгээр үнэхээр хаах уу?"
+
+msgid "Remove"
+msgstr "Устгах"
+
+msgid "Restart"
+msgstr "Дахин эхлүүлэх"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "СОНГОЛТОО СОНГООРОЙ"
+
+msgid "Save"
+msgstr "Хадгалах"
+
+msgid "Select"
+msgstr "Сонго"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons хавтас руу очих замыг тохируулна уу"
+
+msgid "Successfully Picons Installed"
+msgstr "Пиконуудыг амжилттай суулгалаа"
+
+msgid "Successfully Skin Installed"
+msgstr "Арьсыг амжилттай суулгалаа"
+
+msgid "Successfully saved configuration"
+msgstr "Тохиргоог амжилттай хадгаллаа"
+
+msgid "Try again later ..."
+msgstr "Дараа дахин оролдоно уу..."
+
+msgid "Update Aborted!"
+msgstr "Шинэчлэлтийг зогсоосон!"

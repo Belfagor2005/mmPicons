@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:31+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s はクリーンアップされました"
+
+msgid "... please wait"
+msgstr "... お待ちください"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P もうすぐ来ます!!!"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Cancel execution?"
+msgstr "実行をキャンセルしますか?"
+
+msgid "Choice"
+msgstr "選択"
+
+msgid "Choose Directory:"
+msgstr "ディレクトリを選択してください:"
+
+msgid "Choose directory"
+msgstr "ディレクトリを選択してください"
+
+msgid "Config"
+msgstr "構成"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "おめでとうございます！すでに最新バージョンをお持ちです..."
+
+msgid "Console"
+msgstr "コンソール"
+
+msgid "Device not detected!"
+msgstr "デバイスが検出されません!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "今すぐアップデート ( %s ) をインストールしますか?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "エニグマを再起動しますか?"
+
+msgid "Download Failed!"
+msgstr "ダウンロードに失敗しました!"
+
+msgid "Download Failed..."
+msgstr "ダウンロードに失敗しました..."
+
+msgid "Download failed"
+msgstr "ダウンロードに失敗しました"
+
+msgid "Download in progress..."
+msgstr "ダウンロード中..."
+
+msgid "Erase %s... please wait"
+msgstr "%s を消去します...お待ちください"
+
+msgid "Exit"
+msgstr "出口"
+
+msgid "Hide/Show"
+msgstr "非表示/表示"
+
+msgid "Install"
+msgstr "インストール"
+
+msgid "Install ..."
+msgstr "インストール ..."
+
+msgid "Loading data... Please wait"
+msgstr "データをロードしています...お待ちください"
+
+msgid "Picons folder"
+msgstr "ピコンフォルダー"
+
+msgid "Please select ..."
+msgstr "選択してください..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "OKを押してpiconsファイルを含むフォルダーを選択します"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Really close without saving the settings?"
+msgstr "本当に設定を保存せずに閉じますか?"
+
+msgid "Remove"
+msgstr "取り除く"
+
+msgid "Restart"
+msgstr "再起動"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "選択してください"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Select"
+msgstr "選択"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons フォルダーへのパスを設定します"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons が正常にインストールされました"
+
+msgid "Successfully Skin Installed"
+msgstr "スキンが正常にインストールされました"
+
+msgid "Successfully saved configuration"
+msgstr "設定が正常に保存されました"
+
+msgid "Try again later ..."
+msgstr "後でもう一度試してください..."
+
+msgid "Update Aborted!"
+msgstr "アップデートが中止されました!"

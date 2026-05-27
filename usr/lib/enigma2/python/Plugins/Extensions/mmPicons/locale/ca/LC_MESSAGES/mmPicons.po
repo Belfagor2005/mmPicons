@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:18+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Catalan <ca@dodds.net>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s s'ha netejat"
+
+msgid "... please wait"
+msgstr "... si us plau, espereu"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P AVIAT!!!"
+
+msgid "Back"
+msgstr "Enrere"
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgid "Cancel execution?"
+msgstr "Cancel·lar l'execució?"
+
+msgid "Choice"
+msgstr "elecció"
+
+msgid "Choose Directory:"
+msgstr "Trieu el directori:"
+
+msgid "Choose directory"
+msgstr "Trieu el directori"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Felicitats! Ja tens la darrera versió..."
+
+msgid "Console"
+msgstr "Consola"
+
+msgid "Device not detected!"
+msgstr "Dispositiu no detectat!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Voleu instal·lar l'actualització ( %s ) ara?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Vols reiniciar Enigma?"
+
+msgid "Download Failed!"
+msgstr "La baixada ha fallat!"
+
+msgid "Download Failed..."
+msgstr "La baixada ha fallat..."
+
+msgid "Download failed"
+msgstr "La baixada ha fallat"
+
+msgid "Download in progress..."
+msgstr "Descàrrega en curs..."
+
+msgid "Erase %s... please wait"
+msgstr "Esborra %s... espereu"
+
+msgid "Exit"
+msgstr "Sortida"
+
+msgid "Hide/Show"
+msgstr "Amaga/Mostra"
+
+msgid "Install"
+msgstr "Instal·lar"
+
+msgid "Install ..."
+msgstr "Instal·leu..."
+
+msgid "Loading data... Please wait"
+msgstr "S'estan carregant les dades... Espereu"
+
+msgid "Picons folder"
+msgstr "Carpeta Picons"
+
+msgid "Please select ..."
+msgstr "Seleccioneu..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Premeu D'acord per seleccionar la carpeta que conté els fitxers piccons"
+
+msgid "Preview"
+msgstr "Vista prèvia"
+
+msgid "Really close without saving the settings?"
+msgstr "Tanqueu realment sense desar la configuració?"
+
+msgid "Remove"
+msgstr "Eliminar"
+
+msgid "Restart"
+msgstr "Reinicieu"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "SELECCIONA LA TEVA Elecció"
+
+msgid "Save"
+msgstr "Desa"
+
+msgid "Select"
+msgstr "Seleccioneu"
+
+msgid "Set the path to the Picons folder"
+msgstr "Estableix el camí a la carpeta Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons instal·lats correctament"
+
+msgid "Successfully Skin Installed"
+msgstr "S'ha instal·lat la pell correctament"
+
+msgid "Successfully saved configuration"
+msgstr "Configuració desada correctament"
+
+msgid "Try again later ..."
+msgstr "Torna-ho a provar més tard..."
+
+msgid "Update Aborted!"
+msgstr "Actualització avortada!"

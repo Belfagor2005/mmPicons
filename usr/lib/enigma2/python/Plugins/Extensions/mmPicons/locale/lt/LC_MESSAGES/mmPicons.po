@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:34+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s jis išvalytas"
+
+msgid "... please wait"
+msgstr "... prašau palaukti"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P GREITAI!!!"
+
+msgid "Back"
+msgstr "Atgal"
+
+msgid "Cancel"
+msgstr "Atšaukti"
+
+msgid "Cancel execution?"
+msgstr "Atšaukti vykdymą?"
+
+msgid "Choice"
+msgstr "Pasirinkimas"
+
+msgid "Choose Directory:"
+msgstr "Pasirinkite katalogą:"
+
+msgid "Choose directory"
+msgstr "Pasirinkite katalogą"
+
+msgid "Config"
+msgstr "konfig"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Sveikiname! Jau turite naujausią versiją..."
+
+msgid "Console"
+msgstr "konsolė"
+
+msgid "Device not detected!"
+msgstr "Įrenginys neaptiktas!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Ar norite įdiegti naujinimą ( %s ) dabar?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Ar norite iš naujo paleisti „Enigma“?"
+
+msgid "Download Failed!"
+msgstr "Atsisiųsti nepavyko!"
+
+msgid "Download Failed..."
+msgstr "Atsisiųsti nepavyko..."
+
+msgid "Download failed"
+msgstr "Atsisiųsti nepavyko"
+
+msgid "Download in progress..."
+msgstr "Atsisiuntimas vyksta..."
+
+msgid "Erase %s... please wait"
+msgstr "Ištrinti %s... palaukite"
+
+msgid "Exit"
+msgstr "Išeiti"
+
+msgid "Hide/Show"
+msgstr "Slėpti/Rodyti"
+
+msgid "Install"
+msgstr "Įdiegti"
+
+msgid "Install ..."
+msgstr "Įdiegti..."
+
+msgid "Loading data... Please wait"
+msgstr "Įkeliami duomenys... Palaukite"
+
+msgid "Picons folder"
+msgstr "Picons aplankas"
+
+msgid "Please select ..."
+msgstr "Prašome pasirinkti..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Paspauskite Gerai, kad pasirinktumėte aplanką, kuriame yra picon failai"
+
+msgid "Preview"
+msgstr "Peržiūra"
+
+msgid "Really close without saving the settings?"
+msgstr "Tikrai uždaryti neišsaugoję nustatymų?"
+
+msgid "Remove"
+msgstr "Pašalinti"
+
+msgid "Restart"
+msgstr "Paleisti iš naujo"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "PASIRINKITE SAVO PASIRINKIMĄ"
+
+msgid "Save"
+msgstr "Išsaugoti"
+
+msgid "Select"
+msgstr "Pasirinkite"
+
+msgid "Set the path to the Picons folder"
+msgstr "Nustatykite kelią į aplanką Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "„Picons“ sėkmingai įdiegta"
+
+msgid "Successfully Skin Installed"
+msgstr "„Skin“ sėkmingai įdiegta"
+
+msgid "Successfully saved configuration"
+msgstr "Sėkmingai išsaugota konfigūracija"
+
+msgid "Try again later ..."
+msgstr "Bandykite dar kartą vėliau..."
+
+msgid "Update Aborted!"
+msgstr "Atnaujinimas nutrauktas!"

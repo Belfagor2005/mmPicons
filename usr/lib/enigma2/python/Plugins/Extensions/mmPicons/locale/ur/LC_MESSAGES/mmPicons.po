@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:51+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Urdu <jessbody@gmail.com>\n"
+"Language: ur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s اسے صاف کر دیا گیا ہے۔"
+
+msgid "... please wait"
+msgstr "... براہ مہربانی انتظار کریں"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P جلد آ رہا ہے!!!"
+
+msgid "Back"
+msgstr "پیچھے"
+
+msgid "Cancel"
+msgstr "منسوخ کریں۔"
+
+msgid "Cancel execution?"
+msgstr "پھانسی منسوخ کریں؟"
+
+msgid "Choice"
+msgstr "انتخاب"
+
+msgid "Choose Directory:"
+msgstr "ڈائرکٹری کا انتخاب کریں:"
+
+msgid "Choose directory"
+msgstr "ڈائریکٹری کا انتخاب کریں۔"
+
+msgid "Config"
+msgstr "ترتیب"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "مبارک ہو! آپ کے پاس پہلے سے ہی تازہ ترین ورژن ہے..."
+
+msgid "Console"
+msgstr "کنسول"
+
+msgid "Device not detected!"
+msgstr "ڈیوائس کا پتہ نہیں چلا!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "کیا آپ ابھی اپ ڈیٹ (%s) انسٹال کرنا چاہتے ہیں؟"
+
+msgid "Do you want to restart Enigma?"
+msgstr "کیا آپ Enigma کو دوبارہ شروع کرنا چاہتے ہیں؟"
+
+msgid "Download Failed!"
+msgstr "ڈاؤن لوڈ ناکام!"
+
+msgid "Download Failed..."
+msgstr "ڈاؤن لوڈ ناکام..."
+
+msgid "Download failed"
+msgstr "ڈاؤن لوڈ ناکام ہو گیا۔"
+
+msgid "Download in progress..."
+msgstr "ڈاؤن لوڈ جاری ہے..."
+
+msgid "Erase %s... please wait"
+msgstr "%s کو مٹا دیں... براہ کرم انتظار کریں۔"
+
+msgid "Exit"
+msgstr "باہر نکلیں۔"
+
+msgid "Hide/Show"
+msgstr "چھپائیں/دکھائیں۔"
+
+msgid "Install"
+msgstr "انسٹال کریں۔"
+
+msgid "Install ..."
+msgstr "انسٹال کریں..."
+
+msgid "Loading data... Please wait"
+msgstr "ڈیٹا لوڈ ہو رہا ہے... براہ کرم انتظار کریں۔"
+
+msgid "Picons folder"
+msgstr "پکنز فولڈر"
+
+msgid "Please select ..."
+msgstr "براہ کرم منتخب کریں..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "پکنز فائلوں پر مشتمل فولڈر کو منتخب کرنے کے لیے اوکے کو دبائیں۔"
+
+msgid "Preview"
+msgstr "پیش نظارہ"
+
+msgid "Really close without saving the settings?"
+msgstr "سیٹنگز کو محفوظ کیے بغیر واقعی بند کریں؟"
+
+msgid "Remove"
+msgstr "ہٹا دیں۔"
+
+msgid "Restart"
+msgstr "دوبارہ شروع کریں۔"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "اپنی پسند کا انتخاب کریں۔"
+
+msgid "Save"
+msgstr "محفوظ کریں۔"
+
+msgid "Select"
+msgstr "منتخب کریں۔"
+
+msgid "Set the path to the Picons folder"
+msgstr "Picons فولڈر کا راستہ سیٹ کریں۔"
+
+msgid "Successfully Picons Installed"
+msgstr "پکنز کامیابی کے ساتھ انسٹال ہو گئے۔"
+
+msgid "Successfully Skin Installed"
+msgstr "جلد کو کامیابی سے انسٹال کیا گیا۔"
+
+msgid "Successfully saved configuration"
+msgstr "ترتیب کو کامیابی سے محفوظ کر لیا گیا۔"
+
+msgid "Try again later ..."
+msgstr "بعد میں دوبارہ کوشش کریں..."
+
+msgid "Update Aborted!"
+msgstr "اپ ڈیٹ روک دیا گیا!"

@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:45+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Language sr-Latn\n"
+"Language: sr-Latn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%с је очишћено"
+
+msgid "... please wait"
+msgstr "... молим сачекајте"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":П УСКОРО!!!"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Cancel"
+msgstr "Откажи"
+
+msgid "Cancel execution?"
+msgstr "Отказати извршење?"
+
+msgid "Choice"
+msgstr "Избор"
+
+msgid "Choose Directory:"
+msgstr "Изаберите именик:"
+
+msgid "Choose directory"
+msgstr "Изаберите директоријум"
+
+msgid "Config"
+msgstr "Цонфиг"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Цонгратс! Већ имате најновију верзију..."
+
+msgid "Console"
+msgstr "Конзола"
+
+msgid "Device not detected!"
+msgstr "Уређај није откривен!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Да ли желите да инсталирате ажурирање ( %с ) сада?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Да ли желите да поново покренете Енигму?"
+
+msgid "Download Failed!"
+msgstr "Преузимање није успело!"
+
+msgid "Download Failed..."
+msgstr "Преузимање није успело..."
+
+msgid "Download failed"
+msgstr "Преузимање није успело"
+
+msgid "Download in progress..."
+msgstr "Преузимање у току..."
+
+msgid "Erase %s... please wait"
+msgstr "Обришите %с... сачекајте"
+
+msgid "Exit"
+msgstr "Изађи"
+
+msgid "Hide/Show"
+msgstr "Сакриј/Прикажи"
+
+msgid "Install"
+msgstr "Инсталирај"
+
+msgid "Install ..."
+msgstr "Инсталирај..."
+
+msgid "Loading data... Please wait"
+msgstr "Учитавање података... Молимо сачекајте"
+
+msgid "Picons folder"
+msgstr "Фасцикла Пицонс"
+
+msgid "Please select ..."
+msgstr "Молимо изаберите..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Притисните Ок да бисте изабрали фасциклу која садржи датотеке са сликама"
+
+msgid "Preview"
+msgstr "Преглед"
+
+msgid "Really close without saving the settings?"
+msgstr "Стварно затворите без чувања подешавања?"
+
+msgid "Remove"
+msgstr "Уклони"
+
+msgid "Restart"
+msgstr "Поново покрени"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ИЗАБЕРИТЕ СВОЈ ИЗБОР"
+
+msgid "Save"
+msgstr "Сачувај"
+
+msgid "Select"
+msgstr "Изаберите"
+
+msgid "Set the path to the Picons folder"
+msgstr "Поставите путању до фасцикле Пицонс"
+
+msgid "Successfully Picons Installed"
+msgstr "Пикони су успешно инсталирани"
+
+msgid "Successfully Skin Installed"
+msgstr "Кожа је успешно инсталирана"
+
+msgid "Successfully saved configuration"
+msgstr "Конфигурација је успешно сачувана"
+
+msgid "Try again later ..."
+msgstr "Покушајте поново касније..."
+
+msgid "Update Aborted!"
+msgstr "Ажурирање је прекинуто!"

@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: ekekaz@gmail.com [lululla]\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+msgid "%s it has been cleaned"
+msgstr ""
+
+msgid "... please wait"
+msgstr ""
+
+msgid ":P  COMING SOON!!!"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cancel execution?"
+msgstr ""
+
+msgid "Choice"
+msgstr ""
+
+msgid "Choose Directory:"
+msgstr ""
+
+msgid "Choose directory"
+msgstr ""
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr ""
+
+msgid "Console"
+msgstr ""
+
+msgid "Device not detected!"
+msgstr ""
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr ""
+
+msgid "Do you want to restart Enigma?"
+msgstr ""
+
+msgid "Download Failed!"
+msgstr ""
+
+msgid "Download Failed..."
+msgstr ""
+
+msgid "Download failed"
+msgstr ""
+
+msgid "Download in progress..."
+msgstr ""
+
+msgid "Erase %s... please wait"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+msgid "Hide/Show"
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Install ..."
+msgstr ""
+
+msgid "Loading data... Please wait"
+msgstr ""
+
+msgid "Picons folder"
+msgstr ""
+
+msgid "Please select ..."
+msgstr ""
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Really close without saving the settings?"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Restart"
+msgstr ""
+
+msgid "SELECT YOUR CHOICE"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Select"
+msgstr ""
+
+msgid "Set the path to the Picons folder"
+msgstr ""
+
+msgid "Successfully Picons Installed"
+msgstr ""
+
+msgid "Successfully Skin Installed"
+msgstr ""
+
+msgid "Successfully saved configuration"
+msgstr ""
+
+msgid "Try again later ..."
+msgstr ""
+
+msgid "Update Aborted!"
+msgstr ""

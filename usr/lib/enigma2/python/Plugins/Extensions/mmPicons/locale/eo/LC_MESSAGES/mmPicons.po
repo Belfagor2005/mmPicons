@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:21+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s ĝi estis purigita"
+
+msgid "... please wait"
+msgstr "... bonvolu atendi"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P Baldaŭ!!!"
+
+msgid "Back"
+msgstr "Reen"
+
+msgid "Cancel"
+msgstr "Nuligi"
+
+msgid "Cancel execution?"
+msgstr "Ĉu nuligi ekzekuton?"
+
+msgid "Choice"
+msgstr "Elekto"
+
+msgid "Choose Directory:"
+msgstr "Elektu Dosierujon:"
+
+msgid "Choose directory"
+msgstr "Elektu dosierujon"
+
+msgid "Config"
+msgstr "Agordo"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Gratulon! Vi jam havas la lastan version..."
+
+msgid "Console"
+msgstr "Konzolo"
+
+msgid "Device not detected!"
+msgstr "Aparato ne detektita!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Ĉu vi volas instali ĝisdatigon ( %s ) nun?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Ĉu vi volas rekomenci Enigma?"
+
+msgid "Download Failed!"
+msgstr "Elŝuto malsukcesis!"
+
+msgid "Download Failed..."
+msgstr "Elŝuto malsukcesis..."
+
+msgid "Download failed"
+msgstr "Elŝuto malsukcesis"
+
+msgid "Download in progress..."
+msgstr "Elŝuto en progreso..."
+
+msgid "Erase %s... please wait"
+msgstr "Forigu %s... bonvolu atendi"
+
+msgid "Exit"
+msgstr "Eliro"
+
+msgid "Hide/Show"
+msgstr "Kaŝi/Montri"
+
+msgid "Install"
+msgstr "Instali"
+
+msgid "Install ..."
+msgstr "Instalu..."
+
+msgid "Loading data... Please wait"
+msgstr "Ŝarĝante datumojn... Bonvolu atendi"
+
+msgid "Picons folder"
+msgstr "Pikon-dosierujo"
+
+msgid "Please select ..."
+msgstr "Bonvolu elekti..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Premu Ok por elekti la dosierujon enhavantan la pikondosierojn"
+
+msgid "Preview"
+msgstr "Antaŭrigardo"
+
+msgid "Really close without saving the settings?"
+msgstr "Ĉu vere fermi sen konservi la agordojn?"
+
+msgid "Remove"
+msgstr "Forigi"
+
+msgid "Restart"
+msgstr "Rekomencu"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ELEKTU VIAN ELEKTON"
+
+msgid "Save"
+msgstr "Konservu"
+
+msgid "Select"
+msgstr "Elektu"
+
+msgid "Set the path to the Picons folder"
+msgstr "Agordu la vojon al la dosierujo Piccons"
+
+msgid "Successfully Picons Installed"
+msgstr "Sukcese Pikonoj Instalitaj"
+
+msgid "Successfully Skin Installed"
+msgstr "Sukcese Haŭto Instalita"
+
+msgid "Successfully saved configuration"
+msgstr "Sukcese konservita agordo"
+
+msgid "Try again later ..."
+msgstr "Provu denove poste..."
+
+msgid "Update Aborted!"
+msgstr "Ĝisdatigo interrompita!"

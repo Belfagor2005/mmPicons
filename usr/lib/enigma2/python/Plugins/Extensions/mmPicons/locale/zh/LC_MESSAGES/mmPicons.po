@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:53+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Chinese\n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s已被清理"
+
+msgid "... please wait"
+msgstr "... 请稍等"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P 即将推出！"
+
+msgid "Back"
+msgstr "后退"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cancel execution?"
+msgstr "取消执行？"
+
+msgid "Choice"
+msgstr "选择"
+
+msgid "Choose Directory:"
+msgstr "选择目录："
+
+msgid "Choose directory"
+msgstr "选择目录"
+
+msgid "Config"
+msgstr "配置"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "恭喜！您已经拥有最新版本..."
+
+msgid "Console"
+msgstr "安慰"
+
+msgid "Device not detected!"
+msgstr "未检测到设备！"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "您想立即安装更新 (%s) 吗？"
+
+msgid "Do you want to restart Enigma?"
+msgstr "您想重新启动 Enigma 吗？"
+
+msgid "Download Failed!"
+msgstr "下载失败！"
+
+msgid "Download Failed..."
+msgstr "下载失败..."
+
+msgid "Download failed"
+msgstr "下载失败"
+
+msgid "Download in progress..."
+msgstr "下载正在进行中..."
+
+msgid "Erase %s... please wait"
+msgstr "删除 %s...请稍候"
+
+msgid "Exit"
+msgstr "出口"
+
+msgid "Hide/Show"
+msgstr "隐藏/显示"
+
+msgid "Install"
+msgstr "安装"
+
+msgid "Install ..."
+msgstr "安装 ..."
+
+msgid "Loading data... Please wait"
+msgstr "正在加载数据...请稍候"
+
+msgid "Picons folder"
+msgstr "图标文件夹"
+
+msgid "Please select ..."
+msgstr "请选择..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "按“确定”选择包含图标文件的文件夹"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Really close without saving the settings?"
+msgstr "真的关闭而不保存设置吗？"
+
+msgid "Remove"
+msgstr "消除"
+
+msgid "Restart"
+msgstr "重新启动"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "选择您的选择"
+
+msgid "Save"
+msgstr "节省"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "Set the path to the Picons folder"
+msgstr "设置Picons文件夹的路径"
+
+msgid "Successfully Picons Installed"
+msgstr "已成功安装Picons"
+
+msgid "Successfully Skin Installed"
+msgstr "皮肤安装成功"
+
+msgid "Successfully saved configuration"
+msgstr "成功保存配置"
+
+msgid "Try again later ..."
+msgstr "稍后再试..."
+
+msgid "Update Aborted!"
+msgstr "更新中止！"

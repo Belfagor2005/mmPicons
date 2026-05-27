@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:27+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Hebrew <heb-bugzap@hamakor.org.il>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s זה נוקה"
+
+msgid "... please wait"
+msgstr "... אנא המתן"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P בקרוב!!!"
+
+msgid "Back"
+msgstr "בְּחֲזָרָה"
+
+msgid "Cancel"
+msgstr "לְבַטֵל"
+
+msgid "Cancel execution?"
+msgstr "לבטל את הביצוע?"
+
+msgid "Choice"
+msgstr "בְּחִירָה"
+
+msgid "Choose Directory:"
+msgstr "בחר ספרייה:"
+
+msgid "Choose directory"
+msgstr "בחר ספרייה"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "מזל טוב! כבר יש לך את הגרסה האחרונה..."
+
+msgid "Console"
+msgstr "לְנַחֵם"
+
+msgid "Device not detected!"
+msgstr "המכשיר לא זוהה!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "האם ברצונך להתקין עדכון ( %s ) כעת?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "האם אתה רוצה להפעיל מחדש את Enigma?"
+
+msgid "Download Failed!"
+msgstr "ההורדה נכשלה!"
+
+msgid "Download Failed..."
+msgstr "ההורדה נכשלה..."
+
+msgid "Download failed"
+msgstr "ההורדה נכשלה"
+
+msgid "Download in progress..."
+msgstr "ההורדה מתבצעת..."
+
+msgid "Erase %s... please wait"
+msgstr "מחק %s... אנא המתן"
+
+msgid "Exit"
+msgstr "יְצִיאָה"
+
+msgid "Hide/Show"
+msgstr "הסתר/הצג"
+
+msgid "Install"
+msgstr "לְהַתְקִין"
+
+msgid "Install ..."
+msgstr "התקן..."
+
+msgid "Loading data... Please wait"
+msgstr "טוען נתונים... אנא המתן"
+
+msgid "Picons folder"
+msgstr "תיקיית Picons"
+
+msgid "Please select ..."
+msgstr "אנא בחר..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "לחץ על Ok כדי לבחור את התיקיה המכילה את קבצי הפיקונים"
+
+msgid "Preview"
+msgstr "תצוגה מקדימה"
+
+msgid "Really close without saving the settings?"
+msgstr "באמת לסגור בלי לשמור את ההגדרות?"
+
+msgid "Remove"
+msgstr "לְהַסִיר"
+
+msgid "Restart"
+msgstr "הפעל מחדש"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "בחר את הבחירה שלך"
+
+msgid "Save"
+msgstr "לְהַצִיל"
+
+msgid "Select"
+msgstr "לִבחוֹר"
+
+msgid "Set the path to the Picons folder"
+msgstr "הגדר את הנתיב לתיקיית Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "התקנת Picons בהצלחה"
+
+msgid "Successfully Skin Installed"
+msgstr "התקנת עור מוצלחת"
+
+msgid "Successfully saved configuration"
+msgstr "התצורה נשמרה בהצלחה"
+
+msgid "Try again later ..."
+msgstr "נסה שוב מאוחר יותר..."
+
+msgid "Update Aborted!"
+msgstr "העדכון בוטל!"

@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:40+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Oriya <translation-team-or@lists.sourceforge.net>\n"
+"Language: or\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "% s ଏହାକୁ ସଫା କରାଯାଇଛି |"
+
+msgid "... please wait"
+msgstr "... ଦୟାକରି ଅପେକ୍ଷା କର |"
+
+msgid ":P  COMING SOON!!!"
+msgstr ": P ଆସୁଛି !!!"
+
+msgid "Back"
+msgstr "ପଛକୁ"
+
+msgid "Cancel"
+msgstr "ବାତିଲ୍ କରନ୍ତୁ |"
+
+msgid "Cancel execution?"
+msgstr "ନିଷ୍ପାଦନ ବାତିଲ କରନ୍ତୁ?"
+
+msgid "Choice"
+msgstr "ପସନ୍ଦ"
+
+msgid "Choose Directory:"
+msgstr "ଡିରେକ୍ଟୋରୀ ବାଛନ୍ତୁ:"
+
+msgid "Choose directory"
+msgstr "ଡିରେକ୍ଟୋରୀ ବାଛନ୍ତୁ |"
+
+msgid "Config"
+msgstr "ବିନ୍ୟାସ କରନ୍ତୁ |"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "ଅଭିନନ୍ଦନ! ଆପଣଙ୍କ ପାଖରେ ସର୍ବଶେଷ ସଂସ୍କରଣ ଅଛି ..."
+
+msgid "Console"
+msgstr "କନସୋଲ୍"
+
+msgid "Device not detected!"
+msgstr "ଉପକରଣ ଚିହ୍ନଟ ହୋଇନାହିଁ!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "ଆପଣ ବର୍ତ୍ତମାନ ଅଦ୍ୟତନ (% s) ସଂସ୍ଥାପନ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "ଆପଣ ଏନିଗମାକୁ ପୁନ rest ଆରମ୍ଭ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?"
+
+msgid "Download Failed!"
+msgstr "ଡାଉନଲୋଡ୍ ବିଫଳ!"
+
+msgid "Download Failed..."
+msgstr "ଡାଉନଲୋଡ୍ ବିଫଳ ..."
+
+msgid "Download failed"
+msgstr "ଡାଉନଲୋଡ୍ ବିଫଳ ହେଲା |"
+
+msgid "Download in progress..."
+msgstr "ଡାଉନଲୋଡ୍ ଚାଲିଛି ..."
+
+msgid "Erase %s... please wait"
+msgstr "% S ଲିଭାନ୍ତୁ ... ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ |"
+
+msgid "Exit"
+msgstr "ପ୍ରସ୍ଥାନ"
+
+msgid "Hide/Show"
+msgstr "ଲୁଚାନ୍ତୁ / ଦେଖାନ୍ତୁ |"
+
+msgid "Install"
+msgstr "ସଂସ୍ଥାପନ କରନ୍ତୁ |"
+
+msgid "Install ..."
+msgstr "ସଂସ୍ଥାପନ ..."
+
+msgid "Loading data... Please wait"
+msgstr "ଡାଟା ଲୋଡ୍ କରୁଛି ... ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ |"
+
+msgid "Picons folder"
+msgstr "ପିକନ୍ ଫୋଲ୍ଡର୍ |"
+
+msgid "Please select ..."
+msgstr "ଦୟାକରି ଚୟନ କରନ୍ତୁ ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "ପିକନ୍ ଫାଇଲ୍ ଧାରଣ କରିଥିବା ଫୋଲ୍ଡର୍ ବାଛିବା ପାଇଁ ଓକେ ଦବାନ୍ତୁ |"
+
+msgid "Preview"
+msgstr "ପୂର୍ବାବଲୋକନ"
+
+msgid "Really close without saving the settings?"
+msgstr "ସେଟିଂସମୂହ ସଞ୍ଚୟ ନକରି ପ୍ରକୃତରେ ବନ୍ଦ?"
+
+msgid "Remove"
+msgstr "ଅପସାରଣ କରନ୍ତୁ |"
+
+msgid "Restart"
+msgstr "ପୁନ Rest ଆରମ୍ଭ କରନ୍ତୁ |"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "ଆପଣଙ୍କର ପସନ୍ଦ ଚୟନ କରନ୍ତୁ |"
+
+msgid "Save"
+msgstr "ସଞ୍ଚୟ କରନ୍ତୁ |"
+
+msgid "Select"
+msgstr "ଚୟନ କରନ୍ତୁ |"
+
+msgid "Set the path to the Picons folder"
+msgstr "ପିକନ୍ସ ଫୋଲ୍ଡରକୁ ପଥ ସେଟ୍ କରନ୍ତୁ |"
+
+msgid "Successfully Picons Installed"
+msgstr "ସଫଳତାର ସହିତ ପିକନ୍ ସଂସ୍ଥାପିତ |"
+
+msgid "Successfully Skin Installed"
+msgstr "ଚର୍ମ ସଂସ୍ଥାପିତ ହୋଇଛି |"
+
+msgid "Successfully saved configuration"
+msgstr "ସଫଳତାର ସହିତ ସଂରକ୍ଷିତ ସଂରଚନା |"
+
+msgid "Try again later ..."
+msgstr "ପରେ ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ ..."
+
+msgid "Update Aborted!"
+msgstr "ପରିତ୍ୟାଗ କରାଯାଇଥିବା ଅଦ୍ୟତନ!"

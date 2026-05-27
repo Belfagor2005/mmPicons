@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:14+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Afrikaans <i18n@af.org.za>\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s dit is skoongemaak"
+
+msgid "... please wait"
+msgstr "... wag asseblief"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P BINNEKORT!!!"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Cancel"
+msgstr "Kanselleer"
+
+msgid "Cancel execution?"
+msgstr "Kanselleer uitvoering?"
+
+msgid "Choice"
+msgstr "Keuse"
+
+msgid "Choose Directory:"
+msgstr "Kies gids:"
+
+msgid "Choose directory"
+msgstr "Kies gids"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Geluk! Jy het reeds die nuutste weergawe..."
+
+msgid "Console"
+msgstr "Konsole"
+
+msgid "Device not detected!"
+msgstr "Toestel nie bespeur nie!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Wil jy nou opdatering ( %s ) installeer?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Wil jy Enigma herbegin?"
+
+msgid "Download Failed!"
+msgstr "Aflaai het misluk!"
+
+msgid "Download Failed..."
+msgstr "Aflaai het misluk..."
+
+msgid "Download failed"
+msgstr "Kon nie aflaai nie"
+
+msgid "Download in progress..."
+msgstr "Aflaai aan die gang..."
+
+msgid "Erase %s... please wait"
+msgstr "Vee %s uit... wag asseblief"
+
+msgid "Exit"
+msgstr "Verlaat"
+
+msgid "Hide/Show"
+msgstr "Versteek/Wys"
+
+msgid "Install"
+msgstr "Installeer"
+
+msgid "Install ..."
+msgstr "Installeer ..."
+
+msgid "Loading data... Please wait"
+msgstr "Laai tans data... Wag asseblief"
+
+msgid "Picons folder"
+msgstr "Picons-lêergids"
+
+msgid "Please select ..."
+msgstr "Kies asseblief..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Druk Ok om die vouer te kies wat die picons-lêers bevat"
+
+msgid "Preview"
+msgstr "Voorskou"
+
+msgid "Really close without saving the settings?"
+msgstr "Regtig toemaak sonder om die instellings te stoor?"
+
+msgid "Remove"
+msgstr "Verwyder"
+
+msgid "Restart"
+msgstr "Herbegin"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "KIES JOU KEUSE"
+
+msgid "Save"
+msgstr "Stoor"
+
+msgid "Select"
+msgstr "Kies"
+
+msgid "Set the path to the Picons folder"
+msgstr "Stel die pad na die Picons-lêergids"
+
+msgid "Successfully Picons Installed"
+msgstr "Picons is suksesvol geïnstalleer"
+
+msgid "Successfully Skin Installed"
+msgstr "Suksesvol vel geïnstalleer"
+
+msgid "Successfully saved configuration"
+msgstr "Opstelling is suksesvol gestoor"
+
+msgid "Try again later ..."
+msgstr "Probeer later weer..."
+
+msgid "Update Aborted!"
+msgstr "Opdatering afgelas!"

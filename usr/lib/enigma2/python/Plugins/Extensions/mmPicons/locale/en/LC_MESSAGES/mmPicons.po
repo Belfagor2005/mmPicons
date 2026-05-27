@@ -1,0 +1,141 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:21+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s it has been cleaned"
+
+msgid "... please wait"
+msgstr "... please wait"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P  COMING SOON!!!"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Cancel execution?"
+msgstr "Cancel execution?"
+
+msgid "Choice"
+msgstr "Choice"
+
+msgid "Choose Directory:"
+msgstr "Choose Directory:"
+
+msgid "Choose directory"
+msgstr "Choose directory"
+
+msgid "Config"
+msgstr "Config"
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Congrats! You already have the latest version..."
+
+msgid "Console"
+msgstr "Console"
+
+msgid "Device not detected!"
+msgstr "Device not detected!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Do you want to install update ( %s ) now?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Do you want to restart Enigma?"
+
+msgid "Download Failed!"
+msgstr "Download Failed!"
+
+msgid "Download Failed..."
+msgstr "Download Failed..."
+
+msgid "Download failed"
+msgstr "Download failed"
+
+msgid "Download in progress..."
+msgstr "Download in progress..."
+
+msgid "Erase %s... please wait"
+msgstr "Erase %s... please wait"
+
+msgid "Exit"
+msgstr "Exit"
+
+msgid "Hide/Show"
+msgstr "Hide/Show"
+
+msgid "Install"
+msgstr "Install"
+
+msgid "Install ..."
+msgstr "Install ..."
+
+msgid "Loading data... Please wait"
+msgstr "Loading data... Please wait"
+
+msgid "Picons folder"
+msgstr "Picons folder"
+
+msgid "Please select ..."
+msgstr "Please select ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Press Ok to select the folder containing the picons files"
+
+msgid "Preview"
+msgstr "Preview"
+
+msgid "Really close without saving the settings?"
+msgstr "Really close without saving the settings?"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Restart"
+msgstr "Restart"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "SELECT YOUR CHOICE"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Select"
+msgstr "Select"
+
+msgid "Set the path to the Picons folder"
+msgstr "Set the path to the Picons folder"
+
+msgid "Successfully Picons Installed"
+msgstr "Successfully Picons Installed"
+
+msgid "Successfully Skin Installed"
+msgstr "Successfully Skin Installed"
+
+msgid "Successfully saved configuration"
+msgstr "Successfully saved configuration"
+
+msgid "Try again later ..."
+msgstr "Try again later ..."
+
+msgid "Update Aborted!"
+msgstr "Update Aborted!"

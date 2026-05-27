@@ -1,0 +1,140 @@
+# mmPicons translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mmPicons\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 19:19+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Welsh\n"
+"Language: cy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "%s it has been cleaned"
+msgstr "%s mae wedi ei lanhau"
+
+msgid "... please wait"
+msgstr "... arhoswch os gwelwch yn dda"
+
+msgid ":P  COMING SOON!!!"
+msgstr ":P YN DOD YN FUAN!!!"
+
+msgid "Back"
+msgstr "Yn ol"
+
+msgid "Cancel"
+msgstr "Canslo"
+
+msgid "Cancel execution?"
+msgstr "Canslo gweithrediad?"
+
+msgid "Choice"
+msgstr "Dewis"
+
+msgid "Choose Directory:"
+msgstr "Dewiswch Cyfeiriadur:"
+
+msgid "Choose directory"
+msgstr "Dewiswch gyfeiriadur"
+
+msgid "Config"
+msgstr ""
+
+msgid "Congrats! You already have the latest version..."
+msgstr "Llongyfarchiadau! Mae gennych y fersiwn diweddaraf yn barod..."
+
+msgid "Console"
+msgstr "Consol"
+
+msgid "Device not detected!"
+msgstr "Dyfais heb ei ganfod!"
+
+msgid "Do you want to install update ( %s ) now?"
+msgstr "Ydych chi am osod diweddariad ( %s ) nawr?"
+
+msgid "Do you want to restart Enigma?"
+msgstr "Ydych chi am ailgychwyn Enigma?"
+
+msgid "Download Failed!"
+msgstr "Lawrlwytho Wedi Methu!"
+
+msgid "Download Failed..."
+msgstr "Wedi methu llwytho i lawr..."
+
+msgid "Download failed"
+msgstr "Wedi methu llwytho i lawr"
+
+msgid "Download in progress..."
+msgstr "Lawrlwytho ar y gweill..."
+
+msgid "Erase %s... please wait"
+msgstr "Dileu %s... arhoswch"
+
+msgid "Exit"
+msgstr "Ymadael"
+
+msgid "Hide/Show"
+msgstr "Cuddio/Dangos"
+
+msgid "Install"
+msgstr "Gosod"
+
+msgid "Install ..."
+msgstr "Gosod ..."
+
+msgid "Loading data... Please wait"
+msgstr "Wrthi'n llwytho data... Arhoswch"
+
+msgid "Picons folder"
+msgstr "Ffolder Picons"
+
+msgid "Please select ..."
+msgstr "Dewiswch ..."
+
+msgid "Press Ok to select the folder containing the picons files"
+msgstr "Pwyswch Ok i ddewis y ffolder sy'n cynnwys y ffeiliau picons"
+
+msgid "Preview"
+msgstr "Rhagolwg"
+
+msgid "Really close without saving the settings?"
+msgstr "Cau iawn heb arbed y gosodiadau?"
+
+msgid "Remove"
+msgstr "Dileu"
+
+msgid "Restart"
+msgstr "Ailgychwyn"
+
+msgid "SELECT YOUR CHOICE"
+msgstr "DEWISWCH EICH DEWIS"
+
+msgid "Save"
+msgstr "Arbed"
+
+msgid "Select"
+msgstr "Dewiswch"
+
+msgid "Set the path to the Picons folder"
+msgstr "Gosodwch y llwybr i'r ffolder Picons"
+
+msgid "Successfully Picons Installed"
+msgstr "Wedi gosod Picons yn llwyddiannus"
+
+msgid "Successfully Skin Installed"
+msgstr "Gosod Croen yn Llwyddiannus"
+
+msgid "Successfully saved configuration"
+msgstr "Wedi cadw'r ffurfweddiad yn llwyddiannus"
+
+msgid "Try again later ..."
+msgstr "Ceisiwch eto yn nes ymlaen..."
+
+msgid "Update Aborted!"
+msgstr "Diweddariad wedi'i Erthylu!"
